@@ -1,2 +1,2 @@
-wairakei_data/*
-*/.ipnyb_checkpoints/*
+wairakei_data/**
+**/.ipnyb_checkpoints/**
