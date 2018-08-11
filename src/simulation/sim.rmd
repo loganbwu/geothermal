@@ -26,7 +26,8 @@ data.pred <- expand.grid(whp=whp_pred, well_id=well_id_pred, date_numeric=date_p
 data.in <- bind_rows(data.df, data.pred)
 
 data <- as.list(data.in)
-data$m <- length(unique(wells.distinct))
+# data$m <- length(unique(wells.distinct))
+
 data$n <- nrow(data.in)
 ```
 
@@ -109,4 +110,15 @@ foo <- jags.model(textConnection(Model), data=data, n.chains=2, quiet=TRUE)
 update(foo, burn_in, progress.bar='none')
 out <- coda.samples(model=foo, variable.names=parameters, n.iter=steps, progress.bar='none')
 outframe <-as.data.frame(as.matrix(out))
+```
+```{r}
+model = "
+model {
+a <- sum(x[y[1,]])
+b <- sum(x[y[2,1:2]])
+}
+"
+data = list(x=c(10,20,40), y=matrix(c(1,2,1,3), nrow=2))
+foo = jags.model(textConnection(model), data=data)
+jags.samples(model=foo, n.iter=100, variable.names=c('a', 'b'))
 ```

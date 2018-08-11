@@ -1,0 +1,15 @@
+---
+title: "Port"
+author: "Logan Wu"
+date: "8/11/2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(rjags)
+library(tidyverse)
+```
+
+```{r import_data}
+```
