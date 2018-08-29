@@ -114,11 +114,16 @@ outframe <-as.data.frame(as.matrix(out))
 ```{r}
 model = "
 model {
-a <- sum(x[y[1,]])
-b <- sum(x[y[2,1:2]])
+t <- u1 + u2
+u1 ~ dunif(0,1)
+u2 ~ dunif(0,1)
 }
 "
-data = list(x=c(10,20,40), y=matrix(c(1,2,1,3), nrow=2))
+data = list()
 foo = jags.model(textConnection(model), data=data)
-jags.samples(model=foo, n.iter=100, variable.names=c('a', 'b'))
+update(foo, 500)
+out = coda.samples(model=foo, n.iter=100000, variable.names=c('t'))
+outframe = as.data.frame(as.matrix(out))
+ggplot(outframe, aes(x=t)) +
+  geom_density()
 ```

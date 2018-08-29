@@ -1,0 +1,64 @@
+---
+title: "Plots"
+author: "Logan Wu"
+date: "8/22/2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, cache=TRUE)
+library(tidyverse)
+library(readxl)
+library(extrafont)
+library(lubridate)
+library(viridis)
+
+datapath = '../wairakei_data/plotdata.xlsx'
+regdatapath = '../wairakei_data/data.xlsx'
+
+WK261 = read_excel(datapath, 'WK261')
+regression.df = read_excel(regdatapath, 'data')
+```
+
+```{r}
+ggplot(WK261, aes(x=date, y=mf)) +
+  geom_smooth(method='lm', se=F) +
+  geom_point() +
+  ggtitle('Fitted Mass Flow at Standardised WHP (10.7 bar)') +
+  xlab('Date') + ylab('Mass flow (T/h)') +
+  ylim(c(0, NA)) +
+  theme(text=element_text(family="Times New Roman")) +
+  ggsave('../media/wk261_standardised_mf.png', width=6, height=4, units='in')
+```
+
+```{r}
+plotdata = regression.df %>%
+  filter(well=='wk258') %>%
+  mutate(datetime = factor(as.Date(date))) %>%
+  group_by(datetime) %>%
+  filter(n()>2) %>%
+  mutate(mf2 = mf^2)
+  
+mylm = lm(mf2 ~ datetime * I(whp^2) + datetime +0, data=plotdata)
+datetime = plotdata$datetime %>% unique()
+whp = seq(0, 16, 0.01)
+reglines = expand.grid(datetime=datetime, whp=whp)
+reglines$mf2 <- unname(predict(mylm, reglines))
+reglines$mf <- sqrt(reglines$mf2)
+reglines$date = as.POSIXct(reglines$datetime)
+
+shifts = as.vector(mylm$coefficients[1:6])
+
+ggplot(reglines, aes(x=whp, y=mf, color=datetime)) +
+  geom_line()
+
+ggplot(plotdata, aes(x=whp, y=mf, color=date)) +
+  geom_point() +
+  ggtitle('Production Curves from Multiple Bore Tests (10.7 bar)') +
+  xlab('Well-head pressure (bar)') + ylab('Mass flow (T/h)') +
+  xlim(c(0, NA)) + ylim(c(0, NA)) +
+  theme(text=element_text(family="Times New Roman")) +
+  geom_line(data=reglines, aes(linetype=datetime)) +
+  labs(color="Date", linetype="Fitted curve") +
+  ggsave('../media/wk261_production.png', width=6, height=4, units='in')
+```
