@@ -33,9 +33,9 @@ ggplot(WK261, aes(x=date, y=mf)) +
 
 ```{r}
 plotdata = regression.df %>%
-  filter(well=='wk258') %>%
+  filter(well=='wk263') %>%
   mutate(datetime = factor(as.Date(date))) %>%
-  group_by(datetime) %>%
+  group_by(round(date_numeric,-2)) %>%
   filter(n()>2) %>%
   mutate(mf2 = mf^2)
   
@@ -48,9 +48,6 @@ reglines$mf <- sqrt(reglines$mf2)
 reglines$date = as.POSIXct(reglines$datetime)
 
 shifts = as.vector(mylm$coefficients[1:6])
-
-ggplot(reglines, aes(x=whp, y=mf, color=datetime)) +
-  geom_line()
 
 ggplot(plotdata, aes(x=whp, y=mf, color=date)) +
   geom_point() +
