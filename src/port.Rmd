@@ -319,6 +319,7 @@ model {
 vars =  c(paste0('mf_fit[', 1:length(data$whp), ']'),
           paste0('mf_pred[', 2:length(data$mf_pred), ']'),
           paste0('beta_date[', data$well_ids, ']'),
+          paste0('sd[', data$well_ids, ']'),
           paste0('power[', gen_ids, ']'),
           paste0('h[', fp_ids, ']'),
           paste0('mf_prod[', 1:length(data$whp_prod), ']'),
@@ -363,11 +364,25 @@ g5 = ggplot(outframe %>% filter(facility %in% gen_names, variable=="power", valu
   labs(title="Posterior Generator Power Output for 2018", x="Power", y="Scaled density", fill="Facility") +
   ggsave('../media/power_gens.png', width=6, height=4, units='in')
 
+tb6 <- outframe %>% filter(variable=="sd") %>% select(facility, value) %>%
+  mutate(well=factor(facility)) %>%
+  group_by(well) %>%
+  summarise(Mean = mean(value), 
+            `Lower 2.5%` = quantile(value, 0.025), 
+            `Upper 97.5%` = quantile(value, 0.975)) %>%
+  mutate_if(is.numeric, round, 3) %>%
+  inner_join(regression_df %>% mutate(well=factor(names(ids)[well_id])) %>% group_by(well) %>% summarise(n=n()))
+g6 = ggplot(outframe %>% filter(variable=="sd") %>% filter(facility %in% c('wk124', 'wk242', 'wk263', 'wk270', 'wk271')), aes(x=value, fill=facility)) +
+  geom_density(alpha=0.5, color=NA) + coord_cartesian(xlim=c(0, max(tb6$`Upper 97.5%`))) +
+  labs(title="Posterior Flow Deviation Estimates", x="Standard deviation", y="Density", fill="Facility") +
+  ggsave('../media/standard_deviation.png', width=6, height=4, units='in')
+
 ggplotly(g1, tooltip=c('facility', 'value'))
 ggplotly(g2, tooltip=c('facility', 'value'))
 ggplotly(g3, tooltip=c('facility', 'value'))
 ggplotly(g4, tooltip=c('facility', 'value'))
 ggplotly(g5, tooltip=c('facility', 'value'))
+ggplotly(g6, tooltip=c('facility', 'value'))
 
 tb2 <- outframe %>% filter(variable=="beta_date") %>% select(facility, value) %>%
   mutate(well=factor(facility)) %>%
@@ -377,7 +392,9 @@ tb2 <- outframe %>% filter(variable=="beta_date") %>% select(facility, value) %>
             `Upper 97.5%` = quantile(value, 0.975)) %>%
   mutate_if(is.numeric, round, 3) %>%
   inner_join(regression_df %>% mutate(well=factor(names(ids)[well_id])) %>% group_by(well) %>% summarise(n=n()))
-tb2[tb2$well %in% c('wk124', 'wk263', 'wk270', 'wk271'),] %>% knitr::kable()
+tb2[tb2$well %in% c('wk124', 'wk242', 'wk263', 'wk270', 'wk271'),] %>% knitr::kable()
+
+tb6[tb6$well %in% c('wk124', 'wk242', 'wk263', 'wk270', 'wk271'),] %>% knitr::kable()
 ```
 # Hyper-parameters
 ```{r hyperparameters}
