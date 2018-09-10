@@ -35,11 +35,11 @@ theme_update(text=element_text(family="Times New Roman"))
 ```
 
 # Preprocessing
-Data is extracted and cleaned using Python. Some transformations such as datetimes to days since baseline are also done in Python, and saved into a config spreadsheet.
+Data is extracted and cleaned using Python in `simulation.ipynb`. The Python notebook is also used to generate a rudimentary config file, but some things (network connectivity) are specified manually.
 
 R reads the cleaned data from the spreadsheet and uses this to:
 * Create a graph structure
-* Make the data into a JAGS-readable format
+* Make the data into a JAGS-readable format with some post-pre-processing
 
 ```{r preprocessing}
 configsheets = excel_sheets(configpath)
@@ -534,4 +534,30 @@ ggplot(sf.df, aes(x=value, fill=facility)) +
 geweke.diag(out, 0.5, 0.5)
 gelman.diag(out[,c(paste0('mf_pred[', 8:9, ']'), 'beta_date[9]', 'mu_beta_whp', 'mu_beta_date', 'mu_Intercept', 'total_power')])[[1]] %>% as.data.frame() %>% round(2)
 raftery.diag(out[,c(paste0('mf_pred[', 8:9, ']'), 'beta_date[9]', 'mu_beta_whp', 'mu_beta_date', 'mu_Intercept', 'total_power')])
+```
+
+```{r}
+testx = seq(0, 10, 1)
+testy = 2*testx
+N = length(testx)
+testdata = list(x=testx, y=testy, N=N)
+
+testcode = "
+model {
+  for (i in 1:N) {
+    mu[i] <- alpha + beta * x[i]
+    y[i] ~ dnorm(mu[i], tau)
+  }
+  alpha ~ dnorm(0, 1e-8)
+  beta ~ dnorm(0, 1e-8)
+  tau ~ dgamma(1e-8, 1e-8)
+}
+"
+
+testmodel = jags.model(textConnection(testcode), testdata, n.chains=1)
+update(testmodel, burn_in)
+testout = coda.samples(testmodel, n.iter=1000, variable.names=c("beta", "alpha")) %>%
+  as.matrix() %>%
+  as.data.frame()
+
 ```

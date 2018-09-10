@@ -1,0 +1,44 @@
+---
+title: "Preprocessing"
+author: "Logan Wu"
+date: "9/10/2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
+library(rjags)
+library(coda)
+library(readxl)
+library(igraph)
+library(plotly)
+library(tidyverse)
+library(extrafont)
+library(gridExtra)
+library(lemon)
+library(latex2exp)
+
+pipath <- "../wairakei_data/short version Generation Projection 2016.xlsx"
+pi_raw <- read_excel(pipath, "From PI sheet", skip=1)
+```
+
+# Preprocessing
+
+This notebook ingests the PI system sheet. For processing of the Liquid Wells sheet, see the Python `simulation.ipynb` notebook.
+
+```{r}
+pi <- pi_raw %>%
+  rename(facility = Unit,
+         variable = X__1,
+         id = X__2,
+         description = X__3,
+         code = X__4) %>%
+  gather(key="datechar", value="value", -c(facility, variable, id, description, code)) %>%
+  mutate(date = as.Date(as.numeric(datechar), origin = "1899-12-30")) %>% select(-c(datechar, id)) %>%
+  drop_na(value) %>%
+  # filter(str_detect(description, "Flow")) %>%
+  filter(date > as.Date("2017-06-01"))# %>%
+  filter(facility=="WK27")
+  
+```
+
