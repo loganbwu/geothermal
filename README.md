@@ -1,9 +1,12 @@
 # geothermal
-ENGSCI Part IV Project
+## ENGSCI Part IV Project
 
-Requires data in `(root)/wairakei_data/*.xlsx`
+**Logan Wu *lwu308|254620375***
 
-Launch with
+Requires data in `(root)/wairakei_data/*.xlsx`. Raw data is confidential - contact Contact for access.
+The config file `/wairakei_data/config.xlsx` also may contain confidential data and is not committed.
+
+(Unix) Launch with
 ```
 cd src
 jupyter notebook
