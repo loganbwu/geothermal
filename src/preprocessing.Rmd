@@ -100,9 +100,20 @@ empty = full_join(empty, drym)
 ```
 
 ```{r}
-acf_data <- dry %>%
+acf_data <- drym %>%
   spread(well, ip_sf) %>%
   select_if(function(x) !anyNA(x))
 
 acf(acf_data, type="correlation")
+```
+
+```{r}
+# look at generator flows
+
+gen <- PI %>%
+  filter(facility %in% c("poihipi", "tmh", "wrk (lp wf+drain)", "direct lp", "poi", "wrk"))
+power <- PI %>% filter(str_detect(code, "mw"))
+
+head(gen, 100) %>% select(facility, code, value)
+head(power, 100) %>% select(facility, code, value)
 ```

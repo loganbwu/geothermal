@@ -1,0 +1,36 @@
+\BOOKMARK [1][-]{section.1}{Introduction}{}% 1
+\BOOKMARK [1][-]{section.2}{Advantage of Bayesian Estimation}{}% 2
+\BOOKMARK [1][-]{section.3}{Wairakei Network Structure}{}% 3
+\BOOKMARK [2][-]{subsection.3.1}{Well Nodes}{section.3}% 4
+\BOOKMARK [2][-]{subsection.3.2}{Flash Plant Nodes}{section.3}% 5
+\BOOKMARK [2][-]{subsection.3.3}{Generator Nodes}{section.3}% 6
+\BOOKMARK [1][-]{section.4}{Data Sources}{}% 7
+\BOOKMARK [2][-]{subsection.4.1}{Network Structure}{section.4}% 8
+\BOOKMARK [2][-]{subsection.4.2}{Well Test Data}{section.4}% 9
+\BOOKMARK [2][-]{subsection.4.3}{PI Flow Meters}{section.4}% 10
+\BOOKMARK [2][-]{subsection.4.4}{Uncertainty}{section.4}% 11
+\BOOKMARK [2][-]{subsection.4.5}{Constraint Limits}{section.4}% 12
+\BOOKMARK [1][-]{section.5}{Data Integration}{}% 13
+\BOOKMARK [2][-]{subsection.5.1}{Data Extraction}{section.5}% 14
+\BOOKMARK [2][-]{subsection.5.2}{Pre-Processing}{section.5}% 15
+\BOOKMARK [2][-]{subsection.5.3}{Automatic and Manual Configuration}{section.5}% 16
+\BOOKMARK [1][-]{section.6}{Simulation Methods}{}% 17
+\BOOKMARK [2][-]{subsection.6.1}{JAGS}{section.6}% 18
+\BOOKMARK [2][-]{subsection.6.2}{Sampling Algorithms}{section.6}% 19
+\BOOKMARK [2][-]{subsection.6.3}{Gibbs Sampling}{section.6}% 20
+\BOOKMARK [1][-]{section.7}{Simulation Implementation}{}% 21
+\BOOKMARK [2][-]{subsection.7.1}{Model Specification}{section.7}% 22
+\BOOKMARK [2][-]{subsection.7.2}{Monitoring}{section.7}% 23
+\BOOKMARK [2][-]{subsection.7.3}{Diagnostics}{section.7}% 24
+\BOOKMARK [1][-]{section.8}{Results}{}% 25
+\BOOKMARK [2][-]{subsection.8.1}{Individual Well Declines}{section.8}% 26
+\BOOKMARK [2][-]{subsection.8.2}{Flow Variances}{section.8}% 27
+\BOOKMARK [2][-]{subsection.8.3}{Down-flow Results}{section.8}% 28
+\BOOKMARK [1][-]{section.9}{Conclusions}{}% 29
+\BOOKMARK [1][-]{section.10}{Further Development}{}% 30
+\BOOKMARK [2][-]{subsection.10.1}{Direct Data Integration}{section.10}% 31
+\BOOKMARK [2][-]{subsection.10.2}{Time Series}{section.10}% 32
+\BOOKMARK [2][-]{subsection.10.3}{Prior Specification}{section.10}% 33
+\BOOKMARK [2][-]{subsection.10.4}{Hierarchical Model Resolution}{section.10}% 34
+\BOOKMARK [1][-]{section*.15}{Appendices}{}% 35
+\BOOKMARK [1][-]{Appendix.1.A}{Time Series}{}% 36

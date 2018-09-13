@@ -21,6 +21,7 @@ library(extrafont)
 library(gridExtra)
 library(lemon)
 library(latex2exp)
+library(xtable)
 knit_print.data.frame <- lemon_print
 
 configpath = '../wairakei_data/config.xlsx'
@@ -36,6 +37,8 @@ base_datetime = as.POSIXct(paste(base_year, 1, 1, sep='-'))
 today_datetime = as.POSIXct(paste(prediction_year, 1, 1, sep='-'))
 theme_update(text=element_text(family="Times New Roman"))
 '%ni%' <- Negate('%in%')
+# for over-plotting
+special_wells = c('wk124', 'wk242', 'wk263', 'wk270', 'wk271', "wk27", "wk67", "wk116", "wk81", "wk251", "wk604")
 ```
 
 # Preprocessing
@@ -161,16 +164,16 @@ g = graph_from_adjacency_matrix(v) %>%
   set_vertex_attr('y', value=as.vector(locs$y)) %>%
   set_vertex_attr('label.degree', value=pi) %>%
   as.undirected()
-V(g)$size = ifelse(V(g)$label %in% well_names, 5, 8)
+V(g)$size = ifelse(V(g)$label %in% well_names, 4, 8)
 V(g)$color = ifelse(V(g)$label %in% dry_wells, "red", "orange")
 E(g)$color = "black"
 E(g)[which(tail_of(g, E(g))$label=="DUMMY")]$color = "grey"
 
-# png("../media/full_network.png")
+png("../media/full_network.png")
 par(mar=c(0,3,0,0), family="Times")
 plot(g, vertex.label.dist=3,
      mark.groups = list(wells=ids[well_names], fps=ids[fp_names], gens=ids[gen_names]),
-     mark.col = "#EEEEEE",
+     mark.col = "#DDDDDD",
      mark.border = NA)
 text(c(-1, -0.3, 0.4, 0.9), 1.15, c("Wells", "Flash plants", "Dummy gens", "Generators"), cex=1.25)
 ```
@@ -214,6 +217,9 @@ prod = data.frame(whp_prod=seq(6, 16, length.out=10),
                   well_id_prod=ids[production_curve_well])
 ts = data.frame(date_numeric_ts=seq(max(dry_df$date_numeric)-30, max(dry_df$date_numeric)+30, length.out=10),
                 well_id_ts=ids[ts_well])
+
+ts = expand.grid(date_numeric_ts=seq(max(dry_df$date_numeric)-30, max(dry_df$date_numeric)+30, length.out=10),
+                 well_id_ts=ids[special_wells[special_wells %in% dry_wells]])
 prod_list = prod %>% as.list
 ts_list = ts %>% as.list
 
@@ -376,7 +382,7 @@ model {
     mf_pred[j] <- Intercept[j] + beta_whp[j] * whp_pred_c[j] + beta_date[j] * today_numeric_c
   }
   # use naive TS reg
-  for (j in dry_well_ids) { # dry_no_ar_well_ids) { 
+  for (j in dry_well_ids) { #dry_no_ar_well_ids) { 
     mf_pred[j] <- Intercept[j] + beta_date[j] * today_numeric_c
   }
   # use AR(1)
@@ -419,7 +425,6 @@ vars =  c('mf_fit',
           'mu_ar',
           'mu_ema',
           'alpha',
-          # paste0('m_ts[', ar_well_ids, ']'),
           paste0('h[', fp_ids, ']'),
           paste0('mu_', c('Intercept', 'beta_whp', 'beta_date')),
           'total_power')
@@ -439,9 +444,6 @@ outframe$facility = factor(names(ids)[outframe$facility])
 
 # Posteriors
 ```{r posteriors}
-# for over-plotting
-special_wells = c('wk124', 'wk242', 'wk263', 'wk270', 'wk271')
-
 g1 = ggplot(outframe %>% 
               filter(facility %in% well_names, variable=="mf_pred", value>0) %>%
               mutate(source = ifelse(facility %in% dry_wells, "PI time series", "Production curve")), 
@@ -449,26 +451,21 @@ g1 = ggplot(outframe %>%
   geom_density(aes(y=..scaled..), alpha=0.5, color=NA) + xlim(0, NA) +
   facet_grid(source~.) +
   labs(title="Posterior Well Mass Flows for 2018", x="Mass flow (T/h)", y="Density", fill="Facility") +
-  ggsave('../media/mf_wells.png', width=6, height=4, units='in')
+  ggsave('../media/mf_wells.png', width=24.7, height=10, units='cm')
   
 g2 = ggplot(outframe %>% filter(variable=="beta_date") %>% filter(facility %in% special_wells), aes(x=value, fill=facility)) +
   geom_density(alpha=0.5, color=NA) +labs(title="Posterior Decline Rate of Test Data", x="beta_date (T/h/Bar)", y="Density", fill="Facility") +
-  ggsave('../media/beta_date.png', width=6, height=4, units='in')
-
-g3 = ggplot(outframe %>% filter(facility %in% fp_names, variable=="mf_pred", value>0), aes(x=value, fill=facility)) +
-  geom_density(aes(y=..scaled..), alpha=0.5, color=NA) + xlim(0, NA) + 
-  labs(title="Posterior Flash Plant Mass Flows for 2018", x="Mass flow (T/h)") +
-  ggsave('../media/mf_fps.png', width=6, height=4, units='in')
+  ggsave('../media/beta_date.png', width=24.7, height=10, units='cm')
 
 g4 = ggplot(outframe %>% filter(facility %in% gen_names, variable=="mf_pred", value>0), aes(x=value, fill=facility)) +
   geom_density(aes(y=..scaled..), alpha=0.5, color=NA) + xlim(0, NA) + 
   labs(title="Posterior Generator Mass Flows for 2018", x="Mass flow (T/h)", y="Scaled density", fill="Facility") +
-  ggsave('../media/mf_gens.png', width=6, height=4, units='in')
+  ggsave('../media/mf_gens.png', width=24.7, height=10, units='cm')
 
 g5 = ggplot(outframe %>% filter(facility %in% gen_names, variable=="power", value>0), aes(x=value, fill=facility)) +
   geom_density(aes(y=..scaled..), alpha=0.5, color=NA) + xlim(0, NA) + 
   labs(title="Posterior Generator Power Output for 2018", x="Power (MW)", y="Scaled density", fill="Facility") +
-  ggsave('../media/power_gens.png', width=6, height=4, units='in')
+  ggsave('../media/power_gens.png', width=24.7, height=10, units='cm')
 
 tb6 <- outframe %>% filter(variable=="sd") %>% select(facility, value) %>%
   mutate(well=factor(facility)) %>%
@@ -481,15 +478,14 @@ tb6 <- outframe %>% filter(variable=="sd") %>% select(facility, value) %>%
 g6 = ggplot(outframe %>% filter(variable=="sd") %>% filter(facility %in% special_wells), aes(x=value, fill=facility)) +
   geom_density(alpha=0.5, color=NA) + coord_cartesian(xlim=c(0, max(tb6$`Upper 97.5%`))) +
   labs(title="Posterior Flow Deviation Estimates", x="Standard deviation", y="Density", fill="Facility") +
-  ggsave('../media/standard_deviation.png', width=6, height=4, units='in')
+  ggsave('../media/standard_deviation.png', width=24.7, height=10, units='cm')
 
 ggplotly(g1, tooltip=c('facility', 'value'))
 ggplotly(g2, tooltip=c('facility', 'value'))
-ggplotly(g3, tooltip=c('facility', 'value'))
 ggplotly(g4, tooltip=c('facility', 'value'))
 ggplotly(g5, tooltip=c('facility', 'value'))
 ggplotly(g6, tooltip=c('facility', 'value'))
-# g1; g2; g3; g4; g5; g6
+# g1; g2; g4; g5; g6
 
 tb2 <- outframe %>% filter(variable=="beta_date") %>% select(facility, value) %>%
   mutate(well=factor(facility)) %>%
@@ -502,6 +498,17 @@ tb2 <- outframe %>% filter(variable=="beta_date") %>% select(facility, value) %>
 
 tb2[tb2$well %in% special_wells,] %>% knitr::kable()
 tb6[tb6$well %in% special_wells,] %>% knitr::kable()
+print(xtable(tb2[tb2$well %in% special_wells,], 
+             type = "latex",
+             caption="Estimated confidence intervals for $\\beta_\\text{date}$.",
+             label="tab:beta_date"),
+      include.rownames = F,
+      file = "../media/tab_beta_date.tex")
+print(xtable(tb2[tb6$well %in% special_wells,], type = "latex", 
+             caption="Estimated confidence intervals for standard deviation.",
+             label="tab:sd"),
+      include.rownames = F,
+      file = "../media/tab_sd.tex")
 ```
 # Hyper-parameters
 
@@ -542,34 +549,37 @@ plotdata = regression_df %>%
 ggplot(prod, aes(x=whp)) +
   geom_line(aes(y=mean, lty="Bayesian Regression"), color='red') +
   # geom_line(data=reglines, aes(y=mf, group=datetime, lty="OLS Regression")) +
-  geom_ribbon(aes(ymin=lower, ymax=upper), alpha=0.25, fill='red') +
+  geom_ribbon(aes(ymin=lower, ymax=upper, fill="Bayesian Regression"), alpha=0.25, fill='red') +
   geom_point(data=plotdata, aes(y=mf, color=date)) +
-  labs(title=paste("Fitted Production Curve for", production_curve_well), x="Well-head pressure (bar)", y="Mass flow (T/h)", color="Date", linetype="") +
+  labs(title=paste("Linear Regression with Time on PI Data", production_curve_well), x="Well-head pressure (bar)", y="Mass flow (T/h)", color="Date", linetype="") +
   coord_cartesian(xlim=c(min(plotdata$whp)*0.875,max(plotdata$whp)*1.125), ylim=c(0,max(plotdata$mf)*1.125)) +
   ggsave('../media/production_curve.png', width=6, height=4, units='in')
 
-ts_out = as.data.frame(outmatrix) %>%
-  select(contains('ts')) %>%
+ts_fit = as.data.frame(outmatrix) %>%
+  select(contains('mf_ts')) %>%
   gather() %>%
-  mutate(which=parse_number(key)) %>%
-  mutate(date_numeric=data$date_numeric_ts[which] + mean_date_numeric) %>%
-  rename(mf=value) %>%
-  group_by(date_numeric) %>%
-  summarise(lower=quantile(mf, 0.025),
-            upper=quantile(mf, 0.975),
-            mean=mean(mf))
+  mutate(index = parse_number(key)) %>% select(-key) %>%
+  group_by(index) %>%
+  summarise(lower=quantile(value, 0.025),
+            upper=quantile(value, 0.975),
+            mean=mean(value)) %>%
+  cbind(ts) %>%
+  mutate(well = factor(names(ids[well_id_ts])),
+         date_numeric = date_numeric_ts)
 
 tsplotdata = dry_df %>%
-  filter(well_id==ids[ts_well]) %>%
-  mutate(datetime = factor(as.Date(date)))
+  filter(well_id %in% ids[special_wells]) %>%
+  mutate(datetime = factor(as.Date(date)),
+         facility = well)
 
-ggplot(ts_out, aes(x=date_numeric)) +
-  geom_line(aes(y=mean, lty="Bayesian Regression"), color='red') +
-  geom_ribbon(aes(ymin=lower, ymax=upper), alpha=0.25, fill='red') +
-  geom_line(data=tsplotdata, aes(y=mf, color=date)) +
-  ylim(0, NA) +
-  labs(title=paste("Fitted Linear Time Series for", ts_well), x="Days since baseline (2000)", y="Mass flow (T/h)", color="Date", linetype="") +
-  ggsave('../media/dry_time_series.png', width=6, height=4, units='in')
+lintsplot = ggplot(ts_fit, aes(x=date_numeric, color=well, fill=well)) +
+  geom_line(aes(y=mean)) +
+  geom_ribbon(aes(ymin=lower, ymax=upper), color=NA, alpha=0.25) +
+  geom_line(data=tsplotdata, aes(y=mf)) +
+  geom_vline(aes(xintercept = max(tsplotdata$date_numeric)), linetype="dashed", color="red") +
+  coord_cartesian(ylim=c(0, 30)) +
+  labs(title=paste("Fitted Linear Time Series for", ts_well), x="Days since baseline (2000)", y="Mass flow (T/h)", linetype="") +
+  ggsave('../media/dry_time_series.png', width=24.7, height=8, units='cm')
 
 # experimental AR1 time series
 ar_fit = as.data.frame(outmatrix) %>%
@@ -589,12 +599,13 @@ actualts = drymatrix %>% as.data.frame() %>%
   gather(key="facility", value="value", -t) %>%
   filter(facility %in% names(ids)[ar_well_ids])
 
-arplot = ggplot(ar_fit, aes(x=t, y=mean, fill=facility, color=facility)) +
-  geom_line(data=actualts, aes(y=value)) +
+arplot = ggplot(ar_fit %>% filter(facility %in% special_wells), aes(x=t, y=mean, fill=facility, color=facility)) +
+  geom_line(data=actualts %>% filter(facility %in% special_wells), aes(y=value)) +
   geom_ribbon(aes(ymin=lower, ymax=upper), color=NA, alpha=0.5) +
-  geom_line(linetype="dashed") + coord_cartesian(ylim=c(0, 50)) +
+  geom_line(linetype="dashed") + coord_cartesian(ylim=c(0, 30)) +
+  geom_vline(aes(xintercept=max(actualts%>%drop_na()%>%pull(t))), linetype="dashed", color="red") +
   labs(title="AR(1) Experiment", x="Days since first date", y="Mass flow (T/h)") +
-  ggsave('../media/ar_experiment.png', width=6, height=4, units='in')
+  ggsave('../media/ar_experiment.png', width=24.7, height=8, units='cm')
   
 # experimental EMA time series
 ema_fit = as.data.frame(outmatrix) %>%
@@ -609,15 +620,22 @@ ema_fit = as.data.frame(outmatrix) %>%
             lower=quantile(value, 0.025),
             upper=quantile(value, 0.975))
 
-emaplot = ggplot(ema_fit, aes(x=t, y=mean, fill=facility, color=facility)) +
-  geom_line(data=actualts, aes(y=value)) +
+ewmaplot = ggplot(ema_fit %>% filter(facility %in% special_wells), aes(x=t, y=mean, fill=facility, color=facility)) +
+  geom_vline(aes(xintercept=max(actualts%>%drop_na()%>%pull(t))), linetype="dashed", color="red") +
+  geom_line(data=actualts %>% filter(facility %in% special_wells), aes(y=value)) +
   geom_ribbon(aes(ymin=lower, ymax=upper), color=NA, alpha=0.5) +
-  geom_line(linetype="dashed") + coord_cartesian(ylim=c(0, 50)) +
+  geom_line(linetype="dashed") + coord_cartesian(ylim=c(0, 30)) +
   labs(title="EWMA Experiment", x="Days since first date", y="Mass flow (T/h)") +
-  ggsave('../media/ema_experiment.png', width=6, height=4, units='in')
+  ggsave('../media/ewma_experiment.png', width=24.7, height=8, units='cm')
 
+ggplotly(lintsplot)
 ggplotly(arplot)
-ggplotly(emaplot)
+ggplotly(ewmaplot)
+
+lintsplot
+
+tsgrob = grid_arrange_shared_legend(lintsplot, arplot, ewmaplot, nrow=3, ncol=1, position = "right")
+ggsave('../media/ts_experiment.png', tsgrob, width=24.7, height=24, units='cm')
 ```
 
 # Trace plots
@@ -633,8 +651,8 @@ traceplot = ggplot(trace1, aes(y=value, color=variable)) +
   geom_line(aes(x=as.numeric(row.names(trace1)))) +
   geom_line(data=trace2, aes(x=as.numeric(row.names(trace1)))) +
   geom_line(data=trace3, aes(x=as.numeric(row.names(trace1)))) +
-  labs(title="Trace Plots (Single chain)", x="Iteration", y="Node value", color="Variable") +
-  ggsave('../media/trace_plots.png', width=6, height=4, units='in')
+  labs(title="Trace Plot (Single chain)", x="Iteration", y="Node value", color="Variable") +
+  ggsave('../media/trace_plot.png', width=24.7, height=8, units='cm')
 ggplotly(traceplot)
 ```
 
@@ -685,12 +703,15 @@ limits = fp_constants %>%
   select(facility, limit) %>%
   drop_na()
 
-limitplot = ggplot(sf.df, aes(x=value, fill=facility)) +
-  facet_grid(facility~., scales = "free_y", switch="y") +
-  geom_density(color=NA, alpha=0.5) +
-  geom_vline(data=limits, aes(xintercept=limit, color=facility)) +
+limitplot = ggplot(sf.df, aes(x=value, fill=facility, color=facility)) +
+  facet_wrap(~facility, scales = "free_y", ncol=2) +
+  geom_density(alpha=0.5, color=NA) +
+  geom_vline(data=limits, aes(xintercept=limit), color="red") +
+  theme(legend.position="none",
+        axis.text.y=element_blank(),
+        axis.ticks.y=element_blank()) +
   labs(title="Posterior Flash Plant Mass Flows", x="Steam flow (T/h)", y="Density", fill="Flash plant", color="Steam flow limit") +
-  ggsave('../media/constraints.png', width=6, height=4, units='in')
+  ggsave('../media/constraints.png', width=24.7, height=10, units='cm')
 ggplotly(limitplot)
 ```
 
@@ -699,8 +720,14 @@ ggplotly(limitplot)
 ```{r diagnostics}
 random_var_ix = sample.int(ncol(outmatrix), 100) # 100 random var because it takes too long
 geweke.diag(out[,1:100])
-gelman.diag(out[,c(paste0('mf_pred[', 8:9, ']'), 'beta_date[9]', 'mu_beta_whp', 'mu_beta_date', 'mu_Intercept', 'total_power')])[[1]] %>% as.data.frame() %>% round(2)
-raftery.diag(out[,c(paste0('mf_pred[', 8:9, ']'), 'beta_date[9]', 'mu_beta_whp', 'mu_beta_date', 'mu_Intercept', 'total_power')])
+gelman.out = gelman.diag(out[,c(paste0('mf_pred[', 8:9, ']'), 'beta_date[9]', 'mu_beta_whp', 'mu_beta_date', 'mu_Intercept', 'total_power')])[[1]] %>% as.data.frame() %>% round(2)
+raftery.out = raftery.diag(out[,c(paste0('mf_pred[', 8:9, ']'), 'beta_date[9]', 'mu_beta_whp', 'mu_beta_date', 'mu_Intercept', 'total_power')])
+
+print(xtable(gelman.out, type = "latex",
+             caption="Select potential scale reduction factors from Gelman's diagnostic test.",
+             label="tab:gelman"), 
+      include.rownames = F,
+      file = "../media/gelman.tex")
 ```
 
 ```{r}
