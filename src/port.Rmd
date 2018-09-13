@@ -30,11 +30,11 @@ regdatapath = '../wairakei_data/data.xlsx'
 extradatapath = "../wairakei_data/well_pi.csv"
 
 base_year = '2000'
-prediction_year = '2018'
+prediction_date = '2017-12-01'
 production_curve_well = 'wk255'
 ts_well = "wk27"
 base_datetime = as.POSIXct(paste(base_year, 1, 1, sep='-'))
-today_datetime = as.POSIXct(paste(prediction_year, 1, 1, sep='-'))
+today_datetime = as.POSIXct(prediction_date)
 theme_update(text=element_text(family="Times New Roman"))
 '%ni%' <- Negate('%in%')
 # for over-plotting
@@ -176,6 +176,11 @@ plot(g, vertex.label.dist=3,
      mark.col = "#DDDDDD",
      mark.border = NA)
 text(c(-1, -0.3, 0.4, 0.9), 1.15, c("Wells", "Flash plants", "Dummy gens", "Generators"), cex=1.25)
+dev.off()
+plot(g, vertex.label.dist=3,
+     mark.groups = list(wells=ids[well_names], fps=ids[fp_names], gens=ids[gen_names]),
+     mark.col = "#DDDDDD",
+     mark.border = NA)
 ```
 
 The dummy node is necessary because when indexing a subset of flows that go into a node, this subset cannot be empty. The dummy node has zero mass flowing out of it.
@@ -184,6 +189,7 @@ The dummy node is necessary because when indexing a subset of flows that go into
 ```{r data}
 regression_list = regression_df %>% select(well_id, whp, mf, date_numeric) %>% as.list()
 dry_list = dry_df %>%
+  filter(date < prediction_date) %>%
   rename(well_id_dry=well_id, mf_dry=mf, date_numeric_dry=date_numeric) %>% # use these in a different regression
   select(well_id_dry, mf_dry, date_numeric_dry) %>% as.list()
 operating_conditions_list = operating_conditions %>% arrange(well_id) %>% select(whp_pred) %>% as.list()
@@ -213,12 +219,10 @@ facilities$hfg_ip[facilities$id %in% dry_fp_ids] = 10
 facilities_list = facilities %>% select(-id) %>% as.list()
 
 # insert production curve predictions
+days_since_last = as.integer(today_datetime - as.POSIXct(max(dry_df$date)))
 prod = data.frame(whp_prod=seq(6, 16, length.out=10),
                   well_id_prod=ids[production_curve_well])
-ts = data.frame(date_numeric_ts=seq(max(dry_df$date_numeric)-30, max(dry_df$date_numeric)+30, length.out=10),
-                well_id_ts=ids[ts_well])
-
-ts = expand.grid(date_numeric_ts=seq(max(dry_df$date_numeric)-30, max(dry_df$date_numeric)+30, length.out=10),
+ts = expand.grid(date_numeric_ts=seq(min(dry_df$date_numeric), max(dry_df$date_numeric)+days_since_last, length.out=10),
                  well_id_ts=ids[special_wells[special_wells %in% dry_wells]])
 prod_list = prod %>% as.list
 ts_list = ts %>% as.list
@@ -239,8 +243,7 @@ dry_no_ar_wells = dry_wells[!dry_well_ids %in% ar_well_ids]
 dry_no_ar_well_ids = ids[dry_no_ar_wells]
 
 # extend matrix for prediction
-days_since_first = as.integer(today_datetime - as.POSIXct(min(dry_df$date)))
-drymatrix = rbind(drymatrix, matrix(NA, nrow=days_since_first, ncol=ncol(drymatrix)))
+drymatrix = rbind(drymatrix, matrix(NA, nrow=days_since_last, ncol=ncol(drymatrix)))
 
 # combine into one list
 data = c(regression_list, dry_list, facilities_list, prod_list, ts_list,
@@ -425,6 +428,9 @@ vars =  c('mf_fit',
           'mu_ar',
           'mu_ema',
           'alpha',
+          'ip_sf',
+          'lp_sf',
+          'wf',
           paste0('h[', fp_ids, ']'),
           paste0('mu_', c('Intercept', 'beta_whp', 'beta_date')),
           'total_power')
@@ -453,7 +459,7 @@ g1 = ggplot(outframe %>%
   labs(title="Posterior Well Mass Flows for 2018", x="Mass flow (T/h)", y="Density", fill="Facility") +
   ggsave('../media/mf_wells.png', width=24.7, height=10, units='cm')
   
-g2 = ggplot(outframe %>% filter(variable=="beta_date") %>% filter(facility %in% special_wells), aes(x=value, fill=facility)) +
+g2 = ggplot(outframe %>% filter(variable=="beta_date") %>% filter(facility %in% special_wells[special_wells %in% liq_wells]), aes(x=value, fill=facility)) +
   geom_density(alpha=0.5, color=NA) +labs(title="Posterior Decline Rate of Test Data", x="beta_date (T/h/Bar)", y="Density", fill="Facility") +
   ggsave('../media/beta_date.png', width=24.7, height=10, units='cm')
 
@@ -496,8 +502,8 @@ tb2 <- outframe %>% filter(variable=="beta_date") %>% select(facility, value) %>
   mutate_if(is.numeric, round, 3) %>%
   inner_join(regression_df %>% mutate(well=factor(names(ids)[well_id])) %>% group_by(well) %>% summarise(n=n()), by="well")
 
-tb2[tb2$well %in% special_wells,] %>% knitr::kable()
-tb6[tb6$well %in% special_wells,] %>% knitr::kable()
+tb2[tb2$well %in% special_wells,]
+tb6[tb6$well %in% special_wells,]
 print(xtable(tb2[tb2$well %in% special_wells,], 
              type = "latex",
              caption="Estimated confidence intervals for $\\beta_\\text{date}$.",
@@ -573,12 +579,12 @@ tsplotdata = dry_df %>%
          facility = well)
 
 lintsplot = ggplot(ts_fit, aes(x=date_numeric, color=well, fill=well)) +
-  geom_line(aes(y=mean)) +
+  geom_line(aes(y=mean), linetype="dashed") +
   geom_ribbon(aes(ymin=lower, ymax=upper), color=NA, alpha=0.25) +
   geom_line(data=tsplotdata, aes(y=mf)) +
   geom_vline(aes(xintercept = max(tsplotdata$date_numeric)), linetype="dashed", color="red") +
   coord_cartesian(ylim=c(0, 30)) +
-  labs(title=paste("Fitted Linear Time Series for", ts_well), x="Days since baseline (2000)", y="Mass flow (T/h)", linetype="") +
+  labs(title=paste("Linear Time Series Regression for Selected Wells in PI"), x="Days since baseline (2000)", linetype="") +
   ggsave('../media/dry_time_series.png', width=24.7, height=8, units='cm')
 
 # experimental AR1 time series
@@ -625,7 +631,7 @@ ewmaplot = ggplot(ema_fit %>% filter(facility %in% special_wells), aes(x=t, y=me
   geom_line(data=actualts %>% filter(facility %in% special_wells), aes(y=value)) +
   geom_ribbon(aes(ymin=lower, ymax=upper), color=NA, alpha=0.5) +
   geom_line(linetype="dashed") + coord_cartesian(ylim=c(0, 30)) +
-  labs(title="EWMA Experiment", x="Days since first date", y="Mass flow (T/h)") +
+  labs(title="EWMA Experiment", x="Days since first date") +
   ggsave('../media/ewma_experiment.png', width=24.7, height=8, units='cm')
 
 ggplotly(lintsplot)
@@ -634,7 +640,7 @@ ggplotly(ewmaplot)
 
 lintsplot
 
-tsgrob = grid_arrange_shared_legend(lintsplot, arplot, ewmaplot, nrow=3, ncol=1, position = "right")
+tsgrob = grid_arrange_shared_legend(lintsplot, arplot, ewmaplot, nrow=3, ncol=1, position = "bottom")
 ggsave('../media/ts_experiment.png', tsgrob, width=24.7, height=24, units='cm')
 ```
 
@@ -713,6 +719,25 @@ limitplot = ggplot(sf.df, aes(x=value, fill=facility, color=facility)) +
   labs(title="Posterior Flash Plant Mass Flows", x="Steam flow (T/h)", y="Density", fill="Flash plant", color="Steam flow limit") +
   ggsave('../media/constraints.png', width=24.7, height=10, units='cm')
 ggplotly(limitplot)
+```
+
+# Flow Comparison
+
+```{r}
+flow.df <- outframe %>% 
+  filter(facility %in% fp_names) %>%
+  filter(str_detect(variable, "mf_pred|ip_sf|lp_sf|wf|h") & value > 0) %>%
+  mutate(variable=ifelse(variable=="mf_pred", "mf", variable),
+         variable=factor(variable))
+comparison = fp_constants %>% select("fp", contains("verification")) %>%
+  rename(facility=fp) %>%
+  gather(key="variable", value="value", -facility) %>%
+  mutate(variable = gsub("^verification_", "", variable))
+
+ggplot(flow.df, aes(x=value)) +
+  geom_density(aes(y=..scaled.., fill=variable, color=variable), alpha=0.5, show.legend=F) +
+  geom_vline(data=comparison, aes(xintercept=value)) +
+  facet_grid(facility~variable, scales="free")
 ```
 
 # Diagnostics

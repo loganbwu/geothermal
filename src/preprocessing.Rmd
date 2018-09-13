@@ -39,7 +39,7 @@ PI <- pi_raw %>%
   mutate_if(is.character, tolower) %>%
   mutate(value = as.numeric(value)) %>%
   drop_na(value) %>%
-  filter(date >= as.Date("2017-12-01")) %>%
+  filter(date >= as.Date("2017-11-01"), date < as.Date("2017-12-01")) %>%
   filter(!str_detect(variable, "condition|calc"))
 
 pi_wells <- PI %>%

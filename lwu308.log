@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.9.24)  13 SEP 2018 20:56
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.9.24)  14 SEP 2018 00:42
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -847,64 +847,390 @@ Package: tabularx 2016/02/03 v2.11 `tabularx' package (DPC)
 \TX@cols=\count185
 \TX@ftn=\toks26
 )
+(/usr/local/texlive/2016/texmf-dist/tex/latex/todonotes/todonotes.sty
+Package: todonotes 2015/07/09 .dtx Todonotes source and documentation.
+Package: todonotes 2012/07/25
+
+(/usr/local/texlive/2016/texmf-dist/tex/latex/base/ifthen.sty
+Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
+)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+Package: xkeyval 2014/12/03 v2.7a package option processing (HA)
+
+(/usr/local/texlive/2016/texmf-dist/tex/generic/xkeyval/xkeyval.tex
+(/usr/local/texlive/2016/texmf-dist/tex/generic/xkeyval/xkvutils.tex
+\XKV@toks=\toks27
+\XKV@tempa@toks=\toks28
+)
+\XKV@depth=\count186
+File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
+))
+(/usr/local/texlive/2016/texmf-dist/tex/latex/xcolor/xcolor.sty
+Package: xcolor 2016/05/11 v2.12 LaTeX color extensions (UK)
+
+(/usr/local/texlive/2016/texmf-dist/tex/latex/graphics-cfg/color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package xcolor Info: Driver file: pdftex.def on input line 225.
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1348.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1352.
+Package xcolor Info: Model `RGB' extended on input line 1364.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1366.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1367.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1368.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1369.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1370.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
+)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
+(/usr/local/texlive/2016/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
+(/usr/local/texlive/2016/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
+(/usr/local/texlive/2016/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.te
+x
+\pgfutil@everybye=\toks29
+\pgfutil@tempdima=\dimen267
+\pgfutil@tempdimb=\dimen268
+
+(/usr/local/texlive/2016/texmf-dist/tex/generic/pgf/utilities/pgfutil-common-li
+sts.tex))
+(/usr/local/texlive/2016/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def
+\pgfutil@abb=\box83
+(/usr/local/texlive/2016/texmf-dist/tex/latex/ms/everyshi.sty
+Package: everyshi 2001/05/15 v3.00 EveryShipout Package (MS)
+))
+(/usr/local/texlive/2016/texmf-dist/tex/generic/pgf/utilities/pgfrcs.code.tex
+Package: pgfrcs 2015/08/07 v3.0.1a (rcs-revision 1.31)
+))
+Package: pgf 2015/08/07 v3.0.1a (rcs-revision 1.15)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty
+(/usr/local/texlive/2016/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty
+(/usr/local/texlive/2016/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
+Package: pgfsys 2014/07/09 v3.0.1a (rcs-revision 1.48)
+(/usr/local/texlive/2016/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
+\pgfkeys@pathtoks=\toks30
+\pgfkeys@temptoks=\toks31
+
+(/usr/local/texlive/2016/texmf-dist/tex/generic/pgf/utilities/pgfkeysfiltered.c
+ode.tex
+\pgfkeys@tmptoks=\toks32
+))
+\pgf@x=\dimen269
+\pgf@y=\dimen270
+\pgf@xa=\dimen271
+\pgf@ya=\dimen272
+\pgf@xb=\dimen273
+\pgf@yb=\dimen274
+\pgf@xc=\dimen275
+\pgf@yc=\dimen276
+\w@pgf@writea=\write3
+\r@pgf@reada=\read2
+\c@pgf@counta=\count187
+\c@pgf@countb=\count188
+\c@pgf@countc=\count189
+\c@pgf@countd=\count190
+\t@pgf@toka=\toks33
+\t@pgf@tokb=\toks34
+\t@pgf@tokc=\toks35
+
+(/usr/local/texlive/2016/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg
+File: pgf.cfg 2008/05/14  (rcs-revision 1.7)
+)
+Driver file for pgf: pgfsys-pdftex.def
+
+(/usr/local/texlive/2016/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-pdftex.d
+ef
+File: pgfsys-pdftex.def 2014/10/11  (rcs-revision 1.35)
+
+(/usr/local/texlive/2016/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-common-p
+df.def
+File: pgfsys-common-pdf.def 2013/10/10  (rcs-revision 1.13)
+)))
+(/usr/local/texlive/2016/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.
+code.tex
+File: pgfsyssoftpath.code.tex 2013/09/09  (rcs-revision 1.9)
+\pgfsyssoftpath@smallbuffer@items=\count191
+\pgfsyssoftpath@bigbuffer@items=\count192
+)
+(/usr/local/texlive/2016/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.
+code.tex
+File: pgfsysprotocol.code.tex 2006/10/16  (rcs-revision 1.4)
+))
+(/usr/local/texlive/2016/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex
+Package: pgfcore 2010/04/11 v3.0.1a (rcs-revision 1.7)
+(/usr/local/texlive/2016/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex
+(/usr/local/texlive/2016/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex
+(/usr/local/texlive/2016/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex)
+(/usr/local/texlive/2016/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex
+\pgfmath@dimen=\dimen277
+\pgfmath@count=\count193
+\pgfmath@box=\box84
+\pgfmath@toks=\toks36
+\pgfmath@stack@operand=\toks37
+\pgfmath@stack@operation=\toks38
+)
+(/usr/local/texlive/2016/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.
+tex
+(/usr/local/texlive/2016/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.basic
+.code.tex)
+(/usr/local/texlive/2016/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.trigo
+nometric.code.tex)
+(/usr/local/texlive/2016/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.rando
+m.code.tex)
+(/usr/local/texlive/2016/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.compa
+rison.code.tex)
+(/usr/local/texlive/2016/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.base.
+code.tex)
+(/usr/local/texlive/2016/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.round
+.code.tex)
+(/usr/local/texlive/2016/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.
+code.tex)
+(/usr/local/texlive/2016/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integ
+erarithmetics.code.tex)))
+(/usr/local/texlive/2016/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex
+\c@pgfmathroundto@lastzeros=\count194
+))
+(/usr/local/texlive/2016/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.co
+de.tex
+File: pgfcorepoints.code.tex 2013/10/07  (rcs-revision 1.27)
+\pgf@picminx=\dimen278
+\pgf@picmaxx=\dimen279
+\pgf@picminy=\dimen280
+\pgf@picmaxy=\dimen281
+\pgf@pathminx=\dimen282
+\pgf@pathmaxx=\dimen283
+\pgf@pathminy=\dimen284
+\pgf@pathmaxy=\dimen285
+\pgf@xx=\dimen286
+\pgf@xy=\dimen287
+\pgf@yx=\dimen288
+\pgf@yy=\dimen289
+\pgf@zx=\dimen290
+\pgf@zy=\dimen291
+)
+(/usr/local/texlive/2016/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathconst
+ruct.code.tex
+File: pgfcorepathconstruct.code.tex 2013/10/07  (rcs-revision 1.29)
+\pgf@path@lastx=\dimen292
+\pgf@path@lasty=\dimen293
+)
+(/usr/local/texlive/2016/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathusage
+.code.tex
+File: pgfcorepathusage.code.tex 2014/11/02  (rcs-revision 1.24)
+\pgf@shorten@end@additional=\dimen294
+\pgf@shorten@start@additional=\dimen295
+)
+(/usr/local/texlive/2016/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.co
+de.tex
+File: pgfcorescopes.code.tex 2015/05/08  (rcs-revision 1.46)
+\pgfpic=\box85
+\pgf@hbox=\box86
+\pgf@layerbox@main=\box87
+\pgf@picture@serial@count=\count195
+)
+(/usr/local/texlive/2016/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicst
+ate.code.tex
+File: pgfcoregraphicstate.code.tex 2014/11/02  (rcs-revision 1.12)
+\pgflinewidth=\dimen296
+)
+(/usr/local/texlive/2016/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransform
+ations.code.tex
+File: pgfcoretransformations.code.tex 2015/08/07  (rcs-revision 1.20)
+\pgf@pt@x=\dimen297
+\pgf@pt@y=\dimen298
+\pgf@pt@temp=\dimen299
+)
+(/usr/local/texlive/2016/texmf-dist/tex/generic/pgf/basiclayer/pgfcorequick.cod
+e.tex
+File: pgfcorequick.code.tex 2008/10/09  (rcs-revision 1.3)
+)
+(/usr/local/texlive/2016/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreobjects.c
+ode.tex
+File: pgfcoreobjects.code.tex 2006/10/11  (rcs-revision 1.2)
+)
+(/usr/local/texlive/2016/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathproce
+ssing.code.tex
+File: pgfcorepathprocessing.code.tex 2013/09/09  (rcs-revision 1.9)
+)
+(/usr/local/texlive/2016/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearrows.co
+de.tex
+File: pgfcorearrows.code.tex 2015/05/14  (rcs-revision 1.43)
+\pgfarrowsep=\dimen300
+)
+(/usr/local/texlive/2016/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.cod
+e.tex
+File: pgfcoreshade.code.tex 2013/07/15  (rcs-revision 1.15)
+\pgf@max=\dimen301
+\pgf@sys@shading@range@num=\count196
+)
+(/usr/local/texlive/2016/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.cod
+e.tex
+File: pgfcoreimage.code.tex 2013/07/15  (rcs-revision 1.18)
+
+(/usr/local/texlive/2016/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.
+code.tex
+File: pgfcoreexternal.code.tex 2014/07/09  (rcs-revision 1.21)
+\pgfexternal@startupbox=\box88
+))
+(/usr/local/texlive/2016/texmf-dist/tex/generic/pgf/basiclayer/pgfcorelayers.co
+de.tex
+File: pgfcorelayers.code.tex 2013/07/18  (rcs-revision 1.7)
+)
+(/usr/local/texlive/2016/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretranspare
+ncy.code.tex
+File: pgfcoretransparency.code.tex 2013/09/30  (rcs-revision 1.5)
+)
+(/usr/local/texlive/2016/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepatterns.
+code.tex
+File: pgfcorepatterns.code.tex 2013/11/07  (rcs-revision 1.5)
+)))
+(/usr/local/texlive/2016/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.cod
+e.tex
+File: pgfmoduleshapes.code.tex 2014/03/21  (rcs-revision 1.35)
+\pgfnodeparttextbox=\box89
+)
+(/usr/local/texlive/2016/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.
+tex
+File: pgfmoduleplot.code.tex 2015/08/03  (rcs-revision 1.13)
+)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version
+-0-65.sty
+Package: pgfcomp-version-0-65 2007/07/03 v3.0.1a (rcs-revision 1.7)
+\pgf@nodesepstart=\dimen302
+\pgf@nodesepend=\dimen303
+)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version
+-1-18.sty
+Package: pgfcomp-version-1-18 2007/07/23 v3.0.1a (rcs-revision 1.1)
+))
+(/usr/local/texlive/2016/texmf-dist/tex/latex/pgf/utilities/pgffor.sty
+(/usr/local/texlive/2016/texmf-dist/tex/latex/pgf/utilities/pgfkeys.sty
+(/usr/local/texlive/2016/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex)
+) (/usr/local/texlive/2016/texmf-dist/tex/latex/pgf/math/pgfmath.sty
+(/usr/local/texlive/2016/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex))
+(/usr/local/texlive/2016/texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex
+Package: pgffor 2013/12/13 v3.0.1a (rcs-revision 1.25)
+
+(/usr/local/texlive/2016/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex)
+\pgffor@iter=\dimen304
+\pgffor@skip=\dimen305
+\pgffor@stack=\toks39
+\pgffor@toks=\toks40
+))
+(/usr/local/texlive/2016/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.cod
+e.tex
+Package: tikz 2015/08/07 v3.0.1a (rcs-revision 1.151)
+
+(/usr/local/texlive/2016/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothan
+dlers.code.tex
+File: pgflibraryplothandlers.code.tex 2013/08/31 v3.0.1a (rcs-revision 1.20)
+\pgf@plot@mark@count=\count197
+\pgfplotmarksize=\dimen306
+)
+\tikz@lastx=\dimen307
+\tikz@lasty=\dimen308
+\tikz@lastxsaved=\dimen309
+\tikz@lastysaved=\dimen310
+\tikzleveldistance=\dimen311
+\tikzsiblingdistance=\dimen312
+\tikz@figbox=\box90
+\tikz@figbox@bg=\box91
+\tikz@tempbox=\box92
+\tikz@tempbox@bg=\box93
+\tikztreelevel=\count198
+\tikznumberofchildren=\count199
+\tikznumberofcurrentchild=\count266
+\tikz@fig@count=\count267
+
+(/usr/local/texlive/2016/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.cod
+e.tex
+File: pgfmodulematrix.code.tex 2013/09/17  (rcs-revision 1.8)
+\pgfmatrixcurrentrow=\count268
+\pgfmatrixcurrentcolumn=\count269
+\pgf@matrix@numberofcolumns=\count270
+)
+\tikz@expandcount=\count271
+
+(/usr/local/texlive/2016/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
+s/tikzlibrarytopaths.code.tex
+File: tikzlibrarytopaths.code.tex 2008/06/17 v3.0.1a (rcs-revision 1.2)
+)))
+(/usr/local/texlive/2016/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
+s/tikzlibrarypositioning.code.tex
+File: tikzlibrarypositioning.code.tex 2008/10/06 v3.0.1a (rcs-revision 1.7)
+)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/tools/calc.sty
+Package: calc 2014/10/28 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count272
+\calc@Bcount=\count273
+\calc@Adimen=\dimen313
+\calc@Bdimen=\dimen314
+\calc@Askip=\skip80
+\calc@Bskip=\skip81
+LaTeX Info: Redefining \setlength on input line 80.
+LaTeX Info: Redefining \addtolength on input line 81.
+\calc@Ccount=\count274
+\calc@Cskip=\skip82
+)
+\c@@todonotes@numberoftodonotes=\count275
+)
 (/usr/local/texlive/2016/texmf-dist/tex/latex/geometry/geometry.sty
 Package: geometry 2010/09/12 v5.6 Page Geometry
-\Gm@cnth=\count186
-\Gm@cntv=\count187
-\c@Gm@tempcnt=\count188
-\Gm@bindingoffset=\dimen267
-\Gm@wd@mp=\dimen268
-\Gm@odd@mp=\dimen269
-\Gm@even@mp=\dimen270
-\Gm@layoutwidth=\dimen271
-\Gm@layoutheight=\dimen272
-\Gm@layouthoffset=\dimen273
-\Gm@layoutvoffset=\dimen274
-\Gm@dimlist=\toks27
+\Gm@cnth=\count276
+\Gm@cntv=\count277
+\c@Gm@tempcnt=\count278
+\Gm@bindingoffset=\dimen315
+\Gm@wd@mp=\dimen316
+\Gm@odd@mp=\dimen317
+\Gm@even@mp=\dimen318
+\Gm@layoutwidth=\dimen319
+\Gm@layoutheight=\dimen320
+\Gm@layouthoffset=\dimen321
+\Gm@layoutvoffset=\dimen322
+\Gm@dimlist=\toks41
 )
-\drop=\skip80
+\drop=\skip83
 
-(./lwu308.aux)
+No file lwu308.aux.
 \openout1 = `lwu308.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 47.
-LaTeX Font Info:    ... okay on input line 47.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 47.
-LaTeX Font Info:    ... okay on input line 47.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 47.
-LaTeX Font Info:    ... okay on input line 47.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 47.
-LaTeX Font Info:    ... okay on input line 47.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 47.
-LaTeX Font Info:    ... okay on input line 47.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 47.
-LaTeX Font Info:    ... okay on input line 47.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 47.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 47.
- (/usr/local/texlive/2016/texmf-dist/tex/latex/base/ts1cmr.fd
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 48.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 48.
+(/usr/local/texlive/2016/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 47.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 47.
-LaTeX Font Info:    ... okay on input line 47.
-LaTeX Font Info:    Try loading font information for OT1+ptm on input line 47.
+LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Try loading font information for OT1+ptm on input line 48.
 
 (/usr/local/texlive/2016/texmf-dist/tex/latex/psnfss/ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
 (/usr/local/texlive/2016/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count189
-\scratchdimen=\dimen275
-\scratchbox=\box83
-\nofMPsegments=\count190
-\nofMParguments=\count191
-\everyMPshowfont=\toks28
-\MPscratchCnt=\count192
-\MPscratchDim=\dimen276
-\MPnumerator=\count193
-\makeMPintoPDFobject=\count194
-\everyMPtoPDFconversion=\toks29
+\scratchcounter=\count279
+\scratchdimen=\dimen323
+\scratchbox=\box94
+\nofMPsegments=\count280
+\nofMParguments=\count281
+\everyMPshowfont=\toks42
+\MPscratchCnt=\count282
+\MPscratchDim=\dimen324
+\MPnumerator=\count283
+\makeMPintoPDFobject=\count284
+\everyMPtoPDFconversion=\toks43
 ) (/usr/local/texlive/2016/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
 
@@ -927,34 +1253,35 @@ Dictionary: translator-basic-dictionary, Language: English
 (/usr/local/texlive/2016/texmf-dist/tex/latex/siunitx/siunitx-abbreviations.cfg
 File: siunitx-abbreviations.cfg 2016/03/01 v2.6q siunitx: Abbreviated units
 )
-\c@lstlisting=\count195
-\AtBeginShipoutBox=\box84
-Package hyperref Info: Link coloring OFF on input line 47.
+\c@lstlisting=\count285
+\AtBeginShipoutBox=\box95
+Package hyperref Info: Link coloring OFF on input line 48.
  (/usr/local/texlive/2016/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 
 (/usr/local/texlive/2016/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
-\c@section@level=\count196
+\c@section@level=\count286
 )
-LaTeX Info: Redefining \ref on input line 47.
-LaTeX Info: Redefining \pageref on input line 47.
-LaTeX Info: Redefining \nameref on input line 47.
+LaTeX Info: Redefining \ref on input line 48.
+LaTeX Info: Redefining \pageref on input line 48.
+LaTeX Info: Redefining \nameref on input line 48.
 
 (./lwu308.out) (./lwu308.out)
-\@outlinefile=\write3
-\openout3 = `lwu308.out'.
+\@outlinefile=\write4
+\openout4 = `lwu308.out'.
 
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
-\c@maskedRefs=\count197
+\c@maskedRefs=\count287
 
 (/usr/local/texlive/2016/texmf-dist/tex/latex/apacite/english.apc
 File: english.apc 2013/07/21 v6.03 apacite language file
 LaTeX Info: Redefining \BPBI on input line 129.
 LaTeX Info: Redefining \BHBI on input line 130.
 )
+ABD: EveryShipout initializing macros
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
@@ -963,15 +1290,15 @@ LaTeX Info: Redefining \BHBI on input line 130.
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
 * modes: 
-* h-part:(L,W,R)=(85.35826pt, 455.24411pt, 56.9055pt)
-* v-part:(T,H,B)=(56.9055pt, 731.23584pt, 56.9055pt)
+* h-part:(L,W,R)=(85.35826pt, 426.79135pt, 85.35826pt)
+* v-part:(T,H,B)=(71.13188pt, 702.78308pt, 71.13188pt)
 * \paperwidth=597.50787pt
 * \paperheight=845.04684pt
-* \textwidth=455.24411pt
-* \textheight=731.23584pt
+* \textwidth=426.79135pt
+* \textheight=702.78308pt
 * \oddsidemargin=13.08827pt
 * \evensidemargin=13.08827pt
-* \topmargin=-43.81723pt
+* \topmargin=-29.59085pt
 * \headheight=0.0pt
 * \headsep=28.45274pt
 * \topskip=12.0pt
@@ -989,62 +1316,134 @@ LaTeX Info: Redefining \BHBI on input line 130.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-\c__siunitx_mathsf_int=\count198
-LaTeX Font Info:    Try loading font information for OT1+ztmcm on input line 47
+\c__siunitx_mathsf_int=\count288
+LaTeX Font Info:    Try loading font information for OT1+ztmcm on input line 48
 .
 (/usr/local/texlive/2016/texmf-dist/tex/latex/psnfss/ot1ztmcm.fd
 File: ot1ztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OT1/ztmcm.
 )
-LaTeX Font Info:    Try loading font information for OML+ztmcm on input line 47
+LaTeX Font Info:    Try loading font information for OML+ztmcm on input line 48
 .
 
 (/usr/local/texlive/2016/texmf-dist/tex/latex/psnfss/omlztmcm.fd
 File: omlztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OML/ztmcm.
 )
-LaTeX Font Info:    Try loading font information for OMS+ztmcm on input line 47
+LaTeX Font Info:    Try loading font information for OMS+ztmcm on input line 48
 .
 
 (/usr/local/texlive/2016/texmf-dist/tex/latex/psnfss/omsztmcm.fd
 File: omsztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OMS/ztmcm.
 )
-LaTeX Font Info:    Try loading font information for OMX+ztmcm on input line 47
+LaTeX Font Info:    Try loading font information for OMX+ztmcm on input line 48
 .
 
 (/usr/local/texlive/2016/texmf-dist/tex/latex/psnfss/omxztmcm.fd
 File: omxztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OMX/ztmcm.
 )
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 47.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 48.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 47.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 48.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 47.
-\c__siunitx_mathtt_int=\count199
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 48.
+\c__siunitx_mathtt_int=\count289
+Package hyperref Info: bookmark level for unknown todo defaults to 0 on input l
+ine 70.
+
+Overfull \hbox (15.29541pt too wide) in paragraph at lines 70--70
+[][][][]\OT1/ptm/m/n/12 Abstract 
+ []
+
+
+Overfull \hbox (3.95563pt too wide) in paragraph at lines 70--70
+\OT1/ptm/m/n/12 place- 
+ []
+
+
+Overfull \hbox (5.29977pt too wide) in paragraph at lines 70--70
+\OT1/ptm/m/n/12 holder  
+ []
+
+
+Overfull \hbox (15.29541pt too wide) in paragraph at lines 70--70
+[][][][]\OT1/ptm/m/n/12 Abstract 
+ []
+
+
+Overfull \hbox (3.95563pt too wide) in paragraph at lines 70--70
+\OT1/ptm/m/n/12 place- 
+ []
+
+
+Overfull \hbox (5.29977pt too wide) in paragraph at lines 70--70
+\OT1/ptm/m/n/12 holder  
+ []
+
+
+Overfull \hbox (15.29541pt too wide) in paragraph at lines 70--70
+[][][][]\OT1/ptm/m/n/12 Abstract 
+ []
+
+
+Overfull \hbox (3.95563pt too wide) in paragraph at lines 70--70
+\OT1/ptm/m/n/12 place- 
+ []
+
+
+Overfull \hbox (5.29977pt too wide) in paragraph at lines 70--70
+\OT1/ptm/m/n/12 holder  
+ []
+
+
+Overfull \hbox (15.29541pt too wide) in paragraph at lines 70--70
+[][][][]\OT1/ptm/m/n/12 Abstract 
+ []
+
+
+Overfull \hbox (3.95563pt too wide) in paragraph at lines 70--70
+\OT1/ptm/m/n/12 place- 
+ []
+
+
+Overfull \hbox (5.29977pt too wide) in paragraph at lines 70--70
+\OT1/ptm/m/n/12 holder  
+ []
+
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10.95> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 74.
- [1
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 78.
+[1
 
 {/usr/local/texlive/2016/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <17.28> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 85.
- (./lwu308.toc)
-\tf@toc=\write4
-\openout4 = `lwu308.toc'.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 89.
 
 
-[1] <media/current_system.png, id=198, 474.573pt x 341.5962pt>
+Package hyperref Warning: old toc file detected, not used; run LaTeX again.
+
+\tf@toc=\write5
+\openout5 = `lwu308.toc'.
+
+[1] <media/current_system.png, id=19, 474.573pt x 341.5962pt>
 File: media/current_system.png Graphic file (type png)
 
 <use media/current_system.png>
-Package pdftex.def Info: media/current_system.png used on input line 100.
-(pdftex.def)             Requested size: 204.85846pt x 147.45685pt.
+Package pdftex.def Info: media/current_system.png used on input line 104.
+(pdftex.def)             Requested size: 204.85802pt x 147.45685pt.
 
-<media/proposed_system.png, id=200, 474.573pt x 341.5962pt>
+<media/proposed_system.png, id=21, 474.573pt x 341.5962pt>
 File: media/proposed_system.png Graphic file (type png)
 
 <use media/proposed_system.png>
-Package pdftex.def Info: media/proposed_system.png used on input line 106.
-(pdftex.def)             Requested size: 204.85846pt x 147.45685pt.
+Package pdftex.def Info: media/proposed_system.png used on input line 110.
+(pdftex.def)             Requested size: 204.85802pt x 147.45685pt.
+
+
+LaTeX Warning: Reference `fig:current_system' on page 1 undefined on input line
+ 116.
+
+
+LaTeX Warning: Reference `fig:proposed_system' on page 1 undefined on input lin
+e 122.
 
 
 Package Fancyhdr Warning: \headheight is too small (0.0pt): 
@@ -1056,157 +1455,730 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.129 
-       [1 <./media/current_system.png> <./media/proposed_system.png>] [2]
-<media/network_diagram.png, id=224, 555.5154pt x 286.1892pt>
+l.133 
+       [1 <./media/current_system.png> <./media/proposed_system.png>]
+
+Package Fancyhdr Warning: \headheight is too small (0.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[2] <media/network_diagram.png, id=46, 555.5154pt x 286.1892pt>
 File: media/network_diagram.png Graphic file (type png)
 
 <use media/network_diagram.png>
-Package pdftex.def Info: media/network_diagram.png used on input line 175.
-(pdftex.def)             Requested size: 194.6149pt x 100.26378pt.
+Package pdftex.def Info: media/network_diagram.png used on input line 177.
+(pdftex.def)             Requested size: 213.39568pt x 109.93643pt.
 
-Underfull \hbox (badness 2547) in paragraph at lines 176--176
-[]\OT1/ptm/m/n/12 Figure 3: |Sim-pli-fied struc-ture of the
+
+LaTeX Warning: Reference `fig:network_diagram' on page 3 undefined on input lin
+e 182.
+
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <14.4> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 186.
+
+Package Fancyhdr Warning: \headheight is too small (0.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[3 <./media/network_diagram.png>]
+Overfull \hbox (20.62366pt too wide) in paragraph at lines 192--192
+[][][][]\OT1/ptm/m/n/12 Introduce 
  []
 
 
-Underfull \hbox (badness 6978) in paragraph at lines 176--176
-\OT1/ptm/m/n/12 Wairakei geother-mal sur-face net-work.
+Overfull \hbox (1.29182pt too wide) in paragraph at lines 192--192
+\OT1/ptm/m/n/12 equa- 
  []
 
-<media/wk255_issue.png, id=225, 1806.75pt x 1204.5pt>
+
+Overfull \hbox (20.62366pt too wide) in paragraph at lines 192--192
+[][][][]\OT1/ptm/m/n/12 Introduce 
+ []
+
+
+Overfull \hbox (1.29182pt too wide) in paragraph at lines 192--192
+\OT1/ptm/m/n/12 equa- 
+ []
+
+
+Overfull \hbox (20.62366pt too wide) in paragraph at lines 192--192
+[][][][]\OT1/ptm/m/n/12 Introduce 
+ []
+
+
+Overfull \hbox (1.29182pt too wide) in paragraph at lines 192--192
+\OT1/ptm/m/n/12 equa- 
+ []
+
+
+Overfull \hbox (20.62366pt too wide) in paragraph at lines 192--192
+[][][][]\OT1/ptm/m/n/12 Introduce 
+ []
+
+
+Overfull \hbox (1.29182pt too wide) in paragraph at lines 192--192
+\OT1/ptm/m/n/12 equa- 
+ []
+
+
+Package Fancyhdr Warning: \headheight is too small (0.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[4]
+Overfull \hbox (9.7015pt too wide) in paragraph at lines 224--225
+[]\OT1/ptm/m/n/12 We use nu-mer-i-cal data sup-plied by Con-tact in sev-eral fo
+rms, in-clud-ing net-work schemat-
+ []
+
+
+Overfull \hbox (11.29977pt too wide) in paragraph at lines 232--232
+[][][][]\OT1/ptm/m/n/12 Change 
+ []
+
+
+Overfull \hbox (11.73175pt too wide) in paragraph at lines 232--232
+\OT1/ptm/m/n/12 David's 
+ []
+
+
+Overfull \hbox (2.63565pt too wide) in paragraph at lines 232--232
+\OT1/ptm/m/n/12 ment)  
+ []
+
+
+Overfull \hbox (11.29977pt too wide) in paragraph at lines 232--232
+[][][][]\OT1/ptm/m/n/12 Change 
+ []
+
+
+Overfull \hbox (11.73175pt too wide) in paragraph at lines 232--232
+\OT1/ptm/m/n/12 David's 
+ []
+
+
+Overfull \hbox (2.63565pt too wide) in paragraph at lines 232--232
+\OT1/ptm/m/n/12 ment)  
+ []
+
+
+Overfull \hbox (11.29977pt too wide) in paragraph at lines 232--232
+[][][][]\OT1/ptm/m/n/12 Change 
+ []
+
+
+Overfull \hbox (11.73175pt too wide) in paragraph at lines 232--232
+\OT1/ptm/m/n/12 David's 
+ []
+
+
+Overfull \hbox (2.63565pt too wide) in paragraph at lines 232--232
+\OT1/ptm/m/n/12 ment)  
+ []
+
+
+Overfull \hbox (11.29977pt too wide) in paragraph at lines 232--232
+[][][][]\OT1/ptm/m/n/12 Change 
+ []
+
+
+Overfull \hbox (11.73175pt too wide) in paragraph at lines 232--232
+\OT1/ptm/m/n/12 David's 
+ []
+
+
+Overfull \hbox (2.63565pt too wide) in paragraph at lines 232--232
+\OT1/ptm/m/n/12 ment)  
+ []
+
+
+Package Fancyhdr Warning: \headheight is too small (0.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[5]
+Overfull \hbox (3.96748pt too wide) in paragraph at lines 240--240
+[][][][]\OT1/ptm/m/n/12 Better 
+ []
+
+
+Overfull \hbox (1.96361pt too wide) in paragraph at lines 240--240
+\OT1/ptm/m/n/12 scrip- 
+ []
+
+
+Overfull \hbox (3.96748pt too wide) in paragraph at lines 240--240
+[][][][]\OT1/ptm/m/n/12 Better 
+ []
+
+
+Overfull \hbox (1.96361pt too wide) in paragraph at lines 240--240
+\OT1/ptm/m/n/12 scrip- 
+ []
+
+
+Overfull \hbox (3.96748pt too wide) in paragraph at lines 240--240
+[][][][]\OT1/ptm/m/n/12 Better 
+ []
+
+
+Overfull \hbox (1.96361pt too wide) in paragraph at lines 240--240
+\OT1/ptm/m/n/12 scrip- 
+ []
+
+
+Overfull \hbox (3.96748pt too wide) in paragraph at lines 240--240
+[][][][]\OT1/ptm/m/n/12 Better 
+ []
+
+
+Overfull \hbox (1.96361pt too wide) in paragraph at lines 240--240
+\OT1/ptm/m/n/12 scrip- 
+ []
+
+<media/wk255_issue.png, id=79, 1806.75pt x 1204.5pt>
 File: media/wk255_issue.png Graphic file (type png)
 
 <use media/wk255_issue.png>
-Package pdftex.def Info: media/wk255_issue.png used on input line 181.
-(pdftex.def)             Requested size: 194.6149pt x 129.73853pt.
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <14.4> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 191.
- [3 <./media/network_diagram.png> <./media/wk255_issue.png>] [4]
+Package pdftex.def Info: media/wk255_issue.png used on input line 244.
+(pdftex.def)             Requested size: 426.79135pt x 284.52788pt.
 
-LaTeX Warning: Reference `wk255_issue' on page 5 undefined on input line 244.
 
-Missing character: There is no ± in font ptmr7t!
-Missing character: There is no ± in font ptmr7t!
-[5]
-Missing character: There is no ± in font ptmr7t!
- <media/workflow.png, id=250, 609.9588pt x 142.131pt>
+LaTeX Warning: Reference `fig:wk255_issue' on page 6 undefined on input line 24
+9.
+
+
+Package Fancyhdr Warning: \headheight is too small (0.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[6 <./media/wk255_issue.png>]
+Overfull \hbox (11.97168pt too wide) in paragraph at lines 273--273
+[][][][]\OT1/ptm/m/n/12 Explain 
+ []
+
+
+Overfull \hbox (11.97168pt too wide) in paragraph at lines 273--273
+[][][][]\OT1/ptm/m/n/12 Explain 
+ []
+
+
+Overfull \hbox (11.97168pt too wide) in paragraph at lines 273--273
+[][][][]\OT1/ptm/m/n/12 Explain 
+ []
+
+
+Overfull \hbox (11.97168pt too wide) in paragraph at lines 273--273
+[][][][]\OT1/ptm/m/n/12 Explain 
+ []
+
+<media/workflow.png, id=88, 609.9588pt x 142.131pt>
 File: media/workflow.png Graphic file (type png)
+ <use media/workflow.png>
+Package pdftex.def Info: media/workflow.png used on input line 279.
+(pdftex.def)             Requested size: 213.39568pt x 49.7249pt.
 
-<use media/workflow.png>
-Package pdftex.def Info: media/workflow.png used on input line 275.
-(pdftex.def)             Requested size: 227.62206pt x 53.03873pt.
 
-Overfull \hbox (1.87584pt too wide) in paragraph at lines 285--286
-[]\OT1/ptm/m/n/12 Our Python rou-tine im-ple-ments suf-fi-cient au-to-matic dat
-a-cleaning ca-pa-bil-i-ties that fix known
+Package Fancyhdr Warning: \headheight is too small (0.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[7 <./media/workflow.png>] (./media/quality.tex)
+Overfull \hbox (0.63174pt too wide) in paragraph at lines 298--298
+[][][][]\OT1/ptm/m/n/12 What 
  []
 
-[6 <./media/workflow.png>]
-Overfull \hbox (4.61339pt too wide) in paragraph at lines 293--294
-[]\OT1/ptm/m/n/12 The rest of the work-flow is car-ried out in R. To make the p
-ro-gram us-able to non-programmers,
+
+Overfull \hbox (3.2957pt too wide) in paragraph at lines 298--298
+\OT1/ptm/m/n/12 tween 
  []
 
-<media/jags_diagram.png, id=263, 455.7828pt x 198.9834pt>
+
+Overfull \hbox (0.63174pt too wide) in paragraph at lines 298--298
+[][][][]\OT1/ptm/m/n/12 What 
+ []
+
+
+Overfull \hbox (3.2957pt too wide) in paragraph at lines 298--298
+\OT1/ptm/m/n/12 tween 
+ []
+
+
+Overfull \hbox (0.63174pt too wide) in paragraph at lines 298--298
+[][][][]\OT1/ptm/m/n/12 What 
+ []
+
+
+Overfull \hbox (3.2957pt too wide) in paragraph at lines 298--298
+\OT1/ptm/m/n/12 tween 
+ []
+
+
+Overfull \hbox (0.63174pt too wide) in paragraph at lines 298--298
+[][][][]\OT1/ptm/m/n/12 What 
+ []
+
+
+Overfull \hbox (3.2957pt too wide) in paragraph at lines 298--298
+\OT1/ptm/m/n/12 tween 
+ []
+
+<media/jags_diagram.png, id=107, 455.7828pt x 198.9834pt>
 File: media/jags_diagram.png Graphic file (type png)
 
 <use media/jags_diagram.png>
-Package pdftex.def Info: media/jags_diagram.png used on input line 305.
-(pdftex.def)             Requested size: 227.62206pt x 99.37303pt.
- [7 <./media/jags_diagram.png>]
-<media/slice_sampling.png, id=271, 321.8424pt x 95.1555pt>
+Package pdftex.def Info: media/jags_diagram.png used on input line 314.
+(pdftex.def)             Requested size: 213.39568pt x 93.16089pt.
+
+
+Package Fancyhdr Warning: \headheight is too small (0.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[8]
+
+LaTeX Warning: Reference `fig:jags_diagram' on page 9 undefined on input line 3
+23.
+
+
+Overfull \hbox (5.29977pt too wide) in paragraph at lines 325--325
+[][][][]\OT1/ptm/m/n/12 Check 
+ []
+
+
+Overfull \hbox (5.29977pt too wide) in paragraph at lines 325--325
+[][][][]\OT1/ptm/m/n/12 Check 
+ []
+
+
+Overfull \hbox (5.29977pt too wide) in paragraph at lines 325--325
+[][][][]\OT1/ptm/m/n/12 Check 
+ []
+
+
+Overfull \hbox (5.29977pt too wide) in paragraph at lines 325--325
+[][][][]\OT1/ptm/m/n/12 Check 
+ []
+
+
+Package Fancyhdr Warning: \headheight is too small (0.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[9 <./media/jags_diagram.png>]
+<media/slice_sampling.png, id=126, 321.8424pt x 95.1555pt>
 File: media/slice_sampling.png Graphic file (type png)
 
 <use media/slice_sampling.png>
-Package pdftex.def Info: media/slice_sampling.png used on input line 345.
-(pdftex.def)             Requested size: 227.62206pt x 67.30095pt.
- [8] [9 <./media/slice_sampling.png>] [10]
-[11] <media/diagnostics.png, id=317, 1806.75pt x 1204.5pt>
+Package pdftex.def Info: media/slice_sampling.png used on input line 353.
+(pdftex.def)             Requested size: 213.39568pt x 63.09465pt.
+
+
+LaTeX Warning: Reference `fig:slice_sampling' on page 10 undefined on input lin
+e 358.
+
+
+Package Fancyhdr Warning: \headheight is too small (0.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[10 <./media/slice_sampling.png>]
+
+LaTeX Warning: Reference `eq:linreg' on page 11 undefined on input line 399.
+
+
+Package Fancyhdr Warning: \headheight is too small (0.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[11]
+Overfull \hbox (13.29166pt too wide) in paragraph at lines 416--416
+\OT1/ptm/m/n/12 whether 
+ []
+
+
+Overfull \hbox (13.29166pt too wide) in paragraph at lines 416--416
+\OT1/ptm/m/n/12 whether 
+ []
+
+
+Overfull \hbox (13.29166pt too wide) in paragraph at lines 416--416
+\OT1/ptm/m/n/12 whether 
+ []
+
+
+Overfull \hbox (13.29166pt too wide) in paragraph at lines 416--416
+\OT1/ptm/m/n/12 whether 
+ []
+
+
+Package Fancyhdr Warning: \headheight is too small (0.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[12]
+
+Package Fancyhdr Warning: \headheight is too small (0.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[13] <media/diagnostics.png, id=176, 2927.93875pt x 1422.31375pt>
 File: media/diagnostics.png Graphic file (type png)
 
 <use media/diagnostics.png>
-Package pdftex.def Info: media/diagnostics.png used on input line 465.
-(pdftex.def)             Requested size: 321.85791pt x 214.55838pt.
- [12 <./media/diagnostics.png>]
-Overfull \hbox (5.76445pt too wide) in paragraph at lines 476--477
-[]\OT1/ptm/m/n/12 Figure []9[] shows the mod-elled con-nec-tiv-ity be-tween wel
-ls, flash plants and gen-er-a-tors. Dummy
+Package pdftex.def Info: media/diagnostics.png used on input line 483.
+(pdftex.def)             Requested size: 426.79135pt x 207.3045pt.
+
+
+LaTeX Warning: Reference `fig:diagnostics' on page 14 undefined on input line 4
+88.
+
+
+Overfull \hbox (21.97948pt too wide) in paragraph at lines 490--490
+[][][][]\OT1/ptm/m/n/12 Comment 
  []
 
-<media/full_network.png, id=330, 481.8pt x 481.8pt>
+
+Overfull \hbox (1.96361pt too wide) in paragraph at lines 490--490
+\OT1/ptm/m/n/12 resid- 
+ []
+
+
+Overfull \hbox (21.97948pt too wide) in paragraph at lines 490--490
+[][][][]\OT1/ptm/m/n/12 Comment 
+ []
+
+
+Overfull \hbox (1.96361pt too wide) in paragraph at lines 490--490
+\OT1/ptm/m/n/12 resid- 
+ []
+
+
+Overfull \hbox (21.97948pt too wide) in paragraph at lines 490--490
+[][][][]\OT1/ptm/m/n/12 Comment 
+ []
+
+
+Overfull \hbox (1.96361pt too wide) in paragraph at lines 490--490
+\OT1/ptm/m/n/12 resid- 
+ []
+
+
+Overfull \hbox (21.97948pt too wide) in paragraph at lines 490--490
+[][][][]\OT1/ptm/m/n/12 Comment 
+ []
+
+
+Overfull \hbox (1.96361pt too wide) in paragraph at lines 490--490
+\OT1/ptm/m/n/12 resid- 
+ []
+
+
+LaTeX Warning: Reference `fig:full_network' on page 14 undefined on input line 
+495.
+
+
+Package Fancyhdr Warning: \headheight is too small (0.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[14 <./media/diagnostics.png>]
+<media/full_network.png, id=187, 481.8pt x 481.8pt>
 File: media/full_network.png Graphic file (type png)
 
 <use media/full_network.png>
-Package pdftex.def Info: media/full_network.png used on input line 484.
-(pdftex.def)             Requested size: 227.62206pt x 227.62228pt.
+Package pdftex.def Info: media/full_network.png used on input line 503.
+(pdftex.def)             Requested size: 204.85802pt x 204.85417pt.
 
-<media/production_curve.png, id=331, 1806.75pt x 1204.5pt>
+<media/production_curve.png, id=188, 1806.75pt x 1204.5pt>
 File: media/production_curve.png Graphic file (type png)
 
 <use media/production_curve.png>
-Package pdftex.def Info: media/production_curve.png used on input line 490.
-(pdftex.def)             Requested size: 227.62206pt x 151.73839pt.
- [13 <./media/full_network.png> <./media/production_curve.png>] <media/mf_wells
-.png, id=341, 2927.93875pt x 1185.42876pt>
+Package pdftex.def Info: media/production_curve.png used on input line 509.
+(pdftex.def)             Requested size: 204.85802pt x 136.5572pt.
+
+
+LaTeX Warning: Reference `eq:fp_mf' on page 15 undefined on input line 516.
+
+
+LaTeX Warning: Reference `eq:fp_h' on page 15 undefined on input line 516.
+
+
+LaTeX Warning: Reference `fig:full_network' on page 15 undefined on input line 
+519.
+
+
+LaTeX Warning: Reference `eq:power' on page 15 undefined on input line 521.
+
+
+Package Fancyhdr Warning: \headheight is too small (0.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[15 <./media/full_network.png> <./media/production_curve.png>]
+
+LaTeX Warning: Reference `fig:diagnostics' on page 16 undefined on input line 5
+33.
+
+<media/mf_wells.png, id=199, 2927.93875pt x 1185.42876pt>
 File: media/mf_wells.png Graphic file (type png)
 
 <use media/mf_wells.png>
-Package pdftex.def Info: media/mf_wells.png used on input line 525.
-(pdftex.def)             Requested size: 455.24411pt x 184.3003pt.
- [14 <./media/mf_wells.png>]
-<media/trace_plot.png, id=355, 2927.93875pt x 947.54pt>
+Package pdftex.def Info: media/mf_wells.png used on input line 539.
+(pdftex.def)             Requested size: 426.79135pt x 172.77812pt.
+
+
+LaTeX Warning: Reference `fig:mf_wells' on page 16 undefined on input line 544.
+
+
+
+Package Fancyhdr Warning: \headheight is too small (0.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[16 <./media/mf_wells.png>]
+<media/trace_plot.png, id=213, 2927.93875pt x 947.54pt>
 File: media/trace_plot.png Graphic file (type png)
 
 <use media/trace_plot.png>
-Package pdftex.def Info: media/trace_plot.png used on input line 546.
-(pdftex.def)             Requested size: 455.24411pt x 147.31538pt.
- (./media/gelman.tex [15 <./media/trace_plot.png>])
-<media/beta_date.png, id=366, 2927.93875pt x 1185.42876pt>
+Package pdftex.def Info: media/trace_plot.png used on input line 559.
+(pdftex.def)             Requested size: 426.79135pt x 138.10545pt.
+
+
+LaTeX Warning: Reference `fig:trace_plot' on page 17 undefined on input line 56
+4.
+
+
+LaTeX Warning: Reference `fig:geweke' on page 17 undefined on input line 572.
+
+<media/geweke.png, id=214, 2927.93875pt x 947.54pt>
+File: media/geweke.png Graphic file (type png)
+ <use media/geweke.png>
+Package pdftex.def Info: media/geweke.png used on input line 576.
+(pdftex.def)             Requested size: 426.79135pt x 138.10545pt.
+
+
+Package Fancyhdr Warning: \headheight is too small (0.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[17 <./media/trace_plot.png>]
+
+LaTeX Warning: Reference `tab:gelman' on page 18 undefined on input line 586.
+
+(./media/gelman.tex)
+<media/beta_date.png, id=225, 2927.93875pt x 1185.42876pt>
 File: media/beta_date.png Graphic file (type png)
 
 <use media/beta_date.png>
-Package pdftex.def Info: media/beta_date.png used on input line 579.
-(pdftex.def)             Requested size: 455.24411pt x 184.3003pt.
- (./media/tab_beta_date.tex) [16 <./media/beta_date.png>] <media/constraints.pn
-g, id=376, 2927.93875pt x 1185.42876pt>
+Package pdftex.def Info: media/beta_date.png used on input line 596.
+(pdftex.def)             Requested size: 426.79135pt x 172.77812pt.
+ (./media/tab_beta_date.tex
+
+Package Fancyhdr Warning: \headheight is too small (0.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[18 <./media/geweke.png>])
+
+LaTeX Warning: Reference `tab:beta_date' on page 19 undefined on input line 605
+.
+
+
+Package Fancyhdr Warning: \headheight is too small (0.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[19 <./media/beta_date.png>]
+<media/constraints.png, id=244, 2927.93875pt x 1185.42876pt>
 File: media/constraints.png Graphic file (type png)
 
 <use media/constraints.png>
-Package pdftex.def Info: media/constraints.png used on input line 607.
-(pdftex.def)             Requested size: 455.24411pt x 184.3003pt.
- [17 <./media/constraints.png>] [18] [19]
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <24.88> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 650.
+Package pdftex.def Info: media/constraints.png used on input line 623.
+(pdftex.def)             Requested size: 426.79135pt x 172.77812pt.
 
-<media/ts_experiment.png, id=395, 2927.93875pt x 2844.6275pt>
+
+LaTeX Warning: Reference `fig:constraints' on page 20 undefined on input line 6
+28.
+
+
+Overfull \hbox (33.30743pt too wide) in paragraph at lines 632--632
+[][][][]\OT1/ptm/m/n/12 Comparison 
+ []
+
+
+Overfull \hbox (33.30743pt too wide) in paragraph at lines 632--632
+[][][][]\OT1/ptm/m/n/12 Comparison 
+ []
+
+
+Overfull \hbox (33.30743pt too wide) in paragraph at lines 632--632
+[][][][]\OT1/ptm/m/n/12 Comparison 
+ []
+
+
+Overfull \hbox (33.30743pt too wide) in paragraph at lines 632--632
+[][][][]\OT1/ptm/m/n/12 Comparison 
+ []
+
+
+Package Fancyhdr Warning: \headheight is too small (0.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[20 <./media/constraints.png>]
+Overfull \hbox (1.30382pt too wide) in paragraph at lines 645--645
+\OT1/ptm/m/n/12 about 
+ []
+
+
+Overfull \hbox (5.95967pt too wide) in paragraph at lines 645--645
+\OT1/ptm/m/n/12 mance 
+ []
+
+
+Overfull \hbox (6.64377pt too wide) in paragraph at lines 645--645
+\OT1/ptm/m/n/12 should 
+ []
+
+
+Overfull \hbox (1.30382pt too wide) in paragraph at lines 645--645
+\OT1/ptm/m/n/12 about 
+ []
+
+
+Overfull \hbox (5.95967pt too wide) in paragraph at lines 645--645
+\OT1/ptm/m/n/12 mance 
+ []
+
+
+Overfull \hbox (6.64377pt too wide) in paragraph at lines 645--645
+\OT1/ptm/m/n/12 should 
+ []
+
+
+Overfull \hbox (1.30382pt too wide) in paragraph at lines 645--645
+\OT1/ptm/m/n/12 about 
+ []
+
+
+Overfull \hbox (5.95967pt too wide) in paragraph at lines 645--645
+\OT1/ptm/m/n/12 mance 
+ []
+
+
+Overfull \hbox (6.64377pt too wide) in paragraph at lines 645--645
+\OT1/ptm/m/n/12 should 
+ []
+
+
+Overfull \hbox (1.30382pt too wide) in paragraph at lines 645--645
+\OT1/ptm/m/n/12 about 
+ []
+
+
+Overfull \hbox (5.95967pt too wide) in paragraph at lines 645--645
+\OT1/ptm/m/n/12 mance 
+ []
+
+
+Overfull \hbox (6.64377pt too wide) in paragraph at lines 645--645
+\OT1/ptm/m/n/12 should 
+ []
+
+
+Package Fancyhdr Warning: \headheight is too small (0.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[21]
+
+Package Fancyhdr Warning: \headheight is too small (0.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[22]
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <24.88> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 668.
+ <media/ts_experiment.png, id=269, 2927.93875pt x 2844.6275pt>
 File: media/ts_experiment.png Graphic file (type png)
 
 <use media/ts_experiment.png>
-Package pdftex.def Info: media/ts_experiment.png used on input line 656.
-(pdftex.def)             Requested size: 455.24411pt x 442.25829pt.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 663.
- [20 <./media/ts_experiment.png>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 663.
- (./lwu308.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 663.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 663.
-Package rerunfilecheck Info: File `lwu308.out' has not changed.
-(rerunfilecheck)             Checksum: C3AFE1FCA0A96A05DC711ADEE37365B6;2228.
+Package pdftex.def Info: media/ts_experiment.png used on input line 673.
+(pdftex.def)             Requested size: 426.79135pt x 414.60901pt.
 
+
+Package Fancyhdr Warning: \headheight is too small (0.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[23 <./media/ts_experiment.png>]
+<media/verification.png, id=280, 2927.93875pt x 2844.6275pt>
+File: media/verification.png Graphic file (type png)
+
+<use media/verification.png>
+Package pdftex.def Info: media/verification.png used on input line 683.
+(pdftex.def)             Requested size: 426.79135pt x 414.60901pt.
+
+
+Package Fancyhdr Warning: \headheight is too small (0.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[24 <./media/verification.png>]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 690.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 690.
+ (./lwu308.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 690.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 690.
+
+
+Package rerunfilecheck Warning: File `lwu308.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `lwu308.out':
+(rerunfilecheck)             Before: D41D8CD98F00B204E9800998ECF8427E;0
+(rerunfilecheck)             After:  78F6D8878E41E3D9AC7F592B5FD6943C;2279.
 
 LaTeX Warning: There were undefined references.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 663.
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 690.
  ) 
 Here is how much of TeX's memory you used:
- 20083 strings out of 493014
- 372926 string characters out of 6133351
- 434466 words of memory out of 5000000
- 23247 multiletter control sequences out of 15000+600000
- 45672 words of font info for 91 fonts, out of 8000000 for 9000
+ 30602 strings out of 493014
+ 598057 string characters out of 6133351
+ 633454 words of memory out of 5000000
+ 33512 multiletter control sequences out of 15000+600000
+ 49120 words of font info for 95 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 42i,12n,43p,10378b,852s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 62i,12n,77p,10378b,862s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
 exlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/te
 xlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/tex
@@ -1217,10 +2189,10 @@ f-dist/fonts/type1/urw/symbol/usyr.pfb></usr/local/texlive/2016/texmf-dist/font
 s/type1/urw/times/utmb8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/ur
 w/times/utmr8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/times/ut
 mri8a.pfb>
-Output written on lwu308.pdf (22 pages, 2732455 bytes).
+Output written on lwu308.pdf (26 pages, 3499924 bytes).
 PDF statistics:
- 463 PDF objects out of 1000 (max. 8388607)
- 396 compressed objects within 4 object streams
- 132 named destinations out of 1000 (max. 500000)
- 364 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 352 PDF objects out of 1000 (max. 8388607)
+ 278 compressed objects within 3 object streams
+ 153 named destinations out of 1000 (max. 500000)
+ 98 words of extra memory for PDF output out of 10000 (max. 10000000)
 
