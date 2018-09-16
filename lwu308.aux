@@ -41,7 +41,7 @@
 \newlabel{eq:fp_mf}{{2}{4}{Flash Plant Nodes}{equation.3.2}{}}
 \newlabel{eq:fp_h}{{3}{4}{Flash Plant Nodes}{equation.3.3}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Generator Nodes}{5}{subsection.3.3}}
-\newlabel{eq:power}{{7}{5}{Generator Nodes}{equation.3.7}{}}
+\newlabel{eq:power}{{6}{5}{Generator Nodes}{equation.3.6}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {4}Data Sources}{5}{section.4}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Network Structure}{5}{subsection.4.1}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Well Test Data}{5}{subsection.4.2}}
@@ -67,8 +67,8 @@
 \@writefile{toc}{\contentsline {section}{\numberline {5}Data Integration}{7}{section.5}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Data Extraction}{7}{subsection.5.1}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Pre-Processing}{8}{subsection.5.2}}
-\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Potential data quality issues. w3ED is known to be not connected, and wB98 has an A/B pairing with w2F7.\relax }}{8}{table.caption.11}}
-\newlabel{tab:quality}{{2}{8}{Potential data quality issues. w3ED is known to be not connected, and wB98 has an A/B pairing with w2F7.\relax }{table.caption.11}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Potential data quality issues. wk607 is known to be not connected, and wk26a has an A/B pairing with wk26b.\relax }}{8}{table.caption.11}}
+\newlabel{tab:quality}{{2}{8}{Potential data quality issues. wk607 is known to be not connected, and wk26a has an A/B pairing with wk26b.\relax }{table.caption.11}{}}
 \@writefile{tdo}{\contentsline {todo}{What is the relationship between 26a and 26b?}{8}{section*.12}}
 \pgfsyspdfmark {pgfid26}{6749099}{26638142}
 \pgfsyspdfmark {pgfid29}{35350093}{26635390}
@@ -94,7 +94,7 @@
 \pgfsyspdfmark {pgfid35}{36480589}{7512515}
 \@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces DIC comparison of two GLM candidates\relax }}{13}{table.caption.16}}
 \newlabel{tab:curvature}{{3}{13}{DIC comparison of two GLM candidates\relax }{table.caption.16}{}}
-\newlabel{eq:linreg}{{17}{13}{Well Production Curve Regression}{equation.7.17}{}}
+\newlabel{eq:linreg}{{15}{13}{Well Production Curve Regression}{equation.7.15}{}}
 \@writefile{tdo}{\contentsline {todo}{Comment on residual error?}{14}{section*.18}}
 \pgfsyspdfmark {pgfid36}{20871865}{20131471}
 \pgfsyspdfmark {pgfid39}{35350093}{20128719}
@@ -117,7 +117,7 @@
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {7.3.1}Geweke's Convergence}{17}{subsubsection.7.3.1}}
 \@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces More than 5\% of z-scores outside the confidence interval indicates the chains have not converged and are not long enough or contain burn-in.\relax }}{18}{figure.caption.22}}
 \newlabel{fig:geweke}{{13}{18}{More than 5\% of z-scores outside the confidence interval indicates the chains have not converged and are not long enough or contain burn-in.\relax }{figure.caption.22}{}}
-\@writefile{tdo}{\contentsline {todo}{There are issues}{18}{section*.23}}
+\@writefile{tdo}{\contentsline {todo}{There are issues. (Say something)}{18}{section*.23}}
 \pgfsyspdfmark {pgfid41}{24660427}{32547349}
 \pgfsyspdfmark {pgfid44}{35350093}{32544597}
 \pgfsyspdfmark {pgfid45}{36480589}{32281929}
@@ -127,36 +127,39 @@
 \@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces Posterior mass flows, divided into wells with production curves and wells with a simple time-series (see Figure \ref  {fig:ts_experiment} for time-series examples)\relax }}{19}{figure.caption.25}}
 \newlabel{fig:mf_wells}{{14}{19}{Posterior mass flows, divided into wells with production curves and wells with a simple time-series (see Figure \ref {fig:ts_experiment} for time-series examples)\relax }{figure.caption.25}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {8}Results}{19}{section.8}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.1}Mass Flows}{19}{subsection.8.1}}
-\@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces Posterior decline rate of selected liquid wells.\relax }}{20}{figure.caption.26}}
-\newlabel{fig:beta_date}{{15}{20}{Posterior decline rate of selected liquid wells.\relax }{figure.caption.26}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Estimated confidence intervals for $\beta _\text  {date}$.\relax }}{20}{table.caption.27}}
-\newlabel{tab:beta_date}{{5}{20}{Estimated confidence intervals for $\beta _\text {date}$.\relax }{table.caption.27}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.1}Well Mass Flows}{19}{subsection.8.1}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Upon inspection of the wells with the most variance, there is no immediate cause for high variance. This requires further investigation.\relax }}{20}{table.caption.26}}
+\newlabel{tab:well_summaries}{{5}{20}{Upon inspection of the wells with the most variance, there is no immediate cause for high variance. This requires further investigation.\relax }{table.caption.26}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces We can infer which combinations of data sources tend to have the most variance in their posterior mass flow estimates. Using PI data decreases variance, while using test data increases variance. However, the lowest variance group uses neither -- these are the wells predicted with a univariate time series on mass flow, and no production curve.\relax }}{20}{figure.caption.27}}
+\newlabel{fig:error_source}{{15}{20}{We can infer which combinations of data sources tend to have the most variance in their posterior mass flow estimates. Using PI data decreases variance, while using test data increases variance. However, the lowest variance group uses neither -- these are the wells predicted with a univariate time series on mass flow, and no production curve.\relax }{figure.caption.27}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {8.2}Individual Well Declines}{20}{subsection.8.2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.3}Flow Variances}{20}{subsection.8.3}}
-\@writefile{lof}{\contentsline {figure}{\numberline {16}{\ignorespaces Posterior density plot of the steam flows through the flash plants. Known steam limits are shown by a vertical red line.\relax }}{21}{figure.caption.28}}
-\newlabel{fig:constraints}{{16}{21}{Posterior density plot of the steam flows through the flash plants. Known steam limits are shown by a vertical red line.\relax }{figure.caption.28}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.4}Down-flow Results}{21}{subsection.8.4}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {8.4.1}Flash Plant Flow Verification}{21}{subsubsection.8.4.1}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {8.4.2}Flash Plant Constraints}{21}{subsubsection.8.4.2}}
-\@writefile{tdo}{\contentsline {todo}{Comparison with PI data}{21}{section*.29}}
-\pgfsyspdfmark {pgfid46}{15721605}{12180555}
-\pgfsyspdfmark {pgfid49}{35350093}{12177803}
-\pgfsyspdfmark {pgfid50}{36480589}{11915135}
-\@writefile{toc}{\contentsline {section}{\numberline {9}Conclusions}{21}{section.9}}
-\@writefile{tdo}{\contentsline {todo}{Note about performance and use cases -- should it be used}{22}{section*.30}}
-\pgfsyspdfmark {pgfid51}{6749099}{24558867}
-\pgfsyspdfmark {pgfid54}{35350093}{24556115}
-\pgfsyspdfmark {pgfid55}{36480589}{24293447}
-\@writefile{toc}{\contentsline {section}{\numberline {10}Further Development}{22}{section.10}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {10.1}Direct Data Integration}{22}{subsection.10.1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {10.2}Time Series}{23}{subsection.10.2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {10.3}Prior Specification}{23}{subsection.10.3}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {10.4}Hierarchical Model Resolution}{23}{subsection.10.4}}
-\@writefile{toc}{\contentsline {section}{Appendices}{24}{section*.31}}
-\@writefile{toc}{\contentsline {section}{\numberline {A}Time Series}{24}{Appendix.1.A}}
-\@writefile{lof}{\contentsline {figure}{\numberline {17}{\ignorespaces Time-series techniques on data from the PI database. We use the linear time series regression (top) for its robustness to systematic changes in operation, which cause the other regressions to become unstable.\relax }}{24}{figure.caption.32}}
-\newlabel{fig:ts_experiment}{{17}{24}{Time-series techniques on data from the PI database. We use the linear time series regression (top) for its robustness to systematic changes in operation, which cause the other regressions to become unstable.\relax }{figure.caption.32}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {B}Verification}{25}{Appendix.1.B}}
-\@writefile{lof}{\contentsline {figure}{\numberline {18}{\ignorespaces Verification of predicted flows with Excel shows a systematic deviation. Densities are the model predictions and black lines are the given figures from CEL (estimated by CEL, not direct from the PI loggers).\relax }}{25}{figure.caption.33}}
-\newlabel{fig:verification}{{18}{25}{Verification of predicted flows with Excel shows a systematic deviation. Densities are the model predictions and black lines are the given figures from CEL (estimated by CEL, not direct from the PI loggers).\relax }{figure.caption.33}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Credible intervals for $\beta _\text  {date}$.\relax }}{20}{table.caption.29}}
+\newlabel{tab:beta_date}{{6}{20}{Credible intervals for $\beta _\text {date}$.\relax }{table.caption.29}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {16}{\ignorespaces Posterior decline rate of selected liquid wells.\relax }}{21}{figure.caption.28}}
+\newlabel{fig:beta_date}{{16}{21}{Posterior decline rate of selected liquid wells.\relax }{figure.caption.28}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.3}Down-flow Results}{21}{subsection.8.3}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {8.3.1}Flash Plant Mass Flow Verification}{21}{subsubsection.8.3.1}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {8.3.2}Flash Plant Constraints}{21}{subsubsection.8.3.2}}
+\@writefile{lof}{\contentsline {figure}{\numberline {17}{\ignorespaces Posterior density plot of the steam flows through the flash plants. Known steam limits are shown by a vertical red line.\relax }}{22}{figure.caption.30}}
+\newlabel{fig:constraints}{{17}{22}{Posterior density plot of the steam flows through the flash plants. Known steam limits are shown by a vertical red line.\relax }{figure.caption.30}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {9}Conclusions}{22}{section.9}}
+\@writefile{tdo}{\contentsline {todo}{Note about performance and use cases -- should it be used}{23}{section*.31}}
+\pgfsyspdfmark {pgfid46}{6749099}{33111315}
+\pgfsyspdfmark {pgfid49}{35350093}{33108563}
+\pgfsyspdfmark {pgfid50}{36480589}{32845895}
+\@writefile{toc}{\contentsline {section}{\numberline {10}Further Development}{23}{section.10}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {10.1}Direct Data Integration}{23}{subsection.10.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {10.2}Data Integration With Other Models}{23}{subsection.10.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {10.3}Time Series}{24}{subsection.10.3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {10.4}Prior Specification}{24}{subsection.10.4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {10.5}Hierarchical Model Resolution}{24}{subsection.10.5}}
+\@writefile{toc}{\contentsline {section}{Appendices}{25}{section*.32}}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Time Series}{25}{Appendix.1.A}}
+\@writefile{lof}{\contentsline {figure}{\numberline {18}{\ignorespaces Time-series techniques on data from the PI database. We use the linear time series regression (top) for its robustness to systematic changes in operation, which cause the other regressions to become unstable.\relax }}{25}{figure.caption.33}}
+\newlabel{fig:ts_experiment}{{18}{25}{Time-series techniques on data from the PI database. We use the linear time series regression (top) for its robustness to systematic changes in operation, which cause the other regressions to become unstable.\relax }{figure.caption.33}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {B}Verification}{26}{Appendix.1.B}}
+\@writefile{lof}{\contentsline {figure}{\numberline {19}{\ignorespaces Verification of predicted flows with Excel shows a systematic deviation. Densities are the model predictions and black lines are the given figures from CEL (estimated by CEL, not direct from the PI loggers).\relax }}{26}{figure.caption.34}}
+\newlabel{fig:verification}{{19}{26}{Verification of predicted flows with Excel shows a systematic deviation. Densities are the model predictions and black lines are the given figures from CEL (estimated by CEL, not direct from the PI loggers).\relax }{figure.caption.34}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {C}All Well Declines}{27}{Appendix.1.C}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Credible intervals for $\beta _\text  {date}$.\relax }}{28}{table.caption.35}}
+\newlabel{tab:beta_date_all}{{7}{28}{Credible intervals for $\beta _\text {date}$.\relax }{table.caption.35}{}}

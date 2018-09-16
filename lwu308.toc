@@ -32,18 +32,19 @@
 \contentsline {subsubsection}{\numberline {7.3.1}Geweke's Convergence}{17}{subsubsection.7.3.1}
 \contentsline {subsubsection}{\numberline {7.3.2}Gelman's Potential Scale Reduction Factor}{18}{subsubsection.7.3.2}
 \contentsline {section}{\numberline {8}Results}{19}{section.8}
-\contentsline {subsection}{\numberline {8.1}Mass Flows}{19}{subsection.8.1}
+\contentsline {subsection}{\numberline {8.1}Well Mass Flows}{19}{subsection.8.1}
 \contentsline {subsection}{\numberline {8.2}Individual Well Declines}{20}{subsection.8.2}
-\contentsline {subsection}{\numberline {8.3}Flow Variances}{20}{subsection.8.3}
-\contentsline {subsection}{\numberline {8.4}Down-flow Results}{21}{subsection.8.4}
-\contentsline {subsubsection}{\numberline {8.4.1}Flash Plant Flow Verification}{21}{subsubsection.8.4.1}
-\contentsline {subsubsection}{\numberline {8.4.2}Flash Plant Constraints}{21}{subsubsection.8.4.2}
-\contentsline {section}{\numberline {9}Conclusions}{21}{section.9}
-\contentsline {section}{\numberline {10}Further Development}{22}{section.10}
-\contentsline {subsection}{\numberline {10.1}Direct Data Integration}{22}{subsection.10.1}
-\contentsline {subsection}{\numberline {10.2}Time Series}{23}{subsection.10.2}
-\contentsline {subsection}{\numberline {10.3}Prior Specification}{23}{subsection.10.3}
-\contentsline {subsection}{\numberline {10.4}Hierarchical Model Resolution}{23}{subsection.10.4}
-\contentsline {section}{Appendices}{24}{section*.31}
-\contentsline {section}{\numberline {A}Time Series}{24}{Appendix.1.A}
-\contentsline {section}{\numberline {B}Verification}{25}{Appendix.1.B}
+\contentsline {subsection}{\numberline {8.3}Down-flow Results}{21}{subsection.8.3}
+\contentsline {subsubsection}{\numberline {8.3.1}Flash Plant Mass Flow Verification}{21}{subsubsection.8.3.1}
+\contentsline {subsubsection}{\numberline {8.3.2}Flash Plant Constraints}{21}{subsubsection.8.3.2}
+\contentsline {section}{\numberline {9}Conclusions}{22}{section.9}
+\contentsline {section}{\numberline {10}Further Development}{23}{section.10}
+\contentsline {subsection}{\numberline {10.1}Direct Data Integration}{23}{subsection.10.1}
+\contentsline {subsection}{\numberline {10.2}Data Integration With Other Models}{23}{subsection.10.2}
+\contentsline {subsection}{\numberline {10.3}Time Series}{24}{subsection.10.3}
+\contentsline {subsection}{\numberline {10.4}Prior Specification}{24}{subsection.10.4}
+\contentsline {subsection}{\numberline {10.5}Hierarchical Model Resolution}{24}{subsection.10.5}
+\contentsline {section}{Appendices}{25}{section*.32}
+\contentsline {section}{\numberline {A}Time Series}{25}{Appendix.1.A}
+\contentsline {section}{\numberline {B}Verification}{26}{Appendix.1.B}
+\contentsline {section}{\numberline {C}All Well Declines}{27}{Appendix.1.C}

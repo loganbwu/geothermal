@@ -97,7 +97,7 @@ extra_liq <- PI %>%
   drop_na()
 
 # read in regression data (plus extra)
-regression_df = read_excel(regdatapath) %>% mutate(source="Wellbore Tests")
+regression_df = read_excel(regdatapath) %>% mutate(source="Well Tests")
 dry_df = PI %>%
   filter(str_detect(facility, "wk")) %>%
   select(facility, date, variable, value) %>%
@@ -116,17 +116,17 @@ dry_df = PI %>%
 Censor well and flash plant names using the MD5 hash algorithm. Comment this block to create plots and outputs with real facility names.
 
 ```{r censor}
-dry_df$well = censor(dry_df$well, "well")
-extra_liq$well = censor(extra_liq$well, "well")
-fp_constants$fp = censor(fp_constants$fp, "fp")
-fp_gen_map$fp = censor(fp_gen_map$fp, "fp")
-operating_conditions$well = censor(operating_conditions$well, "well")
-regression_df$well = censor(regression_df$well, "well")
-well_fp_map$well = censor(well_fp_map$well, "well")
-well_fp_map$fp = censor(well_fp_map$fp, "fp")
-
-production_curve_wells = censor(production_curve_wells, "well")
-special_wells = censor(special_wells, "well")
+# dry_df$well = censor(dry_df$well, "well")
+# extra_liq$well = censor(extra_liq$well, "well")
+# fp_constants$fp = censor(fp_constants$fp, "fp")
+# fp_gen_map$fp = censor(fp_gen_map$fp, "fp")
+# operating_conditions$well = censor(operating_conditions$well, "well")
+# regression_df$well = censor(regression_df$well, "well")
+# well_fp_map$well = censor(well_fp_map$well, "well")
+# well_fp_map$fp = censor(well_fp_map$fp, "fp")
+# 
+# production_curve_wells = censor(production_curve_wells, "well")
+# special_wells = censor(special_wells, "well")
 ```
 
 # Preprocessing
@@ -528,7 +528,7 @@ vars =  c('mf_fit',
           'total_power')
 n_chains = 2
 burn_in = 100
-n_steps = 10000
+n_steps = 1000
 
 model = jags.model(textConnection(code), data, n.chains=n_chains)
 update(model, burn_in)
@@ -606,18 +606,55 @@ tb2 <- outframe %>% filter(variable=="beta_date") %>% select(facility, value) %>
 
 tb2[tb2$well %in% special_wells,]
 tb6[tb6$well %in% special_wells,]
+print(xtable(tb2, 
+             type = "latex",
+             caption="Credible intervals for $\\beta_\\text{date}$. $n$ is the number of test data points rather than the total points include PI data, because all PI data is from a single month, so cannot estimate the $\\beta_\\text{date}$ parameter on its own.",
+             label="tab:beta_date_all"),
+      include.rownames = F,
+      file = "../media/tab_beta_date_all.tex")
 print(xtable(tb2[tb2$well %in% special_wells,], 
              type = "latex",
-             caption="Estimated confidence intervals for $\\beta_\\text{date}$.",
+             caption="Credible intervals for $\\beta_\\text{date}$. $n$ is the number of test data points rather than the total points include PI data, because all PI data is from a single month, so cannot estimate the $\\beta_\\text{date}$ parameter on its own. Full table in Table \\ref{tab:beta_date_all}.",
              label="tab:beta_date"),
       include.rownames = F,
       file = "../media/tab_beta_date.tex")
 print(xtable(tb2[tb6$well %in% special_wells,], type = "latex", 
-             caption="Estimated confidence intervals for standard deviation.",
+             caption="Credible intervals for standard deviation.",
              label="tab:sd"),
       include.rownames = F,
       file = "../media/tab_sd.tex")
 ```
+
+## Investigate high variance wells
+
+```{r investigate}
+well_summaries = outframe %>%
+  filter(facility %in% well_names, variable=="mf_pred",) %>%
+  group_by(facility) %>%
+  summarise(mean = mean(value),
+            sd = sd(value),
+            n_test = nrow(regression_df %>% filter(well==facility, source=="Well Tests")),
+            n_pi = nrow(regression_df %>% filter(well==facility, source=="PI Database")),
+            use.test = ifelse(n_test>0, "Test data", "No test data"),
+            use.pi = ifelse(n_pi>0, "PI data", "No PI data")) %>%
+  arrange(desc(sd))
+well_summaries$production.curve = ifelse(well_summaries$facility %in% liq_wells, "Production curve", "Time series")
+
+ggplot(well_summaries, aes(x=1, y=sd)) +
+  geom_boxplot(fill='steelblue') +
+  facet_grid(.~ use.pi + use.test) +
+  theme(axis.text.x=element_blank(),
+        axis.ticks.x=element_blank()) +
+  labs(title="Differences in Production Error by Data Source", x="Production curve data source", y="Standard deviation") +
+  ggsave('../media/error_source.png', width=24.7*0.5, height=6, units='cm')
+
+print(xtable(well_summaries %>% select(facility, mean, sd, n_test, n_pi) %>% head(), type = "latex",
+             caption="Upon inspection of the wells with the most variance, there is no immediate cause for high variance. This requires further investigation.",
+             label="tab:well_summaries"),
+      table.placement = "h",
+      file = "../media/well_summaries.tex")
+```
+
 # Hyper-parameters
 
 ```{r hyperparameters}
@@ -755,15 +792,15 @@ ggsave('../media/ts_experiment.png', tsgrob, width=24.7, height=24, units='cm')
 
 ```{r traceplots}
 trace1 <- outframe %>%
-  filter(variable=='mf_pred' & facility==censor('wk256', "well"))
+  filter(variable=='mf_pred' & (facility==censor('wk256', "well") | facility=='wk256'))
 trace2 <- outframe %>%
   filter(variable=='total_power')
 trace3 <- outframe %>%
   filter(variable=='mu_Intercept')
 traceplot = ggplot(trace1, aes(y=value, color=variable)) +
+  geom_line(data=trace3, aes(x=as.numeric(row.names(trace1))), alpha=0.75) +
   geom_line(aes(x=as.numeric(row.names(trace1))), alpha=0.75) +
   geom_line(data=trace2, aes(x=as.numeric(row.names(trace1))), alpha=0.75) +
-  geom_line(data=trace3, aes(x=as.numeric(row.names(trace1))), alpha=0.75) +
   coord_cartesian(xlim = c(max(as.numeric(row.names(trace1))-1000), max(as.numeric(row.names(trace1))))) +
   labs(title="Trace Plot (Single chain)", x="Iteration", y="Parameter value", color="Variable") +
   ggsave('../media/trace_plot.png', width=24.7, height=8, units='cm')
@@ -803,10 +840,9 @@ ggplotly(diagplot)
 
 stdres_min = liq_fit %>% filter(key=="Standardised residual") %>% pull(value) %>% min()
 stdres_max = liq_fit %>% filter(key=="Standardised residual") %>% pull(value) %>% max()
-resdesplot = ggplot(liq_fit %>% filter(key=="Standardised residual"), aes(x=value)) +
+ggplot(liq_fit %>% filter(key=="Standardised residual"), aes(x=value)) +
   geom_density(fill="red", alpha=0.5, color=NA) +
   geom_line(data=data.frame(x=seq(stdres_min, stdres_max, length.out=100)), aes(x=x, y=dnorm(x)))
-ggplotly(resdesplot)
 ```
 
 # Constraint Violations
@@ -844,13 +880,14 @@ comparison = fp_constants %>% select("fp", contains("verification")) %>%
   rename(facility=fp) %>%
   gather(key="variable", value="value", -facility) %>%
   mutate(variable = gsub("^verification_", "", variable)) %>%
-  filter(facility != "abandoned")
+  drop_na()
 
 ps = flow.df %>%
   left_join(comparison, by=c("facility", "variable")) %>%
   mutate(greater = value.x > value.y) %>%
   group_by(facility, variable) %>%
-  summarise(p.greater = mean(greater))
+  summarise(p.greater = mean(greater)) %>%
+  drop_na()
 
 ggplot(flow.df, aes(x=value)) +
   geom_density(aes(y=..scaled.., fill=variable, color=variable), alpha=0.5, show.legend=F) +
@@ -860,7 +897,7 @@ ggplot(flow.df, aes(x=value)) +
   theme(axis.text.y=element_blank(),
         axis.ticks.y=element_blank()) +
   labs(x="Value", y="Scaled density", title="Comparison Between Predicted FP Flows and Sample Data") +
-  ggsave('../media/verification.png', width=24.7, height=24, units='cm')
+  ggsave('../media/verification.png', width=24.7, height=26, units='cm')
 ```
 
 # Diagnostics
