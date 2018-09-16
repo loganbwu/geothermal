@@ -23,6 +23,7 @@ library(lemon)
 library(latex2exp)
 library(xtable)
 library(hash)
+library(openssl)
 knit_print.data.frame <- lemon_print
 
 configpath = '../wairakei_data/config.xlsx'
@@ -47,7 +48,7 @@ censor = function(x, type) {
     return(paste0("w", toupper(substr(md5(x), 1, 3))))
   }
   else if (type=="fp") {
-    return(paste0("fp", substr(md5(x), 1, 2)))
+    return(paste0("fp", toupper(substr(md5(x), 1, 2))))
   }
 }
 ```
@@ -110,17 +111,22 @@ dry_df = PI %>%
   rename(well=facility)
 ```
 
-Censor well and flash plant names using the MD5 hash algorithm.
+# Censor names
+
+Censor well and flash plant names using the MD5 hash algorithm. Comment this block to create plots and outputs with real facility names.
 
 ```{r censor}
-# dry_df$well = censor(dry_df$well, "well")
-# extra_liq$well = censor(extra_liq$well, "well")
-# fp_constants$fp = censor(fp_constants$fp, "fp")
-# fp_gen_map$fp = censor(fp_gen_map$fp, "fp")
-# operating_conditions$well = censor(operating_conditions$well, "well")
-# regression_df$well = censor(regression_df$well, "well")
-# well_fp_map$well = censor(well_fp_map$well, "well")
-# well_fp_map$fp = censor(well_fp_map$fp, "fp")
+dry_df$well = censor(dry_df$well, "well")
+extra_liq$well = censor(extra_liq$well, "well")
+fp_constants$fp = censor(fp_constants$fp, "fp")
+fp_gen_map$fp = censor(fp_gen_map$fp, "fp")
+operating_conditions$well = censor(operating_conditions$well, "well")
+regression_df$well = censor(regression_df$well, "well")
+well_fp_map$well = censor(well_fp_map$well, "well")
+well_fp_map$fp = censor(well_fp_map$fp, "fp")
+
+production_curve_wells = censor(production_curve_wells, "well")
+special_wells = censor(special_wells, "well")
 ```
 
 # Preprocessing
@@ -522,7 +528,7 @@ vars =  c('mf_fit',
           'total_power')
 n_chains = 2
 burn_in = 100
-n_steps = 1000
+n_steps = 10000
 
 model = jags.model(textConnection(code), data, n.chains=n_chains)
 update(model, burn_in)
@@ -655,7 +661,7 @@ ggplot(prod, aes(x=whp)) +
   # geom_line(data=reglines, aes(y=mf, group=datetime, lty="OLS Regression")) +
   geom_ribbon(aes(ymin=lower, ymax=upper, fill=well), alpha=0.25) +
   geom_point(data=plotdata, aes(y=mf, color=well, size=date, shape=source), alpha=0.5) +
-  labs(title=paste("Linear Regression with Time on PI Data", production_curve_well), x="Well-head pressure (bar)", y="Mass flow (T/h)", color="Well", shape="Data source") +
+  labs(title="Linear Regression on Test and PI Data", x="Well-head pressure (bar)", y="Mass flow (T/h)", color="Well", shape="Data source", size="Date", fill="Well") +
   coord_cartesian(xlim=c(min(plotdata$whp)*0.875,max(plotdata$whp)*1.125), ylim=c(0,max(plotdata$mf)*1.125)) +
   ggsave('../media/production_curve.png', width=24.7*0.48, height=24.7*0.48, units='cm')
 
@@ -671,8 +677,17 @@ ts_fit = as.data.frame(outmatrix) %>%
   mutate(well = factor(names(ids[well_id_ts])),
          date_numeric = date_numeric_ts)
 
+# for AR and EWMA
+actualts = drymatrix %>% as.data.frame() %>%
+  mutate(t = 1:nrow(drymatrix)) %>%
+  gather(key="facility", value="value", -t) %>%
+  filter(facility %in% names(ids)[ar_well_ids])
+
+# for linear
 tsplotdata = dry_df %>%
-  filter(well_id %in% ids[special_wells], well_id %in% ids[ar_well_ids]) %>%
+  filter(well_id %in% ids[special_wells], 
+         well_id %in% ids[ar_well_ids], 
+         well %in% unique(actualts$facility)) %>%
   mutate(datetime = factor(as.Date(date)),
          facility = well)
 
@@ -696,11 +711,6 @@ ar_fit = as.data.frame(outmatrix) %>%
   summarise(mean=mean(value),
             lower=quantile(value, 0.025),
             upper=quantile(value, 0.975))
-
-actualts = drymatrix %>% as.data.frame() %>%
-  mutate(t = 1:nrow(drymatrix)) %>%
-  gather(key="facility", value="value", -t) %>%
-  filter(facility %in% names(ids)[ar_well_ids])
 
 arplot = ggplot(ar_fit %>% filter(facility %in% special_wells), aes(x=t, y=mean, fill=facility, color=facility)) +
   geom_line(data=actualts %>% filter(facility %in% special_wells), aes(y=value)) +
@@ -745,7 +755,7 @@ ggsave('../media/ts_experiment.png', tsgrob, width=24.7, height=24, units='cm')
 
 ```{r traceplots}
 trace1 <- outframe %>%
-  filter(variable=='mf_pred' & facility=='wk256')
+  filter(variable=='mf_pred' & facility==censor('wk256', "well"))
 trace2 <- outframe %>%
   filter(variable=='total_power')
 trace3 <- outframe %>%
@@ -784,6 +794,7 @@ diagplot = ggplot(liq_fit, aes(x=Fitted, y=value)) +
   geom_smooth(color='black') +
   facet_wrap(~key, scales="free") +
   geom_hline(data=data.frame(key="Standardised residual", value=c(1.96,-1.96)), aes(yintercept=value), color='red') +
+  geom_abline(data=data.frame(key="Observed", a = 1, b = 0), aes(slope = a, intercept=b), color='red') +
   labs(title="Diagnostic Plots", x="Fitted mass flow (T/h)", y="") +
   theme(legend.position = "bottom") +
   guides(color=guide_legend(nrow=3, byrow=T), shape=guide_legend(nrow=3, byrow=T)) +
@@ -845,7 +856,7 @@ ggplot(flow.df, aes(x=value)) +
   geom_density(aes(y=..scaled.., fill=variable, color=variable), alpha=0.5, show.legend=F) +
   geom_vline(data=comparison, aes(xintercept=value)) +
   geom_label(data=ps, aes(x=-Inf, y=Inf, hjust=0, vjust=1, label=paste0("p(>x)=", p.greater), family="Times New Roman"), alpha=0.5) +
-  facet_grid(facility~variable, scales="free") +
+  facet_grid(facility~variable, scales="free", space="free_y") +
   theme(axis.text.y=element_blank(),
         axis.ticks.y=element_blank()) +
   labs(x="Value", y="Scaled density", title="Comparison Between Predicted FP Flows and Sample Data") +
@@ -856,16 +867,16 @@ ggplot(flow.df, aes(x=value)) +
 
 ```{r diagnostics}
 random_var_ix = sample.int(ncol(outmatrix), 100) # 100 random var because it takes too long
-geweke.out = geweke.diag(out[,1:100])
+geweke.out = geweke.diag(out[,random_var_ix])
 geweke.df = data.frame(Index = 1:length(unlist(geweke.out)),
-                       z = unlist(geweke.out)) %>%
+                       z = unlist(geweke.out[1])) %>%
   mutate(out = ifelse(abs(z)>1.96, T, F)) %>%
   drop_na()
 proportion_out = sum(geweke.df$out) / nrow(geweke.df)
 ggplot(geweke.df, aes(x=Index, y=z)) +
   geom_point() +
   geom_hline(data=data.frame(value=c(1.96,-1.96)), aes(yintercept=value), color='red') +
-  labs(title=paste("Geweke z-score", round(proportion_out, 2), "points lie outside the 95% confidence interval.")) +
+  labs(title=paste0("Geweke z-score. ", round(proportion_out, 2)*100, " % points lie outside the 95% confidence interval.")) +
   ggsave('../media/geweke.png', width=24.7, height=8, units='cm')
   
 
@@ -877,36 +888,4 @@ print(xtable(gelman.out, type = "latex",
              label="tab:gelman"),
       table.placement = "h",
       file = "../media/gelman.tex")
-```
-
-```{r}
-testx = seq(0, 10, 1)
-testy = 2*testx
-N = length(testx)
-testdata = list(x=testx, y=testy, N=N)
-
-testcode = "
-model {
-  for (i in 1:N) {
-    mu[i] <- alpha + beta * x[i]
-    y[i] ~ dnorm(mu[i], tau)
-  }
-  alpha ~ dnorm(0, 1e-8)
-  beta ~ dnorm(0, 1e-8)
-  tau ~ dgamma(1e-8, 1e-8)
-
-  z ~ dnorm(0, 1)
-  trunc <- max(min(z, 1), -1)
-}
-"
-
-testmodel = jags.model(textConnection(testcode), testdata, n.chains=1)
-update(testmodel, burn_in)
-testout = coda.samples(testmodel, n.iter=10000, variable.names=c("beta", "alpha", "z", "trunc")) %>%
-  as.matrix() %>%
-  as.data.frame() %>%
-  gather()
-ggplot(testout, aes(x=value, fill=key)) +
-  geom_histogram(color=NA, alpha=0.5) +
-  facet_grid(key~., scales="free")
 ```

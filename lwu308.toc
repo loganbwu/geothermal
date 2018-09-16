@@ -44,6 +44,6 @@
 \contentsline {subsection}{\numberline {10.2}Time Series}{23}{subsection.10.2}
 \contentsline {subsection}{\numberline {10.3}Prior Specification}{23}{subsection.10.3}
 \contentsline {subsection}{\numberline {10.4}Hierarchical Model Resolution}{23}{subsection.10.4}
-\contentsline {section}{Appendices}{24}{section*.30}
+\contentsline {section}{Appendices}{24}{section*.31}
 \contentsline {section}{\numberline {A}Time Series}{24}{Appendix.1.A}
 \contentsline {section}{\numberline {B}Verification}{25}{Appendix.1.B}
