@@ -66,9 +66,14 @@ newdata = pi_wells %>%
   spread(key=variable, value=value) %>%
   filter(facility=="wk255")
 
-x <- pi_wells %>%select(facility, date, variable, value) %>% filter(value>0.1) %>% group_by(facility, date) %>% spread(key=variable, value=value) %>%
-  drop_na(`2phase flow`, whp) %>% ungroup() %>%
-  select(well=facility, date, whp, mf=`2phase flow`)
+x <- pi_wells %>%
+  select(facility, date, variable, value) %>% 
+  filter(value>0.1) %>% 
+  group_by(facility, date) %>% 
+  spread(key=variable, value=value) %>%
+  drop_na(`2phase flow`, `fp15  plot whp`) %>% 
+  ungroup() %>%
+  select(well=facility, date, whp=`fp15  plot whp`, mf=`2phase flow`)
 
 dry <- pi_wells %>%select(facility, date, variable, value) %>% filter(value>0.1) %>% group_by(facility, date) %>% spread(key=variable, value=value) %>%
   drop_na(`ip sf`) %>% ungroup() %>%
@@ -76,7 +81,9 @@ dry <- pi_wells %>%select(facility, date, variable, value) %>% filter(value>0.1)
   filter(well != "wk124")
 
 '%ni%' <- Negate('%in%')
-all_flows <- pi_wells %>%select(facility, date, variable, value) %>% filter(value>1e-2) %>% group_by(facility, date) %>% spread(key=variable, value=value) %>%
+all_flows <- PI %>%
+  filter(str_detect(facility, "wk")) %>%
+  select(facility, date, variable, value) %>% filter(value>1e-2) %>% group_by(facility, date) %>% spread(key=variable, value=value) %>%
   select(facility, date, `ip sf`, `actual massflow`) %>%
   gather(key="key", value="mf", `ip sf`, `actual massflow`) %>% drop_na()
 
@@ -100,11 +107,11 @@ empty = full_join(empty, drym)
 ```
 
 ```{r}
-acf_data <- drym %>%
-  spread(well, ip_sf) %>%
-  select_if(function(x) !anyNA(x))
-
-acf(acf_data, type="correlation")
+# acf_data <- drym %>%
+#   spread(well, ip_sf) %>%
+#   select_if(function(x) !anyNA(x))
+# 
+# acf(acf_data, type="correlation")
 ```
 
 ```{r}
@@ -116,4 +123,22 @@ power <- PI %>% filter(str_detect(code, "mw"))
 
 head(gen, 100) %>% select(facility, code, value)
 head(power, 100) %>% select(facility, code, value)
+```
+
+```{r}
+# extra fp15 data
+# extra <- pi_wells %>%
+#   select(facility, date, variable, value) %>% 
+#   filter(value>0.1) %>%
+#   filter(str_detect(variable, "plot|phase")) %>%
+#   spread(key=variable, value=value) %>%
+#   mutate(mf = pmax(`2phase flow`, `fp14  plot flow`, `fp15  plot flow`, na.rm=T),
+#          whp = pmax(`fp14  plot whp`, `fp15  plot whp`, `fp16  plot whp`, na.rm=T)) %>%
+#   select(well=facility, date, whp, mf) %>%
+#   drop_na()
+# 
+# ggplot(extra, aes(x=whp, y=mf, color=well)) +
+#   geom_point()
+# 
+# write_excel_csv(extra, "../wairakei_data/extra_liq.csv")
 ```
