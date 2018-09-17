@@ -1,0 +1,148 @@
+
+data {
+  D <- dim(ts)
+}
+model {
+  ##############################################
+  # fit individual regressions to liquid wells #
+  ##############################################
+  for (i in 1:length(mf)) {
+    mu[i] <- Intercept[well_id[i]] + beta_whp[well_id[i]] * whp_c[i] + beta_date[well_id[i]] * date_numeric_c[i]
+    mf[i] ~ dnorm(mu[i], tau[well_id[i]])
+    mf_fit[i] ~ dnorm(mu[i], tau[well_id[i]])
+    # mf_fit[i] ~ dnorm(mu[i]*measurement_error_factor[i], tau[well_id[i]])
+    # measurement_error_factor[i] ~ dunif(0.9, 1.1)
+  }
+  # fit regression to dry wells
+  for (i in 1:length(mf_dry)) {
+    mu_dry[i] <- Intercept[well_id_dry[i]] + beta_date[well_id_dry[i]] * date_numeric_dry_c[i]
+    mf_dry[i] ~ dnorm(mu_dry[i], tau[well_id_dry[i]])
+    mf_dry_fit[i] ~ dnorm(mu_dry[i], tau[well_id_dry[i]])
+    # measurement_error_factor_dry[i] ~ dunif(0.9, 1.1)
+  }
+  for (j in dry_well_ids) {
+    Intercept[j] ~ dnorm(0, 1e-12)
+    beta_date[j] ~ dnorm(0, 1e-12)
+    tau[j] ~ dgamma(1e-12, 1e-12)
+  }
+  # experimental AR1 model for dry wells
+  for (j in ar_well_ids) {
+    for (t in 2:D[1]) {
+      mu_ar[t,j] <- c_ar[j] + theta_ar[j]*ts_ar[t-1,j]
+      ts_ar[t,j] ~ dnorm(mu_ar[t,j], tau_ar[j]) T(0,)
+    }
+    theta_ar[j] ~ dnorm(0, 1e-12)
+    c_ar[j] ~ dnorm(0, 1e-12)
+    tau_ar[j] ~ dgamma(1e-12, 1e-12)
+  }
+  # experimental EMA model (don't use)
+  for (j in ar_well_ids) {
+    for (t in 2:D[1]) {
+      mu_ema[t,j] <- alpha*mu_ema[t-1,j] + (1-alpha)*ts_ema[t-1,j]
+      ts_ema[t,j] ~ dnorm(mu_ema[t,j], tau_ema[j]) T(0,)
+    }
+    mu_ema[1,j] <- ts_ema[1,j]
+    theta_ema[j] ~ dnorm(0, 1e-12)
+    c_ema[j] ~ dnorm(0, 1e-12)
+    tau_ema[j] ~ dgamma(1e-12, 1e-12)
+  }
+  alpha ~ dbeta(0.5, 0.5)
+
+  # HIERARCHICAL
+  # fills in for any missing wells
+  for (j in liq_well_ids) {
+    Intercept[j] ~ dnorm(mu_Intercept, tau_Intercept)
+    beta_whp[j] ~ dnorm(mu_beta_whp, tau_beta_whp)
+    beta_date[j] ~ dnorm(mu_beta_date, tau_beta_date)
+    tau[j] ~ dgamma(1e-12, 1e-12)
+    sd[j] <- 1/max(sqrt(tau[j]), 1e-12)
+  }
+
+  # fill in any missing data
+  for (i in 1:length(mf)) {
+    date_numeric_c[i] ~ dnorm(mu_date_numeric, tau_date_numeric)
+  }
+  mu_date_numeric ~ dnorm(0, 1e-12)
+  tau_date_numeric ~ dnorm(1e-12, 1e-12)
+  
+  # set hyperparameters
+  mu_Intercept ~ dnorm(0, 1e-12)
+  mu_beta_whp ~ dnorm(0, 1e-12)
+  mu_beta_date ~ dnorm(0, 1e-12)
+  tau_Intercept ~ dgamma(1e-12, 1e-12)
+  tau_beta_whp ~ dgamma(1e-12, 1e-12)
+  tau_beta_date ~ dgamma(1e-12, 1e-12)
+
+  #####################################
+  # production curve for verification #
+  #####################################
+  for (i in 1:length(whp_prod)) {
+    mu_prod[i] <- Intercept[well_id_prod[i]] + beta_whp[well_id_prod[i]] * whp_prod_c[i] + beta_date[well_id_prod[i]] * today_numeric_c
+    # mf_prod[i] ~ dnorm(mu_prod[i], tau[well_id_prod[i]])
+    mf_prod[i] <- mu_prod[i]
+  }
+  for (i in 1:length(date_numeric_ts)) {
+    mu_ts[i] <- Intercept[well_id_ts[i]] + beta_date[well_id_ts[i]] * date_numeric_ts[i]
+    mf_ts[i] ~ dnorm(mu_ts[i], tau[well_id_ts[i]])
+  }
+
+  #########################################################
+  # simple model to fill in missing FP enthalpy constants #
+  #########################################################
+  for (i in fp_ids) {
+    # missing fp constants
+    hf_ip[i] ~ dgamma(param[1], param[7])
+    hg_ip[i] ~ dgamma(param[2], param[8])
+    hfg_ip[i] ~ dgamma(param[3], param[9])
+    hf_lp[i] ~ dgamma(param[4], param[10])
+    hg_lp[i] ~ dgamma(param[5], param[11])
+    hfg_lp[i] ~ dgamma(param[6], param[12])
+  }
+  for (i in c(1, well_ids)) { 
+    h[i] ~ dgamma(param[13], param[14])
+    whp_pred_c[i] ~ dnorm(param[15], param[16])
+  } # missing well constants
+  for (i in 1:16) { param[i] ~ dgamma(1e-12, 1e-12) }               # uniform priors
+
+  ########################################
+  # make predictions (the stuff we want) #
+  ########################################
+  mf_pred[dummy] <- 0  # dummy well
+  ip_sf[dummy] <- 0
+  lp_sf[dummy] <- 0
+  wf[dummy] <- 0
+  
+  # use production curve
+  for (j in liq_well_ids) {
+    mf_pred[j] <- max(Intercept[j] + beta_whp[j] * whp_pred_c[j] + beta_date[j] * today_numeric_c, 0)
+  }
+  # use naive TS reg
+  for (j in dry_well_ids) { #dry_no_ar_well_ids) { 
+    mf_pred[j] <- max(Intercept[j] + beta_date[j] * today_numeric_c, 0)
+  }
+  # use AR(1)
+  # for (j in ar_well_ids) {
+  #   mf_pred[j] <- mu_ar[D[1], j]
+  # }
+
+  for (i in fp_ids) {
+    mf_pred[i] <- sum(mf_pred[m[i,1:n_inflows[i]]])
+    h[i] <- sum(mf_pred[m[i, 1:n_inflows[i]]] * h[m[i, 1:n_inflows[i]]]) / ifelse(mf_pred[i]!=0, mf_pred[i], 1)
+
+    ip_sf[i] <- min(max((h[i] - hf_ip[i]), 0) / hfg_ip[i], 1) * mf_pred[i]
+    lp_sf[i] <- min(max((min(hf_ip[i], h[i]) - hf_lp[i]), 0) / hfg_lp[i], 1) * (mf_pred[i] - ip_sf[i])
+
+    total_sf[i] <- ip_sf[i] + lp_sf[i]
+    wf[i] <- mf_pred[i] - total_sf[i]
+  }
+  # dummy gens and actual gens
+  for (i in ip_gen_ids) { mf_pred[i] <- sum(ip_sf[m[i, 1:n_inflows[i]]]) }
+  for (i in lp_gen_ids) { mf_pred[i] <- sum(lp_sf[m[i, 1:n_inflows[i]]]) }
+  for (i in w_gen_ids) { mf_pred[i] <- sum(wf[m[i, 1:n_inflows[i]]]) }
+  for (i in gen_ids) {
+    mf_pred[i] <- sum(mf_pred[m[i,1:n_inflows[i]]])
+    power[i] <- mf_pred[i] / mu_factor[i]
+    mu_factor[i] ~ dunif(0.95*factor[i], 1.05*factor[i])  # uncertainty from email
+  }
+  total_power <- sum(power[gen_ids])
+}

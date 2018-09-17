@@ -1,4 +1,5 @@
 \documentclass[a4paper, 12pt]{article}
+\usepackage[english]{babel}
 \usepackage{mathptmx}
 \usepackage{fullpage}
 \usepackage{graphicx}
@@ -24,12 +25,26 @@
 \usepackage{tabularx}
 \usepackage{todonotes}
 
+\usepackage{color}
+\definecolor{mygreen}{RGB}{28,172,0} % color values Red, Green, Blue
+\definecolor{mylilas}{RGB}{170,55,241}
+\lstset{language=R,%
+    basicstyle={\ttfamily\footnotesize},
+    breaklines=true,%
+    stringstyle=\color{mylilas},
+    commentstyle=\color{mygreen},%
+    showstringspaces=false,%without this there will be a symbol in the places where there is a space
+    numbers=left,%
+    numberstyle={\ttfamily\tiny},% size of the numbers
+    numbersep=9pt, % this defines how far the numbers are from the text
+}
+
 \titlespacing{\section}{0pt}{0pt}{-\parskip}
 \titlespacing{\subsection}{0pt}{0pt}{-\parskip}
 \titlespacing{\subsubsection}{0pt}{0pt}{-\parskip}
 
 \setlist{nosep}
-\usepackage[headsep=1cm, top=3cm, bottom=2.5cm, left=3cm, right=3cm]{geometry}
+\usepackage[headsep=1cm, top=3cm, bottom=2.5cm, left=3cm, right=2cm]{geometry}
 
 \renewcommand{\listfigurename}{Figures}
 \renewcommand{\listtablename}{Tables}
@@ -57,24 +72,23 @@
     \rule{\textwidth}{1.6pt}\\[\baselineskip]
     \vspace*{2\baselineskip}
     {\Large\scshape \@author\par}
-    {\scshape
+    {\itshape
     UPI: LWU308\\
-    ID: 254620375\\
+    ID: 254620375}\\
+    {\scshape
     Partner: Vida Fox\\
     Supervisors: Dr. David Dempsey and Dr. Cameron Walker\par}
     \vspace*{2\baselineskip}
     {\large\scshape The University of Auckland}\\
-    {\scshape Department of Engineering Science}\\
-    {\scshape \today}
+    {\itshape Department of Engineering Science}\\
+    {\itshape \today}
     
 \vfill
-\todo{Abstract is a placeholder}
 \textnormal{
 \begin{abstract}
-The Wairakei geothermal field is one of the oldest geothermal electricity producers in the world, and it has been instrumental in advancing the utilisation of lower enthalpy fluids. Contact Energy Ltd. is the current operator, and they wish to find ways to increase the productivity of their assets and staff.\\
-Contact Energy uses a system of spreadsheets, test results and real-time measurements to update forecasts of the network and make decisions. Their model has no uncertainty measure.\\
-We implement a Bayesian network model that performs a statistical simulation of the Wairakei surface network.
-% (this whole abstract is a placeholder)
+The Wairakei geothermal field is one of the oldest geothermal electricity producers in the world, and is unique in its utilisation of lower enthalpy fluids. The current operator, Contact Energy Ltd., uses a system of spreadsheets, test results and real-time measurements to update forecasts of the network and make decisions. Their model has no formal measure of uncertainty.\\
+\todo{Feels like I'm describing what I've done, not summarising. Let me know.}We implement a Bayesian network model that performs a statistical simulation of the Wairakei surface network, simultaneously incorporating data from both sources and over a long period of time to estimate the network parameters.\\
+Our simulation incorporates time into production curves using a linear model, and propagates uncertainty from the wells further down the network to probabilistically verify flows where operational constraints may need to be adhered to. We also find that manual well test data and automatically logged data differ in utility, with test data being better for estimating well production parameters, and logs from the PI system being more effective for forecasting.
 \end{abstract}
 }
 \vfill
@@ -154,11 +168,11 @@ where $f(\theta|x)$ is the posterior distribution of the parameters $\theta$ giv
 
 In some cases, these distributions can be chosen using true prior knowledge. Measurement uncertainty is often known to some degree, with some meters rated as having a standard error $\sigma$ of 5 units [REF]. Therefore, we set $f(\sigma^2)$ as an Inverse-Gamma prior on measurement error with a mode of $5^2$. This is the preferred method because it satisfies the Bayes formula, where the prior is selected before observing the data.
 
-The advantage of Bayesian statistics is that the posterior distribution represents the belief of the true network parameters after both specifying any expert information and observing the data. Bayesian credible intervals also have a more intuitive interpretation than the Frequentist confidence interval. We use the term `credible interval' whenever the Bayesian interpretation is used (e.g. parameter estimates), and `confidence interval' for Frequentist interpretations (e.g. the T-test).
+The advantage of Bayesian statistics is that the posterior distribution represents the belief of the true network parameters after both specifying any expert information and observing the data. Bayesian credible intervals also have a more intuitive interpretation than the Frequentist confidence interval. We use the term `credible interval' whenever the Bayesian interpretation is used (e.g. parameter estimates), and `confidence interval' for Frequentist interpretations (e.g. the T-test). Differences in terms are detailed in Table \ref{tab:ci}.
 
-\begin{table}[ht]
+\begin{table}
 \centering
-\begin{tabularx}{\linewidth}{rXX}
+\begin{tabularx}{0.85\linewidth}{rXX}
 \hline
  & Frequentist & Bayesian \\ 
   \hline
@@ -171,7 +185,7 @@ Data $\vec{x}$ & Random; we observe a sample & Fixed; from an unknown distributi
 \label{tab:ci}
 \end{table}
 
-By applying computational Bayesian techniques to the Wairakei geothermal surface network, we will create an algorithmic method to calibrate our model using recorded data, simulate probabilistic flows in the network and incorporate uncertainty in our predictions.
+By applying computational Bayesian techniques to the Wairakei geothermal surface network, we will create an algorithmic method to calibrate our model $y=f(\theta|\vec{x})$ using recorded data, simulate probabilistic flows in the network and incorporate uncertainty in our predictions.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Wairakei Network Structure}
@@ -232,7 +246,7 @@ Contact has provided a schematic indicating the connectivity of wells, to flash 
 \subsection{Well Test Data}
 Well tests from as far back as 2002 are recorded in an Excel spreadsheet. Wellbore tests are performed at multiple operating pressures to fit a production curve, as discussed in the Literature Review. The spreadsheet also contains results from tracer flow tests (TFTs), which are easier and cheaper to run because the well can remain connected to the network. We use regression techniques to replicate the production curves with more data.
 
-Tests are only performed on the liquid wells. Well-head pressure, mass flow and enthalpy are recorded manually. The liquid wells are wells with a mixed-phase fluid output, and are the main focus of this model because of their readily available data and relationship with the flash plants that separate their wet steam. \todo{Change (see David's comment)}
+Tests are only performed on the liquid wells. Well-head pressure, mass flow and enthalpy are recorded manually. The liquid wells are wells with a mixed-phase fluid output, and are the main focus of this model because of their readily available data and relationship with the flash plants that separate their wet steam.%\todo{Change (see David's comment)}
 %What are you excluding and why? What data are missing/would be useful to collect? What are the implications of not having this data?
 % (Note, these are topics that should be covered eventually, not necessarily in this section. However, as this is where you start to discuss the data, it may be a useful time to introduce the reader to data limitations?)
 `Dry' wells (wells with integrated separators that only output steam) do not have well test data, and are covered using exported flow meter data from CEL's automatic loggers.
@@ -240,7 +254,7 @@ Tests are only performed on the liquid wells. Well-head pressure, mass flow and 
 \subsection{PI Flow Meters}
 Real-time data is supplied using flow meters. The benefit of live data is that it is stored once a day in a PI system (treated here as a generic database) in a regular time-series containing every meter. It is therefore much more regular than the well test data. The parameters recorded include well-head pressure, separator pressure and mass flows for some facilities.
 
-\todo{Better description of flow meter usage and time series}
+%\todo{Better description of flow meter usage and time series}
 
 Twenty liquid wells also have pressure gauges and flow meters logged in PI, and seventeen dry wells are not included in the liquid wells regression data. The data from the twenty wells shown in Figure \ref{fig:pi_data} is included in the production curve regression, and we include one month (thirty instances) of data to increase the weight in the regression on the most up-to-date points. We also use them to forecast the operating pressures. However, they cannot regress the production curve on their own because they tend to all be of the same well-head pressure and the regression parameter estimation would be ill-conditioned.
 
@@ -266,14 +280,13 @@ Turning these statements into prior specifications is to the modeller's discreti
 
 \subsection{Constraint Limits}
 Flash plants have a flow limit on the fluid components. This data is not a component of the Bayesian model, but can be used when analysing the outputs to check the probability of a constraint violation given a certain network configuration.
+% fp14 = fpE2, fp15 = fp62, fp16 = fp19
 \begin{enumerate}
-\item FP14 $<$ 525 T/h of IP and LP steam
-\item FP15 $<$ 775 T/h
-\item FP16 IP $<$ 420 T/h
-\item FP16 IP+ $<$ 450 T/h
+\item fpE2 $<$ 525 T/h of IP and LP steam
+\item fp62$<$ 775 T/h
+\item fp19 IP $<$ 420 T/h
+\item fp19 IP+ $<$ 450 T/h \todo{Explain FP16 (or ignore if it isn't important}
 \end{enumerate}
-
-\todo{Explain FP16 (or ignore if it isn't important}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Data Integration}
@@ -281,7 +294,7 @@ Flash plants have a flow limit on the fluid components. This data is not a compo
 \begin{figure}
   \centering
   \includegraphics[width=0.5\linewidth]{media/workflow}
-  \captionof{figure}{Our project includes a Python script which pre-processes the sample data files, and an R script which runs a model and processes the results.}
+  \captionof{figure}{Our project includes a Python script to process the sample data files, and an R script which runs a model and processes the results.}
   \label{fig:workflow}
 \end{figure}
 
@@ -299,7 +312,7 @@ The second half of the Python script maps facility names to unique integer IDs a
 
 We found at least one data point for 62 wells. Data was missing the following:
 
-\input{media/quality.tex}\todo{What is the relationship between 26a and 26b?}
+\input{media/quality.tex}%\todo{What is the relationship between 26a and 26b?}
 
 The impact of missing well data includes under-estimation of flows feeding flash plants and generators. Mass proportions at the separators may also be affected if the missing wells have extremely high or extremely low enthalpies.
 
@@ -337,9 +350,7 @@ At run-time, JAGS automatically chooses the most appropriate algorithm for each 
 Both of the following sampling methods are used in iterations of a Gibbs Sampler, which will be discussed afterwards.
 
 \subsubsection{BUGS::Conjugate}
-The conjugate sampler in the BUGS (Bayesian inference Using Gibbs Sampling) module is used when a parameter's posterior is a conjugate distribution to the prior. Conjugate distributions are where the posterior $f(\theta|x)$ and the prior $f(\theta)$ come from the same family of distributions. This holds when the prior is the conjugate prior to the likelihood $f(x|\theta)$.
-
-The conjugate distributions (priors and posteriors) used in this model are the Normal and Gamma distributions, when the likelihood is a Normal distribution.
+The conjugate sampler in the BUGS (Bayesian inference Using Gibbs Sampling) module is used when a parameter's posterior is a conjugate distribution to the prior. Conjugate distributions are where the posterior $f(\theta|x)$ and the prior $f(\theta)$ come from the same family of distributions. This holds when the prior is the conjugate prior to the likelihood $f(x|\theta)$. The conjugate distributions (priors and posteriors) used in this model are the Normal and Gamma distributions, when the likelihood is a Normal distribution.
 
 Conjugate priors and likelihoods are used wherever possible because the resulting posterior can be calculated analytically. For example, if we have the likelihood of a parameter as $f(\vec{x}|\mu,\sigma^2)\sim N(\mu,\sigma^2)$ where the conjugate prior distributions on mean and variance are $N(\mu_0,\sigma^2_0)$ and $\text{Inv-}\gamma(\alpha,\beta)$ respectively, we can calculate the analytic posterior for the individual parameter assuming the other is fixed:
 \begin{align}
@@ -417,9 +428,9 @@ Contact Energy's existing spreadsheets use a centered ellipse, which only requir
 \begin{equation}
 \frac{\dot{m}^2}{\beta_1^2} + \frac{P_\text{wh}^2}{\beta_2^2} = 1
 \end{equation}
-In practice, our model is not trying to estimate maximum pressures and mass flows, since these are theoretical and are not obtained in the field [REF Grant \& Bixley]. Therefore, we are not restricted to this form of equation, and we can use a linear regression, which is accurate in the vicinity of the data when the production curve can be approximated as a first-order multivariable Taylor series.
+In practice, our model is not trying to estimate maximum pressures and mass flows, since these are theoretical and are not obtained in the field [REF Grant \& Bixley]. Therefore, we are not restricted to this form of equation, and we can use a linear regression, which is accurate in the vicinity of the data when the production curve can be approximated as a first-order multivariable Taylor series. The Taylor series assumption holds because well tests and PI data are taken at the exact or similar well-head pressures as our predictions, and we use recent data when possible.
 
-Elliptic models have convergence issues in Bayesian regression. A potential cause is the square root operation, which is undefined for negative arguments. If we want to use a linear, non-curved model, we must check whether curvature is present in the data. Since we cannot fit an elliptic model, we add a quadratic $P_\text{wh}^2$ term to the linear model and compare the deviance information criterion (DIC), a goodness of fit measure for Bayesian models. \todo{Test or state whether we are extrapolating}
+Elliptic models have convergence issues in Bayesian regression. A potential cause is the square root operation, which is undefined for negative arguments. If we want to use a linear, non-curved model, we must check whether curvature is present in the data. Since we cannot fit an elliptic model, we add a quadratic $P_\text{wh}^2$ term to the linear model and compare the deviance information criterion (DIC), a goodness of fit measure for Bayesian models. Raw DIC results are shown in Table \ref{tab:curvature}.
 
 \begin{table}[ht]
 \centering
@@ -440,13 +451,13 @@ The quadratic model has a lower mean deviance because more the extra parameter w
 
 One of our extensions on the current Contact model is to incorporate time as a covariate. This allows for estimation of the production decline over time and can forecast into the future. The equation we fit is:
 \begin{equation} \label{eq:linreg}
-\dot{m} = \beta_1 + \beta_2P_\text{wh} + \beta_3t + \epsilon,\quad \epsilon\sim N(0, \sigma^2)
+\dot{m} = \beta_0 + \beta_\text{whp}P_\text{whp} + \beta_\text{date}t + \epsilon,\quad \epsilon\sim N(0, \sigma^2)
 \end{equation}
 and the corresponding Normal likelihood function per data point (the full likelihood is the product of its components):
 \begin{equation}
-L\left( \dot{m} | \vec{\beta},\sigma^2,P_\text{wh},t \right) = \frac{1}{\sqrt{2\pi\sigma^2}} e^{-\frac{-\dot{m} + \beta_1 + \beta_2P_\text{wh} + \beta_3t}{2\sigma^2}}
+L\left( \dot{m} | \vec{\beta},\sigma^2,P_\text{whp},t \right) = \frac{1}{\sqrt{2\pi\sigma^2}} e^{-\frac{-\dot{m} + \beta_0 + \beta_\text{whp}P_\text{whp} + \beta_\text{date}t}{2\sigma^2}}
 \end{equation}
-where $\dot{m}$ is the mass flow, $P_\text{wh}$ is a specified well-head pressure, $t$ is a specified number of days after a baseline, and $\epsilon$ is a Normally distributed error of unknown variance. This form has several benefits over the other models considered:
+where $\dot{m}$ is the mass flow, $P_\text{who}$ is a specified well-head pressure, $t$ is a specified number of days after a baseline, and $\epsilon$ is a Normally distributed error of unknown variance. This form has several benefits over the other models considered:
 
 \begin{enumerate}
 \item Coefficients are interpretable as rates of change, rather than theoretical maximum limits in the elliptical model.
@@ -454,9 +465,9 @@ where $\dot{m}$ is the mass flow, $P_\text{wh}$ is a specified well-head pressur
 \item There are no root or power operations. Sampling is significantly faster (~5x).
 \end{enumerate}
 
-This model assumes the trend in the relationship is linear with time, the same assumption currently made by CEL in their spreadsheets. We also assume a stationary distribution of independent errors $\sigma^2$, which are a product of measurement errors and flow variance. We derive a prior for the measurement error from CEL, and sample from flow variance when we make predictions. In cases where $P_\text{wh}$ is unavailable, such as from the PI database, we drop the $\beta_2P_\text{wh}$ term, leading to the assumption that $P_\text{wh}$ is constant. This assumption is true as long as there is no change in back-pressure in the network from a configuration change, and the condition of the well is steady between the measurements and the time of prediction.
+This model assumes the trend in the relationship is linear with time, the same assumption currently made by CEL in their spreadsheets. We also assume a stationary distribution of independent errors $\sigma^2$, which are a product of measurement errors and flow variance. We derive a prior for the measurement error from CEL, and sample from flow variance when we make predictions. In cases where $P_\text{whp}$ is unavailable, such as from the PI database, we drop the $\beta_\text{whp}P_\text{whp}$ term, leading to the assumption that $P_\text{whp}$ is constant. This assumption is true as long as there is no change in back-pressure in the network from a configuration change, and the condition of the well is steady between the measurements and the time of prediction.
 
-We monitor the traces of the regression parameters to gather statistical estimates for mass flow decline over time $\beta_3$ and flow variance.
+We sample the regression parameters to estimate mass flow decline over time $\beta_\text{date}$ and flow variance.
 
 We use a hierarchical Bayes structure to set priors on the regression coefficients $\vec{\beta},\tau=1/\sigma^2$, where $\tau$ is precision and is often used because it makes the analytic calculations simpler. Rather than making every individual parameter non-informative, we use the assumption that parameters between wells come from the same (unknown) distribution:
 \begin{align}
@@ -466,23 +477,21 @@ We use a hierarchical Bayes structure to set priors on the regression coefficien
 where the hyper-parameters have an non-informative prior, $f\left(\mu_{\beta_i},\tau_{\beta_i},\alpha_\tau,\beta_\tau\right) \propto 1$.
  
 This is physically motivated because:
-
 \begin{enumerate}
-\item For $\beta_3$, pressure loss over time affects multiple wells.
-\item For $\beta_1$ and $\beta_2$, wells in a field may have similar production curves.
+\item For $\beta_\text{date}$, pressure loss over time affects multiple wells.
+\item For $\beta_0$ and $\beta_\text{whp}$, wells in a field may have similar production curves.
 \end{enumerate}
+This is not the same as saying the parameters between the wells are identical. Instead, it fits a distribution of well production curves from which each well is observed. Adding this bias gives a reduction in variance for wells with insufficient or no data. We instead make an educated imputation that their production curve is similar to the wells we have data for, rather than having absolutely no imputation at all.
 
-This is not the same as saying the parameters between the wells are identical. Instead, it fits a distribution of well production curves from which each well is observed.
-
-The biggest benefit of this added bias is the reduction in variance for wells with insufficient or no data. We instead make an educated imputation that their production curve is similar to the wells we have data for, rather than having absolutely no imputation at all.
-
-Our regression model is supported by the diagnostic plots of observed mass flows against fitted mass flows, and a standardised residual plot using residuals:
+Verification of our regression model includes plots of observed mass flows against fitted mass flows, and a standardised residual plot using residuals:
 \begin{equation}
 \epsilon_\text{std} = \frac{\hat{\dot{m}} - \dot{m}}{\text{sd}\left( \hat{\dot{m}} \right)}
 \end{equation}
 where $\hat{\dot{m}}$ is sampled from the Bayesian regression.
 
-A well-fitting regression shows a linear correlation between the fitted and observed values. If we believe the residuals are Normally distributed, the standardised residual plot will have a standard Normal distribution for all the fitted values. 
+A well-fitting regression shows a linear correlation between the fitted and observed values. If we believe the residuals are Normally distributed, the standardised residual plot will have a standard Normal distribution for all the fitted values. We present diagnostic plots in Figure \ref{fig:diagnostics}. There is good correlation in the Observed $\sim$ Fitted plot and standardised residuals are roughly symmetrically distributed. %The residual plot also validates our implementation of errors, where the observed variance is $\sigma^2$ multiplied by a measurement error of $<$10\%. The standardised residuals become significantly inflated without this.
+% CHANGE ABOVE
+%\todo{Comment on residual error?}
 
 \begin{figure}
 \centering
@@ -491,14 +500,10 @@ A well-fitting regression shows a linear correlation between the fitted and obse
   \label{fig:diagnostics}
 \end{figure}
 
-In Figure \ref{fig:diagnostics}, there is good correlation in the Observed $\sim$ Fitted plot and standardised residuals are roughly symmetrically distributed. %The residual plot also validates our implementation of errors, where the observed variance is $\sigma^2$ multiplied by a measurement error of $<$10\%. The standardised residuals become significantly inflated without this.
-% CHANGE ABOVE
-\todo{Comment on residual error?}
-
 \subsubsection{Prediction}
 With posterior production curves fitted for most wells, e.g. Figure \ref{fig:production_curve}, we can estimate the mass flows at a given well-head pressure and date, specified in the configuration file. We also assign a measured enthalpy to the well flows, or apply a hierarchical posterior to any missing enthalpy values. Wells without production curves are imputed using a time-series on the PI data -- see Figure \ref{fig:ts_experiment} for examples of the time series regression.
 
-Figure \ref{fig:full_network} shows the modelled connectivity between wells, flash plants and generators. Dummy generators have been added so that a flash plants can send one type of flow (e.g. intermediate pressure steam) to one generator, and another (e.g. water) to a second generator.
+Figure \ref{fig:full_network} shows the modelled connectivity between wells, flash plants and generators. Dummy generators have been added so that a flash plants can send one type of flow (e.g. intermediate pressure steam) to one generator, and another (e.g. water) to a second generator. This diagram is useful for showing the overall structure of the conceptual model, but can also be used to verify that the model configuration has been specified correctly in the Excel interface.
 
 \subsubsection{Flash Plant Flows}
 
@@ -537,7 +542,7 @@ Monitors are how JAGS returns posterior samples to the user. There are three typ
 \item Trace, showing every sample of a parameter. We use these to sample from the stationary distribution.
 \end{enumerate}
 
-The first monitor we set is on the well regression, predicting for a range of covariates to build a picture of the production curves. Examples of these curves are shown in Figure \ref{fig:production_curve}.
+The first monitor we set is on the well regression, predicting for a range of covariates to build a picture of the production curves. Examples of these curves are shown in Figure \ref{fig:production_curve}.\todo{I've repeated this figure later on. Should I remove this one and just reference that one?}
 
 Next, we monitor mass flows at each facility and their probability densities. An example of its interpretation is given in Figure \ref{fig:bayesdemo}. These estimates for uncertainty are the strength of Bayesian inference; we can sample from the posteriors at the wells and propagate our uncertainty through the network to find the uncertainties at other locations.
 
@@ -575,7 +580,7 @@ where $\overline{X_1}$ and $\overline{X_2}$ are the sample means of the first 10
   \label{fig:geweke}
 \end{figure}
 
-Most of the parameters pass Geweke's test with a z-score (a Normal approximation of the T-statistic) less than 1.96 for a 95\% confidence interval. \todo{There are issues. (Say something)}However, the changes in the power output traces were significant, so a short burn-in of 200 iterations was introduced.
+Most of the parameters pass Geweke's test with a z-score (a Normal approximation of the T-statistic) less than 1.96 for a 95\% confidence interval. \todo{Increase sample size for final run}However, the changes in the power output traces were significant, so a short burn-in of 200 iterations was introduced.
 
 \subsubsection{Gelman's Potential Scale Reduction Factor}
 Gelman's test gives the potential scale reduction factor for each parameter. This requires at least two parallel chains using independent random variates (JAGS uses the Wichmann-Hill, Marsaglia-Multicarry, Super-Duper and Mersenne-Twister pseudorandom generators for the first four chains to ensure they are independent), and tests whether the chains have converged to identical distributions. If the chains have not converged, the scale reduction factors will have upper confidence limits greater than one and the samples obtained are likely to be variance-inflated and their credible intervals may be too large. [REF]
@@ -588,7 +593,29 @@ Some of the upper CIs are slightly greater than one, but not significantly. We c
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Results}
-Contact Energy has provided wellbore test data up to early 2018 and PI logs up to the end of December 31. They also supplied an example calculation for December 1st. To test the forecasting ability, we discarded all data after November 30th, 2017, and compared predicted mass flows with measured flows for December 1st. The traces were analysed in R. Because there are so many facilities and parameters to monitor, the plots in this section may only include a subset of facilities that represent the different outcomes present in the simulation.
+Contact Energy has provided wellbore test data up to early 2018 and PI logs up to the end of December 31. They also supplied an example calculation for December 1st. To test the forecasting ability of our model, we discarded all data after November 30th, 2017, and compared predicted mass flows with measured flows for December 1st. The traces were analysed in R. Because there are so many facilities and parameters to monitor, the plots in this section may only include a subset of facilities that represent the different outcomes present in the simulation.
+
+\subsection{Well Production Curves}
+
+We compare production curves before and after including PI data in figures \ref{fig:production_curve_without_pi} and \ref{fig:production_curve_with_pi}. PI data has changed the regression for w2A3 slightly, but in the proximity of the data (where we might want to make predictions), the regression is almost exactly the same.
+
+The regression for w731 has adjusted to fit the PI data more closely in the well-head pressures of the PI data. Therefore, we know that the PI data does not agree perfectly with the well test data -- however, we trust the PI data for our predictions because it is the most recent. A consequence of this disagreement is the parameters estimates become more uncertain -- in regions away from the PI data, the width of the 95\% credible interval has roughly doubled. We conclude that although PI data is up-to-date, it can decrease the precision of the production curve parameters. Since PI data is taken from $n$ consecutive days, it is similar to weighting one point $n$ times a single well test instance and it gains disproportionate influence over the regression parameters.
+
+\begin{figure}
+\centering
+\begin{minipage}[t]{.48\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{media/production_curve_without}
+  \captionof{figure}{Fitted production curves with just well test data. Shaded regions are 95\% credible intervals.}
+  \label{fig:production_curve_without_pi}
+\end{minipage}\hfill
+\begin{minipage}[t]{.48\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{media/production_curve}
+  \captionof{figure}{Production curves after including PI data. We expect this to make better predictions near the most recent (PI) data.}
+  \label{fig:production_curve_with_pi}
+\end{minipage}
+\end{figure}
 
 \subsection{Well Mass Flows}
 \begin{figure}
@@ -598,29 +625,51 @@ Contact Energy has provided wellbore test data up to early 2018 and PI logs up t
   \label{fig:mf_wells}
 \end{figure}
 
-Figure \ref{fig:mf_wells} presents the posterior densities for mass flow at selected wells. We can see that some wells have more variation than others. The wells with low variance tend to be wells supported with PI data, either because they are dry wells, or they are liquid wells with mass flow meters. This is as expected because we have more information on their production characteristics and the information we have is also very close to our prediction date. Common issues that cause bad fit in regression include:
+Figure \ref{fig:mf_wells} presents the posterior densities for mass flow at selected wells. We can see that some wells have more variation than others. Variance can either come from the regression model or the data, with issues including:
 
 \begin{enumerate}
 \item Lack of data to fit the regression.
 \item Data is for pressures and times far away from the values used for prediction; e.g. very old data that is no longer relevant.
-\item Highly variable mass flow in some wells.
 \item Mass flow is non-linear with pressure and time (i.e. bad fit).
 \end{enumerate}
 
-Most of the well predictions do not have the issues listed above, especially when a combination of well tests and PI data are available. We investigate cases of extremely large variance by looking at where each well's data comes from.
-
-\input{media/well_summaries.tex}
+We do not see any issues with non-linearity in the diagnostic plots (Figure \ref{fig:diagnostics}), and we know from previous DIC comparisons that higher order terms do not significantly aid the regression. Therefore, we will next look at the data. We can compare the performance of well predictions by comparing well standard deviations by their data sources.
 
 \begin{figure}
   \centering
   \includegraphics[width=.5\linewidth]{media/error_source}
-  \captionof{figure}{We can infer which combinations of data sources tend to have the most variance in their posterior mass flow estimates. Using PI data decreases variance, while using test data increases variance. However, the lowest variance group uses neither -- these are the wells predicted with a univariate time series on mass flow, and no production curve.}
+  \captionof{figure}{Facets of the data sources for the production curve. No data (far left) means there was no curve -- these mass flows were predicted by time series on PI mass-flow data. $n$ is the number of wells, and standard deviation is calculated as $\text{sd}(\hat{\dot{m}}_j)$ for each well.}
   \label{fig:error_source}
 \end{figure}
 
-Table \ref{tab:well_summaries} shows the six highest-variance wells, but it is inconclusive. Figure \ref{fig:error_source} reveals that although including PI data from the past month increases the precision of the posterior, the cause of precision is the process of fitting a production curve and then taking a prediction from it in the first place. This is not surprising -- by predicting from a production curve of mass flow by well-head pressure and time, we introduce intermediate errors. A time series of mass flow bypasses the standard error in the regression, leading to more precise estimates.
+Figure \ref{fig:error_source} shows that the most precise wells are predicted by time series, rather than production curve. This is not surprising -- by predicting from a production curve of mass flow by well-head pressure and time, we introduce intermediate errors. The other three facets with production curves suggest that test data is the source of variance in the regression. We class the data sources in Table \ref{tab:data_sources}.
+
+\begin{table}
+\centering
+\begin{tabularx}{0.85\linewidth}{rXX}
+\hline
+ & Well tests & PI data \\ 
+  \hline
+Variance & Low & High  \\
+Period & Long-term, 2002-2017 & Very recent, since the last change in configuration \\
+Effective for & Short-term time-series prediction & Production curve and parameter estimation \\
+   \hline
+\end{tabularx}
+\caption{Differences in the two data sources}
+\label{tab:data_sources}
+\end{table}
 
 \subsection{Individual Well Declines}
+
+\input{media/tab_beta_date.tex}
+
+Table \ref{tab:beta_date} presents credible intervals for decline at selected wells. The rates are mostly negative (in decline), but some rates are not statistically significant, such as w1BD and w5BC.
+
+There is varying precision in the decline -- w2A3 is an example of a well with good precision in the decline rate. This is because there have been 64 recorded values with a range of covariate values, giving the parameter estimates good support.
+
+Inspection of wells with poor precision in the regression parameters show that there is insufficient well test data available. For instance, w93F %wk270
+has five points; this is not enough to estimate variance in a model with three parameters. When precision is low, we cannot make strong claims about the decline rate for that well. However, we can say that at a fixed well-head pressure, mass output for well w2A3 %wk263
+is declining between -0.011 and -0.016 T/h per day.
 
 \begin{figure}
   \centering
@@ -629,56 +678,62 @@ Table \ref{tab:well_summaries} shows the six highest-variance wells, but it is i
   \label{fig:beta_date}
 \end{figure}
 
-\input{media/tab_beta_date.tex}
-
-Table \ref{tab:beta_date} presents credible intervals for decline at selected wells. The liquid wells have declines between zero and -0.2 T/h/d for a fixed well-head pressure, but some declines are not statistically significant, such as WK242.
-
-There is varying precision in the decline -- w2A3 is an example of a well with good precision in the decline rate. This is because there have been 64 recorded values with a range of covariate values, giving the parameter estimates good support.
-
-Inspection of wells with poor precision in the regression parameters show that there is insufficient well test data available. For instance, w93F has five points; this is not enough to estimate variance in a model with three parameters. When precision is low, we cannot make strong claims about the decline rate for that well. However, we can say that at a fixed well-head pressure, mass output for well w2A3 is declining between -0.01 and -0.02 T/h per year.
-
 \subsection{Down-flow Results}
 The results from the previous section propagate through the network to the flash plants and generators. We are most interested in the flash plants, where we have an example spreadsheet of flows for a particular day and constraints on steam flows .
 
 \subsubsection{Flash Plant Mass Flow Verification}
 
-After making predictions for the wells, we obtain mass flows entering the flash plants. This is split up into intermediate pressure, low pressure and water flows. We verify our posterior beliefs for these flows against an example calculation from CEL. In theory, they should match up, but there are many reasons why they do not.
-
-The full comparison is in the appendices, Figure \ref{fig:verification}. There are three main observations:
+After making predictions for the wells, we obtain mass flows entering the flash plants. This is split up into intermediate pressure, low pressure and water flows. We verify our posterior beliefs for these flows against an example calculation from CEL. The full comparison is in the appendices, Figure \ref{fig:verification}. There are three main observations:
+% fp14 = fpE2, fp15 = fp62, fp16 = fp19
 
 \begin{enumerate}
-\item Our posteriors for all mass flows are systematically under-estimating.
+\item Our mass flows tend to under-estimate.
+\item Four flash plants have uncertain enthalpies but very precise mass flows (precision being unrelated to accuracy). The wells feeding these plants do not have enthalpy, which is why the estimate for $h$ is disperse. They also use time-series estimates on the mass flow without a production curve, leading to high precision.
+\item fpE2, fp62 and fp19, are fed by wells with production curves. However, fp62 seems to under-estimate total $\dot{m}$ and therefore all the other components of flow.
 \end{enumerate}
 
+To investigate the difference between fp62 and fpE2/fp19, we look at the data methods shown in Appendix \ref{sec:fpdata}. Over half of the wells feeding fp62 have no test data, whereas most wells in fpE2 and fp19 have substantial amounts of test data data ($n_\text{test} > 10$). However, this is not strong evidence and would need to be investigated further.
+
 \subsubsection{Flash Plant Constraints}
-Contact Energy defines constraints on the flows in the network. We can estimate the probabilities of each constraint being violated by the proportion of the trace exceeding the constraint value. However, a more nuanced comparison can be made by the user in a density plot with the constraint value added.
+Contact Energy defines constraints on the flows in the network. We can estimate the probabilities of each constraint being violated by the proportion of the trace exceeding the constraint value. However, more nuanced comparisons can be made with the density plot in Figure \ref{fig:constraints}.
 
 \begin{figure}
 \centering
   \includegraphics[width=\linewidth]{media/constraints}
-  \captionof{figure}{Posterior density plot of the steam flows through the flash plants. Known steam limits are shown by a vertical red line.}
+  \captionof{figure}{Posterior density plot of the steam flows through the flash plants. Known steam limits are shown by a vertical red line. Two flash plants with significant missing well data are not shown.}
   \label{fig:constraints}
 \end{figure}
 
 Some of the flows are under-estimated because data is not available for all wells. However, in Figure \ref{fig:constraints} we can see that all of the flash plants are likely operating below their limits in the December 1st configuration. However, one flash plant (fpE2, one of the flash plants where wells can be redirected) is more likely to violate its constraints than the others, suggesting that one or more wells should be redirected to another flash plant.
 
-We now reach the generators. Again, we only receive mass flows from wells we have data for, so the sums at the generators are incomplete.
+\subsubsection{Generator Flows and Power}
+We now reach the generators. Again, we only receive mass flows from wells we have data for, so the sums at the generators presented in Figure \ref{fig:gens} are incomplete. Nonetheless, we show that our model can propagate uncertainty through to the generators' power estimates, and that they are relatively disperse.
+
+\begin{figure}
+\centering
+  \includegraphics[width=\linewidth]{media/gens}
+  \captionof{figure}{Estimates for mass flow and power generation, including supplied uncertainties in the steam/power conversion.}
+  \label{fig:gens}
+\end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusions}
-In this report, we show a hierarchical regression model and a directed network with uncertainty can be implemented in a single Bayesian model to estimate the true state of a geothermal surface network. Our model includes estimates of errors in both the steady-state properties of the network such as flows, and in the regression parameters such as production decline in the wells. Incorporating rates of decline allow us to make forecasts for dates beyond what the data covers. We have data until the end of 2017, so we make forecasts for 2018 (current date).
+In this report, we show a hierarchical regression model and a directed network with uncertainty can be implemented in a single Bayesian model to estimate the true state of a geothermal surface network. Our model includes estimates of errors in both the steady-state properties of the network such as flows, and in the regression parameters such as production decline in the wells.
 
-We also compare our posterior beliefs of the network against constraints set by the field's operators, and find that our simulation is able to probabilistically verify whether those constraints are violated in a given network configuration, as long as we have some data about the wells feeding a facility.
+Our model addresses two needs:
+\begin{enumerate}
+\item Produce production curves with uncertainty so the operator can track well declines and see how production changes with well-head pressure.
+\item Make forecasts
+\end{enumerate}
+We also compare our posterior beliefs of the network against constraints set by the field's operators, and find that our simulation is able to probabilistically verify whether those constraints are violated in a given network configuration, as long as we have sufficient test data or PI data about the wells feeding a facility.
 
-Despite CEL and Grant \& Bixley [REF] using an elliptic or otherwise curved model in their regression, we do not find significant evidence that the data would be better suited by a non-linear model. We are also able to incorporate all historical test data plus PI data into a regression model for the production curves, giving good estimates for decline and better robustness compared to CEL's current curve fitting.
+Despite CEL and Grant \& Bixley [REF] using an elliptic or otherwise curved model in their regression, we do not find significant evidence that the data would be better suited by a non-linear model. We are also able to incorporate all historical test data into a regression model for the production curves, giving good parameter estimates for a temporal decline model and better robustness compared to CEL's current methods. Incorporating PI data into the regression improves forecasting accuracy because the PI data is recent, but PI data sometimes decreases precision in the regression parameters representing change in mass flow with change in pressure or time and may be undesirable if the parameters are more important than forecasts.
 
-In our parameter uncertainty analysis, we find that some regressions give us precise posteriors that contribute to good precision further down the network, particularly when lots of data is available ($n>20$). In cases where there have been very few tests conducted for some wells, our estimates are less precise, and some of the liquid wells have no test data readily available. High variance in our estimates for production curve parameters gives an indication for which wells should be targeted by well testing to improve the accuracy of the production curve.
+When the goal is to make mass flow forecasts, a production curve can give similar results to time-series analysis. However, using the production curve also creates extra error if the well-head pressure is incorrect, or if there is insufficient data recorded at the operational well-head pressure. We recommend that time-series analyses include PI database flow data whenever possible.
 
-However, when the goal is to make mass flow predictions, using the production curve with any data is inaccurate compared with forecasting using a regular time-series. We recommend using time-series techniques on the PI database flow data when possible, and to be aware that production curve forecasts with just wellbore test or TFT data alone can be very imprecise when uncertainty is considered.
+To operate the model, we provide a configuration spreadsheet where the well/flash-plant and flash-plant/generator connectivity is specified, either as the output of an external third-party optimisation algorithm or as part of scenario analysis. This spreadsheet is also where constants such as enthalpy are specified. \todo{should I provide a screenshot?}
 
-To operate the model, we provide a configuration spreadsheet where the well/flash-plant and flash-plant/generator connectivity is specified, either as the output of an external third-party optimisation algorithm or as part of scenario analysis. This spreadsheet is also where constants such as enthalpy are specified.
-
-\todo{Note about performance and use cases -- should it be used}
+%\todo{Note about performance and use cases -- should it be used}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Further Development}
@@ -698,6 +753,8 @@ Enthalpies are important because they affect the mass proportions exiting the fl
 \subsection{Time Series}
 In our implementation of well declines, we treat measurements independently with respect to time. However, measurements are almost never truly independent and are often auto-correlated with previous measurements. Extra pre-processing to include auto-regression and differencing in the JAGS model is a common technique although it is difficult with irregularly spaced multivariate time series. Implementing non-independent time-series analysis will result in reduced standard errors.
 
+We would also be interested to compare the performance of a standalone AR(1) forecast without any production curves. The downsides include having no estimate for the parameterisation of mass flow, and not having flow meters for all the wells. A proof of concept may provide motivation to install more flow meters.
+
 \subsection{Prior Specification}
 More prior specifications for parameters will add extra educated bias to our model, helping with variance reduction. Priors can be added to the hierarchical parameters on the regression coefficients, which are currently non-informative. For instance, if we knew an overall production decline rate and variance in decline across the field.
 
@@ -710,16 +767,16 @@ Partitioning of components by manufacturer's specifications or age/generation wi
 \begin{figure}[h]
   \centering
   \includegraphics[width=\linewidth]{media/ts_experiment}
-  \captionof{figure}{Time-series techniques on data from the PI database. We use the linear time series regression (top) for its robustness to systematic changes in operation, which cause the other regressions to become unstable.}
+  \captionof{figure}{Time-series techniques on data from the PI database. We use the linear time series regression (top) for its robustness to systematic changes in operation, which cause the other regressions to become unstable. Auto-regression appears to be preferable to exponential-weighted moving averages.}
   \label{fig:ts_experiment}
 \end{figure}
 
 \newpage
 \section{Verification}
-\begin{figure}[h]
+\begin{figure}[H]
   \centering
   \includegraphics[width=\linewidth]{media/verification}
-  \captionof{figure}{Verification of predicted flows with Excel shows a systematic deviation. Densities are the model predictions and black lines are the given figures from CEL (estimated by CEL, not direct from the PI loggers).}
+  \captionof{figure}{Verification of predicted flows with supplied calculations shows a systematic under-estimation for most quantities, if we assume CEL's figures as the ground truth. Densities are the model predictions and black lines are the given figures from CEL (estimated by CEL, not direct from the PI loggers). Two flash plants with unavailable well data have been removed from the comparison.}
   \label{fig:verification}
 \end{figure}
 
@@ -727,5 +784,17 @@ Partitioning of components by manufacturer's specifications or age/generation wi
 \section{All Well Declines}
 \input{media/tab_beta_date_all.tex}
 \end{appendices}
+
+\newpage \label{sec:fpdata}
+\section{Flash Plant Data Sources}
+\input{media/summaries_fp14.tex}
+\input{media/summaries_fp15.tex}
+\input{media/summaries_fp16.tex}
+
+\newpage
+\section{JAGS Model}
+The following model is loaded as a text string into the RJAGS package. Not listed is the data, pre-processing code and post-processing of the results. This code also includes two extra time-series models that were not used for outputs. (Pre-/post-processing source code available on the author's Github)
+
+\lstinputlisting[language=R]{src/model.txt}
 
 \end{document}

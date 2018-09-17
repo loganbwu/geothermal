@@ -42,12 +42,14 @@ theme_update(text=element_text(family="Times New Roman"))
 '%ni%' <- Negate('%in%')
 # for over-plotting
 special_wells = c('wk124', 'wk242', 'wk263', 'wk270', 'wk271', "wk27", "wk67", "wk116", "wk81", "wk251", "wk604")
+use.censor = T
 
 censor = function(x, type) {
-  if (type=="well") {
+  if (!use.censor) {
+    return(x)
+  } else if (type=="well") {
     return(paste0("w", toupper(substr(md5(x), 1, 3))))
-  }
-  else if (type=="fp") {
+  } else if (type=="fp") {
     return(paste0("fp", toupper(substr(md5(x), 1, 2))))
   }
 }
@@ -82,7 +84,7 @@ PI <- read_excel(pipath, "From PI sheet", skip=1) %>%
   mutate_if(is.character, tolower) %>%
   mutate(value = as.numeric(value)) %>%
   drop_na(value) %>%
-  filter(date >= as.Date("2017-11-01"), date < as.Date("2017-12-01")) %>%
+  filter(date >= as.Date("2017-10-01"), date < as.Date(prediction_date)) %>%
   filter(!str_detect(variable, "condition|calc")) %>%
   filter(str_detect(facility, "wk")) 
 extra_liq <- PI %>%
@@ -113,20 +115,20 @@ dry_df = PI %>%
 
 # Censor names
 
-Censor well and flash plant names using the MD5 hash algorithm. Comment this block to create plots and outputs with real facility names.
+Censor well and flash plant names using the MD5 hash algorithm. Change the flag in setup to disable.
 
 ```{r censor}
-# dry_df$well = censor(dry_df$well, "well")
-# extra_liq$well = censor(extra_liq$well, "well")
-# fp_constants$fp = censor(fp_constants$fp, "fp")
-# fp_gen_map$fp = censor(fp_gen_map$fp, "fp")
-# operating_conditions$well = censor(operating_conditions$well, "well")
-# regression_df$well = censor(regression_df$well, "well")
-# well_fp_map$well = censor(well_fp_map$well, "well")
-# well_fp_map$fp = censor(well_fp_map$fp, "fp")
-# 
-# production_curve_wells = censor(production_curve_wells, "well")
-# special_wells = censor(special_wells, "well")
+dry_df$well = censor(dry_df$well, "well")
+extra_liq$well = censor(extra_liq$well, "well")
+fp_constants$fp = censor(fp_constants$fp, "fp")
+fp_gen_map$fp = censor(fp_gen_map$fp, "fp")
+operating_conditions$well = censor(operating_conditions$well, "well")
+regression_df$well = censor(regression_df$well, "well")
+well_fp_map$well = censor(well_fp_map$well, "well")
+well_fp_map$fp = censor(well_fp_map$fp, "fp")
+
+production_curve_wells = censor(production_curve_wells, "well")
+special_wells = censor(special_wells, "well")
 ```
 
 # Preprocessing
@@ -152,7 +154,7 @@ liq_wells = unique(regression_df$well) # aka production curve wells
 dry_wells = unique(dry_df$well) # aka time series wells
 map_wells = unique(well_fp_map$well)
 
-well_names = c(liq_wells, dry_wells)
+well_names = unique(c(liq_wells, dry_wells))
 fp_names = c(well_fp_map$fp, fp_gen_map$fp, fp_constants$fp) %>% unique()
 
 fluid_types = c('ip', 'lp', 'w')
@@ -183,6 +185,11 @@ fp_constants = fp_constants %>% mutate(fp_id=ids[fp])
 gen_constants = gen_constants %>% mutate(gen_id=ids[gen]) %>% select(-gen)
 well_fp_map = well_fp_map %>% mutate(well_id=ids[well], fp_id=ids[fp]) %>% select(-c(well, fp))
 fp_gen_map = fp_gen_map %>% mutate(fp_id=ids[fp], gen_ip_id=ids[gen_ip], gen_lp_id=ids[gen_lp], gen_w_id=ids[gen_w]) %>% select(-c(fp, gen_ip, gen_lp, gen_w))
+
+incomplete.fps = unique(well_fp_map %>%
+  filter(is.na(well_id)) %>%
+  mutate(fp = names(ids)[fp_id]) %>%
+  pull(fp))
 ```
 
 # Graph
@@ -229,6 +236,9 @@ for (i in 1:nrow(v)) {
     }
   }
 }
+flows_to = function(well) {
+  return(names(ids)[m[well,]][-1])
+}
 
 # generate coordinates
 dummy_locs = data.frame(name='DUMMY', x=-0.1, y=0)
@@ -247,7 +257,7 @@ g = graph_from_adjacency_matrix(v) %>%
   set_vertex_attr('label.degree', value=pi) %>%
   as.undirected()
 V(g)$size = ifelse(V(g)$label %in% well_names, 4, 8)
-V(g)$color = ifelse(V(g)$label %in% dry_wells, "red", "orange")
+V(g)$color = ifelse(V(g)$label %in% dry_wells, "red", ifelse(V(g)$label %in% no_data_wells, "grey", "orange"))
 E(g)$color = "black"
 E(g)[which(tail_of(g, E(g))$label=="DUMMY")]$color = "grey"
 
@@ -281,6 +291,7 @@ facilities = data.frame(id=1:max(ids)) %>%
   full_join(operating_conditions %>% rename(id=well_id) %>% select(-well), by='id') %>%
   full_join(gen_constants %>% select(factor, id=gen_id), by='id') %>%
   full_join(fp_constants %>% rename(id=fp_id), by='id') %>%
+  filter(id %in% ids) %>%  # in case extras specified in data
   mutate(mf_pred=NA) %>%
   mutate(n_inflows=colSums(v))
 
@@ -335,7 +346,7 @@ data = c(regression_list, dry_list, facilities_list, prod_list, ts_list,
               gen_ids=gen_ids, ip_gen_ids=ip_gen_ids, lp_gen_ids=lp_gen_ids, w_gen_ids=w_gen_ids,
               today_numeric=today_numeric, m=m, dummy=1,
               ts=drymatrix, ts_ar=drymatrix, ts_ema=drymatrix, ar_well_ids=ar_well_ids))
-data$whp_pred[is.na(data$whp_pred)] <- mean(data$whp_pred, na.rm=T)
+# data$whp_pred[is.na(data$whp_pred)] <- mean(data$whp_pred, na.rm=T)
 
 # center covariates
 mean_whp <- mean(data$whp, na.rm=T)
@@ -461,8 +472,11 @@ model {
     hg_lp[i] ~ dgamma(param[5], param[11])
     hfg_lp[i] ~ dgamma(param[6], param[12])
   }
-  for (i in c(1, well_ids)) { h[i] ~ dgamma(param[13], param[14]) } # missing well constants
-  for (i in 1:14) { param[i] ~ dgamma(1e-12, 1e-12) }               # uniform priors
+  for (i in c(1, well_ids)) { 
+    h[i] ~ dgamma(param[13], param[14])
+    whp_pred_c[i] ~ dnorm(param[15], param[16])
+  } # missing well constants
+  for (i in 1:16) { param[i] ~ dgamma(1e-12, 1e-12) }               # uniform priors
 
   ########################################
   # make predictions (the stuff we want) #
@@ -474,11 +488,11 @@ model {
   
   # use production curve
   for (j in liq_well_ids) {
-    mf_pred[j] <- Intercept[j] + beta_whp[j] * whp_pred_c[j] + beta_date[j] * today_numeric_c
+    mf_pred[j] <- max(Intercept[j] + beta_whp[j] * whp_pred_c[j] + beta_date[j] * today_numeric_c, 0)
   }
   # use naive TS reg
   for (j in dry_well_ids) { #dry_no_ar_well_ids) { 
-    mf_pred[j] <- Intercept[j] + beta_date[j] * today_numeric_c
+    mf_pred[j] <- max(Intercept[j] + beta_date[j] * today_numeric_c, 0)
   }
   # use AR(1)
   # for (j in ar_well_ids) {
@@ -507,6 +521,7 @@ model {
   total_power <- sum(power[gen_ids])
 }
 "
+cat(code, file="model.txt")
 
 vars =  c('mf_fit',
           'mf_dry_fit',
@@ -550,28 +565,40 @@ g1 = ggplot(outframe %>%
   facet_grid(source~.) +
   theme(axis.text.y=element_blank(),
         axis.ticks.y=element_blank()) +
-  labs(title="Posterior Well Mass Flows for 2018", x="Mass flow (T/h)", y="Scaled density", fill="Facility") +
+  labs(title=paste("Posterior Well Mass Flows for", prediction_date), x="Mass flow (T/h)", y="Scaled density", fill="Facility") +
   ggsave('../media/mf_wells.png', width=24.7, height=10, units='cm')
   
 g2 = ggplot(outframe %>% filter(variable=="beta_date") %>% filter(facility %in% special_wells[special_wells %in% liq_wells]), aes(x=value, fill=facility)) +
   geom_density(alpha=0.5, color=NA) +labs(title="Posterior Decline Rate of Test Data", x="beta_date (T/h/Bar)", y="Density", fill="Facility") +
   theme(axis.text.y=element_blank(),
         axis.ticks.y=element_blank()) +
-  ggsave('../media/beta_date.png', width=24.7, height=10, units='cm')
+  ggsave('../media/beta_date.png', width=24.7, height=6, units='cm')
 
 g4 = ggplot(outframe %>% filter(facility %in% gen_names, variable=="mf_pred", value>0), aes(x=value, fill=facility)) +
   geom_density(aes(y=..scaled..), alpha=0.5, color=NA) + xlim(0, NA) + 
   theme(axis.text.y=element_blank(),
         axis.ticks.y=element_blank()) +
-  labs(title="Posterior Generator Mass Flows for 2018", x="Mass flow (T/h)", y="Scaled density", fill="Facility") +
+  labs(title=paste("Posterior Generator Values for", prediction_date), x="Mass flow (T/h)", y="Scaled density", fill="Facility") +
   ggsave('../media/mf_gens.png', width=24.7, height=10, units='cm')
+
+g4.5 = ggplot(outframe %>% filter(facility %in% gen_names, variable %in% c("mf_pred", "power")),
+              aes(x=value, fill=facility)) +
+  geom_density(aes(y=..scaled..), alpha=0.5, color=NA)+ xlim(0, NA) +
+  facet_grid(variable ~ .) +
+  theme(axis.text.y=element_blank(),
+        axis.ticks.y=element_blank()) +
+  labs(title=paste("Posterior Generator States for", prediction_date), x="Value (T/h and MW)", y="Scaled density", fill="Facility") +
+  ggsave('../media/gens.png', width=24.7, height=10, units='cm')
 
 g5 = ggplot(outframe %>% filter(facility %in% gen_names, variable=="power", value>0), aes(x=value, fill=facility)) +
   geom_density(aes(y=..scaled..), alpha=0.5, color=NA) + xlim(0, NA) +
   theme(axis.text.y=element_blank(),
         axis.ticks.y=element_blank()) +
-  labs(title="Posterior Generator Power Output for 2018", x="Power (MW)", y="Scaled density", fill="Facility") +
+  labs(x="Power (MW)", y="Scaled density", fill="Facility") +
   ggsave('../media/power_gens.png', width=24.7, height=10, units='cm')
+
+tsgrob4.5 = grid_arrange_shared_legend(g4, g5, nrow=2, ncol=1, position = "right")
+ggsave('../media/gens.png', tsgrob4.5, width=24.7, height=6, units='cm')
 
 tb6 <- outframe %>% filter(variable=="sd") %>% select(facility, value) %>%
   mutate(well=factor(facility)) %>%
@@ -601,25 +628,30 @@ tb2 <- outframe %>% filter(variable=="beta_date") %>% select(facility, value) %>
   summarise(Mean = mean(value), 
             `Lower 2.5%` = quantile(value, 0.025), 
             `Upper 97.5%` = quantile(value, 0.975)) %>%
-  mutate_if(is.numeric, round, 3) %>%
   inner_join(regression_df %>% mutate(well=factor(names(ids)[well_id])) %>% group_by(well) %>% summarise(n=n()), by="well")
 
 tb2[tb2$well %in% special_wells,]
 tb6[tb6$well %in% special_wells,]
 print(xtable(tb2, 
              type = "latex",
-             caption="Credible intervals for $\\beta_\\text{date}$. $n$ is the number of test data points rather than the total points include PI data, because all PI data is from a single month, so cannot estimate the $\\beta_\\text{date}$ parameter on its own.",
-             label="tab:beta_date_all"),
+             caption="Credible intervals for $\\beta_\\text{date}$ in units T/h/d.",
+             label="tab:beta_date_all",
+             table.placement = "H",
+             digits = 3),
       include.rownames = F,
+      size="\\fontsize{11pt}{11pt}\\selectfont",
       file = "../media/tab_beta_date_all.tex")
 print(xtable(tb2[tb2$well %in% special_wells,], 
              type = "latex",
-             caption="Credible intervals for $\\beta_\\text{date}$. $n$ is the number of test data points rather than the total points include PI data, because all PI data is from a single month, so cannot estimate the $\\beta_\\text{date}$ parameter on its own. Full table in Table \\ref{tab:beta_date_all}.",
+             caption="Credible intervals for $\\beta_\\text{date}$ in units T/h/d. $n$ is the number of test data points rather than the total points include PI data, because all PI data is from a single month, so cannot estimate the $\\beta_\\text{date}$ parameter on its own. Full table in Table \\ref{tab:beta_date_all}.",
+             digits = 3,
              label="tab:beta_date"),
+             table.placement = "h",
       include.rownames = F,
       file = "../media/tab_beta_date.tex")
 print(xtable(tb2[tb6$well %in% special_wells,], type = "latex", 
              caption="Credible intervals for standard deviation.",
+             digits = 3,
              label="tab:sd"),
       include.rownames = F,
       file = "../media/tab_sd.tex")
@@ -628,24 +660,45 @@ print(xtable(tb2[tb6$well %in% special_wells,], type = "latex",
 ## Investigate high variance wells
 
 ```{r investigate}
+nrow.source = function(df, facilityname, sourcename) {
+  stopifnot(length(sourcename)==1)
+  return(nrow(df %>% filter(well==facilityname, source==sourcename)))
+}
 well_summaries = outframe %>%
-  filter(facility %in% well_names, variable=="mf_pred",) %>%
+  filter(facility %in% well_names, variable=="mf_pred") %>%
   group_by(facility) %>%
   summarise(mean = mean(value),
             sd = sd(value),
-            n_test = nrow(regression_df %>% filter(well==facility, source=="Well Tests")),
-            n_pi = nrow(regression_df %>% filter(well==facility, source=="PI Database")),
+            n_test = nrow.source(regression_df, unique(facility),"Well Tests"),
+            n_pi = nrow.source(regression_df, unique(facility), "PI Database"),
             use.test = ifelse(n_test>0, "Test data", "No test data"),
             use.pi = ifelse(n_pi>0, "PI data", "No PI data")) %>%
   arrange(desc(sd))
 well_summaries$production.curve = ifelse(well_summaries$facility %in% liq_wells, "Production curve", "Time series")
 
-ggplot(well_summaries, aes(x=1, y=sd)) +
+fp_summaries = list(fp14 = well_summaries %>% filter(facility %in% flows_to(censor('fp14', 'fp'))),
+                    fp15 = well_summaries %>% filter(facility %in% flows_to(censor('fp15', 'fp'))),
+                    fp16 = well_summaries %>% filter(facility %in% flows_to(censor('fp16', 'fp'))))
+for (fp in names(fp_summaries)) {
+  print(xtable(fp_summaries[[fp]],
+               type = "latex",
+               caption=paste("Data methods feeding flash plant", censor(fp, 'fp')),
+               label=paste0("tab:well_summaries_", fp)),
+      table.placement = "H",
+      file = paste0("../media/summaries_", fp, ".tex"))
+}
+
+n_summaries = well_summaries %>%
+  group_by(use.pi, use.test) %>%
+  count()
+
+ggplot(well_summaries, aes(x=1, y=log(sd))) +
   geom_boxplot(fill='steelblue') +
+  geom_text(data=n_summaries, aes(x=-Inf, y=Inf, hjust=0, vjust=1, label=paste0("n=", n), family="Times New Roman")) +
   facet_grid(.~ use.pi + use.test) +
   theme(axis.text.x=element_blank(),
         axis.ticks.x=element_blank()) +
-  labs(title="Differences in Production Error by Data Source", x="Production curve data source", y="Standard deviation") +
+  labs(title="Differences in Production Error by Data Source", x="Production curve data source", y="log(standard deviation)") +
   ggsave('../media/error_source.png', width=24.7*0.5, height=6, units='cm')
 
 print(xtable(well_summaries %>% select(facility, mean, sd, n_test, n_pi) %>% head(), type = "latex",
@@ -792,7 +845,7 @@ ggsave('../media/ts_experiment.png', tsgrob, width=24.7, height=24, units='cm')
 
 ```{r traceplots}
 trace1 <- outframe %>%
-  filter(variable=='mf_pred' & (facility==censor('wk256', "well") | facility=='wk256'))
+  filter(variable=='mf_pred', facility==censor('wk256', "well"))
 trace2 <- outframe %>%
   filter(variable=='total_power')
 trace3 <- outframe %>%
@@ -809,7 +862,7 @@ ggplotly(traceplot)
 
 # Goodness of fit (OLS regression)
 
-```{r}
+```{r, warning=FALSE}
 liq_fit = as.data.frame(outmatrix) %>%
   select(contains('mf_fit')) %>%
   gather(key='index', value='fitted') %>%
@@ -856,7 +909,7 @@ limits = fp_constants %>%
   select(facility, limit) %>%
   drop_na()
 
-limitplot = ggplot(sf.df, aes(x=value, fill=facility, color=facility)) +
+limitplot = ggplot(sf.df %>% filter(facility %ni% incomplete.fps), aes(x=value, fill=facility, color=facility)) +
   facet_wrap(~facility, scales = "free_y", ncol=2) +
   geom_density(alpha=0.5, color=NA) +
   geom_vline(data=limits, aes(xintercept=limit), color="red") +
@@ -875,11 +928,13 @@ flow.df <- outframe %>%
   filter(facility %in% fp_names) %>%
   filter(str_detect(variable, "mf_pred|ip_sf|lp_sf|wf|h") & value > 0) %>%
   mutate(variable=ifelse(variable=="mf_pred", "mf", variable),
-         variable=factor(variable))
+         variable=factor(variable, levels=c("h", "mf", "ip_sf", "lp_sf", "wf")))
+
 comparison = fp_constants %>% select("fp", contains("verification")) %>%
   rename(facility=fp) %>%
   gather(key="variable", value="value", -facility) %>%
-  mutate(variable = gsub("^verification_", "", variable)) %>%
+  mutate(variable = gsub("^verification_", "", variable),
+         variable=factor(variable, levels=c("h", "mf", "ip_sf", "lp_sf", "wf"))) %>%
   drop_na()
 
 ps = flow.df %>%
@@ -887,12 +942,13 @@ ps = flow.df %>%
   mutate(greater = value.x > value.y) %>%
   group_by(facility, variable) %>%
   summarise(p.greater = mean(greater)) %>%
+  mutate(variable=factor(variable, levels=c("h", "mf", "ip_sf", "lp_sf", "wf"))) %>%
   drop_na()
 
-ggplot(flow.df, aes(x=value)) +
+ggplot(flow.df %>% filter(facility %ni% incomplete.fps), aes(x=value)) +
   geom_density(aes(y=..scaled.., fill=variable, color=variable), alpha=0.5, show.legend=F) +
-  geom_vline(data=comparison, aes(xintercept=value)) +
-  geom_label(data=ps, aes(x=-Inf, y=Inf, hjust=0, vjust=1, label=paste0("p(>x)=", p.greater), family="Times New Roman"), alpha=0.5) +
+  geom_vline(data=comparison %>% filter(facility %ni% incomplete.fps), aes(xintercept=value)) +
+  geom_label(data=ps %>% filter(facility %ni% incomplete.fps), aes(x=-Inf, y=Inf, hjust=0, vjust=1, label=paste0("p(>x)=", p.greater), family="Times New Roman"), alpha=0.5) +
   facet_grid(facility~variable, scales="free", space="free_y") +
   theme(axis.text.y=element_blank(),
         axis.ticks.y=element_blank()) +
@@ -914,14 +970,15 @@ ggplot(geweke.df, aes(x=Index, y=z)) +
   geom_point() +
   geom_hline(data=data.frame(value=c(1.96,-1.96)), aes(yintercept=value), color='red') +
   labs(title=paste0("Geweke z-score. ", round(proportion_out, 2)*100, " % points lie outside the 95% confidence interval.")) +
-  ggsave('../media/geweke.png', width=24.7, height=8, units='cm')
+  ggsave('../media/geweke.png', width=24.7, height=6, units='cm')
   
 
-gelman.out = gelman.diag(out[,c(paste0('mf_pred[', 8:9, ']'), 'beta_date[9]', 'mu_beta_whp', 'mu_beta_date', 'mu_Intercept', 'total_power')])[[1]] %>% as.data.frame() %>% round(2)
+gelman.out = gelman.diag(out[,c(paste0('mf_pred[', 8:9, ']'), 'beta_date[9]', 'mu_beta_whp', 'mu_beta_date', 'mu_Intercept', 'total_power')])[[1]] %>% as.data.frame()
 raftery.out = raftery.diag(out[,c(paste0('mf_pred[', 8:9, ']'), 'beta_date[9]', 'mu_beta_whp', 'mu_beta_date', 'mu_Intercept', 'total_power')])
 
 print(xtable(gelman.out, type = "latex",
              caption="Select potential scale reduction factors from Gelman's diagnostic test.",
+             digits = 2,
              label="tab:gelman"),
       table.placement = "h",
       file = "../media/gelman.tex")
