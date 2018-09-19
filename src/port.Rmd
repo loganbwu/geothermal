@@ -44,6 +44,8 @@ theme_update(text=element_text(family="Times New Roman"))
 special_wells = c('wk124', 'wk242', 'wk263', 'wk270', 'wk271', "wk27", "wk67", "wk116", "wk81", "wk251", "wk604")
 use.censor = T
 
+n_steps = 20000
+
 censor = function(x, type) {
   if (!use.censor) {
     return(x)
@@ -427,6 +429,7 @@ model {
   for (j in liq_well_ids) {
     Intercept[j] ~ dnorm(mu_Intercept, tau_Intercept)
     beta_whp[j] ~ dnorm(mu_beta_whp, tau_beta_whp)
+    # beta_whp2[j] ~ dnorm(mu_beta_whp2, tau_beta_whp2)
     beta_date[j] ~ dnorm(mu_beta_date, tau_beta_date)
     tau[j] ~ dgamma(1e-12, 1e-12)
     sd[j] <- 1/max(sqrt(tau[j]), 1e-12)
@@ -442,9 +445,11 @@ model {
   # set hyperparameters
   mu_Intercept ~ dnorm(0, 1e-12)
   mu_beta_whp ~ dnorm(0, 1e-12)
+  # mu_beta_whp2 ~ dnorm(0, 1e-12)
   mu_beta_date ~ dnorm(0, 1e-12)
   tau_Intercept ~ dgamma(1e-12, 1e-12)
   tau_beta_whp ~ dgamma(1e-12, 1e-12)
+  # tau_beta_whp2 ~ dgamma(1e-12, 1e-12)
   tau_beta_date ~ dgamma(1e-12, 1e-12)
 
   #####################################
@@ -543,7 +548,6 @@ vars =  c('mf_fit',
           'total_power')
 n_chains = 2
 burn_in = 100
-n_steps = 1000
 
 model = jags.model(textConnection(code), data, n.chains=n_chains)
 update(model, burn_in)
@@ -581,14 +585,14 @@ g4 = ggplot(outframe %>% filter(facility %in% gen_names, variable=="mf_pred", va
   labs(title=paste("Posterior Generator Values for", prediction_date), x="Mass flow (T/h)", y="Scaled density", fill="Facility") +
   ggsave('../media/mf_gens.png', width=24.7, height=10, units='cm')
 
-g4.5 = ggplot(outframe %>% filter(facility %in% gen_names, variable %in% c("mf_pred", "power")),
-              aes(x=value, fill=facility)) +
-  geom_density(aes(y=..scaled..), alpha=0.5, color=NA)+ xlim(0, NA) +
-  facet_grid(variable ~ .) +
-  theme(axis.text.y=element_blank(),
-        axis.ticks.y=element_blank()) +
-  labs(title=paste("Posterior Generator States for", prediction_date), x="Value (T/h and MW)", y="Scaled density", fill="Facility") +
-  ggsave('../media/gens.png', width=24.7, height=10, units='cm')
+# g4.5 = ggplot(outframe %>% filter(facility %in% gen_names, variable %in% c("mf_pred", "power")),
+#               aes(x=value, fill=facility)) +
+#   geom_density(aes(y=..scaled..), alpha=0.5, color=NA)+ xlim(0, NA) +
+#   facet_grid(variable ~ .) +
+#   theme(axis.text.y=element_blank(),
+#         axis.ticks.y=element_blank()) +
+#   labs(title=paste("Posterior Generator States for", prediction_date), x="Value (T/h and MW)", y="Scaled density", fill="Facility") +
+#   ggsave('../media/gens.png', width=24.7, height=10, units='cm')
 
 g5 = ggplot(outframe %>% filter(facility %in% gen_names, variable=="power", value>0), aes(x=value, fill=facility)) +
   geom_density(aes(y=..scaled..), alpha=0.5, color=NA) + xlim(0, NA) +
@@ -694,7 +698,7 @@ n_summaries = well_summaries %>%
 
 ggplot(well_summaries, aes(x=1, y=log(sd))) +
   geom_boxplot(fill='steelblue') +
-  geom_text(data=n_summaries, aes(x=-Inf, y=Inf, hjust=0, vjust=1, label=paste0("n=", n), family="Times New Roman")) +
+  geom_label(data=n_summaries, aes(x=-Inf, y=Inf, hjust=0, vjust=1, label=paste0("n=", n), family="Times New Roman"), label.size=0, fill='white') +
   facet_grid(.~ use.pi + use.test) +
   theme(axis.text.x=element_blank(),
         axis.ticks.x=element_blank()) +
@@ -748,11 +752,10 @@ plotdata = regression_df %>%
 # regression plot
 ggplot(prod, aes(x=whp)) +
   geom_line(aes(y=mean, color=well)) +
-  # geom_line(data=reglines, aes(y=mf, group=datetime, lty="OLS Regression")) +
   geom_ribbon(aes(ymin=lower, ymax=upper, fill=well), alpha=0.25) +
   geom_point(data=plotdata, aes(y=mf, color=well, size=date, shape=source), alpha=0.5) +
   labs(title="Linear Regression on Test and PI Data", x="Well-head pressure (bar)", y="Mass flow (T/h)", color="Well", shape="Data source", size="Date", fill="Well") +
-  coord_cartesian(xlim=c(min(plotdata$whp)*0.875,max(plotdata$whp)*1.125), ylim=c(0,max(plotdata$mf)*1.125)) +
+  coord_cartesian(xlim=c(min(plotdata$whp)*0.9,max(plotdata$whp)*1.1), ylim=c(0,max(plotdata$mf)*1.1)) +
   ggsave('../media/production_curve.png', width=24.7*0.48, height=24.7*0.48, units='cm')
 
 ts_fit = as.data.frame(outmatrix) %>%
@@ -877,19 +880,46 @@ liq_fit = as.data.frame(outmatrix) %>%
          Well = factor(names(ids[well_id])),
          Observed = mf) %>%
   gather(key="key", value="value", `Standardised residual`, Observed) %>%
-  select(Well, key, Fitted, value)
+  select(Well, key, Fitted, value, source)
 
 diagplot = ggplot(liq_fit, aes(x=Fitted, y=value)) +
-  geom_point(aes(color=Well, shape=Well)) + scale_shape_manual(values = 1:length(levels(liq_fit$Well))) +
+  geom_point(aes(color=Well, shape=Well)) + scale_shape_manual(values = rep_len(1:25, length(unique(liq_fit$Well)))) +
   geom_smooth(color='black') +
   facet_wrap(~key, scales="free") +
   geom_hline(data=data.frame(key="Standardised residual", value=c(1.96,-1.96)), aes(yintercept=value), color='red') +
   geom_abline(data=data.frame(key="Observed", a = 1, b = 0), aes(slope = a, intercept=b), color='red') +
+  # coord_cartesian(ylim=c(-4, 4)) +
   labs(title="Diagnostic Plots", x="Fitted mass flow (T/h)", y="") +
   theme(legend.position = "bottom") +
   guides(color=guide_legend(nrow=3, byrow=T), shape=guide_legend(nrow=3, byrow=T)) +
   ggsave('../media/diagnostics.png', width=24.7, height=12, units='cm')
-ggplotly(diagplot)
+diagplot
+
+selectwells = liq_fit %>% group_by(Well, key) %>% summarise(fittedsd = sd(Fitted)) %>% 
+  filter(fittedsd>1) %>% pull(Well)
+
+observedplot = ggplot(liq_fit %>% filter(key=="Observed", Well %in% selectwells), aes(x=Fitted, y=value)) +
+  geom_point(aes(color=source), alpha=0.5) +
+  geom_smooth(color=NA, alpha=0.5) +
+  facet_wrap(~Well) +
+  # geom_hline(data=data.frame(key="Standardised residual", value=c(1.96,-1.96)), aes(yintercept=value), color='red') +
+  geom_abline(data=data.frame(key="Observed", a = 1, b = 0), aes(slope = a, intercept=b)) +
+  labs(title="Linear Regression Fit Plots Per Well", x="Fitted mass flow (T/h)", y="Observed mass flow (T/h)", color="Data source") +
+  coord_cartesian(xlim=c(0, 700), ylim=c(0, 700)) + theme(legend.position = "bottom") +
+  # guides(color=guide_legend(nrow=3, byrow=T), shape=guide_legend(nrow=3, byrow=T)) +
+  ggsave('../media/observed.png', width=24.7, height=24.7, units='cm')
+
+stdresplot = ggplot(liq_fit %>% filter(key=="Standardised residual", Well %in% selectwells), aes(x=Fitted, y=value)) +
+  geom_point(aes(color=source), alpha=0.5) +
+  geom_smooth(color=NA, alpha=0.5) +
+  facet_wrap(~Well) +
+  geom_hline(data=data.frame(key="Standardised residual", value=c(1.96,-1.96)), aes(yintercept=value), color='red') +
+  # geom_abline(data=data.frame(key="Observed", a = 1, b = 0), aes(slope = a, intercept=b), color='red') +
+  labs(title="Linear Regression Residual Plots Per Well", x="Fitted mass flow (T/h)", y="Standardised residual", color="Data source") +
+  coord_cartesian(ylim=c(-4, 4)) + theme(legend.position="bottom") +
+  # guides(color=guide_legend(nrow=3, byrow=T), shape=guide_legend(nrow=3, byrow=T)) +
+  ggsave('../media/stdres.png', width=24.7, height=24.7, units='cm')
+diagplot_separate
 
 stdres_min = liq_fit %>% filter(key=="Standardised residual") %>% pull(value) %>% min()
 stdres_max = liq_fit %>% filter(key=="Standardised residual") %>% pull(value) %>% max()
@@ -898,7 +928,7 @@ ggplot(liq_fit %>% filter(key=="Standardised residual"), aes(x=value)) +
   geom_line(data=data.frame(x=seq(stdres_min, stdres_max, length.out=100)), aes(x=x, y=dnorm(x)))
 ```
 
-# Constraint Violations
+# Limits and Constraint Violations
 
 ```{r constraints}
 sf.df <- outframe %>% 
@@ -906,19 +936,27 @@ sf.df <- outframe %>%
   droplevels()
 limits = fp_constants %>%
   mutate(facility = names(ids)[fp_id]) %>%
-  select(facility, limit) %>%
+  select(facility, limit) %>% 
   drop_na()
 
-limitplot = ggplot(sf.df %>% filter(facility %ni% incomplete.fps), aes(x=value, fill=facility, color=facility)) +
+p.limits = sf.df %>%
+  left_join(limits, by=c("facility")) %>%
+  mutate(greater = value > limit) %>%
+  group_by(facility) %>%
+  summarise(p.greater = mean(greater)) %>%
+  drop_na()
+
+limitplot = ggplot(sf.df %>% filter(facility %ni% incomplete.fps), aes(x=value, fill=facility)) +
   facet_wrap(~facility, scales = "free_y", ncol=2) +
   geom_density(alpha=0.5, color=NA) +
   geom_vline(data=limits, aes(xintercept=limit), color="red") +
+  geom_label(data=p.limits %>% filter(facility %ni% incomplete.fps), aes(x=-Inf, y=Inf, hjust=0, vjust=1, label=paste0("p(>lim)=", p.greater), family="Times New Roman"), color="black", label.size=0, fill='white') +
   theme(legend.position="none",
         axis.text.y=element_blank(),
         axis.ticks.y=element_blank()) +
   labs(title="Posterior Flash Plant Mass Flows", x="Steam flow (T/h)", y="Density", fill="Flash plant", color="Steam flow limit") +
   ggsave('../media/constraints.png', width=24.7, height=10, units='cm')
-ggplotly(limitplot)
+limitplot
 ```
 
 # Flow Comparison
@@ -948,7 +986,7 @@ ps = flow.df %>%
 ggplot(flow.df %>% filter(facility %ni% incomplete.fps), aes(x=value)) +
   geom_density(aes(y=..scaled.., fill=variable, color=variable), alpha=0.5, show.legend=F) +
   geom_vline(data=comparison %>% filter(facility %ni% incomplete.fps), aes(xintercept=value)) +
-  geom_label(data=ps %>% filter(facility %ni% incomplete.fps), aes(x=-Inf, y=Inf, hjust=0, vjust=1, label=paste0("p(>x)=", p.greater), family="Times New Roman"), alpha=0.5) +
+  geom_label(data=ps %>% filter(facility %ni% incomplete.fps), aes(x=-Inf, y=Inf, hjust=0, vjust=1, label=paste0("p(>x)=", p.greater), family="Times New Roman"), label.size=0) +
   facet_grid(facility~variable, scales="free", space="free_y") +
   theme(axis.text.y=element_blank(),
         axis.ticks.y=element_blank()) +
@@ -969,7 +1007,7 @@ proportion_out = sum(geweke.df$out) / nrow(geweke.df)
 ggplot(geweke.df, aes(x=Index, y=z)) +
   geom_point() +
   geom_hline(data=data.frame(value=c(1.96,-1.96)), aes(yintercept=value), color='red') +
-  labs(title=paste0("Geweke z-score. ", round(proportion_out, 2)*100, " % points lie outside the 95% confidence interval.")) +
+  labs(title=paste0("Geweke z-score. ", round(proportion_out, 2)*100, "% of points lie outside the 95% confidence interval.")) +
   ggsave('../media/geweke.png', width=24.7, height=6, units='cm')
   
 

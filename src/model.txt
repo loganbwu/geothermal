@@ -53,6 +53,7 @@ model {
   for (j in liq_well_ids) {
     Intercept[j] ~ dnorm(mu_Intercept, tau_Intercept)
     beta_whp[j] ~ dnorm(mu_beta_whp, tau_beta_whp)
+    # beta_whp2[j] ~ dnorm(mu_beta_whp2, tau_beta_whp2)
     beta_date[j] ~ dnorm(mu_beta_date, tau_beta_date)
     tau[j] ~ dgamma(1e-12, 1e-12)
     sd[j] <- 1/max(sqrt(tau[j]), 1e-12)
@@ -68,9 +69,11 @@ model {
   # set hyperparameters
   mu_Intercept ~ dnorm(0, 1e-12)
   mu_beta_whp ~ dnorm(0, 1e-12)
+  # mu_beta_whp2 ~ dnorm(0, 1e-12)
   mu_beta_date ~ dnorm(0, 1e-12)
   tau_Intercept ~ dgamma(1e-12, 1e-12)
   tau_beta_whp ~ dgamma(1e-12, 1e-12)
+  # tau_beta_whp2 ~ dgamma(1e-12, 1e-12)
   tau_beta_date ~ dgamma(1e-12, 1e-12)
 
   #####################################
