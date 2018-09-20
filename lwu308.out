@@ -29,15 +29,15 @@
 \BOOKMARK [2][-]{subsection.8.4}{Down-flow Results}{section.8}% 29
 \BOOKMARK [1][-]{section.9}{Conclusions}{}% 30
 \BOOKMARK [1][-]{section.10}{Further Development}{}% 31
-\BOOKMARK [2][-]{subsection.10.1}{Direct Data Integration}{section.10}% 32
-\BOOKMARK [2][-]{subsection.10.2}{Data Integration With Other Models}{section.10}% 33
-\BOOKMARK [2][-]{subsection.10.3}{Time Series}{section.10}% 34
-\BOOKMARK [2][-]{subsection.10.4}{Prior Specification}{section.10}% 35
-\BOOKMARK [2][-]{subsection.10.5}{Hierarchical Model Resolution}{section.10}% 36
-\BOOKMARK [1][-]{section*.30}{Appendices}{}% 37
-\BOOKMARK [1][-]{Appendix.1.A}{Time Series}{}% 38
-\BOOKMARK [1][-]{Appendix.1.B}{Regression Diagnostics}{}% 39
-\BOOKMARK [1][-]{Appendix.1.C}{Verification}{}% 40
-\BOOKMARK [1][-]{Appendix.1.D}{All Well Declines}{}% 41
-\BOOKMARK [1][-]{section.11}{Flash Plant Data Sources}{}% 42
-\BOOKMARK [1][-]{section.12}{JAGS Model}{}% 43
+\BOOKMARK [2][-]{subsection.10.1}{Enthalpy Prediction}{section.10}% 32
+\BOOKMARK [2][-]{subsection.10.2}{Direct Data Integration}{section.10}% 33
+\BOOKMARK [2][-]{subsection.10.3}{Data Integration With Other Models}{section.10}% 34
+\BOOKMARK [2][-]{subsection.10.4}{Time Series}{section.10}% 35
+\BOOKMARK [2][-]{subsection.10.5}{Prior Specification}{section.10}% 36
+\BOOKMARK [2][-]{subsection.10.6}{Hierarchical Model Resolution}{section.10}% 37
+\BOOKMARK [1][-]{section*.23}{Appendices}{}% 38
+\BOOKMARK [1][-]{Appendix.1.A}{Time Series Comparison}{}% 39
+\BOOKMARK [1][-]{Appendix.1.B}{Regression Diagnostics}{}% 40
+\BOOKMARK [1][-]{Appendix.1.C}{All Well Declines}{}% 41
+\BOOKMARK [1][-]{Appendix.1.D}{Flash Plant Data Sources}{}% 42
+\BOOKMARK [1][-]{Appendix.1.E}{JAGS Model}{}% 43

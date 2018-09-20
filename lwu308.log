@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.9.24)  19 SEP 2018 19:16
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.9.24)  20 SEP 2018 16:39
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1323,14 +1323,14 @@ ABD: EveryShipout initializing macros
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
 * modes: 
-* h-part:(L,W,R)=(85.35826pt, 455.24411pt, 56.9055pt)
+* h-part:(L,W,R)=(71.13188pt, 455.24411pt, 71.13188pt)
 * v-part:(T,H,B)=(85.35826pt, 688.5567pt, 71.13188pt)
 * \paperwidth=597.50787pt
 * \paperheight=845.04684pt
 * \textwidth=455.24411pt
 * \textheight=688.5567pt
-* \oddsidemargin=13.08827pt
-* \evensidemargin=13.08827pt
+* \oddsidemargin=-1.1381pt
+* \evensidemargin=-1.1381pt
 * \topmargin=-43.81721pt
 * \headheight=28.45274pt
 * \headsep=28.45274pt
@@ -1382,291 +1382,140 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7> not available
 \c__siunitx_mathtt_int=\count291
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10.95> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 92.
-Package hyperref Info: bookmark level for unknown todo defaults to 0 on input l
-ine 92.
-
-Overfull \hbox (1.96361pt too wide) in paragraph at lines 92--92
-\OT1/ptm/m/n/12 scrib- 
- []
-
-
-Overfull \hbox (0.96794pt too wide) in paragraph at lines 92--92
-\OT1/ptm/m/n/12 done, 
- []
-
-
-Overfull \hbox (5.29948pt too wide) in paragraph at lines 92--92
-\OT1/ptm/m/n/12 maris- 
- []
-
-
-Overfull \hbox (3.22408pt too wide) in paragraph at lines 92--92
-\OT1/ptm/m/n/12 know.  
- []
-
-
-Overfull \hbox (1.96361pt too wide) in paragraph at lines 92--92
-\OT1/ptm/m/n/12 scrib- 
- []
-
-
-Overfull \hbox (0.96794pt too wide) in paragraph at lines 92--92
-\OT1/ptm/m/n/12 done, 
- []
-
-
-Overfull \hbox (5.29948pt too wide) in paragraph at lines 92--92
-\OT1/ptm/m/n/12 maris- 
- []
-
-
-Overfull \hbox (3.22408pt too wide) in paragraph at lines 92--92
-\OT1/ptm/m/n/12 know.  
- []
-
-
-Overfull \hbox (1.96361pt too wide) in paragraph at lines 92--92
-\OT1/ptm/m/n/12 scrib- 
- []
-
-
-Overfull \hbox (0.96794pt too wide) in paragraph at lines 92--92
-\OT1/ptm/m/n/12 done, 
- []
-
-
-Overfull \hbox (5.29948pt too wide) in paragraph at lines 92--92
-\OT1/ptm/m/n/12 maris- 
- []
-
-
-Overfull \hbox (3.22408pt too wide) in paragraph at lines 92--92
-\OT1/ptm/m/n/12 know.  
- []
-
-
-Overfull \hbox (1.96361pt too wide) in paragraph at lines 92--92
-\OT1/ptm/m/n/12 scrib- 
- []
-
-
-Overfull \hbox (0.96794pt too wide) in paragraph at lines 92--92
-\OT1/ptm/m/n/12 done, 
- []
-
-
-Overfull \hbox (5.29948pt too wide) in paragraph at lines 92--92
-\OT1/ptm/m/n/12 maris- 
- []
-
-
-Overfull \hbox (3.22408pt too wide) in paragraph at lines 92--92
-\OT1/ptm/m/n/12 know.  
- []
-
-[1
+ [1
 
 {/usr/local/texlive/2016/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <17.28> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 103.
-
-(./lwu308.toc)
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 99.
+ [1] (./lwu308.toc)
 \tf@toc=\write5
 \openout5 = `lwu308.toc'.
 
- [1] <media/current_system.png, id=238, 474.573pt x 341.5962pt>
+pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
+een already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.115 \newpage
+               [1] <media/current_system.png, id=240, 474.573pt x 341.5962pt>
 File: media/current_system.png Graphic file (type png)
 
 <use media/current_system.png>
-Package pdftex.def Info: media/current_system.png used on input line 119.
+Package pdftex.def Info: media/current_system.png used on input line 127.
 (pdftex.def)             Requested size: 218.51521pt x 157.28731pt.
 
-<media/proposed_system.png, id=240, 474.573pt x 341.5962pt>
+<media/proposed_system.png, id=242, 474.573pt x 341.5962pt>
 File: media/proposed_system.png Graphic file (type png)
 
 <use media/proposed_system.png>
-Package pdftex.def Info: media/proposed_system.png used on input line 125.
+Package pdftex.def Info: media/proposed_system.png used on input line 133.
 (pdftex.def)             Requested size: 218.51521pt x 157.28731pt.
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.148 
+l.156 
        [1 <./media/current_system.png> <./media/proposed_system.png>] [2]
-Underfull \hbox (badness 10000) in paragraph at lines 179--179
+Underfull \hbox (badness 10000) in paragraph at lines 187--187
 []|\OT1/ptm/m/n/12 Under re-peated sam-pling,
  []
 
-<media/network_diagram.png, id=266, 555.5154pt x 286.1892pt>
+
+Underfull \hbox (badness 1077) in paragraph at lines 187--187
+\OT1/ptm/m/n/12 95% of con-fi-dence in-ter-vals
+ []
+
+<media/network_diagram.png, id=268, 555.5154pt x 286.1892pt>
 File: media/network_diagram.png Graphic file (type png)
 
 <use media/network_diagram.png>
-Package pdftex.def Info: media/network_diagram.png used on input line 193.
+Package pdftex.def Info: media/network_diagram.png used on input line 201.
 (pdftex.def)             Requested size: 227.62206pt x 117.26845pt.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <14.4> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 198.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 206.
  [3 <./media/network_diagram.png>] [4] [5]
-<media/pi_data.png, id=294, 2927.93875pt x 1422.31375pt>
+<media/pi_data.png, id=296, 2927.93875pt x 1422.31375pt>
 File: media/pi_data.png Graphic file (type png)
 
 <use media/pi_data.png>
-Package pdftex.def Info: media/pi_data.png used on input line 257.
+Package pdftex.def Info: media/pi_data.png used on input line 265.
 (pdftex.def)             Requested size: 455.24411pt x 221.12914pt.
  [6 <./media/pi_data.png>]
-Overfull \hbox (11.97168pt too wide) in paragraph at lines 282--282
-[][][][]\OT1/ptm/m/n/12 Explain 
- []
-
-
-Overfull \hbox (11.97168pt too wide) in paragraph at lines 282--282
-[][][][]\OT1/ptm/m/n/12 Explain 
- []
-
-
-Overfull \hbox (11.97168pt too wide) in paragraph at lines 282--282
-[][][][]\OT1/ptm/m/n/12 Explain 
- []
-
-
-Overfull \hbox (11.97168pt too wide) in paragraph at lines 282--282
-[][][][]\OT1/ptm/m/n/12 Explain 
- []
-
-<media/workflow.png, id=304, 609.9588pt x 142.131pt>
+<media/workflow.png, id=306, 609.9588pt x 142.131pt>
 File: media/workflow.png Graphic file (type png)
  <use media/workflow.png>
-Package pdftex.def Info: media/workflow.png used on input line 290.
+Package pdftex.def Info: media/workflow.png used on input line 299.
 (pdftex.def)             Requested size: 227.62206pt x 53.03873pt.
 
-Overfull \hbox (1.87584pt too wide) in paragraph at lines 300--301
+Overfull \hbox (1.87584pt too wide) in paragraph at lines 309--310
 []\OT1/ptm/m/n/12 Our Python rou-tine im-ple-ments suf-fi-cient au-to-matic dat
 a-cleaning ca-pa-bil-i-ties that fix known
  []
 
-(./media/quality.tex) [7 <./media/workflow.png>]
-Overfull \hbox (4.61339pt too wide) in paragraph at lines 314--315
+[7 <./media/workflow.png>]
+Overfull \hbox (4.61339pt too wide) in paragraph at lines 319--320
 []\OT1/ptm/m/n/12 The rest of the work-flow is car-ried out in R. To make the p
 ro-gram us-able to non-programmers,
  []
 
-<media/jags_diagram.png, id=317, 455.7828pt x 198.9834pt>
+<media/jags_diagram.png, id=318, 455.7828pt x 198.9834pt>
 File: media/jags_diagram.png Graphic file (type png)
 
 <use media/jags_diagram.png>
-Package pdftex.def Info: media/jags_diagram.png used on input line 326.
+Package pdftex.def Info: media/jags_diagram.png used on input line 331.
 (pdftex.def)             Requested size: 227.62206pt x 99.37303pt.
- [8 <./media/jags_diagram.png>] [9]
-<media/slice_sampling.png, id=334, 321.8424pt x 95.1555pt>
+ [8 <./media/jags_diagram.png>]
+<media/slice_sampling.png, id=328, 321.8424pt x 95.1555pt>
 File: media/slice_sampling.png Graphic file (type png)
 
 <use media/slice_sampling.png>
-Package pdftex.def Info: media/slice_sampling.png used on input line 363.
+Package pdftex.def Info: media/slice_sampling.png used on input line 364.
 (pdftex.def)             Requested size: 227.62206pt x 67.30095pt.
- [10 <./media/slice_sampling.png>] [11] [12]
-[13] <media/diagnostics.png, id=387, 2927.93875pt x 1422.31375pt>
+ [9] [10 <./media/slice_sampling.png>] [11]
+[12] <media/diagnostics.png, id=379, 2927.93875pt x 1422.31375pt>
 File: media/diagnostics.png Graphic file (type png)
 
 <use media/diagnostics.png>
-Package pdftex.def Info: media/diagnostics.png used on input line 492.
+Package pdftex.def Info: media/diagnostics.png used on input line 493.
 (pdftex.def)             Requested size: 455.24411pt x 221.12914pt.
-
-Overfull \hbox (5.76445pt too wide) in paragraph at lines 500--501
+ [13]
+Overfull \hbox (5.76445pt too wide) in paragraph at lines 501--502
 []\OT1/ptm/m/n/12 Figure []9[] shows the mod-elled con-nec-tiv-ity be-tween wel
 ls, flash plants and gen-er-a-tors. Dummy
  []
 
-<media/full_network.png, id=395, 481.8pt x 481.8pt>
+<media/full_network.png, id=399, 481.8pt x 481.8pt>
 File: media/full_network.png Graphic file (type png)
 
 <use media/full_network.png>
-Package pdftex.def Info: media/full_network.png used on input line 508.
+Package pdftex.def Info: media/full_network.png used on input line 509.
 (pdftex.def)             Requested size: 218.51521pt x 218.51358pt.
 
-<media/production_curve.png, id=396, 1405.25pt x 1405.25pt>
+<media/production_curve.png, id=400, 1405.25pt x 1405.25pt>
 File: media/production_curve.png Graphic file (type png)
 
 <use media/production_curve.png>
-Package pdftex.def Info: media/production_curve.png used on input line 514.
+Package pdftex.def Info: media/production_curve.png used on input line 515.
 (pdftex.def)             Requested size: 218.51521pt x 218.49765pt.
  [14 <./media/diagnostics.png>] [15 <./media/full_network.png> <./media/product
 ion_curve.png>]
-Overfull \hbox (5.95967pt too wide) in paragraph at lines 539--539
-\OT1/ptm/m/n/12 peated 
- []
-
-
-Overfull \hbox (8.64781pt too wide) in paragraph at lines 539--539
-\OT1/ptm/m/n/12 Should 
- []
-
-
-Overfull \hbox (0.94405pt too wide) in paragraph at lines 539--539
-\OT1/ptm/m/n/12 move 
- []
-
-
-Overfull \hbox (5.95967pt too wide) in paragraph at lines 539--539
-\OT1/ptm/m/n/12 peated 
- []
-
-
-Overfull \hbox (8.64781pt too wide) in paragraph at lines 539--539
-\OT1/ptm/m/n/12 Should 
- []
-
-
-Overfull \hbox (0.94405pt too wide) in paragraph at lines 539--539
-\OT1/ptm/m/n/12 move 
- []
-
-
-Overfull \hbox (5.95967pt too wide) in paragraph at lines 539--539
-\OT1/ptm/m/n/12 peated 
- []
-
-
-Overfull \hbox (8.64781pt too wide) in paragraph at lines 539--539
-\OT1/ptm/m/n/12 Should 
- []
-
-
-Overfull \hbox (0.94405pt too wide) in paragraph at lines 539--539
-\OT1/ptm/m/n/12 move 
- []
-
-
-Overfull \hbox (5.95967pt too wide) in paragraph at lines 539--539
-\OT1/ptm/m/n/12 peated 
- []
-
-
-Overfull \hbox (8.64781pt too wide) in paragraph at lines 539--539
-\OT1/ptm/m/n/12 Should 
- []
-
-
-Overfull \hbox (0.94405pt too wide) in paragraph at lines 539--539
-\OT1/ptm/m/n/12 move 
- []
-
-<media/bayesdemo.png, id=425, 463.9734pt x 154.6578pt>
+<media/bayesdemo.png, id=429, 463.9734pt x 154.6578pt>
 File: media/bayesdemo.png Graphic file (type png)
 
 <use media/bayesdemo.png>
-Package pdftex.def Info: media/bayesdemo.png used on input line 545.
+Package pdftex.def Info: media/bayesdemo.png used on input line 546.
 (pdftex.def)             Requested size: 227.62206pt x 75.87265pt.
 
-<media/trace_plot.png, id=426, 2927.93875pt x 947.54pt>
+<media/trace_plot.png, id=430, 2927.93875pt x 947.54pt>
 File: media/trace_plot.png Graphic file (type png)
 
 <use media/trace_plot.png>
-Package pdftex.def Info: media/trace_plot.png used on input line 555.
+Package pdftex.def Info: media/trace_plot.png used on input line 556.
 (pdftex.def)             Requested size: 455.24411pt x 147.31538pt.
  [16 <./media/bayesdemo.png> <./media/trace_plot.png>] <media/geweke.png, id=44
-1, 2927.93875pt x 710.655pt>
+4, 2927.93875pt x 710.655pt>
 File: media/geweke.png Graphic file (type png)
  <use media/geweke.png>
-Package pdftex.def Info: media/geweke.png used on input line 572.
+Package pdftex.def Info: media/geweke.png used on input line 573.
 (pdftex.def)             Requested size: 455.24411pt x 110.48654pt.
 
 (./media/gelman.tex
@@ -1674,143 +1523,96 @@ Package pdftex.def Info: media/geweke.png used on input line 572.
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 ) [17 <./media/geweke.png>]
-<media/production_curve_without.png, id=459, 1405.25pt x 1405.25pt>
+<media/production_curve_without.png, id=460, 1405.25pt x 1405.25pt>
 File: media/production_curve_without.png Graphic file (type png)
 
 <use media/production_curve_without.png>
 Package pdftex.def Info: media/production_curve_without.png used on input line 
-604.
-(pdftex.def)             Requested size: 218.51521pt x 218.49765pt.
+603.
+(pdftex.def)             Requested size: 227.62206pt x 227.61066pt.
 File: media/production_curve.png Graphic file (type png)
  <use media/production_curve.png>
-Package pdftex.def Info: media/production_curve.png used on input line 610.
-(pdftex.def)             Requested size: 218.51521pt x 218.49765pt.
+Package pdftex.def Info: media/production_curve.png used on input line 607.
+(pdftex.def)             Requested size: 227.62206pt x 227.61066pt.
 
-<media/mf_wells.png, id=460, 2927.93875pt x 1185.42876pt>
+Overfull \hbox (2.28003pt too wide) in paragraph at lines 602--609
+[][]  [] 
+ []
+
+<media/mf_wells.png, id=461, 2927.93875pt x 947.54pt>
 File: media/mf_wells.png Graphic file (type png)
+ <use media/mf_wells.png>
+Package pdftex.def Info: media/mf_wells.png used on input line 616.
+(pdftex.def)             Requested size: 455.24411pt x 147.31538pt.
 
-<use media/mf_wells.png>
-Package pdftex.def Info: media/mf_wells.png used on input line 619.
-(pdftex.def)             Requested size: 455.24411pt x 184.3003pt.
- [18] [19 <./media/production_curve_without.png> <./media/mf_wells.png>] <media
-/error_source.png, id=477, 1463.4675pt x 710.655pt>
+[18] [19 <./media/production_curve_without.png> <./media/mf_wells.png>]
+<media/error_source.png, id=478, 1463.4675pt x 710.655pt>
 File: media/error_source.png Graphic file (type png)
 
 <use media/error_source.png>
-Package pdftex.def Info: media/error_source.png used on input line 636.
+Package pdftex.def Info: media/error_source.png used on input line 633.
 (pdftex.def)             Requested size: 227.62206pt x 110.5299pt.
 
-Underfull \hbox (badness 2512) in paragraph at lines 653--653
+Underfull \hbox (badness 2512) in paragraph at lines 650--650
 []|\OT1/ptm/m/n/12 Very re-cent, since the last
  []
 
-(./media/tab_beta_date.tex
+(./media/tab_beta_date.tex) [20 <./media/error_source.png>]
+<media/verification.png, id=497, 2927.93875pt x 2370.8575pt>
+File: media/verification.png Graphic file (type png)
 
-LaTeX Warning: `h' float specifier changed to `ht'.
+<use media/verification.png>
+Package pdftex.def Info: media/verification.png used on input line 686.
+(pdftex.def)             Requested size: 455.24411pt x 368.60059pt.
 
-) [20 <./media/error_source.png>]
-<media/beta_date.png, id=494, 2927.93875pt x 710.655pt>
-File: media/beta_date.png Graphic file (type png)
-
-<use media/beta_date.png>
-Package pdftex.def Info: media/beta_date.png used on input line 672.
-(pdftex.def)             Requested size: 455.24411pt x 110.48654pt.
- [21 <./media/beta_date.png>]
-<media/constraints.png, id=509, 2927.93875pt x 1185.42876pt>
+<media/constraints.png, id=500, 2927.93875pt x 1185.42876pt>
 File: media/constraints.png Graphic file (type png)
 
 <use media/constraints.png>
-Package pdftex.def Info: media/constraints.png used on input line 698.
+Package pdftex.def Info: media/constraints.png used on input line 706.
 (pdftex.def)             Requested size: 455.24411pt x 184.3003pt.
- <media/gens.png, id=512, 2927.93875pt x 710.655pt>
+ [21] [22 <./media/verification.png> <./media/constraints.png>] <media/gens.png
+, id=521, 2927.93875pt x 710.655pt>
 File: media/gens.png Graphic file (type png)
 
 <use media/gens.png>
-Package pdftex.def Info: media/gens.png used on input line 710.
+Package pdftex.def Info: media/gens.png used on input line 718.
 (pdftex.def)             Requested size: 455.24411pt x 110.48654pt.
- [22 <./media/constraints.png>]
-Overfull \hbox (6.64377pt too wide) in paragraph at lines 730--730
-[][][][]\OT1/ptm/m/n/12 should 
- []
-
-
-Overfull \hbox (9.28358pt too wide) in paragraph at lines 730--730
-\OT1/ptm/m/n/12 screen- 
- []
-
-
-Overfull \hbox (6.64377pt too wide) in paragraph at lines 730--730
-[][][][]\OT1/ptm/m/n/12 should 
- []
-
-
-Overfull \hbox (9.28358pt too wide) in paragraph at lines 730--730
-\OT1/ptm/m/n/12 screen- 
- []
-
-
-Overfull \hbox (6.64377pt too wide) in paragraph at lines 730--730
-[][][][]\OT1/ptm/m/n/12 should 
- []
-
-
-Overfull \hbox (9.28358pt too wide) in paragraph at lines 730--730
-\OT1/ptm/m/n/12 screen- 
- []
-
-
-Overfull \hbox (6.64377pt too wide) in paragraph at lines 730--730
-[][][][]\OT1/ptm/m/n/12 should 
- []
-
-
-Overfull \hbox (9.28358pt too wide) in paragraph at lines 730--730
-\OT1/ptm/m/n/12 screen- 
- []
-
-[23 <./media/gens.png>] [24] [25] (./lwu308.bbl) [26]
+ [23 <./media/gens.png>] [24] [25] (./lwu308.bbl) [26]
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <24.88> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 764.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 775.
 
-<media/ts_experiment.png, id=551, 2927.93875pt x 2844.6275pt>
+<media/ts_experiment.png, id=549, 2927.93875pt x 2844.6275pt>
 File: media/ts_experiment.png Graphic file (type png)
 
 <use media/ts_experiment.png>
-Package pdftex.def Info: media/ts_experiment.png used on input line 768.
+Package pdftex.def Info: media/ts_experiment.png used on input line 779.
 (pdftex.def)             Requested size: 455.24411pt x 442.25829pt.
  [27 <./media/ts_experiment.png>]
 <media/observed.png, id=557, 2927.93875pt x 2927.93875pt>
 File: media/observed.png Graphic file (type png)
 
 <use media/observed.png>
-Package pdftex.def Info: media/observed.png used on input line 777.
+Package pdftex.def Info: media/observed.png used on input line 788.
 (pdftex.def)             Requested size: 455.24411pt x 455.2108pt.
 
 <media/stdres.png, id=558, 2927.93875pt x 2927.93875pt>
 File: media/stdres.png Graphic file (type png)
  <use media/stdres.png>
-Package pdftex.def Info: media/stdres.png used on input line 784.
+Package pdftex.def Info: media/stdres.png used on input line 795.
 (pdftex.def)             Requested size: 455.24411pt x 455.2108pt.
 
 [28 <./media/observed.png>] [29 <./media/stdres.png>]
-<media/verification.png, id=570, 2927.93875pt x 3081.5125pt>
-File: media/verification.png Graphic file (type png)
-
-<use media/verification.png>
-Package pdftex.def Info: media/verification.png used on input line 793.
-(pdftex.def)             Requested size: 455.24411pt x 479.08713pt.
- [30 <./media/verification.png>]
 (./media/tab_beta_date_all.tex
-LaTeX Font Info:    Calculating math sizes for size <11> on input line 6.
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <11> not available
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <5> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 6.
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8.14006> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 6.
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <6.60007> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 6.
-) [31] (./media/summaries_fp14.tex)
-(./media/summaries_fp15.tex) (./media/summaries_fp16.tex) [32]
-LaTeX Font Info:    Try loading font information for OT1+pcr on input line 813.
+
+
+LaTeX Warning: Float too large for page by 21.14326pt on input line 90.
+
+) [30] (./media/summaries_fp14.tex) (./media/summaries_fp15.tex)
+(./media/summaries_fp16.tex) [31]
+LaTeX Font Info:    Try loading font information for OT1+pcr on input line 814.
 
 
 (/usr/local/texlive/2016/texmf-dist/tex/latex/psnfss/ot1pcr.fd
@@ -1819,39 +1621,59 @@ File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 (./src/model.txt
 LaTeX Font Info:    Font shape `OT1/pcr/bx/n' in size <10> not available
 (Font)              Font shape `OT1/pcr/b/n' tried instead on input line 2.
- [33] [34]) [35]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 815.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 815.
+ [32] [33]) [34]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 817.
+ [35]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 817.
  (./lwu308.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 815.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 815.
-Package rerunfilecheck Info: File `lwu308.out' has not changed.
-(rerunfilecheck)             Checksum: 88B896EBD3085C81D73E30A167C99A5A;2663.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 815.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 817.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 817.
+
+
+Package rerunfilecheck Warning: File `lwu308.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `lwu308.out':
+(rerunfilecheck)             Before: D98C9BB2DD2064F5DF9DB104C4444240;2698
+(rerunfilecheck)             After:  E59DFC6671E6A71659B4D58C54B17DCC;2698.
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 817.
  ) 
 Here is how much of TeX's memory you used:
- 32484 strings out of 493014
- 621487 string characters out of 6133351
- 903374 words of memory out of 5000000
- 35141 multiletter control sequences out of 15000+600000
- 62044 words of font info for 127 fonts, out of 8000000 for 9000
+ 32340 strings out of 493014
+ 618383 string characters out of 6133351
+ 903302 words of memory out of 5000000
+ 35010 multiletter control sequences out of 15000+600000
+ 52842 words of font info for 109 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 62i,12n,77p,10378b,2881s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
-exlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/te
-xlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/tex
-live/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texli
-ve/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texliv
-e/2016/texmf-dist/fonts/type1/urw/courier/ucrb8a.pfb></usr/local/texlive/2016/t
-exmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2016/texmf-dis
-t/fonts/type1/urw/symbol/usyr.pfb></usr/local/texlive/2016/texmf-dist/fonts/typ
-e1/urw/symbol/usyr.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/time
-s/utmb8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/times/utmr8a.p
-fb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on lwu308.pdf (37 pages, 5726601 bytes).
+ 62i,12n,77p,10378b,2968s stack positions out of 5000i,500n,10000p,200000b,80000s
+pdfTeX warning (dest): name{figure.caption.28} has been referenced but does n
+ot exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{figure.caption.27} has been referenced but does not
+ exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{section*.25} has been referenced but does not exist
+, replaced by a fixed one
+
+{/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/tex
+live/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texl
+ive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texli
+ve/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive
+/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/
+2016/texmf-dist/fonts/type1/urw/courier/ucrb8a.pfb></usr/local/texlive/2016/tex
+mf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2016/texmf-dist/
+fonts/type1/urw/symbol/usyr.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1
+/urw/symbol/usyr.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/times/
+utmb8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/times/utmr8a.pfb
+></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on lwu308.pdf (38 pages, 7198348 bytes).
 PDF statistics:
- 867 PDF objects out of 1000 (max. 8388607)
- 759 compressed objects within 8 object streams
- 340 named destinations out of 1000 (max. 500000)
- 472 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 865 PDF objects out of 1000 (max. 8388607)
+ 758 compressed objects within 8 object streams
+ 335 named destinations out of 1000 (max. 500000)
+ 467 words of extra memory for PDF output out of 10000 (max. 10000000)
 

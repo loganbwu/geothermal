@@ -142,3 +142,14 @@ head(power, 100) %>% select(facility, code, value)
 # 
 # write_excel_csv(extra, "../wairakei_data/extra_liq.csv")
 ```
+
+# Liquid wells
+
+```{r}
+# see if I can get anything else out.
+datapath <- "../wairakei_data/Liquid wells (version 1).xlsx"
+wellsheets = excel_sheets(datapath)
+for (sheet in wellsheets) {
+  assign(sheet, read_excel(datapath, sheet))
+}
+```

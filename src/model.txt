@@ -35,11 +35,11 @@ model {
     c_ar[j] ~ dnorm(0, 1e-12)
     tau_ar[j] ~ dgamma(1e-12, 1e-12)
   }
-  # experimental EMA model (don't use)
+  # experimental EWMA model (use at your own risk)
   for (j in ar_well_ids) {
     for (t in 2:D[1]) {
-      mu_ema[t,j] <- alpha*mu_ema[t-1,j] + (1-alpha)*ts_ema[t-1,j]
-      ts_ema[t,j] ~ dnorm(mu_ema[t,j], tau_ema[j]) T(0,)
+      mu_ema[t,j] <- alpha*mu_ema[t-1,j] + (1-alpha)*ts_ema[t,j]
+      ts_ema[t,j] ~ dnorm(mu_ema[t-1,j], tau_ema[j]) T(0,)
     }
     mu_ema[1,j] <- ts_ema[1,j]
     theta_ema[j] ~ dnorm(0, 1e-12)
@@ -120,7 +120,7 @@ model {
     mf_pred[j] <- max(Intercept[j] + beta_whp[j] * whp_pred_c[j] + beta_date[j] * today_numeric_c, 0)
   }
   # use naive TS reg
-  for (j in dry_well_ids) { #dry_no_ar_well_ids) { 
+  for (j in dry_well_ids) { #dry_no_ar_well_ids) {
     mf_pred[j] <- max(Intercept[j] + beta_date[j] * today_numeric_c, 0)
   }
   # use AR(1)
