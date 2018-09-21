@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.9.24)  20 SEP 2018 16:39
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.9.24)  21 SEP 2018 16:27
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1226,27 +1226,27 @@ Package: geometry 2010/09/12 v5.6 Page Geometry
 (./lwu308.aux)
 \openout1 = `lwu308.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 62.
-LaTeX Font Info:    ... okay on input line 62.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 62.
-LaTeX Font Info:    ... okay on input line 62.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 62.
-LaTeX Font Info:    ... okay on input line 62.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 62.
-LaTeX Font Info:    ... okay on input line 62.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 62.
-LaTeX Font Info:    ... okay on input line 62.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 62.
-LaTeX Font Info:    ... okay on input line 62.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 62.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 62.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 63.
+LaTeX Font Info:    ... okay on input line 63.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 63.
+LaTeX Font Info:    ... okay on input line 63.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 63.
+LaTeX Font Info:    ... okay on input line 63.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 63.
+LaTeX Font Info:    ... okay on input line 63.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 63.
+LaTeX Font Info:    ... okay on input line 63.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 63.
+LaTeX Font Info:    ... okay on input line 63.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 63.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 63.
  (/usr/local/texlive/2016/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 62.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 62.
-LaTeX Font Info:    ... okay on input line 62.
-LaTeX Font Info:    Try loading font information for OT1+ptm on input line 62.
+LaTeX Font Info:    ... okay on input line 63.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 63.
+LaTeX Font Info:    ... okay on input line 63.
+LaTeX Font Info:    Try loading font information for OT1+ptm on input line 63.
 
 (/usr/local/texlive/2016/texmf-dist/tex/latex/psnfss/ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
@@ -1288,7 +1288,7 @@ File: siunitx-abbreviations.cfg 2016/03/01 v2.6q siunitx: Abbreviated units
 )
 \c@lstlisting=\count287
 \AtBeginShipoutBox=\box95
-Package hyperref Info: Link coloring OFF on input line 62.
+Package hyperref Info: Link coloring OFF on input line 63.
  (/usr/local/texlive/2016/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 
@@ -1297,9 +1297,9 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
 \c@section@level=\count288
 )
-LaTeX Info: Redefining \ref on input line 62.
-LaTeX Info: Redefining \pageref on input line 62.
-LaTeX Info: Redefining \nameref on input line 62.
+LaTeX Info: Redefining \ref on input line 63.
+LaTeX Info: Redefining \pageref on input line 63.
+LaTeX Info: Redefining \nameref on input line 63.
 
 (./lwu308.out) (./lwu308.out)
 \@outlinefile=\write4
@@ -1350,43 +1350,43 @@ ABD: EveryShipout initializing macros
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 \c__siunitx_mathsf_int=\count290
-LaTeX Font Info:    Try loading font information for OT1+ztmcm on input line 62
+LaTeX Font Info:    Try loading font information for OT1+ztmcm on input line 63
 .
 (/usr/local/texlive/2016/texmf-dist/tex/latex/psnfss/ot1ztmcm.fd
 File: ot1ztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OT1/ztmcm.
 )
-LaTeX Font Info:    Try loading font information for OML+ztmcm on input line 62
+LaTeX Font Info:    Try loading font information for OML+ztmcm on input line 63
 .
 
 (/usr/local/texlive/2016/texmf-dist/tex/latex/psnfss/omlztmcm.fd
 File: omlztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OML/ztmcm.
 )
-LaTeX Font Info:    Try loading font information for OMS+ztmcm on input line 62
+LaTeX Font Info:    Try loading font information for OMS+ztmcm on input line 63
 .
 
 (/usr/local/texlive/2016/texmf-dist/tex/latex/psnfss/omsztmcm.fd
 File: omsztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OMS/ztmcm.
 )
-LaTeX Font Info:    Try loading font information for OMX+ztmcm on input line 62
+LaTeX Font Info:    Try loading font information for OMX+ztmcm on input line 63
 .
 
 (/usr/local/texlive/2016/texmf-dist/tex/latex/psnfss/omxztmcm.fd
 File: omxztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OMX/ztmcm.
 )
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 62.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 63.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 62.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 63.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 62.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 63.
 \c__siunitx_mathtt_int=\count291
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10.95> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 92.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 93.
  [1
 
 {/usr/local/texlive/2016/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <17.28> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 99.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 100.
  [1] (./lwu308.toc)
 \tf@toc=\write5
 \openout5 = `lwu308.toc'.
@@ -1395,32 +1395,32 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.115 \newpage
+l.119 \newpage
                [1] <media/current_system.png, id=240, 474.573pt x 341.5962pt>
 File: media/current_system.png Graphic file (type png)
 
 <use media/current_system.png>
-Package pdftex.def Info: media/current_system.png used on input line 127.
+Package pdftex.def Info: media/current_system.png used on input line 131.
 (pdftex.def)             Requested size: 218.51521pt x 157.28731pt.
 
 <media/proposed_system.png, id=242, 474.573pt x 341.5962pt>
 File: media/proposed_system.png Graphic file (type png)
 
 <use media/proposed_system.png>
-Package pdftex.def Info: media/proposed_system.png used on input line 133.
+Package pdftex.def Info: media/proposed_system.png used on input line 137.
 (pdftex.def)             Requested size: 218.51521pt x 157.28731pt.
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.156 
+l.160 
        [1 <./media/current_system.png> <./media/proposed_system.png>] [2]
-Underfull \hbox (badness 10000) in paragraph at lines 187--187
+Underfull \hbox (badness 10000) in paragraph at lines 191--191
 []|\OT1/ptm/m/n/12 Under re-peated sam-pling,
  []
 
 
-Underfull \hbox (badness 1077) in paragraph at lines 187--187
+Underfull \hbox (badness 1077) in paragraph at lines 191--191
 \OT1/ptm/m/n/12 95% of con-fi-dence in-ter-vals
  []
 
@@ -1428,102 +1428,105 @@ Underfull \hbox (badness 1077) in paragraph at lines 187--187
 File: media/network_diagram.png Graphic file (type png)
 
 <use media/network_diagram.png>
-Package pdftex.def Info: media/network_diagram.png used on input line 201.
+Package pdftex.def Info: media/network_diagram.png used on input line 205.
 (pdftex.def)             Requested size: 227.62206pt x 117.26845pt.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <14.4> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 206.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 210.
  [3 <./media/network_diagram.png>] [4] [5]
-<media/pi_data.png, id=296, 2927.93875pt x 1422.31375pt>
+<media/pi_data.png, id=299, 2927.93875pt x 1422.31375pt>
 File: media/pi_data.png Graphic file (type png)
 
 <use media/pi_data.png>
-Package pdftex.def Info: media/pi_data.png used on input line 265.
+Package pdftex.def Info: media/pi_data.png used on input line 269.
 (pdftex.def)             Requested size: 455.24411pt x 221.12914pt.
  [6 <./media/pi_data.png>]
-<media/workflow.png, id=306, 609.9588pt x 142.131pt>
+<media/workflow.png, id=308, 609.9588pt x 142.131pt>
 File: media/workflow.png Graphic file (type png)
  <use media/workflow.png>
-Package pdftex.def Info: media/workflow.png used on input line 299.
+Package pdftex.def Info: media/workflow.png used on input line 303.
 (pdftex.def)             Requested size: 227.62206pt x 53.03873pt.
 
-Overfull \hbox (1.87584pt too wide) in paragraph at lines 309--310
+Overfull \hbox (0.15991pt too wide) in paragraph at lines 313--314
 []\OT1/ptm/m/n/12 Our Python rou-tine im-ple-ments suf-fi-cient au-to-matic dat
-a-cleaning ca-pa-bil-i-ties that fix known
+a clean-ing ca-pa-bil-i-ties that fix known
  []
 
-[7 <./media/workflow.png>]
-Overfull \hbox (4.61339pt too wide) in paragraph at lines 319--320
+
+Overfull \hbox (4.61339pt too wide) in paragraph at lines 323--324
 []\OT1/ptm/m/n/12 The rest of the work-flow is car-ried out in R. To make the p
 ro-gram us-able to non-programmers,
  []
 
-<media/jags_diagram.png, id=318, 455.7828pt x 198.9834pt>
+[7 <./media/workflow.png>]
+<media/jags_diagram.png, id=321, 455.7828pt x 198.9834pt>
 File: media/jags_diagram.png Graphic file (type png)
 
 <use media/jags_diagram.png>
-Package pdftex.def Info: media/jags_diagram.png used on input line 331.
+Package pdftex.def Info: media/jags_diagram.png used on input line 335.
 (pdftex.def)             Requested size: 227.62206pt x 99.37303pt.
  [8 <./media/jags_diagram.png>]
-<media/slice_sampling.png, id=328, 321.8424pt x 95.1555pt>
+<media/slice_sampling.png, id=332, 321.8424pt x 95.1555pt>
 File: media/slice_sampling.png Graphic file (type png)
 
 <use media/slice_sampling.png>
-Package pdftex.def Info: media/slice_sampling.png used on input line 364.
+Package pdftex.def Info: media/slice_sampling.png used on input line 368.
 (pdftex.def)             Requested size: 227.62206pt x 67.30095pt.
  [9] [10 <./media/slice_sampling.png>] [11]
-[12] <media/diagnostics.png, id=379, 2927.93875pt x 1422.31375pt>
+[12] <media/diagnostics.png, id=386, 2927.93875pt x 1422.31375pt>
 File: media/diagnostics.png Graphic file (type png)
 
 <use media/diagnostics.png>
-Package pdftex.def Info: media/diagnostics.png used on input line 493.
+Package pdftex.def Info: media/diagnostics.png used on input line 495.
 (pdftex.def)             Requested size: 455.24411pt x 221.12914pt.
  [13]
-Overfull \hbox (5.76445pt too wide) in paragraph at lines 501--502
-[]\OT1/ptm/m/n/12 Figure []9[] shows the mod-elled con-nec-tiv-ity be-tween wel
-ls, flash plants and gen-er-a-tors. Dummy
- []
-
-<media/full_network.png, id=399, 481.8pt x 481.8pt>
+<media/full_network.png, id=407, 481.8pt x 481.8pt>
 File: media/full_network.png Graphic file (type png)
 
 <use media/full_network.png>
-Package pdftex.def Info: media/full_network.png used on input line 509.
+Package pdftex.def Info: media/full_network.png used on input line 511.
 (pdftex.def)             Requested size: 218.51521pt x 218.51358pt.
 
-<media/production_curve.png, id=400, 1405.25pt x 1405.25pt>
+<media/production_curve.png, id=408, 1405.25pt x 1405.25pt>
 File: media/production_curve.png Graphic file (type png)
 
 <use media/production_curve.png>
-Package pdftex.def Info: media/production_curve.png used on input line 515.
+Package pdftex.def Info: media/production_curve.png used on input line 517.
 (pdftex.def)             Requested size: 218.51521pt x 218.49765pt.
- [14 <./media/diagnostics.png>] [15 <./media/full_network.png> <./media/product
-ion_curve.png>]
+
+Overfull \hbox (9.72202pt too wide) in paragraph at lines 530--531
+\OT1/ptm/m/n/12 T/h/MW. Our un-cer-tainty in the con-ver-sion fac-tor is $\OMS/
+ztmcm/m/n/12 ^^F\OT1/ztmcm/m/n/12 5%$\OT1/ptm/m/n/12 , in-ter-preted as $\OML/z
+tmcm/m/it/12 ^^Q \OMS/ztmcm/m/n/12 ^^X [] []$\OT1/ptm/m/n/12 ,
+ []
+
+[14 <./media/diagnostics.png>]
 <media/bayesdemo.png, id=429, 463.9734pt x 154.6578pt>
 File: media/bayesdemo.png Graphic file (type png)
 
 <use media/bayesdemo.png>
-Package pdftex.def Info: media/bayesdemo.png used on input line 546.
+Package pdftex.def Info: media/bayesdemo.png used on input line 548.
 (pdftex.def)             Requested size: 227.62206pt x 75.87265pt.
-
-<media/trace_plot.png, id=430, 2927.93875pt x 947.54pt>
+ [15 <./media/full_network.png> <./media/production_curve.png>] <media/trace_pl
+ot.png, id=441, 2927.93875pt x 947.54pt>
 File: media/trace_plot.png Graphic file (type png)
 
 <use media/trace_plot.png>
-Package pdftex.def Info: media/trace_plot.png used on input line 556.
+Package pdftex.def Info: media/trace_plot.png used on input line 558.
 (pdftex.def)             Requested size: 455.24411pt x 147.31538pt.
- [16 <./media/bayesdemo.png> <./media/trace_plot.png>] <media/geweke.png, id=44
-4, 2927.93875pt x 710.655pt>
+
+<media/geweke.png, id=444, 2927.93875pt x 710.655pt>
 File: media/geweke.png Graphic file (type png)
  <use media/geweke.png>
-Package pdftex.def Info: media/geweke.png used on input line 573.
+Package pdftex.def Info: media/geweke.png used on input line 575.
 (pdftex.def)             Requested size: 455.24411pt x 110.48654pt.
 
-(./media/gelman.tex
+[16 <./media/bayesdemo.png> <./media/trace_plot.png>] (./media/gelman.tex
 
-LaTeX Warning: `h' float specifier changed to `ht'.
+LaTeX Warning: No positions in optional float specifier.
+               Default added (so using `tbp') on input line 3.
 
 ) [17 <./media/geweke.png>]
-<media/production_curve_without.png, id=460, 1405.25pt x 1405.25pt>
+<media/production_curve_without.png, id=469, 1405.25pt x 1405.25pt>
 File: media/production_curve_without.png Graphic file (type png)
 
 <use media/production_curve_without.png>
@@ -1539,80 +1542,88 @@ Overfull \hbox (2.28003pt too wide) in paragraph at lines 602--609
 [][]  [] 
  []
 
-<media/mf_wells.png, id=461, 2927.93875pt x 947.54pt>
+<media/mf_wells.png, id=470, 2927.93875pt x 947.54pt>
 File: media/mf_wells.png Graphic file (type png)
  <use media/mf_wells.png>
 Package pdftex.def Info: media/mf_wells.png used on input line 616.
 (pdftex.def)             Requested size: 455.24411pt x 147.31538pt.
 
-[18] [19 <./media/production_curve_without.png> <./media/mf_wells.png>]
-<media/error_source.png, id=478, 1463.4675pt x 710.655pt>
+[18 <./media/production_curve_without.png>]
+<media/error_source.png, id=481, 1463.4675pt x 710.655pt>
 File: media/error_source.png Graphic file (type png)
 
 <use media/error_source.png>
-Package pdftex.def Info: media/error_source.png used on input line 633.
+Package pdftex.def Info: media/error_source.png used on input line 634.
 (pdftex.def)             Requested size: 227.62206pt x 110.5299pt.
-
-Underfull \hbox (badness 2512) in paragraph at lines 650--650
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 635.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7.4> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 635.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <6> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 635.
+ [19 <./media/mf_wells.png> <./media/error_source.png>]
+Underfull \hbox (badness 2512) in paragraph at lines 651--651
 []|\OT1/ptm/m/n/12 Very re-cent, since the last
  []
 
-(./media/tab_beta_date.tex) [20 <./media/error_source.png>]
-<media/verification.png, id=497, 2927.93875pt x 2370.8575pt>
+(./media/tab_beta_date.tex
+
+LaTeX Warning: No positions in optional float specifier.
+               Default added (so using `tbp') on input line 3.
+
+) [20] <media/verification.png, id=508, 2927.93875pt x 2370.8575pt>
 File: media/verification.png Graphic file (type png)
 
 <use media/verification.png>
-Package pdftex.def Info: media/verification.png used on input line 686.
+Package pdftex.def Info: media/verification.png used on input line 689.
 (pdftex.def)             Requested size: 455.24411pt x 368.60059pt.
-
-<media/constraints.png, id=500, 2927.93875pt x 1185.42876pt>
+ [21 <./media/verification.png>]
+<media/constraints.png, id=519, 2927.93875pt x 1185.42876pt>
 File: media/constraints.png Graphic file (type png)
 
 <use media/constraints.png>
-Package pdftex.def Info: media/constraints.png used on input line 706.
+Package pdftex.def Info: media/constraints.png used on input line 710.
 (pdftex.def)             Requested size: 455.24411pt x 184.3003pt.
- [21] [22 <./media/verification.png> <./media/constraints.png>] <media/gens.png
-, id=521, 2927.93875pt x 710.655pt>
+ <media/gens.png, id=522, 2927.93875pt x 710.655pt>
 File: media/gens.png Graphic file (type png)
 
 <use media/gens.png>
-Package pdftex.def Info: media/gens.png used on input line 718.
+Package pdftex.def Info: media/gens.png used on input line 722.
 (pdftex.def)             Requested size: 455.24411pt x 110.48654pt.
- [23 <./media/gens.png>] [24] [25] (./lwu308.bbl) [26]
+ [22 <./media/constraints.png>] [23 <./media/gens.png>]
+[24] [25] (./lwu308.bbl) [26]
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <24.88> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 775.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 779.
 
-<media/ts_experiment.png, id=549, 2927.93875pt x 2844.6275pt>
+<media/ts_experiment.png, id=564, 2927.93875pt x 2844.6275pt>
 File: media/ts_experiment.png Graphic file (type png)
 
 <use media/ts_experiment.png>
-Package pdftex.def Info: media/ts_experiment.png used on input line 779.
+Package pdftex.def Info: media/ts_experiment.png used on input line 783.
 (pdftex.def)             Requested size: 455.24411pt x 442.25829pt.
  [27 <./media/ts_experiment.png>]
-<media/observed.png, id=557, 2927.93875pt x 2927.93875pt>
+<media/observed.png, id=570, 2927.93875pt x 2927.93875pt>
 File: media/observed.png Graphic file (type png)
 
 <use media/observed.png>
-Package pdftex.def Info: media/observed.png used on input line 788.
+Package pdftex.def Info: media/observed.png used on input line 792.
 (pdftex.def)             Requested size: 455.24411pt x 455.2108pt.
 
-<media/stdres.png, id=558, 2927.93875pt x 2927.93875pt>
+<media/stdres.png, id=571, 2927.93875pt x 2927.93875pt>
 File: media/stdres.png Graphic file (type png)
  <use media/stdres.png>
-Package pdftex.def Info: media/stdres.png used on input line 795.
+Package pdftex.def Info: media/stdres.png used on input line 799.
 (pdftex.def)             Requested size: 455.24411pt x 455.2108pt.
 
 [28 <./media/observed.png>] [29 <./media/stdres.png>]
 (./media/tab_beta_date_all.tex
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 6.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <5> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 6.
-
-
-LaTeX Warning: Float too large for page by 21.14326pt on input line 90.
-
-) [30] (./media/summaries_fp14.tex) (./media/summaries_fp15.tex)
-(./media/summaries_fp16.tex) [31]
-LaTeX Font Info:    Try loading font information for OT1+pcr on input line 814.
+) [30] (./media/summaries_fp14.tex)
+(./media/summaries_fp15.tex) (./media/summaries_fp16.tex) [31]
+LaTeX Font Info:    Try loading font information for OT1+pcr on input line 818.
 
 
 (/usr/local/texlive/2016/texmf-dist/tex/latex/psnfss/ot1pcr.fd
@@ -1622,58 +1633,38 @@ File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 LaTeX Font Info:    Font shape `OT1/pcr/bx/n' in size <10> not available
 (Font)              Font shape `OT1/pcr/b/n' tried instead on input line 2.
  [32] [33]) [34]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 817.
- [35]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 817.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 821.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 821.
  (./lwu308.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 817.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 817.
-
-
-Package rerunfilecheck Warning: File `lwu308.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `lwu308.out':
-(rerunfilecheck)             Before: D98C9BB2DD2064F5DF9DB104C4444240;2698
-(rerunfilecheck)             After:  E59DFC6671E6A71659B4D58C54B17DCC;2698.
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 817.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 821.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 821.
+Package rerunfilecheck Info: File `lwu308.out' has not changed.
+(rerunfilecheck)             Checksum: E59DFC6671E6A71659B4D58C54B17DCC;2698.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 821.
  ) 
 Here is how much of TeX's memory you used:
- 32340 strings out of 493014
- 618383 string characters out of 6133351
- 903302 words of memory out of 5000000
- 35010 multiletter control sequences out of 15000+600000
- 52842 words of font info for 109 fonts, out of 8000000 for 9000
+ 32378 strings out of 493014
+ 618778 string characters out of 6133351
+ 884740 words of memory out of 5000000
+ 35039 multiletter control sequences out of 15000+600000
+ 73545 words of font info for 151 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  62i,12n,77p,10378b,2968s stack positions out of 5000i,500n,10000p,200000b,80000s
-pdfTeX warning (dest): name{figure.caption.28} has been referenced but does n
-ot exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{figure.caption.27} has been referenced but does not
- exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{section*.25} has been referenced but does not exist
-, replaced by a fixed one
-
-{/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/tex
-live/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texl
-ive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texli
-ve/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive
-/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/
-2016/texmf-dist/fonts/type1/urw/courier/ucrb8a.pfb></usr/local/texlive/2016/tex
-mf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2016/texmf-dist/
-fonts/type1/urw/symbol/usyr.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1
-/urw/symbol/usyr.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/times/
-utmb8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/times/utmr8a.pfb
-></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on lwu308.pdf (38 pages, 7198348 bytes).
+{/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
+exlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/te
+xlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/tex
+live/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texli
+ve/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texliv
+e/2016/texmf-dist/fonts/type1/urw/courier/ucrb8a.pfb></usr/local/texlive/2016/t
+exmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2016/texmf-dis
+t/fonts/type1/urw/symbol/usyr.pfb></usr/local/texlive/2016/texmf-dist/fonts/typ
+e1/urw/symbol/usyr.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/time
+s/utmb8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/times/utmr8a.p
+fb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on lwu308.pdf (37 pages, 7034232 bytes).
 PDF statistics:
- 865 PDF objects out of 1000 (max. 8388607)
- 758 compressed objects within 8 object streams
- 335 named destinations out of 1000 (max. 500000)
+ 873 PDF objects out of 1000 (max. 8388607)
+ 767 compressed objects within 8 object streams
+ 333 named destinations out of 1000 (max. 500000)
  467 words of extra memory for PDF output out of 10000 (max. 10000000)
 

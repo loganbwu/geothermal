@@ -16,7 +16,7 @@
 \gdef\HyperFirstAtBeginDocument#1{#1}
 \providecommand\HyField@AuxAddToFields[1]{}
 \providecommand\HyField@AuxAddToCoFields[2]{}
-\bibstyle{ieeetr}
+\bibstyle{apa}
 \select@language{english}
 \@writefile{toc}{\select@language{english}}
 \@writefile{lof}{\select@language{english}}
@@ -45,12 +45,12 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Network Structure}{5}{subsection.4.1}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Well Test Data}{5}{subsection.4.2}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.3}PI Flow Meters}{5}{subsection.4.3}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces One month of the most recent regression data from the PI database. We use a combination of the wellbore test data (not shown) to estimate the regression parameters, and the PI data to increase the weight and precision for short-term forecasts. Note how data is tightly clustered -- this forces regressions to fit the PI data closely and is desirable if our predictive covariates are close to the PI data.\relax }}{6}{figure.caption.4}}
-\newlabel{fig:pi_data}{{4}{6}{One month of the most recent regression data from the PI database. We use a combination of the wellbore test data (not shown) to estimate the regression parameters, and the PI data to increase the weight and precision for short-term forecasts. Note how data is tightly clustered -- this forces regressions to fit the PI data closely and is desirable if our predictive covariates are close to the PI data.\relax }{figure.caption.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces One month of the most recent regression data from the PI database. We use a combination of well test data (not shown) to estimate the regression parameters, and this PI data to increase the weight and precision for short-term forecasts. Note how PI data is tightly clustered -- this forces regressions to fit closely and is desirable if our predicted regressors are close to the PI data.\relax }}{6}{figure.caption.4}}
+\newlabel{fig:pi_data}{{4}{6}{One month of the most recent regression data from the PI database. We use a combination of well test data (not shown) to estimate the regression parameters, and this PI data to increase the weight and precision for short-term forecasts. Note how PI data is tightly clustered -- this forces regressions to fit closely and is desirable if our predicted regressors are close to the PI data.\relax }{figure.caption.4}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Uncertainty}{6}{subsection.4.4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Constraint Limits}{6}{subsection.4.5}}
 \@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Our project includes a Python script to process the sample data files, and an R script which runs a model and processes the results.\relax }}{7}{figure.caption.5}}
 \newlabel{fig:workflow}{{5}{7}{Our project includes a Python script to process the sample data files, and an R script which runs a model and processes the results.\relax }{figure.caption.5}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Constraint Limits}{7}{subsection.4.5}}
 \@writefile{toc}{\contentsline {section}{\numberline {5}Data Integration}{7}{section.5}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Data Extraction}{7}{subsection.5.1}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Pre-Processing}{7}{subsection.5.2}}
@@ -67,14 +67,14 @@
 \newlabel{fig:slice_sampling}{{7}{10}{A single iteration of slice sampling where a bivariate MCMC state space is constructed from a univariate density.\relax }{figure.caption.7}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {6.3}Gibbs Sampling}{10}{subsection.6.3}}
 \newlabel{sec:gibbs}{{6.3}{10}{Gibbs Sampling}{subsection.6.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Simulation Implementation}{10}{section.7}}
 \citation{Grant:2011}
 \citation{Marsh:2015}
-\@writefile{toc}{\contentsline {section}{\numberline {7}Simulation Implementation}{11}{section.7}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {7.1}Model Specification}{11}{subsection.7.1}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {7.1.1}Covariate Centering}{11}{subsubsection.7.1.1}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {7.1.2}Well Production Curve Regression}{11}{subsubsection.7.1.2}}
-\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces DIC comparison of two GLM candidates, concluding that the linear model is a better fit to the data. The DIC monitor was run for 1000 samples each.\relax }}{12}{table.caption.8}}
-\newlabel{tab:curvature}{{2}{12}{DIC comparison of two GLM candidates, concluding that the linear model is a better fit to the data. The DIC monitor was run for 1000 samples each.\relax }{table.caption.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces DIC comparison of two GLM candidates, concluding that the linear model is a better fit to the data. The DIC monitor was run for 1000 samples each. A lower DIC is better, but is not necessarily the definitive method of model comparison.\relax }}{12}{table.caption.8}}
+\newlabel{tab:curvature}{{2}{12}{DIC comparison of two GLM candidates, concluding that the linear model is a better fit to the data. The DIC monitor was run for 1000 samples each. A lower DIC is better, but is not necessarily the definitive method of model comparison.\relax }{table.caption.8}{}}
 \newlabel{eq:linreg}{{15}{12}{Well Production Curve Regression}{equation.7.15}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {7.1.3}Prediction}{13}{subsubsection.7.1.3}}
 \citation{Fox:2018}
@@ -87,70 +87,73 @@
 \@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Two fitted production curves, forecasted one day in the future for December 1st, 2017. We expect it to fit closely to the most recent data because time is included as a regressor. The shaded region shows the 95\% credible intervals.\relax }}{15}{figure.caption.10}}
 \newlabel{fig:production_curve}{{10}{15}{Two fitted production curves, forecasted one day in the future for December 1st, 2017. We expect it to fit closely to the most recent data because time is included as a regressor. The shaded region shows the 95\% credible intervals.\relax }{figure.caption.10}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {7.2}Monitoring}{15}{subsection.7.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.3}Diagnostics}{15}{subsection.7.3}}
 \@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces The prior and likelihood functions multiply to give a posterior parameter distribution. The posterior is what we are interested in after observing the data. The uncertainty in the parameter is represented by the width of its distribution; conversely, the precision can be interpreted as the height of its peak because densities integrate to one. \relax }}{16}{figure.caption.11}}
 \newlabel{fig:bayesdemo}{{11}{16}{The prior and likelihood functions multiply to give a posterior parameter distribution. The posterior is what we are interested in after observing the data. The uncertainty in the parameter is represented by the width of its distribution; conversely, the precision can be interpreted as the height of its peak because densities integrate to one. \relax }{figure.caption.11}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces Example trace plots displaying normal behaviour. The sampler appears to have reached its equilibrium distribution with no trend.\relax }}{16}{figure.caption.12}}
 \newlabel{fig:trace_plot}{{12}{16}{Example trace plots displaying normal behaviour. The sampler appears to have reached its equilibrium distribution with no trend.\relax }{figure.caption.12}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.3}Diagnostics}{16}{subsection.7.3}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {7.3.1}Geweke's Convergence}{16}{subsubsection.7.3.1}}
 \citation{Gelman:1992}
-\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces More than 5\% of z-scores outside the confidence interval, indicating the chains have not converged and are not long enough, or they contain burn-in.\relax }}{17}{figure.caption.13}}
-\newlabel{fig:geweke}{{13}{17}{More than 5\% of z-scores outside the confidence interval, indicating the chains have not converged and are not long enough, or they contain burn-in.\relax }{figure.caption.13}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces More than 5\% of z-scores outside the confidence interval, indicating the chains have not converged and are either too short or contain burn-in.\relax }}{17}{figure.caption.13}}
+\newlabel{fig:geweke}{{13}{17}{More than 5\% of z-scores outside the confidence interval, indicating the chains have not converged and are either too short or contain burn-in.\relax }{figure.caption.13}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Select potential scale reduction factors from Gelman's diagnostic test. Below 1.1 is generally regarded as good.\relax }}{17}{table.caption.14}}
+\newlabel{tab:gelman}{{3}{17}{Select potential scale reduction factors from Gelman's diagnostic test. Below 1.1 is generally regarded as good.\relax }{table.caption.14}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {7.3.2}Gelman-Rubin Potential Scale Reduction Factor}{17}{subsubsection.7.3.2}}
-\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Select potential scale reduction factors from Gelman's diagnostic test.\relax }}{18}{table.caption.14}}
-\newlabel{tab:gelman}{{3}{18}{Select potential scale reduction factors from Gelman's diagnostic test.\relax }{table.caption.14}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces Left: Just well test data. Right: After including PI data. We expect the curves to make better predictions near the PI data after inclusion. Forecasted production curves for December 1st, and shaded regions are 95\% credible intervals.\relax }}{18}{figure.caption.15}}
+\newlabel{fig:production_curve_comparison}{{14}{18}{Left: Just well test data. Right: After including PI data. We expect the curves to make better predictions near the PI data after inclusion. Forecasted production curves for December 1st, and shaded regions are 95\% credible intervals.\relax }{figure.caption.15}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {8}Results}{18}{section.8}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {8.1}Well Production Curves}{18}{subsection.8.1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.2}Well Mass Flows}{18}{subsection.8.2}}
-\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces Left: Just well test data. Right: After including PI data. We expect the curves to make better predictions near the PI data after inclusion. Forecasted production curves for December 1st, and shaded regions are 95\% credible intervals.\relax }}{19}{figure.caption.15}}
-\newlabel{fig:production_curve_comparison}{{14}{19}{Left: Just well test data. Right: After including PI data. We expect the curves to make better predictions near the PI data after inclusion. Forecasted production curves for December 1st, and shaded regions are 95\% credible intervals.\relax }{figure.caption.15}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces Posterior mass flows for all 71 wells, divided into wells with production curves and wells with a simple time-series (see Figure \ref  {fig:ts_experiment} for time-series examples). Wells show large variations in mean mass flow and variance.\relax }}{19}{figure.caption.16}}
 \newlabel{fig:mf_wells}{{15}{19}{Posterior mass flows for all 71 wells, divided into wells with production curves and wells with a simple time-series (see Figure \ref {fig:ts_experiment} for time-series examples). Wells show large variations in mean mass flow and variance.\relax }{figure.caption.16}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {16}{\ignorespaces Facets of the data sources for the production curve. No data (far left) means there was no curve -- these mass flows were predicted by time series on PI mass-flow data. $n$ is the number of wells, and standard deviation is calculated as $\text  {sd}(\mathaccentV {hat}05E{\mathaccentV {dot}05F{m}}_j)$ for each well.\relax }}{20}{figure.caption.17}}
-\newlabel{fig:error_source}{{16}{20}{Facets of the data sources for the production curve. No data (far left) means there was no curve -- these mass flows were predicted by time series on PI mass-flow data. $n$ is the number of wells, and standard deviation is calculated as $\text {sd}(\hat {\dot {m}}_j)$ for each well.\relax }{figure.caption.17}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {16}{\ignorespaces Facets of the data sources for the mass flow's standard deviation. No data (far left) means there was no curve -- these mass flows were predicted by time series on PI mass-flow data. $n$ is the number of wells, and standard deviation is calculated as $\text  {sd}(\mathaccentV {hat}05E{\mathaccentV {dot}05F{m}}_j)$ for each well. Lower values mean the samples for mass flow were more concentrated, but this is not necessarily a good thing if it means we are under-estimating uncertainty.\relax }}{19}{figure.caption.17}}
+\newlabel{fig:error_source}{{16}{19}{Facets of the data sources for the mass flow's standard deviation. No data (far left) means there was no curve -- these mass flows were predicted by time series on PI mass-flow data. $n$ is the number of wells, and standard deviation is calculated as $\text {sd}(\hat {\dot {m}}_j)$ for each well. Lower values mean the samples for mass flow were more concentrated, but this is not necessarily a good thing if it means we are under-estimating uncertainty.\relax }{figure.caption.17}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.2}Well Mass Flows}{19}{subsection.8.2}}
 \@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Differences in the two data sources\relax }}{20}{table.caption.18}}
 \newlabel{tab:data_sources}{{4}{20}{Differences in the two data sources\relax }{table.caption.18}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.3}Individual Well Declines}{20}{subsection.8.3}}
 \@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Credible intervals for $\beta _\text  {date}$ in units T/h/d. $n$ is the number of test data points rather than the total including PI data, because PI data is from a single month and cannot estimate the $\beta _\text  {date}$ parameter on its own. Full table in Table \ref  {tab:beta_date_all}.\relax }}{20}{table.caption.19}}
 \newlabel{tab:beta_date}{{5}{20}{Credible intervals for $\beta _\text {date}$ in units T/h/d. $n$ is the number of test data points rather than the total including PI data, because PI data is from a single month and cannot estimate the $\beta _\text {date}$ parameter on its own. Full table in Table \ref {tab:beta_date_all}.\relax }{table.caption.19}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.4}Down-flow Results}{21}{subsection.8.4}}
-\newlabel{sec:downflow}{{8.4}{21}{Down-flow Results}{subsection.8.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.3}Individual Well Declines}{20}{subsection.8.3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.4}Down-flow Results}{20}{subsection.8.4}}
+\newlabel{sec:downflow}{{8.4}{20}{Down-flow Results}{subsection.8.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {17}{\ignorespaces Verification of predicted flows with supplied calculations shows some disagreement ($p<0.025$ or $p>0.975$), if we assume CEL's figures as the ground truth. Densities are the model's forecasts and black lines are the given figures from CEL (estimated by CEL, not direct from the PI loggers).\relax }}{21}{figure.caption.20}}
+\newlabel{fig:verification}{{17}{21}{Verification of predicted flows with supplied calculations shows some disagreement ($p<0.025$ or $p>0.975$), if we assume CEL's figures as the ground truth. Densities are the model's forecasts and black lines are the given figures from CEL (estimated by CEL, not direct from the PI loggers).\relax }{figure.caption.20}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {8.4.1}Flash Plant Mass Flow Verification}{21}{subsubsection.8.4.1}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {8.4.2}Flash Plant Constraints}{21}{subsubsection.8.4.2}}
-\@writefile{lof}{\contentsline {figure}{\numberline {17}{\ignorespaces Verification of predicted flows with supplied calculations shows some disagreement ($p<0.025$ or $p>0.975$), if we assume CEL's figures as the ground truth. Densities are the model's forecasts and black lines are the given figures from CEL (estimated by CEL, not direct from the PI loggers).\relax }}{22}{figure.caption.20}}
-\newlabel{fig:verification}{{17}{22}{Verification of predicted flows with supplied calculations shows some disagreement ($p<0.025$ or $p>0.975$), if we assume CEL's figures as the ground truth. Densities are the model's forecasts and black lines are the given figures from CEL (estimated by CEL, not direct from the PI loggers).\relax }{figure.caption.20}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {18}{\ignorespaces Posterior density plot of the steam flows through the flash plants. Known steam limits are shown by a vertical red line. The expected probability of a constraint violation is the proportion of the density above the limit.\relax }}{22}{figure.caption.21}}
 \newlabel{fig:constraints}{{18}{22}{Posterior density plot of the steam flows through the flash plants. Known steam limits are shown by a vertical red line. The expected probability of a constraint violation is the proportion of the density above the limit.\relax }{figure.caption.21}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {8.4.2}Flash Plant Constraints}{22}{subsubsection.8.4.2}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {8.4.3}Generator Flows and Power}{22}{subsubsection.8.4.3}}
 \citation{Grant:2011}
-\@writefile{lof}{\contentsline {figure}{\numberline {19}{\ignorespaces Estimates for mass flow and power generation, accounting for uncertainties for the steam/power conversion factor.\relax }}{23}{figure.caption.22}}
-\newlabel{fig:gens}{{19}{23}{Estimates for mass flow and power generation, accounting for uncertainties for the steam/power conversion factor.\relax }{figure.caption.22}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {8.4.3}Generator Flows and Power}{23}{subsubsection.8.4.3}}
-\@writefile{toc}{\contentsline {section}{\numberline {9}Conclusions}{23}{section.9}}
 \citation{Fox:2018}
+\@writefile{lof}{\contentsline {figure}{\numberline {19}{\ignorespaces Estimates for mass flow and power generation, accounting for uncertainties for the steam/power conversion factor. Some of the estimates show large errors between the densities and the actual meter readings (vertical lines) that are unlikely to be random.\relax }}{23}{figure.caption.22}}
+\newlabel{fig:gens}{{19}{23}{Estimates for mass flow and power generation, accounting for uncertainties for the steam/power conversion factor. Some of the estimates show large errors between the densities and the actual meter readings (vertical lines) that are unlikely to be random.\relax }{figure.caption.22}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {9}Conclusions}{23}{section.9}}
 \@writefile{toc}{\contentsline {section}{\numberline {10}Further Development}{24}{section.10}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {10.1}Enthalpy Prediction}{24}{subsection.10.1}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {10.2}Direct Data Integration}{24}{subsection.10.2}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {10.3}Data Integration With Other Models}{24}{subsection.10.3}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {10.4}Time Series}{25}{subsection.10.4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {10.4}Time Series}{24}{subsection.10.4}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {10.5}Prior Specification}{25}{subsection.10.5}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {10.6}Hierarchical Model Resolution}{25}{subsection.10.6}}
 \bibdata{bibliography}
-\bibcite{Zarrouk:2014}{{1}{}{{}}{{}}}
-\bibcite{Grant:2011}{{2}{}{{}}{{}}}
-\bibcite{Neal:2003}{{3}{}{{}}{{}}}
-\bibcite{Marsh:2015}{{4}{}{{}}{{}}}
-\bibcite{Fox:2018}{{5}{}{{}}{{}}}
-\bibcite{Gelman:1992}{{6}{}{{}}{{}}}
+\bibcite{Fox:2018}{{1}{2018}{{Fox}}{{}}}
+\bibcite{Gelman:1992}{{2}{1992}{{Gelman and Rubin}}{{}}}
+\bibcite{Grant:2011}{{3}{2011}{{Grant and Bixley}}{{}}}
+\bibcite{Marsh:2015}{{4}{2015}{{Marsh}}{{}}}
+\bibcite{Neal:2003}{{5}{2003}{{Neal}}{{}}}
+\bibcite{Zarrouk:2014}{{6}{2014}{{Zarrouk and Moon}}{{}}}
 \@writefile{toc}{\contentsline {section}{Appendices}{27}{section*.23}}
 \@writefile{toc}{\contentsline {section}{\numberline {A}Time Series Comparison}{27}{Appendix.1.A}}
 \@writefile{lof}{\contentsline {figure}{\numberline {20}{\ignorespaces Time-series techniques on data from the PI database. We use the linear time series regression (top) for its robustness to systematic changes in operation, which can cause the other regressions to display unstable behaviour. Auto-regression and exponentially-weighted moving average techniques both have their strengths and weaknesses.\relax }}{27}{figure.caption.24}}
 \newlabel{fig:ts_experiment}{{20}{27}{Time-series techniques on data from the PI database. We use the linear time series regression (top) for its robustness to systematic changes in operation, which can cause the other regressions to display unstable behaviour. Auto-regression and exponentially-weighted moving average techniques both have their strengths and weaknesses.\relax }{figure.caption.24}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {B}Regression Diagnostics}{28}{Appendix.1.B}}
-\@writefile{lof}{\contentsline {figure}{\numberline {21}{\ignorespaces 95\% LOESS smoothing shaded in, and $y=x$ line in black. Observed vs fitted plots per well show good fits for some wells and slight curvature in others. However, the curvature is not common and is likely due to random variation. Only wells with non-singular well-head pressures shown.\relax }}{28}{figure.caption.25}}
-\newlabel{fig:observed}{{21}{28}{95\% LOESS smoothing shaded in, and $y=x$ line in black. Observed vs fitted plots per well show good fits for some wells and slight curvature in others. However, the curvature is not common and is likely due to random variation. Only wells with non-singular well-head pressures shown.\relax }{figure.caption.25}{}}
+\newlabel{sec:diagnostics}{{B}{28}{Regression Diagnostics}{Appendix.1.B}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {21}{\ignorespaces 95\% LOESS smoothing shaded in, and $y=x$ line in black. Observed vs fitted plots per well show good fits for some wells and slight curvature in others. However, the curvature is not systematic and is often due to the PI data clustering, rather than a legitimate trend. Only wells with non-singular well-head pressures shown.\relax }}{28}{figure.caption.25}}
+\newlabel{fig:observed}{{21}{28}{95\% LOESS smoothing shaded in, and $y=x$ line in black. Observed vs fitted plots per well show good fits for some wells and slight curvature in others. However, the curvature is not systematic and is often due to the PI data clustering, rather than a legitimate trend. Only wells with non-singular well-head pressures shown.\relax }{figure.caption.25}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {22}{\ignorespaces 95\% LOESS smoothing shaded in. Some of the wells show curvature but not enough to make the DIC favour a quadratic model. Only wells with non-singular well-head pressures shown.\relax }}{29}{figure.caption.26}}
 \newlabel{fig:stdres}{{22}{29}{95\% LOESS smoothing shaded in. Some of the wells show curvature but not enough to make the DIC favour a quadratic model. Only wells with non-singular well-head pressures shown.\relax }{figure.caption.26}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {C}All Well Declines}{30}{Appendix.1.C}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Credible intervals for $\beta _\text  {date}$ in units T/h/d. Although most of the means are negative, only about half show a statistically significant decline where the entire interval is negative.\relax }}{30}{table.caption.27}}
+\newlabel{tab:beta_date_all}{{6}{30}{Credible intervals for $\beta _\text {date}$ in units T/h/d. Although most of the means are negative, only about half show a statistically significant decline where the entire interval is negative.\relax }{table.caption.27}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {D}Flash Plant Data Sources}{31}{Appendix.1.D}}
 \newlabel{sec:fpdata}{{D}{31}{Flash Plant Data Sources}{Appendix.1.D}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Data methods feeding flash plant fp24\relax }}{31}{table.caption.28}}
@@ -162,6 +165,3 @@
 \@writefile{toc}{\contentsline {section}{\numberline {E}JAGS Model}{32}{Appendix.1.E}}
 \newlabel{sec:jagscode}{{E}{32}{JAGS Model}{Appendix.1.E}{}}
 \@writefile{lol}{\contentsline {lstlisting}{src/model.txt}{32}{lstlisting.-1}}
-\providecommand\NAT@force@numbers{}\NAT@force@numbers
-\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Credible intervals for $\beta _\text  {date}$ in units T/h/d.\relax }}{35}{table.caption.27}}
-\newlabel{tab:beta_date_all}{{6}{35}{Credible intervals for $\beta _\text {date}$ in units T/h/d.\relax }{table.caption.27}{}}

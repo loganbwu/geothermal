@@ -45,7 +45,7 @@ theme_update(text=element_text(family="Times New Roman"))
 special_wells = c(production_curve_wells, tsplotwells, "wk86", "wk116")
 use.censor = T
 
-n_steps = 1000
+n_steps = 10000
 
 censor = function(x, type) {
   # Hash the facility identifier (beware of hash clashes)
@@ -88,7 +88,7 @@ PI <- read_excel(pipath, "From PI sheet", skip=1) %>%
   mutate_if(is.character, tolower) %>%
   mutate(value = as.numeric(value)) %>%
   drop_na(value) %>%
-  filter(date >= as.Date("2017-10-01"), date < as.Date(prediction_date)) %>%
+  filter(date >= as.Date("2017-11-01"), date < as.Date(prediction_date)) %>%
   filter(!str_detect(variable, "condition|calc")) %>%
   filter(str_detect(facility, "wk")) 
 extra_liq <- PI %>%
@@ -639,19 +639,19 @@ tb2[tb2$well %in% special_wells,]
 tb6[tb6$well %in% special_wells,]
 print(xtable(tb2, 
              type = "latex",
-             caption="Credible intervals for $\\beta_\\text{date}$ in units T/h/d.",
+             caption="Credible intervals for $\\beta_\\text{date}$ in units T/h/d. Although most of the means are negative, only about half show a statistically significant decline where the entire interval is negative.",
              label="tab:beta_date_all",
              table.placement = "H",
              digits = 3),
       include.rownames = F,
-      size="\\fontsize{9pt}{9pt}\\selectfont",
+      size="\\fontsize{8pt}{2pt}\\selectfont",
       file = "../media/tab_beta_date_all.tex")
 print(xtable(tb2[tb2$well %in% special_wells,], 
              type = "latex",
              caption="Credible intervals for $\\beta_\\text{date}$ in units T/h/d. $n$ is the number of test data points rather than the total including PI data, because PI data is from a single month and cannot estimate the $\\beta_\\text{date}$ parameter on its own. Full table in Table \\ref{tab:beta_date_all}.",
              digits = 3,
              label="tab:beta_date"),
-             table.placement = "h",
+             table.placement = "",
       include.rownames = F,
       file = "../media/tab_beta_date.tex")
 print(xtable(tb2[tb2$well %in% special_wells,], type = "latex", 
@@ -685,7 +685,7 @@ fp_summaries = list(fp14 = well_summaries %>% filter(facility %in% flows_to(cens
                     fp15 = well_summaries %>% filter(facility %in% flows_to(censor('fp15', 'fp'))),
                     fp16 = well_summaries %>% filter(facility %in% flows_to(censor('fp16', 'fp'))))
 for (fp in names(fp_summaries)) {
-  print(xtable(fp_summaries[[fp]],
+  print(xtable(fp_summaries[[fp]] %>% select(-c(use.test, use.pi, production.curve)),
                type = "latex",
                caption=paste("Data methods feeding flash plant", censor(fp, 'fp')),
                label=paste0("tab:well_summaries_", fp)),

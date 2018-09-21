@@ -1,29 +1,36 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{}
 
-\bibitem{Zarrouk:2014}
-S.~J. Zarrouk and H.~Moon, ``Efficiency of geothermal power plants: A worldwide
-  review,'' {\em Geothermics}, pp.~142--153, January 2014.
+\bibitem[\protect\astroncite{Fox}{2018}]{Fox:2018}
+Fox, V. (2018).
+\newblock The steamfield configuration model.
+\newblock Optimising the well operation and steamfield configuration tracking
+  tools at Wairakei.
 
-\bibitem{Grant:2011}
-M.~A. Grant and P.~F. Bixley, {\em Geothermal Reservoir Engineering}.
-\newblock Academic Press, 2nd edition~ed., 2011.
+\bibitem[\protect\astroncite{Gelman and Rubin}{1992}]{Gelman:1992}
+Gelman, A. and Rubin, D.~B. (1992).
+\newblock Inference from iterative simulation using multiple sequences.
+\newblock {\em Statistical Science}, 7(4):457--472.
 
-\bibitem{Neal:2003}
-R.~M. Neal, ``Slice sampling,'' {\em The Annals of Statistics}, vol.~31, no.~3,
-  pp.~705--767, 2003.
+\bibitem[\protect\astroncite{Grant and Bixley}{2011}]{Grant:2011}
+Grant, M.~A. and Bixley, P.~F. (2011).
+\newblock {\em Geothermal Reservoir Engineering}.
+\newblock Academic Press, 2nd edition edition.
 
-\bibitem{Marsh:2015}
-A.~Marsh, ``Modelling a geothermal steam field to evaluate well capacities and
-  assist operational decisions,'' in {\em Proceedings World Geothermal
-  Congress}, (PO Box 245, Rotorua 3040, New Zealand), Mighty River Power
-  Limited, April 2015.
+\bibitem[\protect\astroncite{Marsh}{2015}]{Marsh:2015}
+Marsh, A. (2015).
+\newblock Modelling a geothermal steam field to evaluate well capacities and
+  assist operational decisions.
+\newblock In {\em Proceedings World Geothermal Congress}, PO Box 245, Rotorua
+  3040, New Zealand. Mighty River Power Limited.
 
-\bibitem{Fox:2018}
-V.~Fox, ``The steamfield configuration model.'' Optimising the well operation
-  and steamfield configuration tracking tools at Wairakei, September 2018.
+\bibitem[\protect\astroncite{Neal}{2003}]{Neal:2003}
+Neal, R.~M. (2003).
+\newblock Slice sampling.
+\newblock {\em The Annals of Statistics}, 31(3):705--767.
 
-\bibitem{Gelman:1992}
-A.~Gelman and D.~B. Rubin, ``Inference from iterative simulation using multiple
-  sequences,'' {\em Statistical Science}, vol.~7, pp.~457--472, November 1992.
+\bibitem[\protect\astroncite{Zarrouk and Moon}{2014}]{Zarrouk:2014}
+Zarrouk, S.~J. and Moon, H. (2014).
+\newblock Efficiency of geothermal power plants: A worldwide review.
+\newblock {\em Geothermics}, (51):142--153.
 
 \end{thebibliography}
