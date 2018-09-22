@@ -1,0 +1,12 @@
+# Motivation
+
+The Wairakei geothermal field is one of the oldest geothermal electricity producers in the world. The current operator, Contact Energy Ltd., gathers a huge amount of data for the purposes of monitoring the state of the field. The problem is, dealing with this data is *hard*. Although it is available in vast quantities, it isn't necessarily complete -- some facilities don't have all the meters they'd like, and there are some things you just can't physically measure.
+
+## What's the problem?
+
+The problem is uncertainty, or rather, the lack of it. Things in nature aren't perfectly deterministic, especially when there are things we don't know or are trying to predict. [Bayesian statistics](https://en.wikipedia.org/wiki/Bayesian_inference) and [Monte Carlo methods](https://en.wikipedia.org/wiki/Monte_Carlo_method) are two methods that go hand in hand to incorporate uncertainty.
+
+However, they have remained the domain of experienced statisticians and economists. You'll never find a Bayesian or Monte Carlo function in Excel. Despite energy being a field where forecasting uncertainty is important, the Wairakei operators still use deterministic methods.
+
+## What are we doing?
+

@@ -1,0 +1,15 @@
+# Special Thanks {-}
+
+## People (and corporations -- corporations are people too)
+
+I would like to thank my supervisors, Dr. David Dempsey and Dr. Cameron Walker, for not taking on any other Part IV projects and selflessly devoting all their time to ours instead.
+
+Many thanks also to my project partner Vida Fox, and to Christine and Julian from Contact Energy for supplying spreadsheets that my computer still has nightmares about.
+
+![](../media/contact-logo.png)
+
+## Packages (and the people who made them)
+
+This project was highly dependent on the [JAGS](https://cran.r-project.org/web/packages/rjags/index.html) developer Martyn Plummer, without whom I would have to use another package or code my own custom Metropolis-Hastings implementation - frightening stuff.
+
+Also, being able to use the Rstudio and Rmarkdown developer environment made my job a whole lot easier, running code chunks and seeing the results inline. Additionally, this site was generated using [Bookdown](https://bookdown.org), right my own source code with some modifications. Bet you haven't seen a compendium like this before!
