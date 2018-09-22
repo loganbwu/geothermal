@@ -1,0 +1,25 @@
+--- 
+title: "Wairakei Stochastic Simulation Research Compendium"
+author: "Logan Wu"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+link-citations: yes
+description: "Compendium index for the ENGSCI Part IV research roject"
+---
+
+# geothermal
+
+## ENGSCI Part IV Project
+
+**Logan Wu *lwu308|254620375***
+
+Requires data in `(root)/wairakei_data/*.xlsx`. Raw data is confidential - contact Contact for access.
+The config file `/wairakei_data/config.xlsx` also may contain confidential data and is not committed.
+
+(Unix) Launch with
+```
+cd src
+jupyter notebook
+```

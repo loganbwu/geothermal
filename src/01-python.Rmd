@@ -1,0 +1,136 @@
+# Python Extraction Code
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, cache = TRUE, warning=FALSE)
+library(reticulate)
+```
+
+The following data extraction and cleaning code is from `simulation.ipynb`. The Python notebook is also used to generate a rudimentary config file, which I later added additional data to (note to self don't run it or it will overwrite!). It seems that now Rmarkdown nicely integrates Python, [but the Reticulate package was only released in August 2018](https://cran.r-project.org/web/packages/reticulate/index.html). Oh well. I've put the Python code in here so technically, if I ran this notebook right this moment, it would do it all.
+
+```{python, results="asis"}
+import pandas as pd
+import numpy as np
+import seaborn as sns
+import matplotlib.pyplot as plt
+from datetime import datetime, timedelta
+from IPython.display import display, HTML
+import os
+import pyjags
+import warnings
+
+base_year = '2000'    # numeric dates calculated from Jan-01
+configpath = '../wairakei_data/config.xlsx'
+
+def read_binary_solution(path='../wairakei_data/toy-network-v4.xlsm'):
+    # read from Vida's toy model workbook
+    xlfile = pd.ExcelFile(path)
+    sheet = xlfile.parse('Full LP')
+    sheet = sheet.loc[sheet.count(1)>50]  # arbitrary, anything works
+    sheet = sheet.transpose()
+    sheet.columns = ['used', 'combination']
+    combinations = pd.DataFrame([x.split('-') for x in sheet.query('used==1')['combination']],
+                               columns = ['well', 'fp'])
+    combinations['well'] = 'wk' + combinations['well']
+    combinations['fp'] = 'fp' + combinations['fp']
+    return(combinations)
+
+def myprint(df):
+    display(HTML(df.to_html()))
+    
+def central(data, m=3.29):
+    return data[abs(data - np.mean(data)) < m * np.std(data)]
+
+def rename_wk(names):
+    # fix 'WK' inconsistencies
+    new = names.str.lower()
+    new = new.str.replace("^[^\d]*", "wk")
+    new = new.str.strip()
+    return new
+
+# Check if Excel file is already in memory (loading is slow)
+try:    xl
+except: xl = pd.ExcelFile('../wairakei_data/Liquid wells (version 1).xlsx')
+sheetlist = [x for x in xl.sheet_names if set(x) & set('FtT(L') == set()]
+print("Sheets:", ', '.join(sheetlist))
+
+# sheets to load data from
+sheets = sheetlist
+
+dfs = []
+for sheet in sheets:
+    try:
+        df = xl.parse(sheet)  # select well data
+        df['well'] = sheet    # label data with well name
+        dfs.append(df)
+    except:
+        print(f'Failed on sheet {sheet}')
+df = pd.concat(dfs)
+
+df = df[['date', 'whp', 'mf', 'h', 'well']]           # only keep certain columns
+df['well'] = rename_wk(df['well'])
+df['mf'] = pd.to_numeric(df['mf'], errors='coerce')   # remove 'dummy' entries
+df = df.dropna(subset=['date', 'whp', 'mf'])          # remove NA
+
+regression_df = df.reset_index(drop=True)
+wells = regression_df['well'].unique()
+print(wells)
+
+# import and process data
+try:    fpxl
+except: fpxl = pd.ExcelFile('../wairakei_data/Data for AU.xlsx')
+    
+fpdf = pd.read_excel(fpxl, 'calculation', header=1, usecols="D:E, J:L, N:P")
+fpdf = fpdf.rename(columns={"FP15": "well", "Unnamed: 1": "fp",
+                            "hf": "hf_ip", "hg": "hg_ip", "hfg": "hfg_ip",
+                            "hf.1": "hf_lp", "hg.1": "hg_lp", "hfg.1": "hfg_lp"})
+fpdf = fpdf[pd.to_numeric(fpdf['hf_ip'], errors='coerce').notnull()]  # make sure it has the necessary data
+for col in ['well', 'fp']:
+    fpdf[col] = fpdf[col].str.lower()
+fpdf[fpdf.columns] = fpdf[fpdf.columns].apply(pd.to_numeric, errors='ignore')
+print(fpdf.head())
+
+def write_config(configpath):
+    # only use if it gets lost. Will refresh file
+    well_fp_map = pd.DataFrame({'well': ['wk27', 'wk242', 'wk247', 'wk253', 'wk254', 'wk255', 'wk256', 'wk258', 'wk259', 'wk267', 'wk268', 'wk269', 'wk270', 'wk271', 'wk272'],
+                                'fp':   ['fp1',  'fp14',  'fp15', 'fp16',  'fp16',  'fp15',  'fp15',  'fp16',  'fp16',  'fp16',  'fp16',  'fp15',  'fp15',  'fp14',  'fp14']},
+                               columns=['well', 'fp'])
+    fp_gen_map = pd.DataFrame({'fp':     ['abandoned', 'poi dry', 'direct ip', 'fp1', 'fp14', 'fp15', 'fp16', 'fp2', 'fp4', 'fp5', 'fp9-10'],
+                               'gen_ip': [ None,       'POI',      None,       'WRK', 'WRK',  'THI',  'POI',  'WRK', 'WRK', 'WRK', 'WRK'   ],
+                               'gen_lp': [ None,       'POI',      None,       'WRK', 'WRK',  'THI',  'POI',  'WRK', 'WRK', 'WRK', 'WRK'   ],
+                               'gen_w':  [ None,        None,      None,       'BIN',  None,   None,   None,  'BIN', 'BIN', 'BIN', 'BIN'   ]},
+                              columns=['fp', 'gen_ip', 'gen_lp', 'gen_w'])
+    gen_constants = pd.DataFrame({'gen':    ['WRK', 'THI', 'BIN', 'POI' ],
+                                  'ip':     [ True,  True,  False, True ],
+                                  'lp':     [ True,  True,  False, True ],
+                                  'bin':    [ False, False, True,  False],
+                                  'factor': [ 9.2,   8.22,  178.9, 7.76]},  # m3/MW
+                                 columns=['gen', 'ip', 'lp', 'bin', 'factor'])
+    # find details of the last known operating conditions
+    last_idx = regression_df.groupby('well')['date_numeric'].idxmax()
+    operating_conditions = regression_df.iloc[last_idx][['well', 'whp', 'h']]
+
+    # set constants (could use median)
+    fp_constants = fpdf.groupby('fp').mean().reset_index()
+
+    if os.path.exists(configpath):
+        os.remove(configpath)
+    config_writer = pd.ExcelWriter('../wairakei_data/config.xlsx')
+    print("Writing config data to", configpath)
+    configdata = {'well_fp_map': well_fp_map,
+                  'fp_gen_map': fp_gen_map,
+                  'operating_conditions': operating_conditions,
+                  'fp_constants': fp_constants,
+                  'gen_constants': gen_constants}
+    for sheetname, df in configdata.items():
+        df.to_excel(config_writer, sheetname, index=False)
+    config_writer.save()
+    return pd.ExcelFile(configpath)
+
+try:
+    config = pd.ExcelFile(configpath)
+except FileNotFoundError:
+    print("Warning: are you sure you want to overwrite the config file?")
+#     config = write_config(configpath)
+```
+
+All the rest of the code up to and including the JAGS model used to be in Python but has been ported to R.
