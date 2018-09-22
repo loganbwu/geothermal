@@ -1,0 +1,155 @@
+---
+title: "Preprocessing"
+author: "Logan Wu"
+date: "9/10/2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
+library(rjags)
+library(coda)
+library(readxl)
+library(igraph)
+library(plotly)
+library(tidyverse)
+library(extrafont)
+library(gridExtra)
+library(lemon)
+library(latex2exp)
+
+pipath <- "../wairakei_data/short version Generation Projection 2016.xlsx"
+pi_raw <- read_excel(pipath, "From PI sheet", skip=1)
+```
+
+# Preprocessing
+
+This notebook ingests the PI system sheet. For processing of the Liquid Wells sheet, see the Python `simulation.ipynb` notebook.
+
+```{r}
+PI <- pi_raw %>%
+  rename(facility = Unit,
+         variable = X__1,
+         id = X__2,
+         description = X__3,
+         code = X__4) %>%
+  gather(key="datechar", value="value", -c(facility, variable, id, description, code)) %>%
+  mutate(date = as.Date(as.numeric(datechar), origin = "1899-12-30"),
+         value = as.numeric(value)) %>% select(-c(datechar, id)) %>%
+  mutate_if(is.character, tolower) %>%
+  mutate(value = as.numeric(value)) %>%
+  drop_na(value) %>%
+  filter(date >= as.Date("2017-11-01"), date < as.Date("2017-12-01")) %>%
+  filter(!str_detect(variable, "condition|calc"))
+
+pi_wells <- PI %>%
+  filter(str_detect(facility, "wk"))
+  
+pi_fps <- PI %>%
+  filter(str_detect(facility, "fp"))
+
+pa <- ggplot(pi_wells %>% filter(variable=="ip sf"), aes(x=date, y=value, color=facility)) +
+  geom_line()
+ggplotly(pa)
+```
+
+```{r}
+# which ones are in common?
+liqwells = names(well_ids)
+common = pi_wells %>% filter(facility %in% liqwells)
+
+```
+
+```{r}
+# extract more data for liquid wells regression
+newdata = pi_wells %>%
+  spread(key=variable, value=value) %>%
+  filter(facility=="wk255")
+
+x <- pi_wells %>%
+  select(facility, date, variable, value) %>% 
+  filter(value>0.1) %>% 
+  group_by(facility, date) %>% 
+  spread(key=variable, value=value) %>%
+  drop_na(`2phase flow`, `fp15  plot whp`) %>% 
+  ungroup() %>%
+  select(well=facility, date, whp=`fp15  plot whp`, mf=`2phase flow`)
+
+dry <- pi_wells %>%select(facility, date, variable, value) %>% filter(value>0.1) %>% group_by(facility, date) %>% spread(key=variable, value=value) %>%
+  drop_na(`ip sf`) %>% ungroup() %>%
+  select(well=facility, date, ip_sf=`ip sf`) %>% 
+  filter(well != "wk124")
+
+'%ni%' <- Negate('%in%')
+all_flows <- PI %>%
+  filter(str_detect(facility, "wk")) %>%
+  select(facility, date, variable, value) %>% filter(value>1e-2) %>% group_by(facility, date) %>% spread(key=variable, value=value) %>%
+  select(facility, date, `ip sf`, `actual massflow`) %>%
+  gather(key="key", value="mf", `ip sf`, `actual massflow`) %>% drop_na()
+
+write_excel_csv(all_flows, "../wairakei_data/well_pi.csv")
+write_excel_csv(dry, "../wairakei_data/dry_data.csv")
+piplot = ggplot(x, aes(x=whp, y=mf, color=well)) + geom_point() +
+  labs(title="PI Data Where WHP and Mass Flow Available")
+ggplotly(piplot)
+
+
+common = unique(dry$well[dry$well %in% names(well_ids)])
+
+# write_excel_csv(x, "../wairakei_data/extra_data.csv")
+# y = read_csv("../wairakei_data/extra_data.csv")
+```
+
+```{r drymatrix}
+drym = dry %>% spread(well, ip_sf) %>% select(-date)
+empty = setNames(data.frame(matrix(ncol = length(all_names), nrow = 0)), all_names)
+empty = full_join(empty, drym)
+```
+
+```{r}
+# acf_data <- drym %>%
+#   spread(well, ip_sf) %>%
+#   select_if(function(x) !anyNA(x))
+# 
+# acf(acf_data, type="correlation")
+```
+
+```{r}
+# look at generator flows
+
+gen <- PI %>%
+  filter(facility %in% c("poihipi", "tmh", "wrk (lp wf+drain)", "direct lp", "poi", "wrk"))
+power <- PI %>% filter(str_detect(code, "mw"))
+
+head(gen, 100) %>% select(facility, code, value)
+head(power, 100) %>% select(facility, code, value)
+```
+
+```{r}
+# extra fp15 data
+# extra <- pi_wells %>%
+#   select(facility, date, variable, value) %>% 
+#   filter(value>0.1) %>%
+#   filter(str_detect(variable, "plot|phase")) %>%
+#   spread(key=variable, value=value) %>%
+#   mutate(mf = pmax(`2phase flow`, `fp14  plot flow`, `fp15  plot flow`, na.rm=T),
+#          whp = pmax(`fp14  plot whp`, `fp15  plot whp`, `fp16  plot whp`, na.rm=T)) %>%
+#   select(well=facility, date, whp, mf) %>%
+#   drop_na()
+# 
+# ggplot(extra, aes(x=whp, y=mf, color=well)) +
+#   geom_point()
+# 
+# write_excel_csv(extra, "../wairakei_data/extra_liq.csv")
+```
+
+# Liquid wells
+
+```{r}
+# see if I can get anything else out.
+datapath <- "../wairakei_data/Liquid wells (version 1).xlsx"
+wellsheets = excel_sheets(datapath)
+for (sheet in wellsheets) {
+  assign(sheet, read_excel(datapath, sheet))
+}
+```

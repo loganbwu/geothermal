@@ -3,23 +3,32 @@ title: "Wairakei Stochastic Simulation Research Compendium"
 author: "Logan Wu"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
-output: bookdown::gitbook
+github-repo: "loganbwu/geothermal"
+output:
+  bookdown::gitbook:
+    self_contained: yes
+    config:
+      toc:
+        collapse: section
+        scroll_highlight: yes
+      search: yes
 documentclass: book
-link-citations: yes
-description: "Compendium index for the ENGSCI Part IV research roject"
+description: "Compendium index for the ENGSCI Part IV research project"
 ---
 
-# geothermal
+# Home
 
-## ENGSCI Part IV Project
+This compendium contains all the material used to generate the final report.
 
-**Logan Wu *lwu308|254620375***
+Components:
 
-Requires data in `(root)/wairakei_data/*.xlsx`. Raw data is confidential - contact Contact for access.
-The config file `/wairakei_data/config.xlsx` also may contain confidential data and is not committed.
+- **Research Journal**: Meeting notes and emails.
+- **Python Extraction Code**: Exploratory analysis and process data to a config and data spreadsheet.
+- **R and RJAGS**: Take the data from the config/data sheets and format into JAGS input. Then post-process the output.
 
-(Unix) Launch with
-```
-cd src
-jupyter notebook
-```
+This document is automatically generated thanks to Bookdown and Rstudio. (I swear, it only took a few hours to convert my source code into this).
+
+Compilation requires data in `(root)/wairakei_data/*.xlsx`. Raw data is confidential - contact Contact for access.
+The config file `/wairakei_data/config.xlsx` also may contain confidential data and is not committed, as is the entire `/wairakei_data/` folder.
+
+
