@@ -6,14 +6,13 @@ site: bookdown::bookdown_site
 github-repo: "loganbwu/geothermal"
 output:
   bookdown::gitbook:
-    self_contained: yes
     config:
       toc:
         collapse: section
         scroll_highlight: yes
-      search: yes
 documentclass: book
 description: "Compendium index for the ENGSCI Part IV research project"
+output_dir: "../docs"
 ---
 
 # Home
@@ -28,7 +27,7 @@ Components:
 
 This document is automatically generated thanks to Bookdown and Rstudio. (I swear, it only took a few hours to convert my source code into this).
 
-Compilation requires data in `(root)/wairakei_data/*.xlsx`. Raw data is confidential - contact Contact for access.
+Compilation requires data in `(root)/wairakei_data/*.xlsx`, i.e., you won't be able to run any of the code but it's been pre-run for you. Raw data is confidential - contact Contact for access.
 The config file `/wairakei_data/config.xlsx` also may contain confidential data and is not committed, as is the entire `/wairakei_data/` folder.
 
 

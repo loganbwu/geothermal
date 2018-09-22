@@ -5,6 +5,8 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE, warning=FALSE)
 library(reticulate)
 library(lemon)
 library(knitr)
+library(kableExtra)
+library(tidyverse)
 ```
 
 The following data extraction and cleaning code is from `simulation.ipynb`. This file used to be where I did exploratory analysis of the data and tried some models.
