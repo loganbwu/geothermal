@@ -47,17 +47,12 @@
 
 
 
-<script src="libs/htmlwidgets-1.2/htmlwidgets.js"></script>
-<link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
-<script src="libs/datatables-binding-0.4/datatables.js"></script>
-<link href="libs/dt-core-1.10.16/css/jquery.dataTables.min.css" rel="stylesheet" />
-<link href="libs/dt-core-1.10.16/css/jquery.dataTables.extra.css" rel="stylesheet" />
-<script src="libs/dt-core-1.10.16/js/jquery.dataTables.min.js"></script>
-<link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
-<script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<script src="libs/htmlwidgets-1.2/htmlwidgets.js"></script>
 <script src="libs/plotly-binding-4.8.0/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
 <link href="libs/plotly-htmlwidgets-css-1.39.2/plotly-htmlwidgets.css" rel="stylesheet" />
 <script src="libs/plotly-main-1.39.2/plotly-latest.min.js"></script>
 
@@ -112,7 +107,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
       <nav role="navigation">
 
 <ul class="summary">
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Overview</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Overview</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#components"><i class="fa fa-check"></i>Components</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#non-components"><i class="fa fa-check"></i>Non-components</a></li>
+</ul></li>
 <li class="chapter" data-level="1" data-path="motivation.html"><a href="motivation.html"><i class="fa fa-check"></i><b>1</b> Motivation</a><ul>
 <li class="chapter" data-level="1.1" data-path="motivation.html"><a href="motivation.html#whats-the-problem"><i class="fa fa-check"></i><b>1.1</b> What’s the problem?</a></li>
 <li class="chapter" data-level="1.2" data-path="motivation.html"><a href="motivation.html#what-are-we-doing"><i class="fa fa-check"></i><b>1.2</b> What are we doing?</a></li>
@@ -152,9 +150,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="4.5" data-path="r-and-rjags.html"><a href="r-and-rjags.html#posteriors"><i class="fa fa-check"></i><b>4.5</b> Posteriors</a><ul>
 <li class="chapter" data-level="4.5.1" data-path="r-and-rjags.html"><a href="r-and-rjags.html#well-mass-flow"><i class="fa fa-check"></i><b>4.5.1</b> Well Mass Flow</a></li>
 <li class="chapter" data-level="4.5.2" data-path="r-and-rjags.html"><a href="r-and-rjags.html#decline-rate"><i class="fa fa-check"></i><b>4.5.2</b> Decline Rate</a></li>
-<li class="chapter" data-level="4.5.3" data-path="r-and-rjags.html"><a href="r-and-rjags.html#fp-mass-flow"><i class="fa fa-check"></i><b>4.5.3</b> FP Mass Flow</a></li>
-<li class="chapter" data-level="4.5.4" data-path="r-and-rjags.html"><a href="r-and-rjags.html#gen-mass-flow"><i class="fa fa-check"></i><b>4.5.4</b> Gen Mass Flow</a></li>
-<li class="chapter" data-level="4.5.5" data-path="r-and-rjags.html"><a href="r-and-rjags.html#gen-power"><i class="fa fa-check"></i><b>4.5.5</b> Gen Power</a></li>
+<li class="chapter" data-level="4.5.3" data-path="r-and-rjags.html"><a href="r-and-rjags.html#gen-mass-flow"><i class="fa fa-check"></i><b>4.5.3</b> Gen Mass Flow</a></li>
+<li class="chapter" data-level="4.5.4" data-path="r-and-rjags.html"><a href="r-and-rjags.html#gen-power"><i class="fa fa-check"></i><b>4.5.4</b> Gen Power</a></li>
+<li class="chapter" data-level="4.5.5" data-path="r-and-rjags.html"><a href="r-and-rjags.html#well-standard-deviation"><i class="fa fa-check"></i><b>4.5.5</b> Well Standard Deviation</a></li>
 </ul></li>
 <li class="chapter" data-level="4.6" data-path="r-and-rjags.html"><a href="r-and-rjags.html#advanced-analysis"><i class="fa fa-check"></i><b>4.6</b> Advanced Analysis</a><ul>
 <li class="chapter" data-level="4.6.1" data-path="r-and-rjags.html"><a href="r-and-rjags.html#high-variance-wells"><i class="fa fa-check"></i><b>4.6.1</b> High Variance wells</a></li>
@@ -201,6 +199,7 @@ jupyter notebook</code></pre>
 <li><code>read_binary_solution</code> is able to read from Vida’s outputs and turn it into a well/FP mapping. However I don’t use it now because she doesn’t map all of the wells. Instead I manually enter it from <code>Data for AU.xlsx</code>.</li>
 <li>Here we read in the Liquid Wells spreadsheet. My script manages to pick up at least 30 of the approx. 60 wells in here, but I manually copy/pasted the rest because it was too annoying.</li>
 <li>The network structure and parameters are read from a config spreadsheet, <code>config.xlsx</code>. I generate as much as I can automatically and then fill any gaps manually.</li>
+<li>The AIC for the linear model (the one I eventually used) is the lowest. This backs up the DIC figures I came up with for the Bayesian model later.</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> pandas <span class="im">as</span> pd
 <span class="im">import</span> numpy <span class="im">as</span> np
@@ -471,19 +470,38 @@ plt.show()</code></pre></div>
 <h2><span class="header-section-number">3.2</span> Preview Data</h2>
 <p>Let’s have a look at what we get out of the pre-processing.</p>
 <p>We begin with the regression data.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">py<span class="op">$</span>df <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">head</span>(<span class="dv">12</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">datatable</span>(<span class="dt">caption=</span><span class="st">&quot;Well calibration data&quot;</span>, <span class="dt">options=</span><span class="kw">list</span>(<span class="dt">scrollX=</span>T))</code></pre></div>
-<div id="htmlwidget-8c95480acc914ab39974" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-8c95480acc914ab39974">{"x":{"filter":"none","caption":"<caption>Well calibration data<\/caption>","data":[["1","2","3","4","5","6","7","8","9","10","11","12"],["2008-12-18T00:00:00Z","2008-12-18T00:00:00Z","2008-12-18T00:00:00Z","2009-04-08T00:00:00Z","2009-04-08T00:00:00Z","2009-04-08T00:00:00Z","2009-04-23T00:00:00Z","2010-01-20T00:00:00Z","2010-01-20T00:00:00Z","2010-01-20T00:00:00Z","2011-05-26T00:00:00Z","2011-05-26T00:00:00Z"],[13.0284418604651,14.8414791666667,14.9390208333333,13.4666666666667,13.8,14.45,13.1,13.0296774193548,13.8820512820513,14.8404109589041,12.7,14.3],[507.776079890465,283.165920319025,208.716384533049,498.071714386836,457.879863510501,388.324090326152,478.8,473.970712335334,390.961216160288,238.865461107023,474.247465494592,291.670956549601],[1030,1030,1030,1054.23023469287,1040.51928804579,1030.12953956876,1083.68,1078.18684651844,1069.48172710504,1093.56414022086,1075.34864643886,1036.01956481403],["wk255","wk255","wk255","wk255","wk255","wk255","wk255","wk255","wk255","wk255","wk255","wk255"],[3274,3274,3274,3385,3385,3385,3400,3672,3672,3672,4163,4163]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>date<\/th>\n      <th>whp<\/th>\n      <th>mf<\/th>\n      <th>h<\/th>\n      <th>well<\/th>\n      <th>date_numeric<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"columnDefs":[{"className":"dt-right","targets":[2,3,4,6]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">py<span class="op">$</span>df <span class="op">%&gt;%</span><span class="st"> </span>head <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">kable</span>(<span class="dt">caption=</span><span class="st">&quot;Well calibration data&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span>kable_styling <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">scroll_box</span>(<span class="dt">width=</span><span class="st">&quot;100%&quot;</span>)</code></pre></div>
+<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:100%; ">
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:unnamed-chunk-2">Table 3.1: </span>Well calibration data
+</caption>
+<tbody>
+<tr>
+</tr>
+</tbody>
+</table>
+</div>
 <p>Now, the flash plant operating conditions.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">py<span class="op">$</span>fpdf <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">head</span>(<span class="dv">12</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">datatable</span>(<span class="dt">caption=</span><span class="st">&quot;Flash plant operational parameters&quot;</span>, <span class="dt">options=</span><span class="kw">list</span>(<span class="dt">scrollX=</span>T))</code></pre></div>
-<div id="htmlwidget-e97784d4e0059aa589c8" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-e97784d4e0059aa589c8">{"x":{"filter":"none","caption":"<caption>Flash plant operational parameters<\/caption>","data":[["0","1","2","3","4","5","6","7","8","9","10","11"],["wk255","wk256","wk251","wk250","wk252","wk238","wk234","wk240","wk241","wk247","wk267","wk268"],["fp15","fp15","fp15","fp15","fp15","fp15","fp15","fp15","fp15","fp15","fp15","fp15"],[677.625310761649,677.625310761649,677.625310761649,677.625310761649,677.625310761649,677.625310761649,677.625310761649,677.625310761649,677.625310761649,677.625310761649,677.625310761649,677.625310761649],[2757.98494300545,2757.98494300545,2757.98494300545,2757.98494300545,2757.98494300545,2757.98494300545,2757.98494300545,2757.98494300545,2757.98494300545,2757.98494300545,2757.98494300545,2757.98494300545],[2080.3596322438,2080.3596322438,2080.3596322438,2080.3596322438,2080.3596322438,2080.3596322438,2080.3596322438,2080.3596322438,2080.3596322438,2080.3596322438,2080.3596322438,2080.3596322438],[461.792988795089,461.792988795089,461.792988795089,461.792988795089,461.792988795089,461.792988795089,461.792988795089,461.792988795089,461.792988795089,461.792988795089,461.792988795089,461.792988795089],[2691.19693737063,2691.19693737063,2691.19693737063,2691.19693737063,2691.19693737063,2691.19693737063,2691.19693737063,2691.19693737063,2691.19693737063,2691.19693737063,2691.19693737063,2691.19693737063],[2229.40394857554,2229.40394857554,2229.40394857554,2229.40394857554,2229.40394857554,2229.40394857554,2229.40394857554,2229.40394857554,2229.40394857554,2229.40394857554,2229.40394857554,2229.40394857554]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>well<\/th>\n      <th>fp<\/th>\n      <th>hf_ip<\/th>\n      <th>hg_ip<\/th>\n      <th>hfg_ip<\/th>\n      <th>hf_lp<\/th>\n      <th>hg_lp<\/th>\n      <th>hfg_lp<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"columnDefs":[{"className":"dt-right","targets":[3,4,5,6,7,8]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">py<span class="op">$</span>fpdf <span class="op">%&gt;%</span><span class="st"> </span>as.data.frame <span class="op">%&gt;%</span><span class="st"> </span>head <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">kable</span>(<span class="dt">caption=</span><span class="st">&quot;Flash plant operational parameters&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span>kable_styling <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">scroll_box</span>(<span class="dt">width=</span><span class="st">&quot;100%&quot;</span>)</code></pre></div>
+<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:100%; ">
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:unnamed-chunk-3">Table 3.2: </span>Flash plant operational parameters
+</caption>
+<tbody>
+<tr>
+</tr>
+</tbody>
+</table>
+</div>
 <p>Here’s a (deterministic) example of what we expect to get out - mass flow predictions per well. But we will use JAGS to get stochastic samples rather than this regression.</p>
 <div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:100%; ">
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:unnamed-chunk-4">Table 3.1: </span>Mass flow prediction demo
+<span id="tab:unnamed-chunk-4">Table 3.3: </span>Mass flow prediction demo
 </caption>
 <thead>
 <tr>

@@ -28,6 +28,7 @@ jupyter notebook
 - `read_binary_solution` is able to read from Vida's outputs and turn it into a well/FP mapping. However I don't use it now because she doesn't map all of the wells. Instead I manually enter it from `Data for AU.xlsx`.
 - Here we read in the Liquid Wells spreadsheet. My script manages to pick up at least 30 of the approx. 60 wells in here, but I manually copy/pasted the rest because it was too annoying.
 - The network structure and parameters are read from a config spreadsheet, `config.xlsx`. I generate as much as I can automatically and then fill any gaps manually.
+- The AIC for the linear model (the one I eventually used) is the lowest. This backs up the DIC figures I came up with for the Bayesian model later.
 
 ```{python, results="asis"}
 import pandas as pd
@@ -305,14 +306,15 @@ Let's have a look at what we get out of the pre-processing.
 We begin with the regression data.
 
 ```{r}
-py$df %>% head(12) %>% datatable(caption="Well calibration data", options=list(scrollX=T))
+py$df %>% head %>% kable(caption="Well calibration data") %>%
+  kable_styling %>% scroll_box(width="100%")
 ```
 
 Now, the flash plant operating conditions.
 
 ```{r}
-py$fpdf %>% head(12) %>% 
-  datatable(caption="Flash plant operational parameters", options=list(scrollX=T))
+py$fpdf %>% as.data.frame %>% head %>% kable(caption="Flash plant operational parameters") %>%
+  kable_styling %>% scroll_box(width="100%")
 ```
 
 Here's a (deterministic) example of what we expect to get out - mass flow predictions per well. But we will use JAGS to get stochastic samples rather than this regression.

@@ -17,26 +17,26 @@ output_dir: ../docs
 
 # Overview {-}
 
-This compendium contains all the material used to generate the final report.
+This compendium contains all the material used to generate the final report. It is automatically generated thanks to Bookdown and Rstudio. (I swear, it only took a few hours to convert my source code into this).
 
-**Components**
+Compilation requires data in `(root)/wairakei_data/*.xlsx`, i.e., you won't be able to run any of the code but it's been pre-run for you. Raw data is confidential - contact Contact for access. The config file `/wairakei_data/config.xlsx` also may contain confidential data and is not committed, as is the entire `/wairakei_data/` folder.
+
+## Components {-}
 
 - **Research Journal** Meeting notes and emails.
 - **Python Extraction Code** Exploratory analysis and process data to a config and data spreadsheet.
 - **R and RJAGS** Take the data from the config/data sheets and format into JAGS input. Then post-process the output.
 
-**Not Included**
+## Non-components {-}
+
+(Not included)
 
 - **Data** So that this compendium can be uploaded to Github without paying for a private repo.
     + **2486** rows of mass flow / whp data from multiple sources.
-    + **420** rows of times-series mass flow data from PI.
-    + **One** 64.4 MB spreadsheet from Contact that has crashed my computer many times.
+    + **420** rows of time-series mass flow data from PI.
+    + **74.5** MB of spreadsheets from Contact that have crashed my computer many times.
 - **Raw Outputs**
-    + **456** MB of output traces.
+    + **456** MB of output traces -- 10,000 samples of 5654 variables.
     + **Blood**, sweat and tears, which do not aid the communication of my work.
-
-This document is automatically generated thanks to Bookdown and Rstudio. (I swear, it only took a few hours to convert my source code into this).
-
-Compilation requires data in `(root)/wairakei_data/*.xlsx`, i.e., you won't be able to run any of the code but it's been pre-run for you. Raw data is confidential - contact Contact for access. The config file `/wairakei_data/config.xlsx` also may contain confidential data and is not committed, as is the entire `/wairakei_data/` folder.
 
 

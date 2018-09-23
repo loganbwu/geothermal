@@ -85,7 +85,7 @@ R is used to:
 
 Reads data from several spreadsheets, including PI data. PI data is special because it has not been pre-processed. It requires additional filtering and basic pre-processing.
 
-```{r load data}
+```{r load_data}
 # read in config data
 configsheets = excel_sheets(configpath)
 for (sheet in configsheets) {
@@ -221,7 +221,7 @@ incomplete.fps = unique(well_fp_map %>%
 
 Work out which of the (now uniquely integer-identified) facilities flows to which. Then generates a graphic to check for correctness.
 
-```{r graph, message=FALSE}
+```{r graph, message=FALSE, fig.cap="Full network diagram, with flows from left to right. Red wells indicate forecasts have been filled in from the PI data without a production curve, and dummy arcs are in grey. Dummy arcs allow IP/LP/water to be split up."}
 # create connectivity matrix. i flows to j
 # wells to FPs
 v = matrix(0, nrow=length(ids), ncol=length(ids))
@@ -315,7 +315,7 @@ This code also centers some of the covariates so it does not have to be done in 
 x_\text{whp} \leftarrow x_\text{whp} - \overline{x_\text{whp}}
 \end{equation}
 
-```{r data, message=FALSE}
+```{r data, message=FALSE, fig.cap="One month of the most recent regression data from the PI database. We use a combination of well test data (not shown) to estimate the regression parameters, and this PI data to increase the weight and precision for short-term forecasts. Note how PI data is tightly clustered -- this forces regressions to fit closely and is desirable if our predicted regressors are close to the PI data."}
 regression_list = regression_df %>% select(well_id, whp, mf, date_numeric) %>% as.list()
 dry_list = dry_df %>%
   filter(date < prediction_date) %>%
@@ -611,7 +611,7 @@ One of the difficulties with MCMC approximations is they often require a burn-in
 
 Poor convergence or mixing is indicated by a strong trend at the beginning of the trace plot.
 
-```{r traceplots}
+```{r traceplots, fig.cap="Example trace plots displaying normal behaviour. The sampler appears to have reached its equilibrium distribution with no trend."}
 trace1 <- outframe %>%
   filter(variable=='mf_pred', facility==censor('wk256', "well")) %>%
   mutate(index = 1:nrow(.))
@@ -637,7 +637,7 @@ Geweke's convergence diagnostic for MCMC samples tests for equality of the means
 
 If true univariate convergence has been achieved, we expect 95% of variables to pass Geweke's test with a z-score  less than 1.96 with 95% confidence.
 
-```{r geweke}
+```{r geweke, fig.cap="More than 5% of z-scores outside the confidence interval, indicating the chains have not converged and are either too short or contain burn-in."}
 # 100 random var because it takes too long
 random_var_ix = sample.int(ncol(outmatrix), 100)
 geweke.out = geweke.diag(out[,random_var_ix])
@@ -664,7 +664,7 @@ gelman.out = gelman.diag(out[,c(paste0('mf_pred[', 8:9, ']'),
                                 'beta_date[9]', 'mu_beta_whp', 'mu_beta_date',
                                 'mu_Intercept', 'total_power')])[[1]] %>% 
   as.data.frame()
-gelman.out %>% datatable(caption="Gelman-Rubin test statistics")
+gelman.out %>% kable(caption="Gelman-Rubin test statistics") %>% kable_styling
 ```
 
 Some of the upper CIs are slightly greater than one, but not significantly. Large PSRFs are acceptable if they are in components of the network that do not affect parameters of interest.
@@ -695,7 +695,7 @@ We generate density plots in their most basic forms without post-processing.
 
 ### Well Mass Flow
 
-```{r}
+```{r, fig.cap="Posterior mass flows for all 71 wells, divided into wells with production curves and wells with a simple time-series. Wells show large variations in mean mass flow and variance."}
 g1 = ggplot(outframe %>% 
               filter(facility %in% well_names, variable=="mf_pred", value>0) %>%
               mutate(source = ifelse(facility %in% dry_wells, "PI time series", "Production curve")), 
@@ -714,21 +714,21 @@ ggplotly(g1, tooltip=c('facility', 'value'))
 
 An operator might like to see which wells are declining the fastest.
 
-```{r}
+```{r, fig.cap="Decline rates for $\\beta_\\text{date}$."}
 g2 = ggplot(outframe %>% filter(variable=="beta_date", facility %in% special_wells),
             aes(x=value, fill=facility)) +
   geom_density(alpha=0.5, color=NA) +
   labs(title="Posterior Decline Rate of Test Data", 
-       x="beta_date (T/h/Bar)", y="Density", fill="Facility") +
+       x="beta_date (T/h/d)", y="Density", fill="Facility") +
   theme(axis.text.y=element_blank(),
         axis.ticks.y=element_blank())# +
   # ggsave('../_media/beta_date.png', width=24.7, height=6, units='cm')
 ggplotly(g2, tooltip=c('facility', 'value'))
 ```
 
-### FP Mass Flow
+### Gen Mass Flow
 
-```{r}
+```{r, fig.cap="Generator mass flow estimates."}
 g4 = ggplot(outframe %>% filter(facility %in% gen_names, variable=="mf_pred", value>0),
             aes(x=value, fill=facility)) +
   geom_density(aes(y=..scaled..), alpha=0.5, color=NA) + xlim(0, NA) + 
@@ -740,9 +740,9 @@ g4 = ggplot(outframe %>% filter(facility %in% gen_names, variable=="mf_pred", va
 ggplotly(g4, tooltip=c('facility', 'value'))
 ```
 
-### Gen Mass Flow
+### Gen Power
 
-```{r}
+```{r, fig.cap="Generator power estimates"}
 g5.actual = data.frame(facility = c("WRK", "THI", "POI", "BIN"),
                        value = c(121.73567, 172.18096, 51.53028, 9.98687))
 g5 = ggplot(outframe %>% filter(facility %in% gen_names, variable=="power", value>0),
@@ -759,9 +759,9 @@ ggplotly(g5, tooltip=c('facility', 'value'))
 # ggsave('../_media/gens.png', tsgrob4.5, width=24.7, height=6, units='cm')
 ```
 
-### Gen Power
+### Well Standard Deviation
 
-```{r}
+```{r, fig.cap="Estimates for standard deviation in well mass flow."}
 tb6 <- outframe %>% filter(variable=="sd") %>% select(facility, value) %>%
   mutate(well=factor(facility)) %>%
   group_by(well) %>%
@@ -827,7 +827,7 @@ print(xtable(tb2[tb2$well %in% special_wells,], type = "latex",
 
 ### High Variance wells
 
-```{r investigate}
+```{r investigate, fig.cap="Facets of the data sources for the mass flow's standard deviation. No data (far left) means there was no curve -- these mass flows were predicted by time series on PI mass-flow data. $n$ is the number of wells, and standard deviation is calculated as $\\text{sd}(\\hat{\\dot{m}}_j)$ for each well. Lower values mean the samples for mass flow were more concentrated, but this is not necessarily a good thing if it means we are under-estimating uncertainty."}
 nrow.source = function(df, facilityname, sourcename) {
   return(nrow(df %>% filter(well==facilityname, source==sourcename)))
 }
@@ -862,9 +862,13 @@ n_summaries = well_summaries %>%
 
 sourceplot = ggplot(well_summaries, aes(x=1, y=log(sd))) +
   geom_boxplot(fill='steelblue') +
-  geom_label(data=n_summaries, 
-             aes(x=-Inf, y=-Inf, hjust=0, vjust=0, label=paste0("n=", n), family="Times New Roman"),
-             label.size=0, fill='white') +
+  # geom_label(data=n_summaries, 
+  #            aes(x=-Inf, y=-Inf, hjust=0, vjust=0, 
+  #                label=paste0("n=", n), family="Times New Roman"),
+  #            label.size=0, fill='white') +
+  geom_text(data=n_summaries, 
+            aes(x=-Inf, y=-Inf, hjust=0, vjust=0, 
+                label=paste0("n=", n), family="Times New Roman")) +
   facet_grid(.~ use.pi + use.test) +
   theme(axis.text.x=element_blank(),
         axis.ticks.x=element_blank()) +
@@ -883,12 +887,12 @@ sourcetab = well_summaries %>%
 # sourcetab %>% datatable(caption = "Production errors and data sources",
 #                         options=list(scrollX=T))
 sourcetab %>% kable(caption="Production errors and data sources") %>%
-  kable_styling %>% scroll_box(width="100%")
+  kable_styling %>% scroll_box(height="400px", width="100%")
 ```
 
 ### Regression Fits
 
-```{r verify production curve}
+```{r verify_production_curve, fig.cap="We expect the curves to make better predictions near the PI data after inclusion. Forecasted production curves for December 1st, and shaded regions are 95% credible intervals."}
 prod = as.data.frame(outmatrix) %>%
   select(contains('prod')) %>%
   gather(key=facility, value=value) %>%
@@ -922,7 +926,7 @@ ggplotly(regplot)
 
 ### Time Series Plots
 
-```{r TS Plots}
+```{r TS_Plots}
 tsplotwells = ar_wells
 ts_fit = as.data.frame(outmatrix) %>%
   select(contains('mf_ts')) %>%
@@ -971,7 +975,9 @@ ewma_fit = as.data.frame(outmatrix) %>%
 
 # find plot limits
 tsmax = max(c(ts_fit$upper, ar_fit$upper, ewma_fit$upper))
+```
 
+```{r, fig.cap="Linear regression."}
 lintsplot = ggplot(ts_fit, aes(x=date_numeric, color=well, fill=well)) +
   geom_line(aes(y=mean), linetype="dashed") +
   geom_ribbon(aes(ymin=lower, ymax=upper), color=NA, alpha=0.25) +
@@ -982,7 +988,10 @@ lintsplot = ggplot(ts_fit, aes(x=date_numeric, color=well, fill=well)) +
   labs(title=paste("Linear Time Series Regression for Selected Wells in PI"), 
        x="Days since baseline (2000)", linetype="")# +
   # ggsave('../_media/dry_time_series.png', width=24.7, height=8, units='cm')
+ggplotly(lintsplot)
+```
 
+```{r, fig.cap="First-order autoregressive model."}
 arplot = ggplot(ar_fit %>% filter(facility %in% tsplotwells), 
                 aes(x=date_numeric, y=mean, fill=facility, color=facility)) +
   geom_line(data=tsplotdata, aes(y=mf)) +
@@ -992,7 +1001,10 @@ arplot = ggplot(ar_fit %>% filter(facility %in% tsplotwells),
              linetype="dashed", color="red") +
   labs(title="AR(1) Experiment", x="Days since first date", y="Mass flow (T/h)")# +
   # ggsave('../_media/ar_experiment.png', width=24.7, height=8, units='cm')
+ggplotly(arplot)
+```
 
+```{r, fig.cap="Exponentially-weighted moving average model."}
 ewmaplot = ggplot(ewma_fit, aes(x=date_numeric, y=mean, fill=facility, color=facility)) +
   geom_line(data=tsplotdata, aes(y=mf)) +
   geom_ribbon(aes(ymin=lower, ymax=upper), color=NA, alpha=0.5) +
@@ -1001,20 +1013,19 @@ ewmaplot = ggplot(ewma_fit, aes(x=date_numeric, y=mean, fill=facility, color=fac
              linetype="dashed", color="red") +
   labs(title="EWMA Experiment", x="Days since first date")# +
   # ggsave('../_media/ewma_experiment.png', width=24.7, height=8, units='cm')
+ggplotly(ewmaplot)
+```
 
-lintsplot
-arplot
-ewmaplot
-
-tsgrob = grid_arrange_shared_legend(lintsplot, arplot, ewmaplot, 
-                                    nrow=3, ncol=1, position = "bottom")
-tsgrob
+```{r, include=FALSE}
+# tsgrob = grid_arrange_shared_legend(lintsplot, arplot, ewmaplot, 
+#                                     nrow=3, ncol=1, position = "bottom")
+# tsgrob
 # ggsave('../_media/ts_experiment.png', tsgrob, width=24.7, height=24, units='cm')
 ```
 
 ### Goodness of fit (OLS regression)
 
-```{r OLS diagnostics, warning=FALSE, fig.height=12}
+```{r OLS_diagnostics, warning=FALSE, fig.height=12, fig.cap="Miscellaneous regression diagnostic plots."}
 liq_fit = as.data.frame(outmatrix) %>%
   select(contains('mf_fit')) %>%
   gather(key='index', value='fitted') %>%
@@ -1094,7 +1105,7 @@ stdresplot
 
 ### Limits and Constraint Violations
 
-```{r constraints}
+```{r constraints, fig.cap="We expect the curves to make better predictions near the PI data after inclusion. Forecasted production curves for December 1st, and shaded regions are 95% credible intervals."}
 sf.df <- outframe %>% 
   filter(str_detect(variable, "total_sf") & value > 0) %>% 
   droplevels()
@@ -1130,7 +1141,7 @@ limitplot
 
 ### Flow Comparison
 
-```{r flow comparison, fig.cap="Verification of predicted flows with supplied calculations shows some disagreement (p<0.025 or p>0.975), if we assume CEL's figures as the ground truth. Densities are the model's forecasts and black lines are the given figures from CEL (estimated by CEL, not direct from the PI loggers)."}
+```{r flow comparison, fig.cap="Verification of predicted flows with supplied calculations shows some disagreement ($p<0.025$ or $p>0.975$), if we assume CEL's figures as the ground truth. Densities are the model's forecasts and black lines are the given figures from CEL (estimated by CEL, not direct from the PI loggers)."}
 flow.df <- outframe %>% 
   filter(facility %in% fp_names) %>%
   filter(str_detect(variable, "mf_pred|ip_sf|lp_sf|wf") & value > 0) %>%

@@ -1,5 +1,7 @@
 # Testing
 
+<p class="alert alert-info">Ignore this page.</p>
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(reticulate)
