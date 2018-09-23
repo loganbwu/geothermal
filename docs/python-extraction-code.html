@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Wairakei Stochastic Simulation Research Compendium</title>
+  <meta name="description" content="Compendium index for the ENGSCI Part IV research project">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Wairakei Stochastic Simulation Research Compendium" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Compendium index for the ENGSCI Part IV research project" />
+  <meta name="github-repo" content="loganbwu/geothermal" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Wairakei Stochastic Simulation Research Compendium" />
+  
+  <meta name="twitter:description" content="Compendium index for the ENGSCI Part IV research project" />
+  
+
+<meta name="author" content="Logan Wu">
+
+
+<meta name="date" content="2018-09-23">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="research-journal.html">
+<link rel="next" href="r-and-rjags.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<script src="libs/htmlwidgets-1.2/htmlwidgets.js"></script>
+<link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="libs/datatables-binding-0.4/datatables.js"></script>
+<link href="libs/dt-core-1.10.16/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.10.16/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.10.16/js/jquery.dataTables.min.js"></script>
+<link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<script src="libs/plotly-binding-4.8.0/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.39.2/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.39.2/plotly-latest.min.js"></script>
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Overview</a></li>
+<li class="chapter" data-level="1" data-path="motivation.html"><a href="motivation.html"><i class="fa fa-check"></i><b>1</b> Motivation</a><ul>
+<li class="chapter" data-level="1.1" data-path="motivation.html"><a href="motivation.html#whats-the-problem"><i class="fa fa-check"></i><b>1.1</b> What’s the problem?</a></li>
+<li class="chapter" data-level="1.2" data-path="motivation.html"><a href="motivation.html#what-are-we-doing"><i class="fa fa-check"></i><b>1.2</b> What are we doing?</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="research-journal.html"><a href="research-journal.html"><i class="fa fa-check"></i><b>2</b> Research Journal</a><ul>
+<li class="chapter" data-level="2.1" data-path="research-journal.html"><a href="research-journal.html#march-8th"><i class="fa fa-check"></i><b>2.1</b> March 8th</a></li>
+<li class="chapter" data-level="2.2" data-path="research-journal.html"><a href="research-journal.html#march-16th"><i class="fa fa-check"></i><b>2.2</b> March 16th</a></li>
+<li class="chapter" data-level="2.3" data-path="research-journal.html"><a href="research-journal.html#march-23rd"><i class="fa fa-check"></i><b>2.3</b> March 23rd</a></li>
+<li class="chapter" data-level="2.4" data-path="research-journal.html"><a href="research-journal.html#april-12th"><i class="fa fa-check"></i><b>2.4</b> April 12th</a></li>
+<li class="chapter" data-level="2.5" data-path="research-journal.html"><a href="research-journal.html#april-26th"><i class="fa fa-check"></i><b>2.5</b> April 26th</a></li>
+<li class="chapter" data-level="2.6" data-path="research-journal.html"><a href="research-journal.html#july-19th"><i class="fa fa-check"></i><b>2.6</b> July 19th</a></li>
+<li class="chapter" data-level="2.7" data-path="research-journal.html"><a href="research-journal.html#august-9th"><i class="fa fa-check"></i><b>2.7</b> August 9th</a></li>
+<li class="chapter" data-level="2.8" data-path="research-journal.html"><a href="research-journal.html#august-16th"><i class="fa fa-check"></i><b>2.8</b> August 16th</a></li>
+<li class="chapter" data-level="2.9" data-path="research-journal.html"><a href="research-journal.html#september-6th"><i class="fa fa-check"></i><b>2.9</b> September 6th</a></li>
+<li class="chapter" data-level="2.10" data-path="research-journal.html"><a href="research-journal.html#september-13th"><i class="fa fa-check"></i><b>2.10</b> September 13th</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="python-extraction-code.html"><a href="python-extraction-code.html"><i class="fa fa-check"></i><b>3</b> Python Extraction Code</a><ul>
+<li class="chapter" data-level="3.1" data-path="python-extraction-code.html"><a href="python-extraction-code.html#pre-processing"><i class="fa fa-check"></i><b>3.1</b> Pre-processing</a></li>
+<li class="chapter" data-level="3.2" data-path="python-extraction-code.html"><a href="python-extraction-code.html#preview-data"><i class="fa fa-check"></i><b>3.2</b> Preview Data</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="r-and-rjags.html"><a href="r-and-rjags.html"><i class="fa fa-check"></i><b>4</b> R and RJAGS</a><ul>
+<li class="chapter" data-level="4.1" data-path="r-and-rjags.html"><a href="r-and-rjags.html#setup"><i class="fa fa-check"></i><b>4.1</b> Setup</a></li>
+<li class="chapter" data-level="4.2" data-path="r-and-rjags.html"><a href="r-and-rjags.html#data-handling"><i class="fa fa-check"></i><b>4.2</b> Data Handling</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="r-and-rjags.html"><a href="r-and-rjags.html#load-data"><i class="fa fa-check"></i><b>4.2.1</b> Load Data</a></li>
+<li class="chapter" data-level="4.2.2" data-path="r-and-rjags.html"><a href="r-and-rjags.html#censor-names"><i class="fa fa-check"></i><b>4.2.2</b> Censor names</a></li>
+<li class="chapter" data-level="4.2.3" data-path="r-and-rjags.html"><a href="r-and-rjags.html#preprocessing"><i class="fa fa-check"></i><b>4.2.3</b> Preprocessing</a></li>
+<li class="chapter" data-level="4.2.4" data-path="r-and-rjags.html"><a href="r-and-rjags.html#graph"><i class="fa fa-check"></i><b>4.2.4</b> Graph</a></li>
+<li class="chapter" data-level="4.2.5" data-path="r-and-rjags.html"><a href="r-and-rjags.html#format-data"><i class="fa fa-check"></i><b>4.2.5</b> Format Data</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="r-and-rjags.html"><a href="r-and-rjags.html#model"><i class="fa fa-check"></i><b>4.3</b> Model</a></li>
+<li class="chapter" data-level="4.4" data-path="r-and-rjags.html"><a href="r-and-rjags.html#convergence-tests"><i class="fa fa-check"></i><b>4.4</b> Convergence Tests</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="r-and-rjags.html"><a href="r-and-rjags.html#trace-plots"><i class="fa fa-check"></i><b>4.4.1</b> Trace plots</a></li>
+<li class="chapter" data-level="4.4.2" data-path="r-and-rjags.html"><a href="r-and-rjags.html#geweke"><i class="fa fa-check"></i><b>4.4.2</b> Geweke</a></li>
+<li class="chapter" data-level="4.4.3" data-path="r-and-rjags.html"><a href="r-and-rjags.html#gelman"><i class="fa fa-check"></i><b>4.4.3</b> Gelman</a></li>
+<li class="chapter" data-level="4.4.4" data-path="r-and-rjags.html"><a href="r-and-rjags.html#raftery"><i class="fa fa-check"></i><b>4.4.4</b> Raftery</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="r-and-rjags.html"><a href="r-and-rjags.html#posteriors"><i class="fa fa-check"></i><b>4.5</b> Posteriors</a><ul>
+<li class="chapter" data-level="4.5.1" data-path="r-and-rjags.html"><a href="r-and-rjags.html#well-mass-flow"><i class="fa fa-check"></i><b>4.5.1</b> Well Mass Flow</a></li>
+<li class="chapter" data-level="4.5.2" data-path="r-and-rjags.html"><a href="r-and-rjags.html#decline-rate"><i class="fa fa-check"></i><b>4.5.2</b> Decline Rate</a></li>
+<li class="chapter" data-level="4.5.3" data-path="r-and-rjags.html"><a href="r-and-rjags.html#fp-mass-flow"><i class="fa fa-check"></i><b>4.5.3</b> FP Mass Flow</a></li>
+<li class="chapter" data-level="4.5.4" data-path="r-and-rjags.html"><a href="r-and-rjags.html#gen-mass-flow"><i class="fa fa-check"></i><b>4.5.4</b> Gen Mass Flow</a></li>
+<li class="chapter" data-level="4.5.5" data-path="r-and-rjags.html"><a href="r-and-rjags.html#gen-power"><i class="fa fa-check"></i><b>4.5.5</b> Gen Power</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="r-and-rjags.html"><a href="r-and-rjags.html#advanced-analysis"><i class="fa fa-check"></i><b>4.6</b> Advanced Analysis</a><ul>
+<li class="chapter" data-level="4.6.1" data-path="r-and-rjags.html"><a href="r-and-rjags.html#high-variance-wells"><i class="fa fa-check"></i><b>4.6.1</b> High Variance wells</a></li>
+<li class="chapter" data-level="4.6.2" data-path="r-and-rjags.html"><a href="r-and-rjags.html#regression-fits"><i class="fa fa-check"></i><b>4.6.2</b> Regression Fits</a></li>
+<li class="chapter" data-level="4.6.3" data-path="r-and-rjags.html"><a href="r-and-rjags.html#time-series-plots"><i class="fa fa-check"></i><b>4.6.3</b> Time Series Plots</a></li>
+<li class="chapter" data-level="4.6.4" data-path="r-and-rjags.html"><a href="r-and-rjags.html#goodness-of-fit-ols-regression"><i class="fa fa-check"></i><b>4.6.4</b> Goodness of fit (OLS regression)</a></li>
+<li class="chapter" data-level="4.6.5" data-path="r-and-rjags.html"><a href="r-and-rjags.html#limits-and-constraint-violations"><i class="fa fa-check"></i><b>4.6.5</b> Limits and Constraint Violations</a></li>
+<li class="chapter" data-level="4.6.6" data-path="r-and-rjags.html"><a href="r-and-rjags.html#flow-comparison"><i class="fa fa-check"></i><b>4.6.6</b> Flow Comparison</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="testing.html"><a href="testing.html"><i class="fa fa-check"></i><b>5</b> Testing</a></li>
+<li class="chapter" data-level="" data-path="special-thanks.html"><a href="special-thanks.html"><i class="fa fa-check"></i>Special Thanks</a><ul>
+<li class="chapter" data-level="5.1" data-path="special-thanks.html"><a href="special-thanks.html#people-and-corporations-corporations-are-people-too"><i class="fa fa-check"></i><b>5.1</b> People (and corporations – corporations are people too)</a></li>
+<li class="chapter" data-level="5.2" data-path="special-thanks.html"><a href="special-thanks.html#packages-and-the-people-who-made-them"><i class="fa fa-check"></i><b>5.2</b> Packages (and the people who made them)</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Wairakei Stochastic Simulation Research Compendium</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="python-extraction-code" class="section level1">
+<h1><span class="header-section-number">3</span> Python Extraction Code</h1>
+<p>The following data extraction and cleaning code is from <code>simulation.ipynb</code>. This file used to be where I did exploratory analysis of the data and tried some models.</p>
+<p>The Python notebook is also used to generate a rudimentary config file, which I later added additional data to (note to self: don’t run it or it will overwrite!). It seems that now Rmarkdown nicely integrates Python, <a href="https://cran.r-project.org/web/packages/reticulate/index.html">but the Reticulate package was only released in August 2018</a>. Oh well. I’ve put the Python code in here so technically, if I ran this notebook right this moment, it would do it all.</p>
+<div id="pre-processing" class="section level2">
+<h2><span class="header-section-number">3.1</span> Pre-processing</h2>
+<p>(Unix) Launch with</p>
+<pre><code>cd src
+jupyter notebook</code></pre>
+<p><strong>Notes</strong></p>
+<ul>
+<li><code>read_binary_solution</code> is able to read from Vida’s outputs and turn it into a well/FP mapping. However I don’t use it now because she doesn’t map all of the wells. Instead I manually enter it from <code>Data for AU.xlsx</code>.</li>
+<li>Here we read in the Liquid Wells spreadsheet. My script manages to pick up at least 30 of the approx. 60 wells in here, but I manually copy/pasted the rest because it was too annoying.</li>
+<li>The network structure and parameters are read from a config spreadsheet, <code>config.xlsx</code>. I generate as much as I can automatically and then fill any gaps manually.</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> pandas <span class="im">as</span> pd
+<span class="im">import</span> numpy <span class="im">as</span> np
+<span class="im">import</span> seaborn <span class="im">as</span> sns
+<span class="im">from</span> datetime <span class="im">import</span> datetime, timedelta
+<span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt
+<span class="im">from</span> matplotlib.colors <span class="im">import</span> Normalize
+<span class="im">from</span> matplotlib.colorbar <span class="im">import</span> ColorbarBase
+<span class="im">from</span> IPython.display <span class="im">import</span> display, HTML
+<span class="im">import</span> itertools
+<span class="im">import</span> os
+<span class="im">import</span> pyjags
+<span class="im">import</span> warnings
+base_year <span class="op">=</span> <span class="st">&#39;2000&#39;</span>    <span class="co"># numeric dates calculated from Jan-01</span>
+configpath <span class="op">=</span> <span class="st">&#39;../wairakei_data/config.xlsx&#39;</span>
+<span class="kw">def</span> read_binary_solution(path<span class="op">=</span><span class="st">&#39;../wairakei_data/toy-network-v4.xlsm&#39;</span>):
+    <span class="co"># read from Vida&#39;s toy model workbook</span>
+    xlfile <span class="op">=</span> pd.ExcelFile(path)
+    sheet <span class="op">=</span> xlfile.parse(<span class="st">&#39;Full LP&#39;</span>)
+    sheet <span class="op">=</span> sheet.loc[sheet.count(<span class="dv">1</span>)<span class="op">&gt;</span><span class="dv">50</span>]  <span class="co"># arbitrary, anything works</span>
+    sheet <span class="op">=</span> sheet.transpose()
+    sheet.columns <span class="op">=</span> [<span class="st">&#39;used&#39;</span>, <span class="st">&#39;combination&#39;</span>]
+    combinations <span class="op">=</span> pd.DataFrame([x.split(<span class="st">&#39;-&#39;</span>) <span class="cf">for</span> x <span class="kw">in</span> sheet.query(<span class="st">&#39;used==1&#39;</span>)[<span class="st">&#39;combination&#39;</span>]],
+                               columns <span class="op">=</span> [<span class="st">&#39;well&#39;</span>, <span class="st">&#39;fp&#39;</span>])
+    combinations[<span class="st">&#39;well&#39;</span>] <span class="op">=</span> <span class="st">&#39;wk&#39;</span> <span class="op">+</span> combinations[<span class="st">&#39;well&#39;</span>]
+    combinations[<span class="st">&#39;fp&#39;</span>] <span class="op">=</span> <span class="st">&#39;fp&#39;</span> <span class="op">+</span> combinations[<span class="st">&#39;fp&#39;</span>]
+    <span class="cf">return</span>(combinations)
+<span class="kw">def</span> myprint(df):
+    display(HTML(df.to_html()))
+    
+<span class="kw">def</span> central(data, m<span class="op">=</span><span class="fl">3.29</span>):
+    <span class="cf">return</span> data[<span class="bu">abs</span>(data <span class="op">-</span> np.mean(data)) <span class="op">&lt;</span> m <span class="op">*</span> np.std(data)]
+<span class="kw">def</span> rename_wk(names):
+    <span class="co"># fix &#39;WK&#39; inconsistencies</span>
+    new <span class="op">=</span> names.<span class="bu">str</span>.lower()
+    new <span class="op">=</span> new.<span class="bu">str</span>.replace(<span class="st">&quot;^[^\d]*&quot;</span>, <span class="st">&quot;wk&quot;</span>)
+    new <span class="op">=</span> new.<span class="bu">str</span>.strip()
+    <span class="cf">return</span> new
+    
+<span class="kw">def</span> datetime_to_numeric(my_datetime):
+    <span class="co"># returns days since base_year-01-01.</span>
+    <span class="cf">try</span>:
+        <span class="co"># datetime implem</span>
+        date_numeric <span class="op">=</span> (my_datetime <span class="op">-</span> datetime(<span class="bu">int</span>(base_year),<span class="dv">1</span>,<span class="dv">1</span>)) <span class="op">/</span> timedelta(days<span class="op">=</span><span class="dv">1</span>)
+    <span class="cf">except</span>:
+        <span class="co"># numpy implem</span>
+        date_numeric <span class="op">=</span> (my_datetime <span class="op">-</span> np.datetime64(base_year)) <span class="op">/</span> np.timedelta64(<span class="dv">1</span>, <span class="st">&#39;D&#39;</span>)
+    <span class="cf">return</span> date_numeric
+<span class="co"># Check if Excel file is already in memory (loading is slow)</span>
+<span class="cf">try</span>:    xl
+<span class="cf">except</span>: xl <span class="op">=</span> pd.ExcelFile(<span class="st">&#39;../wairakei_data/Liquid wells (version 1).xlsx&#39;</span>)
+sheetlist <span class="op">=</span> [x <span class="cf">for</span> x <span class="kw">in</span> xl.sheet_names <span class="cf">if</span> <span class="bu">set</span>(x) <span class="op">&amp;</span> <span class="bu">set</span>(<span class="st">&#39;FtT(L&#39;</span>) <span class="op">==</span> <span class="bu">set</span>()]
+<span class="bu">print</span>(<span class="st">&quot;Sheets:&quot;</span>, <span class="st">&#39;, &#39;</span>.join(sheetlist))
+<span class="co"># sheets to load data from</span></code></pre></div>
+<p>Sheets: WK26A, WK26B, WK27 curve, WK28, WK46, WK55 curve, WK59, WK66 curve, WK67 curve, WK68, WK70, WK71, WK72, WK74, WK76, WK81 curve, WK82, WK83, WK88, WK92, WK96, WK101, WK116, w124, WK207, WK215, WK222, WK229, wk242 , wk243, wk244 , wk245 , wk247, w253, w254, wk255, wk256, w258, w259, w260, w261, w262, wk263, w264, w265, w266, w267, w268, w269, WK270, WK271, WK272, WK216, WK65, WK118, 253</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">sheets <span class="op">=</span> [<span class="st">&#39;wk255&#39;</span>, <span class="st">&#39;wk256&#39;</span>]
+dfs <span class="op">=</span> []
+<span class="cf">for</span> sheet <span class="kw">in</span> sheets:
+    <span class="cf">try</span>:
+        df <span class="op">=</span> xl.parse(sheet)  <span class="co"># select well data</span>
+        df[<span class="st">&#39;well&#39;</span>] <span class="op">=</span> sheet    <span class="co"># label data with well name</span>
+        dfs.append(df)
+    <span class="cf">except</span>:
+        <span class="bu">print</span>(<span class="st">&#39;Failed on sheet&#39;</span>, sheet)
+df <span class="op">=</span> pd.concat(dfs)
+df <span class="op">=</span> df[[<span class="st">&#39;date&#39;</span>, <span class="st">&#39;whp&#39;</span>, <span class="st">&#39;mf&#39;</span>, <span class="st">&#39;h&#39;</span>, <span class="st">&#39;well&#39;</span>]]           <span class="co"># only keep certain columns</span>
+df[<span class="st">&#39;well&#39;</span>] <span class="op">=</span> rename_wk(df[<span class="st">&#39;well&#39;</span>])
+df[<span class="st">&#39;mf&#39;</span>] <span class="op">=</span> pd.to_numeric(df[<span class="st">&#39;mf&#39;</span>], errors<span class="op">=</span><span class="st">&#39;coerce&#39;</span>)   <span class="co"># remove &#39;dummy&#39; entries</span>
+df <span class="op">=</span> df.dropna(subset<span class="op">=</span>[<span class="st">&#39;date&#39;</span>, <span class="st">&#39;whp&#39;</span>, <span class="st">&#39;mf&#39;</span>])          <span class="co"># remove NA</span>
+df[<span class="st">&#39;date_numeric&#39;</span>] <span class="op">=</span> datetime_to_numeric(df[<span class="st">&#39;date&#39;</span>]) <span class="co">#  yrs since base_year</span>
+df <span class="op">=</span> df.reset_index(drop<span class="op">=</span><span class="va">True</span>)
+wells <span class="op">=</span> df[<span class="st">&#39;well&#39;</span>].unique()
+<span class="bu">print</span>(df.head())</code></pre></div>
+<pre><code>    date        whp          mf            h   well  date_numeric</code></pre>
+<p>0 2008-12-18 13.028442 507.776080 1030.000000 wk255 3274.0 1 2008-12-18 14.841479 283.165920 1030.000000 wk255 3274.0 2 2008-12-18 14.939021 208.716385 1030.000000 wk255 3274.0 3 2009-04-08 13.466667 498.071714 1054.230235 wk255 3385.0 4 2009-04-08 13.800000 457.879864 1040.519288 wk255 3385.0</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">regression_df <span class="op">=</span> df.reset_index(drop<span class="op">=</span><span class="va">True</span>)
+wells <span class="op">=</span> regression_df[<span class="st">&#39;well&#39;</span>].unique()
+<span class="bu">print</span>(wells)
+<span class="co"># import and process data</span></code></pre></div>
+<p>[‘wk255’ ‘wk256’]</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="cf">try</span>:    fpxl
+<span class="cf">except</span>: fpxl <span class="op">=</span> pd.ExcelFile(<span class="st">&#39;../wairakei_data/Data for AU.xlsx&#39;</span>)
+    
+fpdf <span class="op">=</span> pd.read_excel(fpxl, <span class="st">&#39;calculation&#39;</span>, header<span class="op">=</span><span class="dv">1</span>, usecols<span class="op">=</span><span class="st">&quot;D:E, J:L, N:P&quot;</span>)
+fpdf <span class="op">=</span> fpdf.rename(columns<span class="op">=</span>{<span class="st">&quot;FP15&quot;</span>: <span class="st">&quot;well&quot;</span>, <span class="st">&quot;Unnamed: 1&quot;</span>: <span class="st">&quot;fp&quot;</span>,
+                            <span class="st">&quot;hf&quot;</span>: <span class="st">&quot;hf_ip&quot;</span>, <span class="st">&quot;hg&quot;</span>: <span class="st">&quot;hg_ip&quot;</span>, <span class="st">&quot;hfg&quot;</span>: <span class="st">&quot;hfg_ip&quot;</span>,
+                            <span class="st">&quot;hf.1&quot;</span>: <span class="st">&quot;hf_lp&quot;</span>, <span class="st">&quot;hg.1&quot;</span>: <span class="st">&quot;hg_lp&quot;</span>, <span class="st">&quot;hfg.1&quot;</span>: <span class="st">&quot;hfg_lp&quot;</span>})
+ <span class="co"># make sure it has the necessary data</span>
+fpdf <span class="op">=</span> fpdf[pd.to_numeric(fpdf[<span class="st">&#39;hf_ip&#39;</span>], errors<span class="op">=</span><span class="st">&#39;coerce&#39;</span>).notnull()]
+<span class="cf">for</span> col <span class="kw">in</span> [<span class="st">&#39;well&#39;</span>, <span class="st">&#39;fp&#39;</span>]:
+    fpdf[col] <span class="op">=</span> fpdf[col].<span class="bu">str</span>.lower()
+fpdf[fpdf.columns] <span class="op">=</span> fpdf[fpdf.columns].<span class="bu">apply</span>(pd.to_numeric, errors<span class="op">=</span><span class="st">&#39;ignore&#39;</span>)
+<span class="bu">print</span>(fpdf.head())</code></pre></div>
+<pre><code>well    fp       hf_ip        hg_ip       hfg_ip       hf_lp        hg_lp  \</code></pre>
+<p>0 wk255 fp15 677.625311 2757.984943 2080.359632 461.792989 2691.196937<br />
+1 wk256 fp15 677.625311 2757.984943 2080.359632 461.792989 2691.196937<br />
+2 wk251 fp15 677.625311 2757.984943 2080.359632 461.792989 2691.196937<br />
+3 wk250 fp15 677.625311 2757.984943 2080.359632 461.792989 2691.196937<br />
+4 wk252 fp15 677.625311 2757.984943 2080.359632 461.792989 2691.196937</p>
+<pre><code>    hfg_lp  </code></pre>
+<p>0 2229.403949<br />
+1 2229.403949<br />
+2 2229.403949<br />
+3 2229.403949<br />
+4 2229.403949</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> write_config(configpath):
+    <span class="co"># only use if it gets lost. Will refresh file</span>
+    well_fp_map <span class="op">=</span> pd.DataFrame({<span class="st">&#39;well&#39;</span>: [<span class="st">&#39;wk27&#39;</span>, <span class="st">&#39;wk242&#39;</span>, <span class="st">&#39;wk247&#39;</span>, <span class="st">&#39;wk253&#39;</span>, <span class="st">&#39;wk254&#39;</span>,
+    <span class="st">&#39;wk255&#39;</span>, <span class="st">&#39;wk256&#39;</span>, <span class="st">&#39;wk258&#39;</span>, <span class="st">&#39;wk259&#39;</span>, <span class="st">&#39;wk267&#39;</span>, <span class="st">&#39;wk268&#39;</span>, <span class="st">&#39;wk269&#39;</span>, <span class="st">&#39;wk270&#39;</span>, <span class="st">&#39;wk271&#39;</span>, <span class="st">&#39;wk272&#39;</span>],
+                                <span class="st">&#39;fp&#39;</span>:   [<span class="st">&#39;fp1&#39;</span>,  <span class="st">&#39;fp14&#39;</span>,  <span class="st">&#39;fp15&#39;</span>, <span class="st">&#39;fp16&#39;</span>,  <span class="st">&#39;fp16&#39;</span>,
+                                <span class="st">&#39;fp15&#39;</span>,  <span class="st">&#39;fp15&#39;</span>,  <span class="st">&#39;fp16&#39;</span>,  <span class="st">&#39;fp16&#39;</span>,  <span class="st">&#39;fp16&#39;</span>,  <span class="st">&#39;fp16&#39;</span>,
+                                <span class="st">&#39;fp15&#39;</span>,  <span class="st">&#39;fp15&#39;</span>,  <span class="st">&#39;fp14&#39;</span>,  <span class="st">&#39;fp14&#39;</span>]},
+                               columns<span class="op">=</span>[<span class="st">&#39;well&#39;</span>, <span class="st">&#39;fp&#39;</span>])
+    fp_gen_map <span class="op">=</span> pd.DataFrame({<span class="st">&#39;fp&#39;</span>:     [<span class="st">&#39;abandoned&#39;</span>, <span class="st">&#39;poi dry&#39;</span>, <span class="st">&#39;direct ip&#39;</span>, <span class="st">&#39;fp1&#39;</span>,
+                               <span class="st">&#39;fp14&#39;</span>, <span class="st">&#39;fp15&#39;</span>, <span class="st">&#39;fp16&#39;</span>, <span class="st">&#39;fp2&#39;</span>, <span class="st">&#39;fp4&#39;</span>, <span class="st">&#39;fp5&#39;</span>, <span class="st">&#39;fp9-10&#39;</span>],
+                               <span class="st">&#39;gen_ip&#39;</span>: [ <span class="va">None</span>,       <span class="st">&#39;POI&#39;</span>,      <span class="va">None</span>,       <span class="st">&#39;WRK&#39;</span>,
+                               <span class="st">&#39;WRK&#39;</span>,  <span class="st">&#39;THI&#39;</span>,  <span class="st">&#39;POI&#39;</span>,  <span class="st">&#39;WRK&#39;</span>, <span class="st">&#39;WRK&#39;</span>, <span class="st">&#39;WRK&#39;</span>, <span class="st">&#39;WRK&#39;</span>   ],
+                               <span class="st">&#39;gen_lp&#39;</span>: [ <span class="va">None</span>,       <span class="st">&#39;POI&#39;</span>,      <span class="va">None</span>,       <span class="st">&#39;WRK&#39;</span>,
+                               <span class="st">&#39;WRK&#39;</span>,  <span class="st">&#39;THI&#39;</span>,  <span class="st">&#39;POI&#39;</span>,  <span class="st">&#39;WRK&#39;</span>, <span class="st">&#39;WRK&#39;</span>, <span class="st">&#39;WRK&#39;</span>, <span class="st">&#39;WRK&#39;</span>   ],
+                               <span class="st">&#39;gen_w&#39;</span>:  [ <span class="va">None</span>,        <span class="va">None</span>,      <span class="va">None</span>,       <span class="st">&#39;BIN&#39;</span>,
+                               <span class="va">None</span>,   <span class="va">None</span>,   <span class="va">None</span>,  <span class="st">&#39;BIN&#39;</span>, <span class="st">&#39;BIN&#39;</span>, <span class="st">&#39;BIN&#39;</span>, <span class="st">&#39;BIN&#39;</span>   ]},
+                              columns<span class="op">=</span>[<span class="st">&#39;fp&#39;</span>, <span class="st">&#39;gen_ip&#39;</span>, <span class="st">&#39;gen_lp&#39;</span>, <span class="st">&#39;gen_w&#39;</span>])
+    gen_constants <span class="op">=</span> pd.DataFrame({<span class="st">&#39;gen&#39;</span>:    [<span class="st">&#39;WRK&#39;</span>, <span class="st">&#39;THI&#39;</span>, <span class="st">&#39;BIN&#39;</span>, <span class="st">&#39;POI&#39;</span> ],
+                                  <span class="st">&#39;ip&#39;</span>:     [ <span class="va">True</span>,  <span class="va">True</span>,  <span class="va">False</span>, <span class="va">True</span> ],
+                                  <span class="st">&#39;lp&#39;</span>:     [ <span class="va">True</span>,  <span class="va">True</span>,  <span class="va">False</span>, <span class="va">True</span> ],
+                                  <span class="st">&#39;bin&#39;</span>:    [ <span class="va">False</span>, <span class="va">False</span>, <span class="va">True</span>,  <span class="va">False</span>],
+                                  <span class="st">&#39;factor&#39;</span>: [ <span class="fl">9.2</span>,   <span class="fl">8.22</span>,  <span class="fl">178.9</span>, <span class="fl">7.76</span>]},  <span class="co"># m3/MW</span>
+                                 columns<span class="op">=</span>[<span class="st">&#39;gen&#39;</span>, <span class="st">&#39;ip&#39;</span>, <span class="st">&#39;lp&#39;</span>, <span class="st">&#39;bin&#39;</span>, <span class="st">&#39;factor&#39;</span>])
+                                 
+    <span class="co"># find details of the last known operating conditions</span>
+    last_idx <span class="op">=</span> regression_df.groupby(<span class="st">&#39;well&#39;</span>)[<span class="st">&#39;date_numeric&#39;</span>].idxmax()
+    operating_conditions <span class="op">=</span> regression_df.iloc[last_idx][[<span class="st">&#39;well&#39;</span>, <span class="st">&#39;whp&#39;</span>, <span class="st">&#39;h&#39;</span>]]
+    <span class="co"># set constants (could use median)</span>
+    fp_constants <span class="op">=</span> fpdf.groupby(<span class="st">&#39;fp&#39;</span>).mean().reset_index()
+    <span class="cf">if</span> os.path.exists(configpath):
+        os.remove(configpath)
+    config_writer <span class="op">=</span> pd.ExcelWriter(<span class="st">&#39;../wairakei_data/config.xlsx&#39;</span>)
+    <span class="bu">print</span>(<span class="st">&quot;Writing config data to&quot;</span>, configpath)
+    configdata <span class="op">=</span> {<span class="st">&#39;well_fp_map&#39;</span>: well_fp_map,
+                  <span class="st">&#39;fp_gen_map&#39;</span>: fp_gen_map,
+                  <span class="st">&#39;operating_conditions&#39;</span>: operating_conditions,
+                  <span class="st">&#39;fp_constants&#39;</span>: fp_constants,
+                  <span class="st">&#39;gen_constants&#39;</span>: gen_constants}
+    <span class="cf">for</span> sheetname, df <span class="kw">in</span> configdata.items():
+        df.to_excel(config_writer, sheetname, index<span class="op">=</span><span class="va">False</span>)
+    <span class="co"># config_writer.save() # Don&#39;t overwrite!</span>
+    <span class="cf">return</span> pd.ExcelFile(configpath)
+<span class="cf">try</span>:
+    config <span class="op">=</span> pd.ExcelFile(configpath)
+<span class="cf">except</span> <span class="pp">FileNotFoundError</span>:
+    <span class="bu">print</span>(<span class="st">&quot;Warning: are you sure you want to overwrite the config file?&quot;</span>)
+<span class="co">#     config = write_config(configpath)</span>
+<span class="co">## Exploratory Analysis</span>
+<span class="im">import</span> itertools
+cmap <span class="op">=</span> plt.get_cmap(<span class="st">&#39;viridis&#39;</span>)
+fig, (ax1, ax2) <span class="op">=</span> plt.subplots(<span class="dv">1</span>,<span class="dv">2</span>, figsize<span class="op">=</span>[<span class="dv">14</span>,<span class="dv">4</span>])
+fig.tight_layout() <span class="co">#spreads out the plots</span>
+<span class="co"># left plot (not that useful tbh)</span>
+df.plot(<span class="st">&#39;date&#39;</span>, <span class="st">&#39;whp&#39;</span>, style<span class="op">=</span><span class="st">&#39;x&#39;</span>, ax<span class="op">=</span>ax1)
+ax1.set_xlabel(<span class="st">&#39;date&#39;</span>)
+ax1.set_ylabel(<span class="st">&#39;whp&#39;</span>)
+<span class="co"># right plot (different colours represent time)</span>
+marker <span class="op">=</span> itertools.cycle([<span class="st">&#39;o&#39;</span>, <span class="st">&#39;,&#39;</span>, <span class="st">&#39;+&#39;</span>, <span class="st">&#39;x&#39;</span>, <span class="st">&#39;*&#39;</span>, <span class="st">&#39;.&#39;</span>])
+<span class="cf">for</span> well <span class="kw">in</span> wells:
+    plt.scatter(<span class="st">&#39;whp&#39;</span>, <span class="st">&#39;mf&#39;</span>, c<span class="op">=</span><span class="st">&#39;date_numeric&#39;</span>,
+    data<span class="op">=</span>df.loc[df[<span class="st">&#39;well&#39;</span>]<span class="op">==</span>well], marker<span class="op">=</span><span class="bu">next</span>(marker), label<span class="op">=</span>well)
+ax2.set_xlabel(<span class="st">&#39;whp&#39;</span>)
+ax2.set_ylabel(<span class="st">&#39;mf&#39;</span>)
+plt.legend()
+plt.show()
+<span class="co">## Set up regression data and create prediction frame for plotting</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-1-1.png" /><!-- --></p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">date_pred <span class="op">=</span> np.arange(df[<span class="st">&#39;date&#39;</span>].<span class="bu">min</span>(), df[<span class="st">&#39;date&#39;</span>].<span class="bu">max</span>(),
+        np.timedelta64(<span class="dv">365</span><span class="op">*</span><span class="dv">2</span>, <span class="st">&#39;D&#39;</span>).astype(datetime))
+date_numeric_pred <span class="op">=</span> datetime_to_numeric(date_pred)
+whp_pred <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">16</span>, <span class="dv">1000</span>)
+well_pred <span class="op">=</span> wells
+pred <span class="op">=</span> pd.DataFrame(<span class="bu">list</span>(itertools.product(date_numeric_pred, whp_pred, well_pred)),
+                    columns<span class="op">=</span>[<span class="st">&#39;date_numeric&#39;</span>, <span class="st">&#39;whp&#39;</span>, <span class="st">&#39;well&#39;</span>])
+<span class="bu">print</span>(pred.head(<span class="dv">3</span>))
+<span class="co">## Perform regression and prediction</span></code></pre></div>
+<p>date_numeric whp well 0 3274.0 0.000000 wk255 1 3274.0 0.000000 wk256 2 3274.0 0.016016 wk255</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">from</span> statsmodels.formula.api <span class="im">import</span> ols
+<span class="co"># Not conditioned on date</span>
+model1 <span class="op">=</span> ols(<span class="st">&quot;mf ~ well * whp&quot;</span>, data<span class="op">=</span>df)
+results1 <span class="op">=</span> model1.fit()
+pred[<span class="st">&#39;mf1&#39;</span>] <span class="op">=</span> results1.predict(pred)
+<span class="co"># Linear fit dependent on date</span>
+model2 <span class="op">=</span> ols(<span class="st">&quot;mf ~ well * (whp + date_numeric)&quot;</span>, data<span class="op">=</span>df)
+results2 <span class="op">=</span> model2.fit()
+pred[<span class="st">&#39;mf2&#39;</span>] <span class="op">=</span> results2.predict(pred)
+<span class="co"># Elliptic fit dependent on date</span>
+model3 <span class="op">=</span> ols(<span class="st">&quot;np.power(mf,2) ~ well * (np.power(whp,2) + date_numeric)&quot;</span>, data<span class="op">=</span>df)
+results3 <span class="op">=</span> model3.fit()
+pred[<span class="st">&#39;mf3^2&#39;</span>] <span class="op">=</span> results3.predict(pred)
+pred.loc[pred[<span class="st">&#39;mf3^2&#39;</span>] <span class="op">&lt;</span> <span class="dv">0</span>, <span class="st">&#39;mf3^2&#39;</span>] <span class="op">=</span> np.nan    <span class="co"># remove invalid results</span>
+pred[<span class="st">&#39;mf3&#39;</span>] <span class="op">=</span> np.sqrt(pred[<span class="st">&#39;mf3^2&#39;</span>])
+<span class="bu">print</span>(pred.head(<span class="dv">3</span>))
+<span class="co"># ===============================================================</span>
+<span class="co"># Set up axes</span>
+<span class="co"># ===============================================================</span>
+<span class="co"># colors</span></code></pre></div>
+<p>date_numeric whp well mf1 mf2 mf3^2<br />
+0 3274.0 0.000000 wk255 798.291912 2116.142850 960405.251630<br />
+1 3274.0 0.000000 wk256 524.858769 1878.420017 910600.744186<br />
+2 3274.0 0.016016 wk255 797.774653 2114.209523 960404.240037</p>
+<pre><code>      mf3  </code></pre>
+<p>0 980.002679<br />
+1 954.254025<br />
+2 980.002163</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">cmap <span class="op">=</span> plt.get_cmap(<span class="st">&#39;viridis&#39;</span>)
+indices <span class="op">=</span> np.linspace(<span class="dv">0</span>, cmap.N, <span class="bu">len</span>(df))
+my_colors <span class="op">=</span> [cmap(<span class="bu">int</span>(i)) <span class="cf">for</span> i <span class="kw">in</span> indices]
+<span class="co"># subplots</span>
+fig, (ax1, ax2, ax3, ax4) <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">4</span>, figsize<span class="op">=</span>[<span class="dv">14</span>,<span class="dv">4</span>],
+        gridspec_kw<span class="op">=</span>{<span class="st">&#39;width_ratios&#39;</span>: [<span class="dv">9</span>,<span class="dv">9</span>,<span class="dv">9</span>,<span class="dv">1</span>]})
+ax1.get_shared_y_axes().join(ax1, ax2, ax3)
+ax1.set_ylim([<span class="dv">0</span>, <span class="dv">1000</span>])
+ax1.set_xlim(<span class="dv">0</span>, <span class="dv">16</span>)
+ax1.set_ylabel(<span class="st">&#39;Mass flow&#39;</span>)
+ax1.set_xlabel(<span class="st">&quot;Well head pressure&quot;</span>)
+ax1.set_title(<span class="st">&#39;$mf \sim whp$&#39;</span>)
+ax2.set_title(<span class="st">&#39;$mf \sim whp + date$&#39;</span>)
+ax3.set_title(<span class="st">&#39;$mf^2 \sim whp^2 + date$&#39;</span>)
+<span class="co"># create date colorbar</span>
+indices <span class="op">=</span> np.linspace(<span class="dv">0</span>, cmap.N, <span class="bu">len</span>(date_pred))
+my_colors <span class="op">=</span> [cmap(<span class="bu">int</span>(i)) <span class="cf">for</span> i <span class="kw">in</span> indices]
+norm <span class="op">=</span> Normalize(np.<span class="bu">min</span>(df[<span class="st">&#39;date&#39;</span>]).year, np.<span class="bu">max</span>(df[<span class="st">&#39;date&#39;</span>]).year)
+cb <span class="op">=</span> ColorbarBase(ax4, cmap<span class="op">=</span>cmap, norm<span class="op">=</span>norm, orientation<span class="op">=</span><span class="st">&#39;vertical&#39;</span>)
+cb.set_label(<span class="st">&#39;Year&#39;</span>)
+linestyles <span class="op">=</span> itertools.cycle((<span class="st">&#39;-&#39;</span>, <span class="st">&#39;--&#39;</span>, <span class="st">&#39;-.&#39;</span>, <span class="st">&#39;:&#39;</span>))
+marker <span class="op">=</span> itertools.cycle([<span class="st">&#39;o&#39;</span>, <span class="st">&#39;,&#39;</span>, <span class="st">&#39;+&#39;</span>, <span class="st">&#39;x&#39;</span>, <span class="st">&#39;*&#39;</span>, <span class="st">&#39;.&#39;</span>])
+<span class="co"># ===============================================================</span>
+<span class="co"># Plot data</span>
+<span class="co"># ===============================================================</span>
+<span class="co"># plot raw data points</span>
+<span class="cf">for</span> well <span class="kw">in</span> wells:
+   mkr <span class="op">=</span> <span class="bu">next</span>(marker)
+   <span class="cf">for</span> ax <span class="kw">in</span> [ax1, ax2, ax3]:
+       ax.scatter(<span class="st">&#39;whp&#39;</span>, <span class="st">&#39;mf&#39;</span>, c<span class="op">=</span><span class="st">&#39;date_numeric&#39;</span>,
+              data<span class="op">=</span>df.loc[df[<span class="st">&#39;well&#39;</span>]<span class="op">==</span>well], marker<span class="op">=</span>mkr, label<span class="op">=</span>well)
+ 
+<span class="co"># plot fitted curves</span>
+<span class="cf">for</span> well <span class="kw">in</span> wells:
+    lty <span class="op">=</span> <span class="bu">next</span>(linestyles)
+    <span class="co"># model 1</span>
+    <span class="co"># &#39;data&#39; argument filters the data to just the data from one well</span>
+    ax1.plot(<span class="st">&#39;whp&#39;</span>, <span class="st">&#39;mf1&#39;</span>, lty, data<span class="op">=</span>pred[(pred[<span class="st">&#39;well&#39;</span>]<span class="op">==</span>well)])
+   
+    <span class="co"># models 2 &amp; 3</span>
+    <span class="cf">for</span> i, date <span class="kw">in</span> <span class="bu">enumerate</span>(date_numeric_pred):
+        <span class="co"># &#39;data&#39; argument similar, for a specific prediction date in the loop</span>
+        ax2.plot(<span class="st">&#39;whp&#39;</span>, <span class="st">&#39;mf2&#39;</span>, lty,
+        data<span class="op">=</span>pred[(pred[<span class="st">&#39;well&#39;</span>]<span class="op">==</span>well) <span class="op">&amp;</span> (pred[<span class="st">&#39;date_numeric&#39;</span>]<span class="op">==</span>date)], c<span class="op">=</span>my_colors[i])
+        ax3.plot(<span class="st">&#39;whp&#39;</span>, <span class="st">&#39;mf3&#39;</span>, lty,
+        data<span class="op">=</span>pred[(pred[<span class="st">&#39;well&#39;</span>]<span class="op">==</span>well) <span class="op">&amp;</span> (pred[<span class="st">&#39;date_numeric&#39;</span>]<span class="op">==</span>date)], c<span class="op">=</span>my_colors[i])
+       
+<span class="co"># show model selection criteria</span>
+<span class="cf">for</span> ax, result <span class="kw">in</span> <span class="bu">zip</span>([ax1, ax2, ax3], [results1, results2, results3]):
+    ax.legend([<span class="st">&#39;Adj $R^2$: </span><span class="sc">%.2f</span><span class="st">&#39;</span> <span class="op">%</span> result.rsquared_adj,
+            <span class="st">&#39;AIC: </span><span class="sc">%.2f</span><span class="st">&#39;</span> <span class="op">%</span> result.aic],
+            handlelength<span class="op">=</span><span class="dv">0</span>, handletextpad<span class="op">=</span><span class="dv">0</span>, loc<span class="op">=</span><span class="dv">1</span>).legendHandles[<span class="dv">0</span>].set_visible(<span class="va">False</span>)
+             
+plt.show()</code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-1-2.png" /><!-- --></p>
+</div>
+<div id="preview-data" class="section level2">
+<h2><span class="header-section-number">3.2</span> Preview Data</h2>
+<p>Let’s have a look at what we get out of the pre-processing.</p>
+<p>We begin with the regression data.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">py<span class="op">$</span>df <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">head</span>(<span class="dv">12</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">datatable</span>(<span class="dt">caption=</span><span class="st">&quot;Well calibration data&quot;</span>, <span class="dt">options=</span><span class="kw">list</span>(<span class="dt">scrollX=</span>T))</code></pre></div>
+<div id="htmlwidget-8c95480acc914ab39974" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-8c95480acc914ab39974">{"x":{"filter":"none","caption":"<caption>Well calibration data<\/caption>","data":[["1","2","3","4","5","6","7","8","9","10","11","12"],["2008-12-18T00:00:00Z","2008-12-18T00:00:00Z","2008-12-18T00:00:00Z","2009-04-08T00:00:00Z","2009-04-08T00:00:00Z","2009-04-08T00:00:00Z","2009-04-23T00:00:00Z","2010-01-20T00:00:00Z","2010-01-20T00:00:00Z","2010-01-20T00:00:00Z","2011-05-26T00:00:00Z","2011-05-26T00:00:00Z"],[13.0284418604651,14.8414791666667,14.9390208333333,13.4666666666667,13.8,14.45,13.1,13.0296774193548,13.8820512820513,14.8404109589041,12.7,14.3],[507.776079890465,283.165920319025,208.716384533049,498.071714386836,457.879863510501,388.324090326152,478.8,473.970712335334,390.961216160288,238.865461107023,474.247465494592,291.670956549601],[1030,1030,1030,1054.23023469287,1040.51928804579,1030.12953956876,1083.68,1078.18684651844,1069.48172710504,1093.56414022086,1075.34864643886,1036.01956481403],["wk255","wk255","wk255","wk255","wk255","wk255","wk255","wk255","wk255","wk255","wk255","wk255"],[3274,3274,3274,3385,3385,3385,3400,3672,3672,3672,4163,4163]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>date<\/th>\n      <th>whp<\/th>\n      <th>mf<\/th>\n      <th>h<\/th>\n      <th>well<\/th>\n      <th>date_numeric<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"columnDefs":[{"className":"dt-right","targets":[2,3,4,6]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<p>Now, the flash plant operating conditions.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">py<span class="op">$</span>fpdf <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">head</span>(<span class="dv">12</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">datatable</span>(<span class="dt">caption=</span><span class="st">&quot;Flash plant operational parameters&quot;</span>, <span class="dt">options=</span><span class="kw">list</span>(<span class="dt">scrollX=</span>T))</code></pre></div>
+<div id="htmlwidget-e97784d4e0059aa589c8" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-e97784d4e0059aa589c8">{"x":{"filter":"none","caption":"<caption>Flash plant operational parameters<\/caption>","data":[["0","1","2","3","4","5","6","7","8","9","10","11"],["wk255","wk256","wk251","wk250","wk252","wk238","wk234","wk240","wk241","wk247","wk267","wk268"],["fp15","fp15","fp15","fp15","fp15","fp15","fp15","fp15","fp15","fp15","fp15","fp15"],[677.625310761649,677.625310761649,677.625310761649,677.625310761649,677.625310761649,677.625310761649,677.625310761649,677.625310761649,677.625310761649,677.625310761649,677.625310761649,677.625310761649],[2757.98494300545,2757.98494300545,2757.98494300545,2757.98494300545,2757.98494300545,2757.98494300545,2757.98494300545,2757.98494300545,2757.98494300545,2757.98494300545,2757.98494300545,2757.98494300545],[2080.3596322438,2080.3596322438,2080.3596322438,2080.3596322438,2080.3596322438,2080.3596322438,2080.3596322438,2080.3596322438,2080.3596322438,2080.3596322438,2080.3596322438,2080.3596322438],[461.792988795089,461.792988795089,461.792988795089,461.792988795089,461.792988795089,461.792988795089,461.792988795089,461.792988795089,461.792988795089,461.792988795089,461.792988795089,461.792988795089],[2691.19693737063,2691.19693737063,2691.19693737063,2691.19693737063,2691.19693737063,2691.19693737063,2691.19693737063,2691.19693737063,2691.19693737063,2691.19693737063,2691.19693737063,2691.19693737063],[2229.40394857554,2229.40394857554,2229.40394857554,2229.40394857554,2229.40394857554,2229.40394857554,2229.40394857554,2229.40394857554,2229.40394857554,2229.40394857554,2229.40394857554,2229.40394857554]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>well<\/th>\n      <th>fp<\/th>\n      <th>hf_ip<\/th>\n      <th>hg_ip<\/th>\n      <th>hfg_ip<\/th>\n      <th>hf_lp<\/th>\n      <th>hg_lp<\/th>\n      <th>hfg_lp<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"columnDefs":[{"className":"dt-right","targets":[3,4,5,6,7,8]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<p>Here’s a (deterministic) example of what we expect to get out - mass flow predictions per well. But we will use JAGS to get stochastic samples rather than this regression.</p>
+<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:100%; ">
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:unnamed-chunk-4">Table 3.1: </span>Mass flow prediction demo
+</caption>
+<thead>
+<tr>
+<th style="text-align:right;">
+date_numeric
+</th>
+<th style="text-align:right;">
+whp
+</th>
+<th style="text-align:left;">
+well
+</th>
+<th style="text-align:right;">
+mf1
+</th>
+<th style="text-align:right;">
+mf2
+</th>
+<th style="text-align:right;">
+mf3^2
+</th>
+<th style="text-align:right;">
+mf3
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+3274
+</td>
+<td style="text-align:right;">
+0.0000000
+</td>
+<td style="text-align:left;">
+wk255
+</td>
+<td style="text-align:right;">
+798.2919
+</td>
+<td style="text-align:right;">
+2116.143
+</td>
+<td style="text-align:right;">
+960405.3
+</td>
+<td style="text-align:right;">
+980.0027
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3274
+</td>
+<td style="text-align:right;">
+0.0000000
+</td>
+<td style="text-align:left;">
+wk256
+</td>
+<td style="text-align:right;">
+524.8588
+</td>
+<td style="text-align:right;">
+1878.420
+</td>
+<td style="text-align:right;">
+910600.7
+</td>
+<td style="text-align:right;">
+954.2540
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3274
+</td>
+<td style="text-align:right;">
+0.0160160
+</td>
+<td style="text-align:left;">
+wk255
+</td>
+<td style="text-align:right;">
+797.7747
+</td>
+<td style="text-align:right;">
+2114.210
+</td>
+<td style="text-align:right;">
+960404.2
+</td>
+<td style="text-align:right;">
+980.0022
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3274
+</td>
+<td style="text-align:right;">
+0.0160160
+</td>
+<td style="text-align:left;">
+wk256
+</td>
+<td style="text-align:right;">
+524.6518
+</td>
+<td style="text-align:right;">
+1876.548
+</td>
+<td style="text-align:right;">
+910599.6
+</td>
+<td style="text-align:right;">
+954.2534
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3274
+</td>
+<td style="text-align:right;">
+0.0320320
+</td>
+<td style="text-align:left;">
+wk255
+</td>
+<td style="text-align:right;">
+797.2574
+</td>
+<td style="text-align:right;">
+2112.276
+</td>
+<td style="text-align:right;">
+960401.2
+</td>
+<td style="text-align:right;">
+980.0006
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3274
+</td>
+<td style="text-align:right;">
+0.0320320
+</td>
+<td style="text-align:left;">
+wk256
+</td>
+<td style="text-align:right;">
+524.4448
+</td>
+<td style="text-align:right;">
+1874.676
+</td>
+<td style="text-align:right;">
+910596.0
+</td>
+<td style="text-align:right;">
+954.2515
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3274
+</td>
+<td style="text-align:right;">
+0.0480480
+</td>
+<td style="text-align:left;">
+wk255
+</td>
+<td style="text-align:right;">
+796.7401
+</td>
+<td style="text-align:right;">
+2110.343
+</td>
+<td style="text-align:right;">
+960396.1
+</td>
+<td style="text-align:right;">
+979.9980
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3274
+</td>
+<td style="text-align:right;">
+0.0480480
+</td>
+<td style="text-align:left;">
+wk256
+</td>
+<td style="text-align:right;">
+524.2379
+</td>
+<td style="text-align:right;">
+1872.804
+</td>
+<td style="text-align:right;">
+910590.0
+</td>
+<td style="text-align:right;">
+954.2484
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3274
+</td>
+<td style="text-align:right;">
+0.0640641
+</td>
+<td style="text-align:left;">
+wk255
+</td>
+<td style="text-align:right;">
+796.2229
+</td>
+<td style="text-align:right;">
+2108.410
+</td>
+<td style="text-align:right;">
+960389.1
+</td>
+<td style="text-align:right;">
+979.9944
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3274
+</td>
+<td style="text-align:right;">
+0.0640641
+</td>
+<td style="text-align:left;">
+wk256
+</td>
+<td style="text-align:right;">
+524.0309
+</td>
+<td style="text-align:right;">
+1870.932
+</td>
+<td style="text-align:right;">
+910581.7
+</td>
+<td style="text-align:right;">
+954.2440
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3274
+</td>
+<td style="text-align:right;">
+0.0800801
+</td>
+<td style="text-align:left;">
+wk255
+</td>
+<td style="text-align:right;">
+795.7056
+</td>
+<td style="text-align:right;">
+2106.476
+</td>
+<td style="text-align:right;">
+960380.0
+</td>
+<td style="text-align:right;">
+979.9898
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3274
+</td>
+<td style="text-align:right;">
+0.0800801
+</td>
+<td style="text-align:left;">
+wk256
+</td>
+<td style="text-align:right;">
+523.8240
+</td>
+<td style="text-align:right;">
+1869.060
+</td>
+<td style="text-align:right;">
+910571.0
+</td>
+<td style="text-align:right;">
+954.2384
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="research-journal.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="r-and-rjags.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
