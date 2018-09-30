@@ -25,7 +25,7 @@
 <meta name="author" content="Logan Wu">
 
 
-<meta name="date" content="2018-09-23">
+<meta name="date" content="2018-09-30">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -48,18 +48,14 @@
 
 
 <script src="libs/htmlwidgets-1.2/htmlwidgets.js"></script>
-<link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
-<script src="libs/datatables-binding-0.4/datatables.js"></script>
-<link href="libs/dt-core-1.10.16/css/jquery.dataTables.min.css" rel="stylesheet" />
-<link href="libs/dt-core-1.10.16/css/jquery.dataTables.extra.css" rel="stylesheet" />
-<script src="libs/dt-core-1.10.16/js/jquery.dataTables.min.js"></script>
-<link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
-<script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
-<script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <script src="libs/plotly-binding-4.8.0/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
 <link href="libs/plotly-htmlwidgets-css-1.39.2/plotly-htmlwidgets.css" rel="stylesheet" />
 <script src="libs/plotly-main-1.39.2/plotly-latest.min.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Open+Sans|Arvo" rel="stylesheet">
 
 
 <style type="text/css">
@@ -100,6 +96,7 @@ code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* Com
 code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 </style>
 
+<link rel="stylesheet" href="css/mine.css" type="text/css" />
 </head>
 
 <body>
@@ -112,7 +109,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
       <nav role="navigation">
 
 <ul class="summary">
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Overview</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Overview</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#components"><i class="fa fa-check"></i>Components</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#non-components"><i class="fa fa-check"></i>Non-components</a></li>
+</ul></li>
 <li class="chapter" data-level="1" data-path="motivation.html"><a href="motivation.html"><i class="fa fa-check"></i><b>1</b> Motivation</a><ul>
 <li class="chapter" data-level="1.1" data-path="motivation.html"><a href="motivation.html#whats-the-problem"><i class="fa fa-check"></i><b>1.1</b> What’s the problem?</a></li>
 <li class="chapter" data-level="1.2" data-path="motivation.html"><a href="motivation.html#what-are-we-doing"><i class="fa fa-check"></i><b>1.2</b> What are we doing?</a></li>
@@ -129,46 +129,49 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2.9" data-path="research-journal.html"><a href="research-journal.html#september-6th"><i class="fa fa-check"></i><b>2.9</b> September 6th</a></li>
 <li class="chapter" data-level="2.10" data-path="research-journal.html"><a href="research-journal.html#september-13th"><i class="fa fa-check"></i><b>2.10</b> September 13th</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="python-extraction-code.html"><a href="python-extraction-code.html"><i class="fa fa-check"></i><b>3</b> Python Extraction Code</a><ul>
-<li class="chapter" data-level="3.1" data-path="python-extraction-code.html"><a href="python-extraction-code.html#pre-processing"><i class="fa fa-check"></i><b>3.1</b> Pre-processing</a></li>
-<li class="chapter" data-level="3.2" data-path="python-extraction-code.html"><a href="python-extraction-code.html#preview-data"><i class="fa fa-check"></i><b>3.2</b> Preview Data</a></li>
+<li class="chapter" data-level="3" data-path="initial-plots.html"><a href="initial-plots.html"><i class="fa fa-check"></i><b>3</b> Initial Plots</a><ul>
+<li class="chapter" data-level="3.1" data-path="initial-plots.html"><a href="initial-plots.html#production-curves"><i class="fa fa-check"></i><b>3.1</b> Production Curves</a></li>
+<li class="chapter" data-level="3.2" data-path="initial-plots.html"><a href="initial-plots.html#decline"><i class="fa fa-check"></i><b>3.2</b> Decline</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="r-and-rjags.html"><a href="r-and-rjags.html"><i class="fa fa-check"></i><b>4</b> R and RJAGS</a><ul>
-<li class="chapter" data-level="4.1" data-path="r-and-rjags.html"><a href="r-and-rjags.html#setup"><i class="fa fa-check"></i><b>4.1</b> Setup</a></li>
-<li class="chapter" data-level="4.2" data-path="r-and-rjags.html"><a href="r-and-rjags.html#data-handling"><i class="fa fa-check"></i><b>4.2</b> Data Handling</a><ul>
-<li class="chapter" data-level="4.2.1" data-path="r-and-rjags.html"><a href="r-and-rjags.html#load-data"><i class="fa fa-check"></i><b>4.2.1</b> Load Data</a></li>
-<li class="chapter" data-level="4.2.2" data-path="r-and-rjags.html"><a href="r-and-rjags.html#censor-names"><i class="fa fa-check"></i><b>4.2.2</b> Censor names</a></li>
-<li class="chapter" data-level="4.2.3" data-path="r-and-rjags.html"><a href="r-and-rjags.html#preprocessing"><i class="fa fa-check"></i><b>4.2.3</b> Preprocessing</a></li>
-<li class="chapter" data-level="4.2.4" data-path="r-and-rjags.html"><a href="r-and-rjags.html#graph"><i class="fa fa-check"></i><b>4.2.4</b> Graph</a></li>
-<li class="chapter" data-level="4.2.5" data-path="r-and-rjags.html"><a href="r-and-rjags.html#format-data"><i class="fa fa-check"></i><b>4.2.5</b> Format Data</a></li>
+<li class="chapter" data-level="4" data-path="python-extraction-code.html"><a href="python-extraction-code.html"><i class="fa fa-check"></i><b>4</b> Python Extraction Code</a><ul>
+<li class="chapter" data-level="4.1" data-path="python-extraction-code.html"><a href="python-extraction-code.html#pre-processing"><i class="fa fa-check"></i><b>4.1</b> Pre-processing</a></li>
+<li class="chapter" data-level="4.2" data-path="python-extraction-code.html"><a href="python-extraction-code.html#preview-data"><i class="fa fa-check"></i><b>4.2</b> Preview Data</a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="r-and-rjags.html"><a href="r-and-rjags.html#model"><i class="fa fa-check"></i><b>4.3</b> Model</a></li>
-<li class="chapter" data-level="4.4" data-path="r-and-rjags.html"><a href="r-and-rjags.html#convergence-tests"><i class="fa fa-check"></i><b>4.4</b> Convergence Tests</a><ul>
-<li class="chapter" data-level="4.4.1" data-path="r-and-rjags.html"><a href="r-and-rjags.html#trace-plots"><i class="fa fa-check"></i><b>4.4.1</b> Trace plots</a></li>
-<li class="chapter" data-level="4.4.2" data-path="r-and-rjags.html"><a href="r-and-rjags.html#geweke"><i class="fa fa-check"></i><b>4.4.2</b> Geweke</a></li>
-<li class="chapter" data-level="4.4.3" data-path="r-and-rjags.html"><a href="r-and-rjags.html#gelman"><i class="fa fa-check"></i><b>4.4.3</b> Gelman</a></li>
-<li class="chapter" data-level="4.4.4" data-path="r-and-rjags.html"><a href="r-and-rjags.html#raftery"><i class="fa fa-check"></i><b>4.4.4</b> Raftery</a></li>
+<li class="chapter" data-level="5" data-path="r-jags-and-rjags.html"><a href="r-jags-and-rjags.html"><i class="fa fa-check"></i><b>5</b> R, JAGS, and RJAGS</a><ul>
+<li class="chapter" data-level="5.1" data-path="r-jags-and-rjags.html"><a href="r-jags-and-rjags.html#setup"><i class="fa fa-check"></i><b>5.1</b> Setup</a></li>
+<li class="chapter" data-level="5.2" data-path="r-jags-and-rjags.html"><a href="r-jags-and-rjags.html#data-handling"><i class="fa fa-check"></i><b>5.2</b> Data Handling</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="r-jags-and-rjags.html"><a href="r-jags-and-rjags.html#load-data"><i class="fa fa-check"></i><b>5.2.1</b> Load Data</a></li>
+<li class="chapter" data-level="5.2.2" data-path="r-jags-and-rjags.html"><a href="r-jags-and-rjags.html#censor-names"><i class="fa fa-check"></i><b>5.2.2</b> Censor names</a></li>
+<li class="chapter" data-level="5.2.3" data-path="r-jags-and-rjags.html"><a href="r-jags-and-rjags.html#preprocessing"><i class="fa fa-check"></i><b>5.2.3</b> Preprocessing</a></li>
+<li class="chapter" data-level="5.2.4" data-path="r-jags-and-rjags.html"><a href="r-jags-and-rjags.html#graph"><i class="fa fa-check"></i><b>5.2.4</b> Graph</a></li>
+<li class="chapter" data-level="5.2.5" data-path="r-jags-and-rjags.html"><a href="r-jags-and-rjags.html#format-data"><i class="fa fa-check"></i><b>5.2.5</b> Format Data</a></li>
 </ul></li>
-<li class="chapter" data-level="4.5" data-path="r-and-rjags.html"><a href="r-and-rjags.html#posteriors"><i class="fa fa-check"></i><b>4.5</b> Posteriors</a><ul>
-<li class="chapter" data-level="4.5.1" data-path="r-and-rjags.html"><a href="r-and-rjags.html#well-mass-flow"><i class="fa fa-check"></i><b>4.5.1</b> Well Mass Flow</a></li>
-<li class="chapter" data-level="4.5.2" data-path="r-and-rjags.html"><a href="r-and-rjags.html#decline-rate"><i class="fa fa-check"></i><b>4.5.2</b> Decline Rate</a></li>
-<li class="chapter" data-level="4.5.3" data-path="r-and-rjags.html"><a href="r-and-rjags.html#fp-mass-flow"><i class="fa fa-check"></i><b>4.5.3</b> FP Mass Flow</a></li>
-<li class="chapter" data-level="4.5.4" data-path="r-and-rjags.html"><a href="r-and-rjags.html#gen-mass-flow"><i class="fa fa-check"></i><b>4.5.4</b> Gen Mass Flow</a></li>
-<li class="chapter" data-level="4.5.5" data-path="r-and-rjags.html"><a href="r-and-rjags.html#gen-power"><i class="fa fa-check"></i><b>4.5.5</b> Gen Power</a></li>
+<li class="chapter" data-level="5.3" data-path="r-jags-and-rjags.html"><a href="r-jags-and-rjags.html#model"><i class="fa fa-check"></i><b>5.3</b> Model</a></li>
+<li class="chapter" data-level="5.4" data-path="r-jags-and-rjags.html"><a href="r-jags-and-rjags.html#convergence-tests"><i class="fa fa-check"></i><b>5.4</b> Convergence Tests</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="r-jags-and-rjags.html"><a href="r-jags-and-rjags.html#trace-plots"><i class="fa fa-check"></i><b>5.4.1</b> Trace plots</a></li>
+<li class="chapter" data-level="5.4.2" data-path="r-jags-and-rjags.html"><a href="r-jags-and-rjags.html#geweke"><i class="fa fa-check"></i><b>5.4.2</b> Geweke</a></li>
+<li class="chapter" data-level="5.4.3" data-path="r-jags-and-rjags.html"><a href="r-jags-and-rjags.html#gelman"><i class="fa fa-check"></i><b>5.4.3</b> Gelman</a></li>
+<li class="chapter" data-level="5.4.4" data-path="r-jags-and-rjags.html"><a href="r-jags-and-rjags.html#raftery"><i class="fa fa-check"></i><b>5.4.4</b> Raftery</a></li>
 </ul></li>
-<li class="chapter" data-level="4.6" data-path="r-and-rjags.html"><a href="r-and-rjags.html#advanced-analysis"><i class="fa fa-check"></i><b>4.6</b> Advanced Analysis</a><ul>
-<li class="chapter" data-level="4.6.1" data-path="r-and-rjags.html"><a href="r-and-rjags.html#high-variance-wells"><i class="fa fa-check"></i><b>4.6.1</b> High Variance wells</a></li>
-<li class="chapter" data-level="4.6.2" data-path="r-and-rjags.html"><a href="r-and-rjags.html#regression-fits"><i class="fa fa-check"></i><b>4.6.2</b> Regression Fits</a></li>
-<li class="chapter" data-level="4.6.3" data-path="r-and-rjags.html"><a href="r-and-rjags.html#time-series-plots"><i class="fa fa-check"></i><b>4.6.3</b> Time Series Plots</a></li>
-<li class="chapter" data-level="4.6.4" data-path="r-and-rjags.html"><a href="r-and-rjags.html#goodness-of-fit-ols-regression"><i class="fa fa-check"></i><b>4.6.4</b> Goodness of fit (OLS regression)</a></li>
-<li class="chapter" data-level="4.6.5" data-path="r-and-rjags.html"><a href="r-and-rjags.html#limits-and-constraint-violations"><i class="fa fa-check"></i><b>4.6.5</b> Limits and Constraint Violations</a></li>
-<li class="chapter" data-level="4.6.6" data-path="r-and-rjags.html"><a href="r-and-rjags.html#flow-comparison"><i class="fa fa-check"></i><b>4.6.6</b> Flow Comparison</a></li>
+<li class="chapter" data-level="5.5" data-path="r-jags-and-rjags.html"><a href="r-jags-and-rjags.html#posteriors"><i class="fa fa-check"></i><b>5.5</b> Posteriors</a><ul>
+<li class="chapter" data-level="5.5.1" data-path="r-jags-and-rjags.html"><a href="r-jags-and-rjags.html#well-mass-flow"><i class="fa fa-check"></i><b>5.5.1</b> Well Mass Flow</a></li>
+<li class="chapter" data-level="5.5.2" data-path="r-jags-and-rjags.html"><a href="r-jags-and-rjags.html#decline-rate"><i class="fa fa-check"></i><b>5.5.2</b> Decline Rate</a></li>
+<li class="chapter" data-level="5.5.3" data-path="r-jags-and-rjags.html"><a href="r-jags-and-rjags.html#gen-mass-flow"><i class="fa fa-check"></i><b>5.5.3</b> Gen Mass Flow</a></li>
+<li class="chapter" data-level="5.5.4" data-path="r-jags-and-rjags.html"><a href="r-jags-and-rjags.html#gen-power"><i class="fa fa-check"></i><b>5.5.4</b> Gen Power</a></li>
+<li class="chapter" data-level="5.5.5" data-path="r-jags-and-rjags.html"><a href="r-jags-and-rjags.html#well-standard-deviation"><i class="fa fa-check"></i><b>5.5.5</b> Well Standard Deviation</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="r-jags-and-rjags.html"><a href="r-jags-and-rjags.html#advanced-analysis"><i class="fa fa-check"></i><b>5.6</b> Advanced Analysis</a><ul>
+<li class="chapter" data-level="5.6.1" data-path="r-jags-and-rjags.html"><a href="r-jags-and-rjags.html#high-variance-wells"><i class="fa fa-check"></i><b>5.6.1</b> High Variance wells</a></li>
+<li class="chapter" data-level="5.6.2" data-path="r-jags-and-rjags.html"><a href="r-jags-and-rjags.html#regression-fits"><i class="fa fa-check"></i><b>5.6.2</b> Regression Fits</a></li>
+<li class="chapter" data-level="5.6.3" data-path="r-jags-and-rjags.html"><a href="r-jags-and-rjags.html#time-series-plots"><i class="fa fa-check"></i><b>5.6.3</b> Time Series Plots</a></li>
+<li class="chapter" data-level="5.6.4" data-path="r-jags-and-rjags.html"><a href="r-jags-and-rjags.html#goodness-of-fit-ols-regression"><i class="fa fa-check"></i><b>5.6.4</b> Goodness of fit (OLS regression)</a></li>
+<li class="chapter" data-level="5.6.5" data-path="r-jags-and-rjags.html"><a href="r-jags-and-rjags.html#limits-and-constraint-violations"><i class="fa fa-check"></i><b>5.6.5</b> Limits and Constraint Violations</a></li>
+<li class="chapter" data-level="5.6.6" data-path="r-jags-and-rjags.html"><a href="r-jags-and-rjags.html#flow-comparison"><i class="fa fa-check"></i><b>5.6.6</b> Flow Comparison</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="testing.html"><a href="testing.html"><i class="fa fa-check"></i><b>5</b> Testing</a></li>
 <li class="chapter" data-level="" data-path="special-thanks.html"><a href="special-thanks.html"><i class="fa fa-check"></i>Special Thanks</a><ul>
-<li class="chapter" data-level="5.1" data-path="special-thanks.html"><a href="special-thanks.html#people-and-corporations-corporations-are-people-too"><i class="fa fa-check"></i><b>5.1</b> People (and corporations – corporations are people too)</a></li>
-<li class="chapter" data-level="5.2" data-path="special-thanks.html"><a href="special-thanks.html#packages-and-the-people-who-made-them"><i class="fa fa-check"></i><b>5.2</b> Packages (and the people who made them)</a></li>
+<li class="chapter" data-level="5.7" data-path="special-thanks.html"><a href="special-thanks.html#people-and-corporations-corporations-are-people-too"><i class="fa fa-check"></i><b>5.7</b> People (and corporations – corporations are people too)</a></li>
+<li class="chapter" data-level="5.8" data-path="special-thanks.html"><a href="special-thanks.html#packages-and-the-people-who-made-them"><i class="fa fa-check"></i><b>5.8</b> Packages (and the people who made them)</a></li>
 </ul></li>
 </ul>
 
@@ -190,34 +193,40 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="header">
 <h1 class="title">Wairakei Stochastic Simulation Research Compendium</h1>
 <h4 class="author"><em>Logan Wu</em></h4>
-<h4 class="date"><em>2018-09-23</em></h4>
+<h4 class="date"><em>2018-09-30</em></h4>
 </div>
 <div id="overview" class="section level1 unnumbered">
 <h1>Overview</h1>
-<p>This compendium contains all the material used to generate the final report.</p>
-<p><strong>Components</strong></p>
+<p>This compendium contains all the material used to generate the final report. It is automatically generated thanks to Bookdown and Rstudio. (I swear, it only took a few hours to convert my source code into this).</p>
+<p>Compilation requires data in <code>(root)/wairakei_data/*.xlsx</code>, i.e., you won’t be able to run any of the code but it’s been pre-run for you. Raw data is confidential - contact Contact for access. The config file <code>/wairakei_data/config.xlsx</code> also may contain confidential data and is not committed, as is the entire <code>/wairakei_data/</code> folder.</p>
+<div id="components" class="section level2 unnumbered">
+<h2>Components</h2>
 <ul>
-<li><strong>Research Journal</strong> Meeting notes and emails.</li>
-<li><strong>Python Extraction Code</strong> Exploratory analysis and process data to a config and data spreadsheet.</li>
-<li><strong>R and RJAGS</strong> Take the data from the config/data sheets and format into JAGS input. Then post-process the output.</li>
+<li><strong><a href="motivation.html#motivation">1</a> <a href="motivation.html#motivation">Motivation</a></strong> Basically an exec summary.</li>
+<li><strong><a href="research-journal.html#research-journal">2</a> <a href="research-journal.html#research-journal">Research Journal</a></strong> Meeting notes and emails.</li>
+<li><strong><a href="initial-plots.html#initial-plots">3</a> <a href="initial-plots.html#initial-plots">Initial Plots</a></strong> Recreation of the provided Excel worksheet.</li>
+<li><strong><a href="python-extraction-code.html#python-extraction-code">4</a> <a href="python-extraction-code.html#python-extraction-code">Python Extraction Code</a></strong> Exploratory analysis and process data to a config and data spreadsheet.</li>
+<li><strong><a href="r-jags-and-rjags.html#r-jags-and-rjags">5</a> <a href="r-jags-and-rjags.html#r-jags-and-rjags">R, JAGS, and RJAGS</a></strong> Takes the data from the config/data sheets and format into JAGS input. Then post-processes the output. This is the program used to create the report outputs.</li>
 </ul>
-<p><strong>Not Included</strong></p>
+</div>
+<div id="non-components" class="section level2 unnumbered">
+<h2>Non-components</h2>
+<p>(Not included)</p>
 <ul>
 <li><strong>Data</strong> So that this compendium can be uploaded to Github without paying for a private repo.
 <ul>
 <li><strong>2486</strong> rows of mass flow / whp data from multiple sources.</li>
-<li><strong>420</strong> rows of times-series mass flow data from PI.</li>
-<li><strong>One</strong> 64.4 MB spreadsheet from Contact that has crashed my computer many times.</li>
+<li><strong>420</strong> rows of time-series mass flow data from PI.</li>
+<li><strong>74.5</strong> MB of spreadsheets from Contact that have crashed my computer many times.</li>
 </ul></li>
 <li><strong>Raw Outputs</strong>
 <ul>
-<li><strong>456</strong> MB of output traces.</li>
+<li><strong>456</strong> MB of output traces – 10,000 samples of 5654 variables.</li>
 <li><strong>Blood</strong>, sweat and tears, which do not aid the communication of my work.</li>
 </ul></li>
 </ul>
-<p>This document is automatically generated thanks to Bookdown and Rstudio. (I swear, it only took a few hours to convert my source code into this).</p>
-<p>Compilation requires data in <code>(root)/wairakei_data/*.xlsx</code>, i.e., you won’t be able to run any of the code but it’s been pre-run for you. Raw data is confidential - contact Contact for access. The config file <code>/wairakei_data/config.xlsx</code> also may contain confidential data and is not committed, as is the entire <code>/wairakei_data/</code> folder.</p>
 
+</div>
 </div>
             </section>
 
@@ -238,17 +247,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
-"google": false,
-"linkedin": false,
-"weibo": false,
-"instapper": false,
-"vk": false,
-"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
-},
+"sharing": false,
 "fontsettings": {
 "theme": "white",
 "family": "sans",

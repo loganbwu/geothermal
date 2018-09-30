@@ -10,3 +10,6 @@ However, they have remained the domain of experienced statisticians and economis
 
 ## What are we doing?
 
+This project implements a Bayesian network model that performs a statistical simulation of the Wairakei surface network. It simultaneously incorporating data from multiple sources and over a long period of time to estimate the true state of the network.
+
+Our implementation in R provides graphical interpretations of the model's outputs. Diagnostic tests then attempt to validate the model and verify that it is operating correctly.
