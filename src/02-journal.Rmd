@@ -39,8 +39,8 @@ Documents used:
 **Meeting**
 
 -	Model wk255: inputs and outputs. Create Python script to extract data and replicate plots. Then generalize to other sheets
-o	Plots: mf = f(whp) and mf = f(time | whp)
--	Mass flow = f(WHP): Inputs: WHP, outputs: linearly declining res P to predict mass flow in future 
+    + Plots: $\dot{m} = f(P_\text{whp})$ and $\dot{m} = f(t | P_\text{whp})$
+-	$\dot{m} = f(P_\text{whp})$. Inputs: Well-head pressure, outputs: linearly declining res $P$ to predict mass flow in future 
 -	Look at using regression uncertainty to create a distribution of future mass flows
 -	Make reasonable assumptions
 -	Missing data points are not important
@@ -148,7 +148,7 @@ Modelling
 > + FP16 IP+ - 450 t/h
     
 - The tools used to monitor mass flow in and out of the flash plants:
-    + What uncertainty is attached to these measurements? \[\pm\] 1%? 10%? 0.01%?
+    + What uncertainty is attached to these measurements? \(\pm\) 1%? 10%? 0.01%?
     
 > in terms of value, 10% is acceptable; in terms of trend, it has to be 100% accurate
 
@@ -157,7 +157,7 @@ Modelling
 > we don't have this and I have never heard of this. We do the accuracy check manually using spreadsheets
     
 - Regarding the power plants (Wairakei, Te Mihi and Poihipi):
-    + We have some numbers for the conversion factor from steam to MW – what uncertainty is attached to these? \[\pm\] 5%?
+    + We have some numbers for the conversion factor from steam to MW – what uncertainty is attached to these? \(\pm\) 5%?
     
 > Yes the changes to this number is up to 5%, although this number if often calibrated with actual values.
 

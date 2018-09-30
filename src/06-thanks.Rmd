@@ -6,7 +6,7 @@ I would like to thank my supervisors, Dr. David Dempsey and Dr. Cameron Walker, 
 
 Many thanks also to my project partner Vida Fox, and to Christine and Julian from Contact Energy for supplying spreadsheets that my computer still has nightmares about.
 
-![](../media/contact-logo.png)
+![](media/contact-logo.png)
 
 ## Packages (and the people who made them)
 

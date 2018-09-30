@@ -20,7 +20,7 @@ output_dir: "../docs"
 
 # Overview {-}
 
-This compendium contains all the material used to generate the final report. It is automatically generated thanks to Bookdown and Rstudio. (I swear, it only took a few hours to convert my source code into this).
+This compendium contains all the material used to generate the final report. It is automatically generated thanks to Bookdown and Rstudio. (I swear, it only took a few hours to convert my source code into this.)
 
 Compilation requires data in `(root)/wairakei_data/*.xlsx`, i.e., you won't be able to run any of the code but it's been pre-run for you. Raw data is confidential - contact Contact for access. The config file `/wairakei_data/config.xlsx` also may contain confidential data and is not committed, as is the entire `/wairakei_data/` folder.
 

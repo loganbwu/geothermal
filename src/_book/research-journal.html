@@ -250,8 +250,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h2><span class="header-section-number">2.2</span> March 16th</h2>
 <p><strong>Meeting</strong></p>
 <ul>
-<li>Model wk255: inputs and outputs. Create Python script to extract data and replicate plots. Then generalize to other sheets o Plots: mf = f(whp) and mf = f(time | whp)</li>
-<li>Mass flow = f(WHP): Inputs: WHP, outputs: linearly declining res P to predict mass flow in future</li>
+<li>Model wk255: inputs and outputs. Create Python script to extract data and replicate plots. Then generalize to other sheets
+<ul>
+<li>Plots: <span class="math inline">\(\dot{m} = f(P_\text{whp})\)</span> and <span class="math inline">\(\dot{m} = f(t | P_\text{whp})\)</span></li>
+</ul></li>
+<li><span class="math inline">\(\dot{m} = f(P_\text{whp})\)</span>. Inputs: Well-head pressure, outputs: linearly declining res <span class="math inline">\(P\)</span> to predict mass flow in future</li>
 <li>Look at using regression uncertainty to create a distribution of future mass flows</li>
 <li>Make reasonable assumptions</li>
 <li>Missing data points are not important</li>
@@ -363,7 +366,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <ul>
 <li>The tools used to monitor mass flow in and out of the flash plants:
 <ul>
-<li>What uncertainty is attached to these measurements? <span class="math display">\[\pm\]</span> 1%? 10%? 0.01%?</li>
+<li>What uncertainty is attached to these measurements? <span class="math inline">\(\pm\)</span> 1%? 10%? 0.01%?</li>
 </ul></li>
 </ul>
 <blockquote>
@@ -378,7 +381,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <ul>
 <li>Regarding the power plants (Wairakei, Te Mihi and Poihipi):
 <ul>
-<li>We have some numbers for the conversion factor from steam to MW – what uncertainty is attached to these? <span class="math display">\[\pm\]</span> 5%?</li>
+<li>We have some numbers for the conversion factor from steam to MW – what uncertainty is attached to these? <span class="math inline">\(\pm\)</span> 5%?</li>
 </ul></li>
 </ul>
 <blockquote>
