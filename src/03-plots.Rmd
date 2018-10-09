@@ -43,12 +43,13 @@ shifts = as.vector(mylm$coefficients[1:6])
 
 curveplot = ggplot(plotdata, aes(x=whp, y=mf, color=date)) +
   geom_point() +
-  ggtitle('Production Curves from Multiple Bore Tests (10.7 bar)') +
+  # ggtitle('Production Curves from Multiple Bore Tests (10.7 bar)') +
   xlab('Well-head pressure (bar)') + ylab('Mass flow (T/h)') +
   xlim(c(0, NA)) + ylim(c(0, NA)) +
   guides(color=F) +
   geom_line(data=reglines, aes(linetype=datetime)) +
-  labs(color="Date", linetype="Fitted curve")
+  labs(color="Date", linetype="Fitted curve") +
+  ggsave("../media/wk261_production.png", width=8, height=8, units='cm')
 ggplotly(curveplot)
 ```
 

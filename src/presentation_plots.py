@@ -45,4 +45,4 @@ ax.spines['bottom'].set_visible(False)
 plt.yticks([])
 plt.xticks([])
 
-plt.savefig("../bayesexample.png", bbox_inches="tight", dpi=60, transparent=True)
+plt.savefig("../media/bayesexample.png", bbox_inches="tight", dpi=144, transparent=True)

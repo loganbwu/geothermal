@@ -29,7 +29,7 @@ From the report introduction:
 > 1. Our system combines data from multiple sources into a statistical model that includes uncertainty using Bayesian statistics.
 > 2. The operator can interact with the internal model through Excel to conduct scenario analysis and automatically visualise the results.
 >
-> --- Logan
+> --- Me
 
 This Rmarkdown-generated page will serve as proof that a fully automated proof of concept has been developed. Whether the code is sufficiently commented or not ... is a different question.
 
@@ -289,8 +289,9 @@ V(g)$color = ifelse(V(g)$label %in% dry_wells, "red", ifelse(V(g)$label %in% no_
 E(g)$color = "black"
 E(g)[which(tail_of(g, E(g))$label=="DUMMY")]$color = "grey"
 
-# png("../_media/full_network.png")
-# par(mar=c(0,3,0,0), family="Times")
+# png("../media/full_network_uncensored.png")
+# # par(mar=c(0,3,0,0), family="Times")
+# par(mar=c(0,3,0,0))
 # plot(g, vertex.label.dist=3,
 #      mark.groups = list(wells=ids[well_names], fps=ids[fp_names], gens=ids[gen_names]),
 #      mark.col = "#DDDDDD",
@@ -601,6 +602,7 @@ outframe = as.data.frame(outmatrix) %>%
   gather(key=facility, value=value) %>%
   mutate(variable=gsub("\\[.*$", "", facility), facility=parse_number(facility, na=c("NA")))
 outframe$facility = factor(names(ids)[outframe$facility])
+outframe %>% tail %>% kable(caption="A few samples.") %>% kable_styling
 ```
 
 ## Convergence Tests
@@ -623,12 +625,13 @@ trace3 <- outframe %>%
   mutate(index = 1:nrow(.))
 traceplot = ggplot(trace1, aes(x=index, y=value, color=variable)) +
   geom_line(alpha=0.75) +
-  geom_line(alpha=0.75) +
-  geom_line(alpha=0.75) +
+  geom_line(data=trace2, alpha=0.75) +
+  geom_line(data=trace3, alpha=0.75) +
   coord_cartesian(xlim = c(max(trace1$index)-1000, max(trace1$index))) +
   labs(title="Trace Plot (Single chain)", x="Iteration", y="Parameter value", color="Variable")# +
-  # ggsave('../_media/trace_plot.png', width=24.7, height=8, units='cm')
-ggplotly(traceplot)
+  # ggsave('../media/trace_plot.png', width=16, height=8, units='cm')
+# ggplotly(traceplot)
+traceplot
 ```
 
 ### Geweke
@@ -707,9 +710,10 @@ g1 = ggplot(outframe %>%
   facet_grid(source~.) +
   theme(axis.text.y=element_blank(),
         axis.ticks.y=element_blank()) +
+  guides(fill=F) +
   labs(title=paste("Posterior Well Mass Flows for", prediction_date), 
        x="Mass flow (T/h)", y="Scaled density", fill="Facility")# +
-  # ggsave('../_media/mf_wells.png', width=24.7, height=8, units='cm')
+  # ggsave('../media/mf_wells_sans.png', width=12, height=8, units='cm')
 ggplotly(g1, tooltip=c('facility', 'value'))
 ```
 
@@ -721,11 +725,13 @@ An operator might like to see which wells are declining the fastest.
 g2 = ggplot(outframe %>% filter(variable=="beta_date", facility %in% special_wells),
             aes(x=value, fill=facility)) +
   geom_density(alpha=0.5, color=NA) +
+  geom_vline(xintercept = 0, color="red") +
   labs(title="Posterior Decline Rate of Test Data", 
        x="beta_date (T/h/d)", y="Density", fill="Facility") +
   theme(axis.text.y=element_blank(),
         axis.ticks.y=element_blank())# +
-  # ggsave('../_media/beta_date.png', width=24.7, height=6, units='cm')
+  # guides(fill=F) +
+  # ggsave('../media/beta_date_sans.png', width=12, height=8, units='cm')
 ggplotly(g2, tooltip=c('facility', 'value'))
 ```
 
@@ -751,15 +757,15 @@ g5.actual = data.frame(facility = c("WRK", "THI", "POI", "BIN"),
 g5 = ggplot(outframe %>% filter(facility %in% gen_names, variable=="power", value>0),
             aes(x=value, fill=facility)) +
   geom_density(aes(y=..scaled..), alpha=0.5, color=NA) + xlim(0, NA) +
-  geom_vline(data=g5.actual, aes(xintercept=value, color=facility)) +
+  # geom_vline(data=g5.actual, aes(xintercept=value, color=facility)) +
   theme(axis.text.y=element_blank(),
         axis.ticks.y=element_blank()) +
   labs(x="Power (MW)", y="Scaled density", fill="Facility")# +
   # ggsave('../_media/power_gens.png', width=24.7, height=10, units='cm')
 
 ggplotly(g5, tooltip=c('facility', 'value'))
-# tsgrob4.5 = grid_arrange_shared_legend(g4, g5, nrow=2, ncol=1, position = "right")
-# ggsave('../_media/gens.png', tsgrob4.5, width=24.7, height=6, units='cm')
+tsgrob4.5 = grid_arrange_shared_legend(g4, g5, nrow=2, ncol=1, position = "right")
+# ggsave('../media/gens_sans.png', tsgrob4.5, width=12, height=8, units='cm')
 ```
 
 ### Well Standard Deviation
@@ -1030,7 +1036,7 @@ We use the linear time series regression (top) for its robustness to systematic 
 
 ### Goodness of fit (OLS regression)
 
-```{r OLS_diagnostics, warning=FALSE, fig.height=12, fig.cap="Miscellaneous regression diagnostic plots."}
+```{r OLS_diagnostics, warning=FALSE, fig.cap="Diagnostic plots with all wells together."}
 liq_fit = as.data.frame(outmatrix) %>%
   select(contains('mf_fit')) %>%
   gather(key='index', value='fitted') %>%
@@ -1066,9 +1072,11 @@ diagplot
 selectwells = liq_fit %>% group_by(Well, key) %>%
   summarise(fittedsd = sd(Fitted)) %>%
   arrange(desc(fittedsd)) %>%
-  head(56*2) %>%
+  head(48*2) %>%
   pull(Well)
+```
 
+```{r, fig.height=8, fig.cap="Observed vs. fitted for individual wells"}
 observedplot = ggplot(liq_fit %>% filter(key=="Observed", Well %in% selectwells),
                       aes(x=Fitted, y=value)) +
   geom_point(aes(color=source), alpha=0.5) +
@@ -1081,7 +1089,10 @@ observedplot = ggplot(liq_fit %>% filter(key=="Observed", Well %in% selectwells)
   theme(legend.position = "bottom")# +
   # guides(color=guide_legend(nrow=3, byrow=T), shape=guide_legend(nrow=3, byrow=T)) +
   # ggsave('../_media/observed.png', width=24.7, height=24.7, units='cm')
+observedplot
+```
 
+```{r, fig.height=8, fig.cap="Standardised residuals for individual wells"}
 stdresplot = ggplot(liq_fit %>% filter(key=="Standardised residual",
                                        Well %in% selectwells),
                     aes(x=Fitted, y=value)) +
@@ -1094,18 +1105,14 @@ stdresplot = ggplot(liq_fit %>% filter(key=="Standardised residual",
   labs(title="Linear Regression Residual Plots Per Well",
        x="Fitted mass flow (T/h)", y="Standardised residual", color="Data source") +
   coord_cartesian(ylim=c(-5, 5)) +
-  theme(legend.position="bottom")# +
+  theme(legend.position="bottom",
+        axis.text.x=element_blank(),
+        axis.ticks.x=element_blank(),
+        axis.text.y=element_blank(),
+        axis.ticks.y=element_blank())# +
   # guides(color=guide_legend(nrow=3, byrow=T), shape=guide_legend(nrow=3, byrow=T)) +
-  # ggsave('../_media/stdres.png', width=24.7, height=24.7, units='cm')
-
-observedplot
+  # ggsave('../media/stdres_sans.png', width=18, height=12, units='cm')
 stdresplot
-
-# stdres_min = liq_fit %>% filter(key=="Standardised residual") %>% pull(value) %>% min()
-# stdres_max = liq_fit %>% filter(key=="Standardised residual") %>% pull(value) %>% max()
-# ggplot(liq_fit %>% filter(key=="Standardised residual"), aes(x=value)) +
-#   geom_density(fill="red", alpha=0.5, color=NA) +
-#   geom_line(data=data.frame(x=seq(stdres_min, stdres_max, length.out=100)), aes(x=x, y=dnorm(x)))
 ```
 
 ### Limits and Constraint Violations
@@ -1144,6 +1151,29 @@ limitplot = ggplot(sf.df %>% filter(facility %ni% incomplete.fps),
 limitplot
 ```
 
+The following plot is for the presentation, focusing on the three FPs that feed from configurable wells.
+
+```{r presentation_plot, fig.cap="Limit comparison for three FPs with flow limits."}
+sf.df2 <- sf.df %>%
+  filter(facility %in% p.limits$facility)
+limitplot2 = ggplot(sf.df2, aes(x=value, fill=facility)) +
+  facet_wrap(~facility, scales = "free_y", ncol=1) +
+  geom_density(alpha=0.5, color=NA) +
+  geom_vline(data=limits, aes(xintercept=limit), color="red") +
+  # geom_label(data=p.limits %>% filter(facility %ni% incomplete.fps),
+  #            aes(x=-Inf, y=Inf, hjust=0, vjust=1,
+  #                label=paste0("p(>lim)=", p.greater), family="Times New Roman"),
+  #            color="black", label.size=0, fill='white') +
+  xlim(0, NA) +
+  theme(legend.position="none",
+        axis.text.y=element_blank(),
+        axis.ticks.y=element_blank()) +
+  labs(title="Posterior Flash Plant Mass Flows",
+       x="Steam flow (T/h)", y="Density", fill="Flash plant", color="Steam flow limit")# +
+  # ggsave('../media/constraints2.png', width=16, height=9, units='cm')
+limitplot2
+```
+
 ### Flow Comparison
 
 ```{r flow comparison, fig.cap="Verification of predicted flows with supplied calculations shows some disagreement ($p<0.025$ or $p>0.975$), if we assume CEL's figures as the ground truth. Densities are the model's forecasts and black lines are the given figures from CEL (estimated by CEL, not direct from the PI loggers)."}
@@ -1168,19 +1198,21 @@ ps = flow.df %>%
   mutate(variable=factor(variable, levels=c("mf", "ip_sf", "lp_sf", "wf"))) %>%
   drop_na()
 
-verificationplot = ggplot(flow.df %>% filter(facility %ni% incomplete.fps),
+verificationplot = ggplot(flow.df %>% filter(facility %ni% incomplete.fps,
+                                             variable %in% c("mf", "lp_sf", "wf")),
                           aes(x=value)) +
   geom_density(aes(y=..scaled.., fill=variable, color=variable),
                alpha=0.5, show.legend=F) +
-  geom_vline(data=comparison %>% filter(facility %ni% incomplete.fps),
+  geom_vline(data=comparison %>% filter(facility %ni% incomplete.fps,
+                                        variable %in% c("mf", "lp_sf", "wf")),
              aes(xintercept=value)) +
-  geom_label(data=ps %>% filter(facility %ni% incomplete.fps),
-             aes(x=-Inf, y=Inf, hjust=0, vjust=1, label=paste0("p(>x)=", p.greater),
-                 family="Times New Roman"), label.size=0) +
+  # geom_label(data=ps %>% filter(facility %ni% incomplete.fps),
+  #            aes(x=-Inf, y=Inf, hjust=0, vjust=1, label=paste0("p(>x)=", p.greater),
+  #                family="Times New Roman"), label.size=0) +
   facet_grid(facility~variable, scales="free", space="free_y") +
   theme(axis.text.y=element_blank(), axis.ticks.y=element_blank()) +
   labs(title="Comparison Between Predicted FP Flows and Sample Data",
        x="Value", y="Scaled density")# +
-  # ggsave('../_media/verification.png', width=24.7, height=20, units='cm')
+  # ggsave('../media/verification_sans.png', width=18, height=12, units='cm')
 verificationplot
 ```
