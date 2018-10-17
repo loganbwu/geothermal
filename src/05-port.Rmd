@@ -85,7 +85,7 @@ R is used to:
 
 Reads data from several spreadsheets, including PI data. PI data is special because it has not been pre-processed. It requires additional filtering and basic pre-processing.
 
-```{r load_data}
+```{r loaddata}
 # read in config data
 configsheets = excel_sheets(configpath)
 for (sheet in configsheets) {
@@ -1036,7 +1036,7 @@ We use the linear time series regression (top) for its robustness to systematic 
 
 ### Goodness of fit (OLS regression)
 
-```{r OLS_diagnostics, warning=FALSE, fig.cap="Diagnostic plots with all wells together."}
+```{r OLSdiagnostics, warning=FALSE, fig.cap="Diagnostic plots with all wells together."}
 liq_fit = as.data.frame(outmatrix) %>%
   select(contains('mf_fit')) %>%
   gather(key='index', value='fitted') %>%
@@ -1153,7 +1153,7 @@ limitplot
 
 The following plot is for the presentation, focusing on the three FPs that feed from configurable wells.
 
-```{r presentation_plot, fig.cap="Limit comparison for three FPs with flow limits."}
+```{r presentationplot, fig.cap="Limit comparison for three FPs with flow limits."}
 sf.df2 <- sf.df %>%
   filter(facility %in% p.limits$facility)
 limitplot2 = ggplot(sf.df2, aes(x=value, fill=facility)) +
@@ -1171,12 +1171,12 @@ limitplot2 = ggplot(sf.df2, aes(x=value, fill=facility)) +
   labs(title="Posterior Flash Plant Mass Flows",
        x="Steam flow (T/h)", y="Density", fill="Flash plant", color="Steam flow limit")# +
   # ggsave('../media/constraints2.png', width=16, height=9, units='cm')
-limitplot2
+ggplotly(limitplot2)
 ```
 
 ### Flow Comparison
 
-```{r flow comparison, fig.cap="Verification of predicted flows with supplied calculations shows some disagreement ($p<0.025$ or $p>0.975$), if we assume CEL's figures as the ground truth. Densities are the model's forecasts and black lines are the given figures from CEL (estimated by CEL, not direct from the PI loggers)."}
+```{r flowcomparison, fig.cap="Verification of predicted flows with supplied calculations shows some disagreement ($p<0.025$ or $p>0.975$), if we assume CEL's figures as the ground truth. Densities are the model's forecasts and black lines are the given figures from CEL (estimated by CEL, not direct from the PI loggers)."}
 flow.df <- outframe %>% 
   filter(facility %in% fp_names) %>%
   filter(str_detect(variable, "mf_pred|ip_sf|lp_sf|wf") & value > 0) %>%

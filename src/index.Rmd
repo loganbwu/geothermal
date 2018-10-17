@@ -29,11 +29,12 @@ Compilation requires data in `(root)/wairakei_data/*.xlsx`, i.e., you won't be a
 
 ## Components {-}
 
-- **\@ref(motivation) [Motivation]** Basically an exec summary.
+- **\@ref(motivation) [Motivation]** Basically an exec summary. Used as the draft for my Wordpress page.
 - **\@ref(research-journal) [Research Journal]** Meeting notes and emails.
 - **\@ref(initial-plots) [Initial Plots]** Recreation of the provided Excel worksheet.
 - **\@ref(python-extraction-code) [Python Extraction Code]** Exploratory analysis and process data to a config and data spreadsheet.
 - **\@ref(r-jags-and-rjags) [R, JAGS, and RJAGS]** Takes the data from the config/data sheets and format into JAGS input. Then post-processes the output. This is the program used to create the report outputs.
+- **[Special Thanks]** Just a few of the people who made this possible.
 - [**Wordpress Page**](https://engsci700-2018.blogs.auckland.ac.nz/lwu308-logan-wu/) Requires a "subscription" to the ENGSCI700 2018 blogs to view.
 
 ## Non-components {-}

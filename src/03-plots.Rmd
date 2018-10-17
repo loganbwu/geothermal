@@ -59,7 +59,7 @@ They fit an independent curve for each series of bore tests with at least three 
 
 Then, we can estimate the decline rate of each well. Currently, Contact takes one point from each curve at a standard well-head pressure.
 
-```{r comparisonplot, fig.cap="Comparison of independent curves and multiple curves."}
+```{r decayplot, fig.cap="Comparison of independent curves and multiple curves."}
 decay = reglines %>%
   filter(abs(whp-10.7) < 1e-3) %>%
   mutate(Method="Contact") %>%
