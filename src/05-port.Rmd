@@ -901,7 +901,7 @@ sourcetab %>% kable(caption="Production errors and data sources") %>%
 
 ### Regression Fits
 
-```{r verify_production_curve, fig.cap="We expect the curves to make better predictions near the PI data after inclusion. Forecasted production curves for December 1st, and shaded regions are 95% credible intervals."}
+```{r verifyproductioncurve, fig.cap="We expect the curves to make better predictions near the PI data after inclusion. Forecasted production curves for December 1st, and shaded regions are 95% credible intervals."}
 prod = as.data.frame(outmatrix) %>%
   select(contains('prod')) %>%
   gather(key=facility, value=value) %>%

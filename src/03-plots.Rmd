@@ -71,7 +71,7 @@ decayplot = ggplot(decay, aes(x=date, y=mf, color=Method)) +
   geom_smooth(method="lm") +
   facet_grid(~Method) +
   labs(title="Estimated Well Decay at 10.7 Bar", x="Date", y="Standardised mass flow", color="Data")
-ggplotly(decayplot)
+decayplot
 ```
 
 This plot shows that the two methods give different slopes, or decay rates. Therefore, by excluding some of the data, it is possible that Contact is losing some performance in their model.
