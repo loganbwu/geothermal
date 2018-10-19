@@ -25,7 +25,7 @@
 <meta name="author" content="Logan Wu">
 
 
-<meta name="date" content="2018-10-17">
+<meta name="date" content="2018-10-19">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -114,8 +114,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#non-components"><i class="fa fa-check"></i>Non-components</a></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="motivation.html"><a href="motivation.html"><i class="fa fa-check"></i><b>1</b> Motivation</a><ul>
-<li class="chapter" data-level="1.1" data-path="motivation.html"><a href="motivation.html#whats-the-problem"><i class="fa fa-check"></i><b>1.1</b> What’s the problem?</a></li>
-<li class="chapter" data-level="1.2" data-path="motivation.html"><a href="motivation.html#what-are-we-doing"><i class="fa fa-check"></i><b>1.2</b> What are we doing?</a></li>
+<li class="chapter" data-level="1.1" data-path="motivation.html"><a href="motivation.html#introduction"><i class="fa fa-check"></i><b>1.1</b> Introduction</a></li>
+<li class="chapter" data-level="1.2" data-path="motivation.html"><a href="motivation.html#background"><i class="fa fa-check"></i><b>1.2</b> Background</a></li>
+<li class="chapter" data-level="1.3" data-path="motivation.html"><a href="motivation.html#what-are-we-doing"><i class="fa fa-check"></i><b>1.3</b> What are we doing?</a></li>
+<li class="chapter" data-level="1.4" data-path="motivation.html"><a href="motivation.html#outcomes"><i class="fa fa-check"></i><b>1.4</b> Outcomes</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="research-journal.html"><a href="research-journal.html"><i class="fa fa-check"></i><b>2</b> Research Journal</a><ul>
 <li class="chapter" data-level="2.1" data-path="research-journal.html"><a href="research-journal.html#march-8th"><i class="fa fa-check"></i><b>2.1</b> March 8th</a></li>
@@ -196,16 +198,23 @@ Wordpress Page</a></li>
             <section class="normal" id="section-">
 <div id="motivation" class="section level1">
 <h1><span class="header-section-number">1</span> Motivation</h1>
-<p>The Wairakei geothermal field is one of the oldest geothermal electricity producers in the world. The current operator, Contact Energy Ltd., gathers a huge amount of data for the purposes of monitoring the state of the field. The problem is, dealing with this data is <em>hard</em>. Although it is available in vast quantities, it isn’t necessarily complete – some facilities don’t have all the meters they’d like, and there are some things you just can’t physically measure.</p>
-<div id="whats-the-problem" class="section level2">
-<h2><span class="header-section-number">1.1</span> What’s the problem?</h2>
-<p>The problem is uncertainty, or rather, the lack of it. Things in nature aren’t perfectly deterministic, especially when there are things we don’t know or are trying to predict. <a href="https://en.wikipedia.org/wiki/Bayesian_inference">Bayesian statistics</a> and <a href="https://en.wikipedia.org/wiki/Monte_Carlo_method">Monte Carlo methods</a> are two methods that go hand in hand to incorporate uncertainty.</p>
-<p>However, they have remained the domain of experienced statisticians and economists. You’ll never find a Bayesian or Monte Carlo function in Excel. Despite energy being a field where forecasting uncertainty is important, the Wairakei operators still use deterministic methods.</p>
+<div id="introduction" class="section level2">
+<h2><span class="header-section-number">1.1</span> Introduction</h2>
+<p>Geothermal power makes up 13% of New Zealand’s electricity supply, going all the way back to 1958. The Wairakei field’s current operator, Contact Energy Ltd., gathers a huge amount of data for the purposes of monitoring the state of the field.</p>
+<p>Traditional data management tools (SCADA) give point measurements, which are fed into an Excel model of the steamfield. However, all measurements and models have errors. By ignoring uncertainty, we make ourselves oblivious to the risks posed by randomness and cannot quantify our own uncertainty in our estimates.</p>
+</div>
+<div id="background" class="section level2">
+<h2><span class="header-section-number">1.2</span> Background</h2>
+<p>At Wairakei, there is a unique and complex network of facilities that make it possible to generate power under difficult conditions. Wells draw mixed-phase fluid from the reservoir to the surface, where it is separated by flash plants. The resulting steam and water is sent to generators, reinjected or discarded.</p>
+<p>Not every flow, temperature or enthalpy can be measured everywhere in the network. Some parameters are calculated, and then used to estimate the state of the network. Live, accurate knowledge of the steamfield is vital for operational decisions such as when to do maintenance, or how to ensure the longevity of its natural resources.</p>
 </div>
 <div id="what-are-we-doing" class="section level2">
-<h2><span class="header-section-number">1.2</span> What are we doing?</h2>
-<p>This project implements a Bayesian network model that performs a statistical simulation of the Wairakei surface network. It simultaneously incorporating data from multiple sources and over a long period of time to estimate the true state of the network.</p>
-<p>Our implementation in R provides graphical interpretations of the model’s outputs. Diagnostic tests then attempt to validate the model and verify that it is operating correctly.</p>
+<h2><span class="header-section-number">1.3</span> What are we doing?</h2>
+<p><a href="https://en.wikipedia.org/wiki/Bayesian_inference">Bayesian statistics</a> and <a href="https://en.wikipedia.org/wiki/Monte_Carlo_method">Monte Carlo simulation</a> are two methods that go hand in hand to incorporate uncertainty in our predictions.</p>
+<p>Our implementation in R provides graphical interpretations of the model’s outputs. Automatic diagnostic tests then verify that it is operating correctly.</p>
+</div>
+<div id="outcomes" class="section level2">
+<h2><span class="header-section-number">1.4</span> Outcomes</h2>
 
 </div>
 </div>

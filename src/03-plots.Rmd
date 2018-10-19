@@ -8,6 +8,7 @@ library(extrafont)
 library(lubridate)
 library(viridis)
 library(plotly)
+library(htmlwidgets)
 
 datapath = '../wairakei_data/plotdata.xlsx'
 regdatapath = '../wairakei_data/data.xlsx'
@@ -51,6 +52,7 @@ curveplot = ggplot(plotdata, aes(x=whp, y=mf, color=date)) +
   labs(color="Date", linetype="Fitted curve") +
   ggsave("../media/wk261_production.png", width=8, height=8, units='cm')
 ggplotly(curveplot)
+saveWidget(ggplotly(curveplot), "widgets/curveplot.html")
 ```
 
 They fit an independent curve for each series of bore tests with at least three data points. We think we can do one better by treating time as a variable rather than fitting separate models. This will allow us to consider all of the data even if there was only a single test (e.g., tracer flow tests), and reduce the impact of outliers.

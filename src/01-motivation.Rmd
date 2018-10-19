@@ -1,15 +1,28 @@
 # Motivation
 
-The Wairakei geothermal field is one of the oldest geothermal electricity producers in the world. The current operator, Contact Energy Ltd., gathers a huge amount of data for the purposes of monitoring the state of the field. The problem is, dealing with this data is *hard*. Although it is available in vast quantities, it isn't necessarily complete -- some facilities don't have all the meters they'd like, and there are some things you just can't physically measure.
+## Introduction
 
-## What's the problem?
+Geothermal power makes up 13% of New Zealand's electricity supply, going all the way back to 1958. The Wairakei field's current operator, Contact Energy Ltd., gathers a huge amount of data for the purposes of monitoring the state of the field.
 
-The problem is uncertainty, or rather, the lack of it. Things in nature aren't perfectly deterministic, especially when there are things we don't know or are trying to predict. [Bayesian statistics](https://en.wikipedia.org/wiki/Bayesian_inference) and [Monte Carlo methods](https://en.wikipedia.org/wiki/Monte_Carlo_method) are two methods that go hand in hand to incorporate uncertainty.
+Traditional data management tools (SCADA) give point measurements, which are fed into an Excel model of the steamfield. However, all measurements and models have errors. By ignoring uncertainty, we make ourselves oblivious to the risks posed by randomness and cannot quantify our own uncertainty in our estimates.
 
-However, they have remained the domain of experienced statisticians and economists. You'll never find a Bayesian or Monte Carlo function in Excel. Despite energy being a field where forecasting uncertainty is important, the Wairakei operators still use deterministic methods.
+## Background
+
+At Wairakei, there is a unique and complex network of facilities that make it possible to generate power under difficult conditions. Wells draw mixed-phase fluid from the reservoir to the surface, where it is separated by flash plants. The resulting steam and water is sent to generators, reinjected or discarded.
+
+Not every flow, temperature or enthalpy can be measured everywhere in the network. Some parameters are calculated, and then used to estimate the state of the network. Live, accurate knowledge of the steamfield is vital for operational decisions such as when to do maintenance, or how to ensure the longevity of its natural resources.
 
 ## What are we doing?
 
-This project implements a Bayesian network model that performs a statistical simulation of the Wairakei surface network. It simultaneously incorporating data from multiple sources and over a long period of time to estimate the true state of the network.
+[Bayesian statistics](https://en.wikipedia.org/wiki/Bayesian_inference) and [Monte Carlo simulation](https://en.wikipedia.org/wiki/Monte_Carlo_method) are two methods that go hand in hand to incorporate uncertainty in our predictions.
 
-Our implementation in R provides graphical interpretations of the model's outputs. Diagnostic tests then attempt to validate the model and verify that it is operating correctly.
+Our implementation in R provides graphical interpretations of the model's outputs. The model is fully configurable using an Excel tool, and automatic diagnostic tests verify that it is operating correctly.
+
+## Outcomes
+
+We iterated through a variety of model formulations and methods, settling on the one with the best performance. Our program also generates interactive plots of the results, allowing the operator to filter by facility and compare the performance of their assets.
+
+We also evaluate the risk of the steamfield exceeding any constraints, such as steam flow limits.
+
+- **Quick Runtime** Execution of data ingestion, simulation, and outputs in less than five minutes. The current workflow takes hours.
+- **Intuitive Results** Density plots show our estimates and uncertainties. Risks of constraint violations are also easy to interpret.

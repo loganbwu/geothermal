@@ -16,6 +16,8 @@ output:
         after: |
           <li><a href="https://engsci700-2018.blogs.auckland.ac.nz/lwu308-logan-wu/">
           Wordpress Page</a></li>
+          <li><a href="https://github.com/loganbwu/geothermal/commits/">
+          Commit Logs</a></li>
       sharing: no
 description: "Compendium index for the ENGSCI Part IV research project"
 output_dir: "../docs"
@@ -36,6 +38,7 @@ Compilation requires data in `(root)/wairakei_data/*.xlsx`, i.e., you won't be a
 - **\@ref(r-jags-and-rjags) [R, JAGS, and RJAGS]** Takes the data from the config/data sheets and format into JAGS input. Then post-processes the output. This is the program used to create the report outputs.
 - **[Special Thanks]** Just a few of the people who made this possible.
 - [**Wordpress Page**](https://engsci700-2018.blogs.auckland.ac.nz/lwu308-logan-wu/) Requires a "subscription" to the ENGSCI700 2018 blogs to view.
+- [**Commit Logs**](https://github.com/loganbwu/geothermal/commits/) Version history.
 
 ## Non-components {-}
 
@@ -49,4 +52,4 @@ Compilation requires data in `(root)/wairakei_data/*.xlsx`, i.e., you won't be a
     + **456** MB of output traces -- 10,000 samples of 5654 variables.
     + **Blood**, sweat and tears, which do not aid the communication of my work.
 
-![](media/network_diagram.png)
+![](media/network_diagram_sans.png){width=400px}

@@ -16,6 +16,7 @@ library(openssl)
 library(knitr)
 library(kableExtra)
 library(DT)
+library(htmlwidgets)
 knit_print.data.frame <- lemon_print
 options(digits=2)
 ```
@@ -1172,6 +1173,7 @@ limitplot2 = ggplot(sf.df2, aes(x=value, fill=facility)) +
        x="Steam flow (T/h)", y="Density", fill="Flash plant", color="Steam flow limit")# +
   # ggsave('../media/constraints2.png', width=16, height=9, units='cm')
 ggplotly(limitplot2)
+saveWidget(ggplotly(limitplot2), "widgets/limitplot.html")
 ```
 
 ### Flow Comparison
