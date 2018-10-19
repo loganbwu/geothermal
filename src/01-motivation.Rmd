@@ -27,6 +27,13 @@ We also evaluate the risk of the steamfield exceeding any constraints, such as s
 - **Quick Runtime** Execution of data ingestion, simulation, and outputs in less than five minutes. The current workflow takes hours.
 - **Intuitive Results** Density plots show our estimates and uncertainties. Risks of constraint violations are also easy to interpret.
 
-## Results
+### Results
 
+- **Lintsplot** We can make production forecasts into the future, with an associated confidence interval.
 - **Limitplot** We simulated an actual Contact Energy configuration. The steam flows are  unlikely to exceed the flash plant limits, shown as the red lines. This confirms that their configuration is not risky.
+
+## Conclusions
+
+We have developed an efficient model that can quantify uncertainty throughout the network. It is also effective at evaluating the risk associated with each network configuration.
+
+As with all data-driven models, its performance is limited by the quality of the data so we would love to work with Contact to integrate more sources of information.

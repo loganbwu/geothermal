@@ -932,6 +932,7 @@ regplot = ggplot(prod, aes(x=whp)) +
                   ylim=c(0,max(plotdata$mf)*1.1))# +
   # ggsave('../_media/production_curve.png', width=24.7*0.48, height=24.7*0.48, units='cm')
 ggplotly(regplot)
+saveWidget(ggplotly(regplot), "regplot.html")
 ```
 
 ### Time Series Plots

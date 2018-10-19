@@ -14,10 +14,9 @@ output:
         collapse: section
         scroll_highlight: yes
         after: |
-          <li><a href="https://engsci700-2018.blogs.auckland.ac.nz/lwu308-logan-wu/">
-          Wordpress Page</a></li>
-          <li><a href="https://github.com/loganbwu/geothermal/commits/">
-          Commit Logs</a></li>
+          <li><a href="https://engsci700-2018.blogs.auckland.ac.nz/lwu308-logan-wu/">Wordpress Page</a></li>
+          <li><a href="https://github.com/loganbwu/geothermal/commits/">Git Logs</a></li>
+          <li><a href="https://github.com/loganbwu/geothermal/raw/master/Presentation.pptx">Presentation Slides</a></li>
       sharing: no
 description: "Compendium index for the ENGSCI Part IV research project"
 output_dir: "../docs"
@@ -27,7 +26,7 @@ output_dir: "../docs"
 
 This compendium contains all the material used to generate the final report. It is automatically generated thanks to Bookdown and Rstudio. (I swear, it only took a few hours to convert my source code into this.)
 
-All items presented were developed independently by myself for my half of the project.
+All items presented were developed independently by myself for my half of the project. Separate are the data (supplied by Contact) and presentation (joint with Vida Fox, but hosted in my GitHub).
 
 Compilation requires data in `(root)/wairakei_data/*.xlsx`, i.e., you won't be able to run any of the code but it's been pre-run for you. Raw data is confidential - contact Contact for access. The config file `/wairakei_data/config.xlsx` also may contain confidential data and is not committed, as is the entire `/wairakei_data/` folder.
 
@@ -40,7 +39,8 @@ Compilation requires data in `(root)/wairakei_data/*.xlsx`, i.e., you won't be a
 - **\@ref(r-jags-and-rjags) [R, JAGS, and RJAGS]** Takes the data from the config/data sheets and format into JAGS input. Then post-processes the output. This is the program used to create the report outputs.
 - **[Special Thanks]** Just a few of the people who made this possible.
 - [**Wordpress Page**](https://engsci700-2018.blogs.auckland.ac.nz/lwu308-logan-wu/) Requires a "subscription" to the ENGSCI700 2018 blogs to view.
-- [**Commit Logs**](https://github.com/loganbwu/geothermal/commits/) Version history.
+- [**Presentation Slides**](https://github.com/loganbwu/geothermal/raw/master/Presentation.pptx) Powerpoint from our joint oral presentation.
+- [**Git Logs**](https://github.com/loganbwu/geothermal/commits/) Version history on my GitHub.
 
 ## Non-components {-}
 
