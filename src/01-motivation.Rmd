@@ -29,6 +29,7 @@ We also evaluate the risk of the steamfield exceeding any constraints, such as s
 
 ### Results
 
+- **Regplot** Our model predicting fluid production for each well incorporates confidence bands.
 - **Lintsplot** We can make production forecasts into the future, with an associated confidence interval.
 - **Limitplot** We simulated an actual Contact Energy configuration. The steam flows are  unlikely to exceed the flash plant limits, shown as the red lines. This confirms that their configuration is not risky.
 
