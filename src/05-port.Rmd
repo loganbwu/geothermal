@@ -999,6 +999,7 @@ lintsplot = ggplot(ts_fit, aes(x=date_numeric, color=well, fill=well)) +
        x="Days since baseline (2000)", linetype="")# +
   # ggsave('../_media/dry_time_series.png', width=24.7, height=8, units='cm')
 ggplotly(lintsplot)
+saveWidget(ggplotly(lintsplot), "lintsplot.html")
 ```
 
 ```{r arplot, fig.cap="First-order autoregressive model."}
@@ -1173,7 +1174,7 @@ limitplot2 = ggplot(sf.df2, aes(x=value, fill=facility)) +
        x="Steam flow (T/h)", y="Density", fill="Flash plant", color="Steam flow limit")# +
   # ggsave('../media/constraints2.png', width=16, height=9, units='cm')
 ggplotly(limitplot2)
-saveWidget(ggplotly(limitplot2), "widgets/limitplot.html")
+saveWidget(ggplotly(limitplot2), "limitplot.html")
 ```
 
 ### Flow Comparison

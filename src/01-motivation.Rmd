@@ -26,3 +26,7 @@ We also evaluate the risk of the steamfield exceeding any constraints, such as s
 
 - **Quick Runtime** Execution of data ingestion, simulation, and outputs in less than five minutes. The current workflow takes hours.
 - **Intuitive Results** Density plots show our estimates and uncertainties. Risks of constraint violations are also easy to interpret.
+
+## Results
+
+- **Limitplot** We simulated an actual Contact Energy configuration. The steam flows are  unlikely to exceed the flash plant limits, shown as the red lines. This confirms that their configuration is not risky.

@@ -118,6 +118,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="1.2" data-path="motivation.html"><a href="motivation.html#background"><i class="fa fa-check"></i><b>1.2</b> Background</a></li>
 <li class="chapter" data-level="1.3" data-path="motivation.html"><a href="motivation.html#what-are-we-doing"><i class="fa fa-check"></i><b>1.3</b> What are we doing?</a></li>
 <li class="chapter" data-level="1.4" data-path="motivation.html"><a href="motivation.html#outcomes"><i class="fa fa-check"></i><b>1.4</b> Outcomes</a></li>
+<li class="chapter" data-level="1.5" data-path="motivation.html"><a href="motivation.html#results"><i class="fa fa-check"></i><b>1.5</b> Results</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="research-journal.html"><a href="research-journal.html"><i class="fa fa-check"></i><b>2</b> Research Journal</a><ul>
 <li class="chapter" data-level="2.1" data-path="research-journal.html"><a href="research-journal.html#march-8th"><i class="fa fa-check"></i><b>2.1</b> March 8th</a></li>
@@ -178,6 +179,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="divider"></li>
 <li><a href="https://engsci700-2018.blogs.auckland.ac.nz/lwu308-logan-wu/">
 Wordpress Page</a></li>
+<li><a href="https://github.com/loganbwu/geothermal/commits/">
+Commit Logs</a></li>
 
 </ul>
 
@@ -211,10 +214,22 @@ Wordpress Page</a></li>
 <div id="what-are-we-doing" class="section level2">
 <h2><span class="header-section-number">1.3</span> What are we doing?</h2>
 <p><a href="https://en.wikipedia.org/wiki/Bayesian_inference">Bayesian statistics</a> and <a href="https://en.wikipedia.org/wiki/Monte_Carlo_method">Monte Carlo simulation</a> are two methods that go hand in hand to incorporate uncertainty in our predictions.</p>
-<p>Our implementation in R provides graphical interpretations of the model’s outputs. Automatic diagnostic tests then verify that it is operating correctly.</p>
+<p>Our implementation in R provides graphical interpretations of the model’s outputs. The model is fully configurable using an Excel tool, and automatic diagnostic tests verify that it is operating correctly.</p>
 </div>
 <div id="outcomes" class="section level2">
 <h2><span class="header-section-number">1.4</span> Outcomes</h2>
+<p>We iterated through a variety of model formulations and methods, settling on the one with the best performance. Our program also generates interactive plots of the results, allowing the operator to filter by facility and compare the performance of their assets.</p>
+<p>We also evaluate the risk of the steamfield exceeding any constraints, such as steam flow limits.</p>
+<ul>
+<li><strong>Quick Runtime</strong> Execution of data ingestion, simulation, and outputs in less than five minutes. The current workflow takes hours.</li>
+<li><strong>Intuitive Results</strong> Density plots show our estimates and uncertainties. Risks of constraint violations are also easy to interpret.</li>
+</ul>
+</div>
+<div id="results" class="section level2">
+<h2><span class="header-section-number">1.5</span> Results</h2>
+<ul>
+<li><strong>Limitplot</strong> We simulated an actual Contact Energy configuration. The steam flows are unlikely to exceed the flash plant limits, shown as the red lines. This confirms that their configuration is not risky.</li>
+</ul>
 
 </div>
 </div>
